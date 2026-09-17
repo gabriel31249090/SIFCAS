@@ -11,13 +11,17 @@ const PUBLIC_PREFIXES = [
   "/recuperar-senha",
   "/noticias",
   "/editais",
+  "/agenda-institucional",
   "/transparencia",
   "/campus",
   "/acesso-negado",
   "/verificar-documento",
+  "/buscar",
+  "/aplicativos",
+  "/publicacoes",
 ];
 
-const STAFF_PREFIXES = ["/administracao", "/pessoas"];
+const STAFF_PREFIXES = ["/administracao", "/pessoas", "/painel-institucional"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
 const MANAGEMENT_PREFIXES = ["/gestao-academica"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];

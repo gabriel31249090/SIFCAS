@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import "./globals.css";
 import "./auth.css";
 import "./phase2.css";
+import "./institutional.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,18 +1,41 @@
-import { CalendarDays, Clock3, Users, Megaphone } from "lucide-react";
-import { PageHeader, StatCard } from "@/components/UI";
+import Link from "next/link";
+import { CalendarDays, Clock3, Megaphone, Pin, Send, Users } from "lucide-react";
+import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
+import { getCurrentAccount } from "@/lib/auth";
+import { listAgendaPublications, publicationKindLabels } from "@/lib/institutional";
 
-const events = [
-  ["18/09", "08:00", "Reunião do Conselho de Campus", "Direção-Geral", "Sala de reuniões", "Gestão"],
-  ["19/09", "09:00", "Mostra de Pesquisa e Inovação", "Coordenação de Pesquisa", "Auditório", "Evento"],
-  ["22/09", "23:59", "Prazo final para submissão de projetos", "Pró-Reitoria de Pesquisa", "Online", "Prazo"],
-  ["24/09", "09:00", "Feira de Extensão", "Coordenação de Extensão", "Pátio central", "Evento"],
-];
+function formatDate(value: string | null) {
+  if (!value) return "—";
+  return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Cuiaba" }).format(new Date(value));
+}
 
-export default function AgendaInstitucional() {
+export default async function InstitutionalAgendaPage() {
+  const account = await getCurrentAccount();
+  const entries = await listAgendaPublications();
+  const events = entries.filter((row) => row.kind === "event").length;
+  const deadlines = entries.filter((row) => row.kind === "edital" && row.endsAt).length;
+  const notices = entries.filter((row) => row.kind === "notice").length;
+  const canPublish = !!account && ["staff", "manager", "admin"].includes(account.role);
+
   return <>
-    <PageHeader title="Agenda Institucional" description="Calendário oficial do IFMT e do Campus Cáceres com eventos, reuniões, prazos, feriados acadêmicos, solenidades e atividades abertas."/>
-    <div className="statGrid"><StatCard label="Eventos no mês" value="18" icon={CalendarDays}/><StatCard label="Prazos institucionais" value="7" icon={Clock3}/><StatCard label="Reuniões" value="6" icon={Users}/><StatCard label="Eventos públicos" value="5" icon={Megaphone}/></div>
-    <div className="sectionTitle"><div><h2>Próximos compromissos</h2><p>Agenda consolidada da instituição e do campus.</p></div></div>
-    <div style={{overflowX:'auto'}}><table className="dataTable"><thead><tr><th>Data</th><th>Horário</th><th>Evento</th><th>Responsável</th><th>Local</th><th>Categoria</th></tr></thead><tbody>{events.map(e=><tr key={e[2]}>{e.map((v,i)=><td key={i}>{v}</td>)}</tr>)}</tbody></table></div>
+    <PageHeader title="Agenda Institucional" description="Calendário real de eventos, prazos e compromissos publicados pela instituição e pelo campus." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar compromisso</Link> : <span className="badge">Agenda oficial</span>}/>
+
+    <div className="statGrid">
+      <StatCard label="Itens na agenda" value={String(entries.length)} foot="Atuais e próximos" icon={CalendarDays}/>
+      <StatCard label="Eventos" value={String(events)} foot="Programações publicadas" icon={Users}/>
+      <StatCard label="Prazos" value={String(deadlines)} foot="Editais com data final" icon={Clock3}/>
+      <StatCard label="Comunicados" value={String(notices)} foot="Avisos com agenda" icon={Megaphone}/>
+    </div>
+
+    <SectionTitle title="Próximos compromissos" description="Selecione um item para abrir todos os detalhes."/>
+    {entries.length === 0 ? <div className="emptyState card"><CalendarDays size={28}/><h2>Agenda sem compromissos publicados</h2><p>Eventos, prazos e comunicados futuros aparecerão aqui automaticamente.</p></div> : <section className="card panel"><div className="tableScroll"><table className="dataTable"><thead><tr><th>Data / prazo</th><th>Tipo</th><th>Título</th><th>Local</th><th></th></tr></thead><tbody>
+      {entries.map((row) => <tr key={row.id}>
+        <td>{formatDate(row.startsAt ?? row.endsAt ?? row.publishedAt)}</td>
+        <td><span className="badge">{publicationKindLabels[row.kind]}</span></td>
+        <td><b>{row.title}</b>{row.referenceCode && <><br/><small>{row.referenceCode}</small></>}</td>
+        <td>{row.location || "—"}</td>
+        <td><Link className="button soft" href={`/publicacoes/${row.id}`}>{row.kind === "edital" ? <Pin size={14}/> : <CalendarDays size={14}/>} Abrir</Link></td>
+      </tr>)}
+    </tbody></table></div></section>}
   </>;
 }

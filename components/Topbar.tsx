@@ -1,19 +1,21 @@
 import Link from "next/link";
-import { Bell, Search, Grid2X2, LogIn } from "lucide-react";
+import { Bell, Grid2X2, LogIn } from "lucide-react";
 import { getCurrentAccount, initials, roleLabels } from "@/lib/auth";
+import { getUnreadNotificationCount } from "@/lib/institutional";
+import { GlobalSearch } from "./GlobalSearch";
 
 export async function Topbar() {
   const account = await getCurrentAccount();
+  const unreadCount = account ? await getUnreadNotificationCount(account.id) : 0;
 
   return (
     <header className="topbar">
-      <label className="globalSearch">
-        <Search size={18}/><input aria-label="Busca global" placeholder="Buscar serviços, documentos, cursos, pessoas..."/>
-        <kbd>Ctrl K</kbd>
-      </label>
+      <GlobalSearch/>
       <div className="topActions">
-        <button aria-label="Aplicativos"><Grid2X2 size={18}/></button>
-        <button aria-label="Notificações"><Bell size={18}/></button>
+        <Link className="iconAction" href="/aplicativos" aria-label="Abrir aplicativos" title="Aplicativos"><Grid2X2 size={18}/></Link>
+        <Link className="iconAction notificationAction" href={account ? "/notificacoes" : "/login?next=/notificacoes"} aria-label="Abrir notificações" title="Notificações">
+          <Bell size={18}/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}
+        </Link>
         {account ? (
           <Link className="userChip" href="/perfil"><span className="avatar">{initials(account.fullName)}</span><span><strong>{account.fullName}</strong><small>{roleLabels[account.role]}</small></span></Link>
         ) : (
