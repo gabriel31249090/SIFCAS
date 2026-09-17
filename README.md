@@ -49,7 +49,7 @@ A **MAISA — Módulo de Assistência Inteligente em Serviços Acadêmicos e Adm
 - CSS próprio
 - Lucide Icons
 
-Backend, autenticação e banco de dados ainda não foram conectados nesta fase.
+A camada de integração com Supabase já está preparada no código (browser/server/SSR), mas o projeto Supabase exclusivo do SIFCAS ainda precisa ser criado antes de configurar as variáveis da Vercel.
 
 ## Executar localmente
 
