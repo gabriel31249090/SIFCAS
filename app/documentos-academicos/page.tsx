@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BadgeCheck, FileCheck2, FileClock, GraduationCap, ShieldCheck } from "lucide-react";
-import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
+import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import {
   academicDocumentLabels,
