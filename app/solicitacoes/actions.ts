@@ -51,23 +51,29 @@ export async function manageServiceRequest(formData: FormData) {
   const assignedTo = text(formData, "assignedTo") || null;
   if (!id || !statuses.has(status) || response.length > 8000) finish("Dados de atendimento inválidos.", true);
 
+  const now = new Date().toISOString();
   const supabase = await createClient();
-  const { error } = await supabase.rpc("manage_service_request", {
-    p_id: id,
-    p_status: status,
-    p_response: response || null,
-    p_assigned_to: assignedTo,
-  });
+  const { error } = await supabase.from("service_requests").update({
+    status,
+    response,
+    assigned_to: assignedTo,
+    updated_at: now,
+    resolved_at: status === "resolved" ? now : null,
+  }).eq("id", id);
   if (error) finish("Não foi possível atualizar a solicitação.", true);
   finish("Solicitação atualizada. O solicitante foi notificado.");
 }
 
 export async function cancelServiceRequest(formData: FormData) {
-  await requireAccount();
+  const account = await requireAccount();
   const id = text(formData, "id");
   if (!id) finish("Solicitação inválida.", true);
+
   const supabase = await createClient();
-  const { error } = await supabase.rpc("cancel_own_service_request", { p_id: id });
+  const { error } = await supabase.from("service_requests").update({
+    status: "cancelled",
+    updated_at: new Date().toISOString(),
+  }).eq("id", id).eq("requester_user_id", account.id).in("status", ["open", "waiting"]);
   if (error) finish("Não foi possível cancelar a solicitação.", true);
   finish("Solicitação cancelada.");
 }
