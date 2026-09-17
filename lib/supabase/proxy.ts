@@ -1,18 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
 export async function updateSession(request: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-
-  // Mantém o protótipo funcionando até o projeto SIFCAS existir no Supabase.
-  if (!url || !publishableKey) {
-    return NextResponse.next({ request });
-  }
-
   let response = NextResponse.next({ request });
 
-  const supabase = createServerClient(url, publishableKey, {
+  const supabase = createServerClient(supabaseUrl, supabasePublishableKey, {
     cookies: {
       getAll() {
         return request.cookies.getAll();
@@ -30,8 +23,6 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // Valida/renova o token de forma segura no servidor.
   await supabase.auth.getClaims();
-
   return response;
 }
