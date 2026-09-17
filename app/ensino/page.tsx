@@ -1,15 +1,46 @@
-import { Award, CalendarDays, CalendarRange, ChartNoAxesCombined, GraduationCap, NotebookTabs } from "lucide-react";
-import { GenericModules } from "@/components/GenericModules";
+import { BookOpen, Building2, CalendarRange, GraduationCap, School, UsersRound } from "lucide-react";
+import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
+import { requireAccount } from "@/lib/auth";
+import { getAcademicOverview } from "@/lib/academic";
 
-const modules = [
-  { title: "Cursos e matrizes", description: "Projetos pedagógicos, componentes, cargas horárias e pré-requisitos.", icon: GraduationCap, badge: "gestão" },
-  { title: "Turmas e diários", description: "Conteúdo, frequência, avaliações e fechamento de diário.", icon: NotebookTabs, badge: "docente" },
-  { title: "Calendário acadêmico", description: "Períodos letivos, recessos, conselhos e avaliações.", icon: CalendarDays, badge: "calendário" },
-  { title: "Diplomas e certificados", description: "Registro, validação, emissão e acompanhamento.", icon: Award, badge: "certificação" },
-  { title: "Desempenho acadêmico", description: "Evasão, retenção, aprovação e indicadores.", icon: ChartNoAxesCombined, badge: "indicadores" },
-  { title: "Agenda das turmas", description: "Planejamento publicado pelos professores para cada turma.", icon: CalendarRange, badge: "turmas", href: "/agenda-aluno" }
-];
+export default async function EnsinoPage() {
+  await requireAccount();
+  const overview = await getAcademicOverview();
 
-export default function Page() {
-  return <GenericModules title="Ensino" description="Central acadêmica para cursos, turmas, diários, calendários, avaliações, diplomas e acompanhamento pedagógico." modules={modules}/>;
+  return <>
+    <PageHeader
+      title="Ensino"
+      description="Núcleo acadêmico conectado ao banco do SIFCAS: campi, cursos, disciplinas, turmas, matrículas e vínculos docentes."
+      action={<span className="badge">Base acadêmica ativa</span>}
+    />
+
+    <div className="statGrid">
+      <StatCard label="Campi ativos" value={String(overview.campusCount)} foot="Unidades cadastradas" icon={School}/>
+      <StatCard label="Cursos ativos" value={String(overview.courseCount)} foot="Catálogo acadêmico" icon={GraduationCap}/>
+      <StatCard label="Disciplinas" value={String(overview.subjectCount)} foot="Componentes curriculares" icon={BookOpen}/>
+      <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={`${overview.enrollmentCount} matrículas ativas`} icon={UsersRound}/>
+    </div>
+
+    <SectionTitle title="Estrutura acadêmica" description="Os módulos abaixo já utilizam a nova fundação de dados do SIFCAS."/>
+    <div className="moduleGrid">
+      <ModuleCard title="Cursos e matrizes" description="Cursos e componentes curriculares organizados por campus." icon={GraduationCap} badge="banco real"/>
+      <ModuleCard title="Turmas e vínculos" description="Turmas, disciplinas ofertadas, matrículas e professores vinculados." icon={UsersRound} badge="RBAC + RLS"/>
+      <ModuleCard title="Períodos letivos" description="Períodos acadêmicos associados a cada unidade." icon={CalendarRange} badge="estrutura"/>
+      <ModuleCard title="Agenda das turmas" description="Planejamento publicado por professores e exibido somente aos vínculos autorizados." icon={CalendarRange} badge="funcional" href="/agenda-aluno"/>
+    </div>
+
+    <SectionTitle title="Campi cadastrados" description="Primeiras unidades disponíveis na base acadêmica."/>
+    <section className="card panel">
+      {overview.campuses.length === 0 ? <div className="infoBox">Nenhum campus cadastrado.</div> : <div className="stackList">
+        {overview.campuses.map((campus) => <div key={campus.id}>
+          <b>{campus.name}</b>
+          <span>{campus.code} • {campus.city}/{campus.state}</span>
+        </div>)}
+      </div>}
+    </section>
+
+    <div className="infoBox" style={{ marginTop: 18 }}>
+      A estrutura técnica está pronta para receber o catálogo oficial. Não inserimos cursos, turmas ou matrículas fictícias: os próximos cadastros serão dados institucionais reais.
+    </div>
+  </>;
 }
