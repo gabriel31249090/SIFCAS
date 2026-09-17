@@ -2,74 +2,61 @@
 
 **Sistema Integrado Federal de Campus, Administração e Serviços**
 
-Projeto para unificar, em uma única experiência, as funções hoje distribuídas entre os portais institucionais do IFMT, o portal do Campus Cáceres e o ecossistema acadêmico/administrativo inspirado no SUAP.
-
-## Objetivo
-
-Construir uma plataforma única, responsiva e modular para estudantes, professores, servidores, gestores e público externo.
+Base funcional em Next.js 16 + React 19 + TypeScript, integrada ao Supabase e preparada para deploy na Vercel.
 
 ## Estado atual
 
-Fase inicial de arquitetura e interface. O projeto já possui rotas conceituais para:
+O SIFCAS já possui autenticação SSR, perfis e papéis institucionais, núcleo acadêmico, agenda por turma, diário do professor, notas, frequência, boletim, documentos acadêmicos verificáveis e a camada institucional de notícias, editais, eventos, agenda e notificações.
 
-- Início / dashboard
-- Área do estudante
-- Ensino
-- Pesquisa
-- Extensão
-- Campus Cáceres
-- Central de serviços
-- Documentos e processos
-- Administração
-- Pessoas
+### Módulos reais já conectados
+
+- Auth + RBAC/RLS
+- Perfil institucional
+- Gestão acadêmica
+- Agenda do aluno/turma
+- Diário do professor
+- Notas e frequência
+- Boletim
+- Documentos acadêmicos e verificação pública
+- Notícias e comunicados
 - Editais
-- Notícias e eventos
-- Transparência
-- Perfil
-- Agenda Institucional
-- Agenda do Aluno/Turma
+- Agenda institucional
+- Painel institucional de publicação
+- Notificações
+- Busca global
+- Central de aplicativos
 
-## Agendas
+## Segurança
 
-### Agenda Institucional
-Calendário oficial com eventos, prazos, reuniões, feriados, solenidades, comunicados e atividades do IFMT e dos campi.
+- RLS nas tabelas sensíveis
+- Papéis institucionais separados do perfil pessoal
+- Administrador Geral protegido contra rebaixamento acidental pelo painel
+- Credenciais privilegiadas não são expostas no frontend
+- Publicações institucionais respeitam visibilidade e público-alvo
 
-### Agenda do Aluno/Turma
-Professores poderão publicar, para uma turma específica e em uma data específica, o planejamento de aula, conteúdos previstos, provas, trabalhos, atividades, materiais e observações.
+## Qualidade de interface
 
-## MAISA
+O build executa `npm run audit:ui` antes de `next build`. O auditor impede que novos botões sem ação, links sem `href` ou formulários sem destino sejam publicados por engano.
 
-A **MAISA — Módulo de Assistência Inteligente em Serviços Acadêmicos e Administrativos** está planejada, mas será implementada apenas na etapa final, depois que os módulos principais estiverem estáveis e integrados.
-
-## Stack inicial
-
-- Next.js 16 (App Router)
-- React 19
-- TypeScript
-- CSS próprio
-- Lucide Icons
-
-A camada de integração com Supabase já está preparada no código (browser/server/SSR), mas o projeto Supabase exclusivo do SIFCAS ainda precisa ser criado antes de configurar as variáveis da Vercel.
-
-## Executar localmente
+## Desenvolvimento
 
 ```bash
 npm install
 npm run dev
 ```
 
-Depois acesse `http://localhost:3000`.
+Para validar interações estáticas:
 
-## Roadmap inicial
+```bash
+npm run audit:ui
+```
 
-1. Validar design e estrutura de navegação
-2. Definir modelo de dados e perfis/permissões
-3. Implementar autenticação
-4. Implementar módulos acadêmicos
-5. Implementar documentos/processos e serviços administrativos
-6. Implementar agendas com publicação por permissões
-7. Integrar notícias, editais, campus e transparência
-8. Testes, acessibilidade e responsividade
-9. Implementar MAISA
+Para build de produção:
 
-> Os dados exibidos na interface inicial são demonstrativos e não representam dados reais de estudantes ou do IFMT.
+```bash
+npm run build
+```
+
+## MAISA
+
+A MAISA será implementada somente na etapa final, depois de consolidar a base funcional do SIFCAS.
