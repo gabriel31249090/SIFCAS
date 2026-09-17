@@ -6,7 +6,7 @@ import { GlobalSearch } from "./GlobalSearch";
 
 export async function Topbar() {
   const account = await getCurrentAccount();
-  const unreadCount = account ? await getUnreadNotificationCount(account.id) : 0;
+  const unreadCount = account && account.accountStatus === "active" ? await getUnreadNotificationCount(account.id) : 0;
 
   return (
     <header className="topbar">
@@ -17,7 +17,10 @@ export async function Topbar() {
           <Bell size={18}/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}
         </Link>
         {account ? (
-          <Link className="userChip" href="/perfil"><span className="avatar">{initials(account.fullName)}</span><span><strong>{account.fullName}</strong><small>{roleLabels[account.role]}</small></span></Link>
+          <Link className={`userChip ${account.accountStatus === "suspended" ? "suspendedChip" : ""}`} href={account.accountStatus === "suspended" ? "/acesso-negado?reason=suspended" : "/perfil"}>
+            <span className="avatar">{initials(account.fullName)}</span>
+            <span><strong>{account.fullName}</strong><small>{account.accountStatus === "suspended" ? "Conta suspensa" : roleLabels[account.role]}</small></span>
+          </Link>
         ) : (
           <Link className="userChip loginChip" href="/login"><span className="avatar"><LogIn size={15}/></span><span><strong>Entrar</strong><small>Acessar conta</small></span></Link>
         )}

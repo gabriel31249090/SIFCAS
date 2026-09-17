@@ -8,6 +8,7 @@ const PUBLIC_PREFIXES = [
   "/login",
   "/auth",
   "/api/health",
+  "/api/anexos",
   "/recuperar-senha",
   "/noticias",
   "/editais",
@@ -23,8 +24,9 @@ const PUBLIC_PREFIXES = [
 
 const STAFF_PREFIXES = ["/administracao", "/pessoas", "/painel-institucional"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
-const MANAGEMENT_PREFIXES = ["/gestao-academica"];
+const MANAGEMENT_PREFIXES = ["/gestao-academica", "/auditoria", "/monitoramento"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
+const ADMIN_PREFIXES = ["/usuarios"];
 const DIARY_PREFIXES = ["/diario-professor"];
 const DIARY_ROLES: AppRole[] = ["teacher", "manager", "admin"];
 
@@ -73,11 +75,24 @@ export async function updateSession(request: NextRequest) {
     return redirectWithSession(request, response, "/");
   }
 
+  if (!isPublic(pathname)) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("account_status")
+      .eq("id", claims.sub)
+      .maybeSingle();
+
+    if (profile?.account_status === "suspended") {
+      return redirectWithSession(request, response, "/acesso-negado", { reason: "suspended" });
+    }
+  }
+
   const needsStaffRole = STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const needsManagementRole = MANAGEMENT_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const needsAdminRole = ADMIN_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const needsDiaryRole = DIARY_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 
-  if (needsStaffRole || needsManagementRole || needsDiaryRole) {
+  if (needsStaffRole || needsManagementRole || needsAdminRole || needsDiaryRole) {
     const { data: roleRow } = await supabase
       .from("user_roles")
       .select("role")
@@ -85,6 +100,9 @@ export async function updateSession(request: NextRequest) {
       .maybeSingle();
 
     const role = (roleRow?.role ?? "student") as AppRole;
+    if (needsAdminRole && role !== "admin") {
+      return redirectWithSession(request, response, "/acesso-negado");
+    }
     if (needsManagementRole && !MANAGEMENT_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }

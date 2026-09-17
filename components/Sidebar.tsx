@@ -24,7 +24,7 @@ export function Sidebar() {
           </div>
         ))}
       </nav>
-      <div className="prototypeNote"><strong>Fase 1</strong><span>Estrutura visual e arquitetura funcional. MAISA será implementada na etapa final.</span></div>
+      <div className="prototypeNote"><strong>Base funcional</strong><span>Núcleo acadêmico e institucional conectado ao Supabase. MAISA será a etapa final via Dify.</span></div>
     </aside>
   );
 }

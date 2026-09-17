@@ -27,10 +27,21 @@ export async function login(formData: FormData) {
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) {
+  if (error || !data.user) {
     redirect(`/login?error=${encodeURIComponent("E-mail ou senha inválidos.")}`);
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("account_status")
+    .eq("id", data.user.id)
+    .maybeSingle();
+
+  if (profile?.account_status === "suspended") {
+    await supabase.auth.signOut();
+    redirect(`/login?error=${encodeURIComponent("Esta conta está suspensa. Procure a administração do SIFCAS.")}`);
   }
 
   revalidatePath("/", "layout");

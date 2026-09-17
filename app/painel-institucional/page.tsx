@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { CalendarDays, FileClock, FileText, Megaphone, Newspaper, Pin, Send, ShieldCheck } from "lucide-react";
+import { CalendarDays, FileClock, FileText, Megaphone, Newspaper, Paperclip, Pin, Send, ShieldCheck } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { listManagedPublications, listPublicationCampuses, publicationKindLabels, publicationStatusLabels } from "@/lib/institutional";
-import { createPublication, setPublicationStatus } from "./actions";
+import { addPublicationAttachment, createPublication, setPublicationStatus } from "./actions";
 
 type SearchParams = Promise<{ message?: string; error?: string }>;
 
@@ -25,7 +25,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
   return <>
     <PageHeader
       title="Painel Institucional"
-      description="Publique notícias, comunicados, editais e eventos com público-alvo, agenda e notificações automáticas."
+      description="Publique notícias, comunicados, editais e eventos com público-alvo, agenda, anexos e notificações automáticas."
       action={<span className="badge"><ShieldCheck size={13}/> {roleLabels[account.role]}</span>}
     />
 
@@ -39,7 +39,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
       <StatCard label="Eventos" value={String(events)} foot="Eventos publicados" icon={CalendarDays}/>
     </div>
 
-    <SectionTitle title="Nova publicação" description="Salve como rascunho ou publique imediatamente. Ao publicar, o SIFCAS cria notificações para os perfis selecionados."/>
+    <SectionTitle title="Nova publicação" description="Salve como rascunho ou publique imediatamente. PDF, imagem, DOCX ou XLSX de até 15 MB podem ser anexados."/>
     <section className="card panel institutionalEditor">
       <form action={createPublication} className="formStack">
         <div className="formRow2">
@@ -68,6 +68,11 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
           <label>Expira em<input name="expiresAt" type="datetime-local"/></label>
         </div>
 
+        <label className="publicationUpload">Anexo opcional
+          <input className="fileInput" name="attachment" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,.docx,.xlsx"/>
+          <small>Arquivo armazenado em bucket privado; o download respeita a mesma permissão da publicação.</small>
+        </label>
+
         <fieldset className="audienceFieldset"><legend>Público que receberá notificação</legend><div className="checkboxGrid">
           <label><input type="checkbox" name="audience" value="student" defaultChecked/> Estudantes</label>
           <label><input type="checkbox" name="audience" value="teacher" defaultChecked/> Professores</label>
@@ -81,7 +86,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
       </form>
     </section>
 
-    <SectionTitle title="Publicações registradas" description="Abra, publique, arquive ou devolva itens para rascunho."/>
+    <SectionTitle title="Publicações registradas" description="Abra, publique, arquive, devolva para rascunho ou acrescente anexos."/>
     <section className="card panel">
       {publications.length === 0 ? <div className="infoBox">Nenhuma publicação institucional registrada ainda.</div> : <div className="tableScroll"><table className="dataTable"><thead><tr><th>Tipo</th><th>Título</th><th>Status</th><th>Publicação / data</th><th>Ações</th></tr></thead><tbody>
         {publications.map((row) => <tr key={row.id}>
@@ -94,7 +99,12 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
             {row.status !== "published" && <form action={setPublicationStatus}><input type="hidden" name="id" value={row.id}/><input type="hidden" name="status" value="published"/><button className="button soft" type="submit">Publicar</button></form>}
             {row.status !== "draft" && <form action={setPublicationStatus}><input type="hidden" name="id" value={row.id}/><input type="hidden" name="status" value="draft"/><button className="button soft" type="submit">Rascunho</button></form>}
             {row.status !== "archived" && <form action={setPublicationStatus}><input type="hidden" name="id" value={row.id}/><input type="hidden" name="status" value="archived"/><button className="button soft" type="submit">Arquivar</button></form>}
-          </div></td>
+          </div>
+          <form action={addPublicationAttachment} className="publicationUpload" style={{ marginTop: 8 }}>
+            <input type="hidden" name="publicationId" value={row.id}/>
+            <input className="fileInput" name="attachment" type="file" required accept="application/pdf,image/jpeg,image/png,image/webp,.docx,.xlsx"/>
+            <button className="button soft" type="submit"><Paperclip size={14}/> Anexar</button>
+          </form></td>
         </tr>)}
       </tbody></table></div>}
     </section>

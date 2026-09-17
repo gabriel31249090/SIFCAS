@@ -6,5 +6,8 @@ out
 .env.*.local
 !.env.example
 .vercel
+backups/
+*.dump
+*.sql.gz
 *.log
 .DS_Store

@@ -1,13 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarDays, ExternalLink, FileText, MapPin, Newspaper, Pin, ShieldCheck } from "lucide-react";
+import { CalendarDays, Download, ExternalLink, FileText, MapPin, Newspaper, Paperclip, Pin, ShieldCheck } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
-import { getPublicationById, publicationKindLabels, publicationStatusLabels } from "@/lib/institutional";
+import { getPublicationById, listPublicationAttachments, publicationKindLabels, publicationStatusLabels } from "@/lib/institutional";
 
 function formatDate(value: string | null) {
   if (!value) return "—";
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeStyle: "short", timeZone: "America/Cuiaba" }).format(new Date(value));
+}
+
+function formatSize(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
 const kindIcons = { news: Newspaper, notice: ShieldCheck, edital: Pin, event: CalendarDays } as const;
@@ -17,6 +23,7 @@ export default async function PublicationPage({ params }: { params: Promise<{ id
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
   const [publication, account] = await Promise.all([getPublicationById(id), getCurrentAccount()]);
   if (!publication) notFound();
+  const attachments = await listPublicationAttachments(id);
   const Icon = kindIcons[publication.kind];
   const canManage = !!account && ["staff", "manager", "admin"].includes(account.role);
 
@@ -39,6 +46,10 @@ export default async function PublicationPage({ params }: { params: Promise<{ id
       </div>
 
       {publication.content ? <section className="publicationContent"><SectionTitle title="Conteúdo"/><p>{publication.content}</p></section> : <div className="infoBox">Esta publicação não possui texto complementar.</div>}
+
+      {attachments.length > 0 && <section className="publicationContent"><SectionTitle title="Anexos" description="Arquivos protegidos pelas mesmas regras de acesso desta publicação."/><div className="attachmentList">
+        {attachments.map((file) => <a key={file.id} className="attachmentLink" href={`/api/anexos/${file.id}`}><span><Paperclip size={15}/> <b>{file.fileName}</b></span><small>{formatSize(file.sizeBytes)} <Download size={13}/></small></a>)}
+      </div></section>}
 
       {publication.externalUrl && <div className="publicationExternal"><a className="button primary" href={publication.externalUrl} target="_blank" rel="noopener noreferrer"><ExternalLink size={16}/> Abrir link oficial</a></div>}
     </article>

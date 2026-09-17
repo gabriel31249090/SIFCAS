@@ -1,5 +1,6 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAccount, type AppRole } from "@/lib/auth";
@@ -10,9 +11,29 @@ const validKinds = new Set<PublicationKind>(["news", "notice", "edital", "event"
 const validStatuses = new Set<PublicationStatus>(["draft", "published", "archived"]);
 const validVisibility = new Set<PublicationVisibility>(["public", "authenticated"]);
 const validRoles = new Set<AppRole>(["student", "teacher", "staff", "manager", "admin"]);
+const MAX_ATTACHMENT_BYTES = 15 * 1024 * 1024;
+const allowedAttachmentTypes = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+]);
 
 function text(formData: FormData, name: string) {
   return String(formData.get(name) ?? "").trim();
+}
+
+function attachmentFrom(formData: FormData, name = "attachment") {
+  const value = formData.get(name);
+  return value instanceof File && value.size > 0 ? value : null;
+}
+
+function validateAttachment(file: File | null) {
+  if (!file) return;
+  if (file.size > MAX_ATTACHMENT_BYTES) fail("O anexo deve ter no máximo 15 MB.");
+  if (!allowedAttachmentTypes.has(file.type)) fail("Formato de anexo não permitido. Use PDF, imagem, DOCX ou XLSX.");
 }
 
 function parseLocalDateTime(raw: string) {
@@ -26,11 +47,15 @@ function normalizeUrl(raw: string) {
   if (!raw) return null;
   try {
     const url = new URL(raw);
-    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    if (!["http:", "https:"].includes(url.protocol)) return null;
     return url.toString();
   } catch {
     return null;
   }
+}
+
+function safeFileName(name: string) {
+  return name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/-+/g, "-").slice(-120) || "arquivo";
 }
 
 async function requirePublisher() {
@@ -57,6 +82,32 @@ function done(message: string): never {
   redirect(`/painel-institucional?message=${encodeURIComponent(message)}`);
 }
 
+async function storeAttachment(publicationId: string, accountId: string, file: File) {
+  validateAttachment(file);
+  const supabase = await createClient();
+  const path = `${accountId}/${publicationId}/${randomUUID()}-${safeFileName(file.name)}`;
+  const { error: uploadError } = await supabase.storage
+    .from("institutional-files")
+    .upload(path, file, { contentType: file.type, cacheControl: "3600", upsert: false });
+
+  if (uploadError) return "A publicação foi salva, mas o arquivo não pôde ser enviado.";
+
+  const { error: attachmentError } = await supabase.from("publication_attachments").insert({
+    publication_id: publicationId,
+    storage_path: path,
+    file_name: file.name.slice(0, 240),
+    mime_type: file.type,
+    size_bytes: file.size,
+    created_by: accountId,
+  });
+
+  if (attachmentError) {
+    await supabase.storage.from("institutional-files").remove([path]);
+    return "A publicação foi salva, mas o anexo não pôde ser registrado.";
+  }
+  return null;
+}
+
 export async function createPublication(formData: FormData) {
   const account = await requirePublisher();
   const kind = text(formData, "kind") as PublicationKind;
@@ -73,8 +124,10 @@ export async function createPublication(formData: FormData) {
   const endsAt = parseLocalDateTime(text(formData, "endsAt"));
   const expiresAt = parseLocalDateTime(text(formData, "expiresAt"));
   const publishNow = text(formData, "publishNow") === "yes";
+  const attachment = attachmentFrom(formData);
   const audienceRoles = formData.getAll("audience").map((value) => String(value) as AppRole).filter((role) => validRoles.has(role));
 
+  validateAttachment(attachment);
   if (!validKinds.has(kind)) fail("Selecione um tipo de publicação válido.");
   if (title.length < 3 || title.length > 220) fail("O título deve ter entre 3 e 220 caracteres.");
   if (summary.length > 600 || content.length > 20000) fail("O conteúdo ultrapassa o limite permitido.");
@@ -107,8 +160,22 @@ export async function createPublication(formData: FormData) {
   }).select("id").single();
 
   if (error || !data) fail("Não foi possível salvar a publicação.");
+  const attachmentWarning = attachment ? await storeAttachment(data.id, account.id, attachment) : null;
   refreshInstitutional(data.id);
-  done(publishNow ? "Publicação criada e publicada. As notificações foram distribuídas." : "Rascunho criado com sucesso.");
+  const baseMessage = publishNow ? "Publicação criada e publicada. As notificações foram distribuídas." : "Rascunho criado com sucesso.";
+  done(attachmentWarning ? `${baseMessage} ${attachmentWarning}` : baseMessage);
+}
+
+export async function addPublicationAttachment(formData: FormData) {
+  const account = await requirePublisher();
+  const publicationId = text(formData, "publicationId");
+  const attachment = attachmentFrom(formData);
+  if (!publicationId || !attachment) fail("Selecione uma publicação e um arquivo.");
+  validateAttachment(attachment);
+  const warning = await storeAttachment(publicationId, account.id, attachment);
+  if (warning) fail(warning);
+  refreshInstitutional(publicationId);
+  done("Anexo enviado com sucesso.");
 }
 
 export async function setPublicationStatus(formData: FormData) {

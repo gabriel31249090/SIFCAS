@@ -1,11 +1,13 @@
 {
   "name": "sifcas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "audit:ui": "node scripts/audit-interactions.mjs",
-    "build": "npm run audit:ui && next build",
+    "audit:routes": "node scripts/audit-routes.mjs",
+    "audit": "npm run audit:ui && npm run audit:routes",
+    "build": "npm run audit && next build",
     "start": "next start",
     "lint": "eslint ."
   },

@@ -41,6 +41,15 @@ export type InstitutionalPublication = {
   updatedAt: string;
 };
 
+export type PublicationAttachment = {
+  id: string;
+  publicationId: string;
+  fileName: string;
+  mimeType: string;
+  sizeBytes: number;
+  createdAt: string;
+};
+
 export type SifcasNotification = {
   id: string;
   title: string;
@@ -135,6 +144,24 @@ export async function getPublicationById(id: string) {
     .maybeSingle();
   if (error) throw error;
   return data ? mapPublication(data) : null;
+}
+
+export async function listPublicationAttachments(publicationId: string): Promise<PublicationAttachment[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("publication_attachments")
+    .select("id,publication_id,file_name,mime_type,size_bytes,created_at")
+    .eq("publication_id", publicationId)
+    .order("created_at");
+  if (error) throw error;
+  return (data ?? []).map((row) => ({
+    id: row.id,
+    publicationId: row.publication_id,
+    fileName: row.file_name,
+    mimeType: row.mime_type,
+    sizeBytes: Number(row.size_bytes ?? 0),
+    createdAt: row.created_at,
+  }));
 }
 
 export async function listPublicationCampuses() {

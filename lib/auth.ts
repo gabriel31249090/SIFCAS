@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 export type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
+export type AccountStatus = "active" | "suspended";
 
 export const roleLabels: Record<AppRole, string> = {
   student: "Estudante",
@@ -18,6 +19,8 @@ export type CurrentAccount = {
   campus: string;
   avatarUrl: string | null;
   role: AppRole;
+  accountStatus: AccountStatus;
+  isGeneralAdmin: boolean;
 };
 
 export async function getCurrentAccount(): Promise<CurrentAccount | null> {
@@ -30,12 +33,12 @@ export async function getCurrentAccount(): Promise<CurrentAccount | null> {
   const [{ data: profile }, { data: roleRow }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("full_name,campus,avatar_url")
+      .select("full_name,campus,avatar_url,account_status")
       .eq("id", claims.sub)
       .maybeSingle(),
     supabase
       .from("user_roles")
-      .select("role")
+      .select("role,is_general_admin")
       .eq("user_id", claims.sub)
       .maybeSingle(),
   ]);
@@ -51,12 +54,15 @@ export async function getCurrentAccount(): Promise<CurrentAccount | null> {
     campus: profile?.campus?.trim() || "Campus Cáceres",
     avatarUrl: profile?.avatar_url ?? null,
     role,
+    accountStatus: (profile?.account_status ?? "active") as AccountStatus,
+    isGeneralAdmin: Boolean(roleRow?.is_general_admin),
   };
 }
 
 export async function requireAccount() {
   const account = await getCurrentAccount();
   if (!account) redirect("/login");
+  if (account.accountStatus === "suspended") redirect("/acesso-negado?reason=suspended");
   return account;
 }
 

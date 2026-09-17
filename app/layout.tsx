@@ -5,6 +5,7 @@ import "./globals.css";
 import "./auth.css";
 import "./phase2.css";
 import "./institutional.css";
+import "./production.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
