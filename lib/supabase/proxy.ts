@@ -2,6 +2,37 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
+type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
+
+const PUBLIC_PREFIXES = [
+  "/login",
+  "/auth",
+  "/api/health",
+  "/recuperar-senha",
+  "/noticias",
+  "/editais",
+  "/transparencia",
+  "/campus",
+  "/acesso-negado",
+];
+
+const STAFF_PREFIXES = ["/administracao", "/pessoas"];
+const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
+
+function isPublic(pathname: string) {
+  return PUBLIC_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+}
+
+function redirectWithSession(request: NextRequest, response: NextResponse, pathname: string, params?: Record<string, string>) {
+  const url = request.nextUrl.clone();
+  url.pathname = pathname;
+  url.search = "";
+  Object.entries(params ?? {}).forEach(([key, value]) => url.searchParams.set(key, value));
+  const redirectResponse = NextResponse.redirect(url);
+  response.cookies.getAll().forEach((cookie) => redirectResponse.cookies.set(cookie));
+  return redirectResponse;
+}
+
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -13,16 +44,39 @@ export async function updateSession(request: NextRequest) {
       setAll(cookiesToSet, headers) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
-        cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options),
-        );
-        Object.entries(headers).forEach(([key, value]) =>
-          response.headers.set(key, value),
-        );
+        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+        Object.entries(headers).forEach(([key, value]) => response.headers.set(key, value));
       },
     },
   });
 
-  await supabase.auth.getClaims();
+  // Keep getClaims immediately after client creation. It validates and refreshes SSR auth.
+  const { data: claimsData } = await supabase.auth.getClaims();
+  const claims = claimsData?.claims;
+  const pathname = request.nextUrl.pathname;
+
+  if (!claims?.sub) {
+    if (isPublic(pathname)) return response;
+    const next = `${pathname}${request.nextUrl.search}`;
+    return redirectWithSession(request, response, "/login", { next });
+  }
+
+  if (pathname === "/login" || pathname === "/recuperar-senha") {
+    return redirectWithSession(request, response, "/");
+  }
+
+  if (STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
+    const { data: roleRow } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", claims.sub)
+      .maybeSingle();
+
+    const role = (roleRow?.role ?? "student") as AppRole;
+    if (!STAFF_ROLES.includes(role)) {
+      return redirectWithSession(request, response, "/acesso-negado");
+    }
+  }
+
   return response;
 }
