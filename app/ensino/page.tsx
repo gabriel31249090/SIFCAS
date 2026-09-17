@@ -1,16 +1,16 @@
-import { BookOpen, Building2, CalendarRange, GraduationCap, School, UsersRound } from "lucide-react";
+import { BookOpen, BookOpenCheck, CalendarRange, GraduationCap, School, UsersRound } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getAcademicOverview } from "@/lib/academic";
 
 export default async function EnsinoPage() {
-  await requireAccount();
+  const account = await requireAccount();
   const overview = await getAcademicOverview();
 
   return <>
     <PageHeader
       title="Ensino"
-      description="Núcleo acadêmico conectado ao banco do SIFCAS: campi, cursos, disciplinas, turmas, matrículas e vínculos docentes."
+      description="Núcleo acadêmico conectado ao banco do SIFCAS: campi, cursos, disciplinas, turmas, matrículas, diário e vínculos docentes."
       action={<span className="badge">Base acadêmica ativa</span>}
     />
 
@@ -21,15 +21,17 @@ export default async function EnsinoPage() {
       <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={`${overview.enrollmentCount} matrículas ativas`} icon={UsersRound}/>
     </div>
 
-    <SectionTitle title="Estrutura acadêmica" description="Os módulos abaixo já utilizam a nova fundação de dados do SIFCAS."/>
+    <SectionTitle title="Estrutura acadêmica" description="Os módulos abaixo utilizam a fundação de dados e permissões do SIFCAS."/>
     <div className="moduleGrid">
       <ModuleCard title="Cursos e matrizes" description="Cursos e componentes curriculares organizados por campus." icon={GraduationCap} badge="banco real"/>
       <ModuleCard title="Turmas e vínculos" description="Turmas, disciplinas ofertadas, matrículas e professores vinculados." icon={UsersRound} badge="RBAC + RLS"/>
       <ModuleCard title="Períodos letivos" description="Períodos acadêmicos associados a cada unidade." icon={CalendarRange} badge="estrutura"/>
       <ModuleCard title="Agenda das turmas" description="Planejamento publicado por professores e exibido somente aos vínculos autorizados." icon={CalendarRange} badge="funcional" href="/agenda-aluno"/>
+      <ModuleCard title="Diário do Professor" description="Conteúdo ministrado, chamada, avaliações e lançamento de notas por turma." icon={BookOpenCheck} badge={account.role === "teacher" || account.role === "manager" || account.role === "admin" ? "funcional" : "acesso docente"} href="/diario-professor"/>
+      <ModuleCard title="Boletim e frequência" description="Visão do estudante calculada a partir dos lançamentos feitos no diário." icon={BookOpen} badge="funcional" href="/boletim"/>
     </div>
 
-    <SectionTitle title="Campi cadastrados" description="Primeiras unidades disponíveis na base acadêmica."/>
+    <SectionTitle title="Campi cadastrados" description="Unidades disponíveis na base acadêmica."/>
     <section className="card panel">
       {overview.campuses.length === 0 ? <div className="infoBox">Nenhum campus cadastrado.</div> : <div className="stackList">
         {overview.campuses.map((campus) => <div key={campus.id}>
@@ -40,7 +42,7 @@ export default async function EnsinoPage() {
     </section>
 
     <div className="infoBox" style={{ marginTop: 18 }}>
-      A estrutura técnica está pronta para receber o catálogo oficial. Não inserimos cursos, turmas ou matrículas fictícias: os próximos cadastros serão dados institucionais reais.
+      Notas e frequência permanecem vazias até que professores autorizados façam lançamentos reais no Diário do Professor.
     </div>
   </>;
 }

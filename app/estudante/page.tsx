@@ -29,14 +29,14 @@ export default async function EstudantePage() {
   return <>
     <PageHeader
       title="Área do Estudante"
-      description="Sua vida acadêmica passa a ser montada a partir da matrícula real registrada no SIFCAS."
-      action={<Link href="/agenda-aluno" className="button soft">Abrir minha agenda</Link>}
+      description="Sua vida acadêmica é montada a partir da matrícula real registrada no SIFCAS."
+      action={<div className="heroActions"><Link href="/boletim" className="button soft">Boletim e frequência</Link><Link href="/agenda-aluno" className="button soft">Minha agenda</Link></div>}
     />
 
     {!academic ? (
       <section className="card panel">
         <SectionTitle title="Nenhuma matrícula ativa" description="Sua conta existe, mas ainda não foi associada a uma turma no núcleo acadêmico."/>
-        <div className="infoBox">Quando a matrícula institucional for vinculada ao seu usuário, curso, turma, disciplinas, horário e agenda aparecerão automaticamente aqui.</div>
+        <div className="infoBox">Quando a matrícula institucional for vinculada ao seu usuário, curso, turma, disciplinas, horário, boletim e agenda aparecerão automaticamente aqui.</div>
       </section>
     ) : <>
       <div className="statGrid">
@@ -64,7 +64,7 @@ export default async function EstudantePage() {
 
     <SectionTitle title="Outros serviços do estudante" description="Os módulos complementares continuam disponíveis enquanto conectamos suas bases específicas."/>
     <div className="moduleGrid">
-      <ModuleCard title="Boletim e histórico" description="Notas, conceitos, frequência e histórico escolar consolidado." icon={BarChart3} badge="próxima etapa"/>
+      <ModuleCard title="Boletim e frequência" description="Notas e presença lançadas pelos professores no diário acadêmico." icon={BarChart3} badge="funcional" href="/boletim"/>
       <ModuleCard title="Declarações e certificados" description="Solicitação e acompanhamento de documentos acadêmicos." icon={FileText} badge="documentos"/>
       <ModuleCard title="Estágios" description="Vagas, termos, avaliações e acompanhamento." icon={BriefcaseBusiness} badge="oportunidades"/>
       <ModuleCard title="Bolsas e auxílios" description="Editais, inscrições, resultados e benefícios." icon={BadgeDollarSign} badge="assistência"/>

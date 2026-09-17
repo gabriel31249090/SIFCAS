@@ -20,6 +20,8 @@ const STAFF_PREFIXES = ["/administracao", "/pessoas"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
 const MANAGEMENT_PREFIXES = ["/gestao-academica"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
+const TEACHING_PREFIXES = ["/diario-professor"];
+const TEACHING_ROLES: AppRole[] = ["teacher", "manager", "admin"];
 
 function isPublic(pathname: string) {
   return PUBLIC_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
@@ -68,8 +70,9 @@ export async function updateSession(request: NextRequest) {
 
   const needsStaffRole = STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const needsManagementRole = MANAGEMENT_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const needsTeachingRole = TEACHING_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 
-  if (needsStaffRole || needsManagementRole) {
+  if (needsStaffRole || needsManagementRole || needsTeachingRole) {
     const { data: roleRow } = await supabase
       .from("user_roles")
       .select("role")
@@ -78,6 +81,9 @@ export async function updateSession(request: NextRequest) {
 
     const role = (roleRow?.role ?? "student") as AppRole;
     if (needsManagementRole && !MANAGEMENT_ROLES.includes(role)) {
+      return redirectWithSession(request, response, "/acesso-negado");
+    }
+    if (needsTeachingRole && !TEACHING_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }
     if (needsStaffRole && !STAFF_ROLES.includes(role)) {
