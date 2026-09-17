@@ -1,0 +1,32 @@
+import {
+  Home, GraduationCap, BookOpen, FlaskConical, Sprout, School, Grid3X3,
+  Files, Building2, Users, Pin, Newspaper, CalendarDays, CalendarRange,
+  Search, UserRoundCog
+} from "lucide-react";
+
+export const navigation = [
+  { group: "Principal", items: [
+    { href: "/", label: "Início", icon: Home },
+    { href: "/estudante", label: "Estudante", icon: GraduationCap },
+    { href: "/ensino", label: "Ensino", icon: BookOpen },
+  ]},
+  { group: "Acadêmico", items: [
+    { href: "/pesquisa", label: "Pesquisa", icon: FlaskConical },
+    { href: "/extensao", label: "Extensão", icon: Sprout },
+    { href: "/campus", label: "Campus Cáceres", icon: School },
+    { href: "/agenda-aluno", label: "Agenda do Aluno", icon: CalendarRange },
+  ]},
+  { group: "Serviços", items: [
+    { href: "/servicos", label: "Serviços", icon: Grid3X3 },
+    { href: "/documentos", label: "Documentos e Processos", icon: Files },
+    { href: "/administracao", label: "Administração", icon: Building2 },
+    { href: "/pessoas", label: "Pessoas", icon: Users },
+  ]},
+  { group: "Institucional", items: [
+    { href: "/editais", label: "Editais", icon: Pin },
+    { href: "/noticias", label: "Notícias e Eventos", icon: Newspaper },
+    { href: "/agenda-institucional", label: "Agenda Institucional", icon: CalendarDays },
+    { href: "/transparencia", label: "Transparência", icon: Search },
+    { href: "/perfil", label: "Perfil", icon: UserRoundCog },
+  ]},
+];
