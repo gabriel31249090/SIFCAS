@@ -1,7 +1,7 @@
 import {
   Home, GraduationCap, BookOpen, FlaskConical, Sprout, School, Grid3X3,
   Files, Building2, Users, Pin, Newspaper, CalendarDays, CalendarRange,
-  Search, UserRoundCog
+  Search, UserRoundCog, Settings2
 } from "lucide-react";
 
 export const navigation = [
@@ -15,6 +15,7 @@ export const navigation = [
     { href: "/extensao", label: "Extensão", icon: Sprout },
     { href: "/campus", label: "Campus Cáceres", icon: School },
     { href: "/agenda-aluno", label: "Agenda do Aluno", icon: CalendarRange },
+    { href: "/gestao-academica", label: "Gestão Acadêmica", icon: Settings2 },
   ]},
   { group: "Serviços", items: [
     { href: "/servicos", label: "Serviços", icon: Grid3X3 },

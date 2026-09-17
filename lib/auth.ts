@@ -8,7 +8,7 @@ export const roleLabels: Record<AppRole, string> = {
   teacher: "Professor",
   staff: "Servidor",
   manager: "Gestor",
-  admin: "Administrador",
+  admin: "Administrador Geral",
 };
 
 export type CurrentAccount = {

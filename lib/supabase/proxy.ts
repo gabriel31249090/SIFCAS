@@ -18,6 +18,8 @@ const PUBLIC_PREFIXES = [
 
 const STAFF_PREFIXES = ["/administracao", "/pessoas"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
+const MANAGEMENT_PREFIXES = ["/gestao-academica"];
+const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
 
 function isPublic(pathname: string) {
   return PUBLIC_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
@@ -50,7 +52,6 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // Keep getClaims immediately after client creation. It validates and refreshes SSR auth.
   const { data: claimsData } = await supabase.auth.getClaims();
   const claims = claimsData?.claims;
   const pathname = request.nextUrl.pathname;
@@ -65,7 +66,10 @@ export async function updateSession(request: NextRequest) {
     return redirectWithSession(request, response, "/");
   }
 
-  if (STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
+  const needsStaffRole = STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const needsManagementRole = MANAGEMENT_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+
+  if (needsStaffRole || needsManagementRole) {
     const { data: roleRow } = await supabase
       .from("user_roles")
       .select("role")
@@ -73,7 +77,10 @@ export async function updateSession(request: NextRequest) {
       .maybeSingle();
 
     const role = (roleRow?.role ?? "student") as AppRole;
-    if (!STAFF_ROLES.includes(role)) {
+    if (needsManagementRole && !MANAGEMENT_ROLES.includes(role)) {
+      return redirectWithSession(request, response, "/acesso-negado");
+    }
+    if (needsStaffRole && !STAFF_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }
   }
