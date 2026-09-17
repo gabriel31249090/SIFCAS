@@ -14,14 +14,15 @@ const PUBLIC_PREFIXES = [
   "/transparencia",
   "/campus",
   "/acesso-negado",
+  "/verificar-documento",
 ];
 
 const STAFF_PREFIXES = ["/administracao", "/pessoas"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
 const MANAGEMENT_PREFIXES = ["/gestao-academica"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
-const TEACHING_PREFIXES = ["/diario-professor"];
-const TEACHING_ROLES: AppRole[] = ["teacher", "manager", "admin"];
+const DIARY_PREFIXES = ["/diario-professor"];
+const DIARY_ROLES: AppRole[] = ["teacher", "manager", "admin"];
 
 function isPublic(pathname: string) {
   return PUBLIC_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
@@ -70,9 +71,9 @@ export async function updateSession(request: NextRequest) {
 
   const needsStaffRole = STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const needsManagementRole = MANAGEMENT_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
-  const needsTeachingRole = TEACHING_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const needsDiaryRole = DIARY_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 
-  if (needsStaffRole || needsManagementRole || needsTeachingRole) {
+  if (needsStaffRole || needsManagementRole || needsDiaryRole) {
     const { data: roleRow } = await supabase
       .from("user_roles")
       .select("role")
@@ -83,10 +84,10 @@ export async function updateSession(request: NextRequest) {
     if (needsManagementRole && !MANAGEMENT_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }
-    if (needsTeachingRole && !TEACHING_ROLES.includes(role)) {
+    if (needsStaffRole && !STAFF_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }
-    if (needsStaffRole && !STAFF_ROLES.includes(role)) {
+    if (needsDiaryRole && !DIARY_ROLES.includes(role)) {
       return redirectWithSession(request, response, "/acesso-negado");
     }
   }
