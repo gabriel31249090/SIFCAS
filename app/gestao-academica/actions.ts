@@ -170,7 +170,7 @@ export async function setUserRole(formData: FormData) {
   const profile = await findProfileByEmail(email);
   if (profile.id === account.id && role !== "admin") fail("Você não pode remover seu próprio acesso administrativo.");
   const supabase = await createClient();
-  const { error } = await supabase.from("user_roles").upsert({ user_id: profile.id, role, updated_at: new Date().toISOString() }, { onConflict: "user_id" });
+  const { error } = await supabase.from("user_roles").upsert({ user_id: profile.id, role, role_source: "manual", updated_at: new Date().toISOString() }, { onConflict: "user_id" });
   if (error) fail("Não foi possível atualizar o papel da conta.");
   success(`Papel de ${profile.full_name || email} atualizado.`);
 }

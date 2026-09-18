@@ -43,6 +43,10 @@ export async function login(formData: FormData) {
     await supabase.auth.signOut();
     redirect(`/login?error=${encodeURIComponent("Esta conta está suspensa. Procure a administração do SIFCAS.")}`);
   }
+  if (profile?.account_status === "pending") {
+    await supabase.auth.signOut();
+    redirect(`/login?message=${encodeURIComponent("Seu cadastro foi confirmado, mas o vínculo institucional ainda está pendente de validação. Procure a administração caso seus dados já tenham sido enviados.")}`);
+  }
 
   revalidatePath("/", "layout");
   redirect(next);
@@ -71,10 +75,21 @@ export async function signup(formData: FormData) {
     redirect(`/login?mode=cadastro&error=${encodeURIComponent("Não foi possível criar a conta. Verifique os dados e tente novamente.")}`);
   }
 
-  if (data.session) {
-    revalidatePath("/", "layout");
-    redirect("/");
+  if (data.session && data.user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("account_status")
+      .eq("id", data.user.id)
+      .maybeSingle();
+
+    if (profile?.account_status === "active") {
+      revalidatePath("/", "layout");
+      redirect("/");
+    }
+
+    await supabase.auth.signOut();
+    redirect(`/login?message=${encodeURIComponent("Conta criada, mas o vínculo institucional ainda precisa ser validado antes do acesso interno.")}`);
   }
 
-  redirect(`/login?message=${encodeURIComponent("Conta criada. Confira seu e-mail para confirmar o cadastro antes de entrar.")}`);
+  redirect(`/login?message=${encodeURIComponent("Conta criada. Confirme seu e-mail; depois o SIFCAS verificará seu vínculo institucional automaticamente.")}`);
 }

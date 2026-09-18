@@ -42,7 +42,7 @@ function routesFor(account:CurrentAccount){
   if(["teacher","manager","admin"].includes(account.role)) routes.push(["Diário do Professor","/diario-professor"],["Agenda das Turmas","/agenda-aluno"]);
   if(["staff","manager","admin"].includes(account.role)) routes.push(["Painel Institucional","/painel-institucional"],["Pessoas","/pessoas"]);
   if(["manager","admin"].includes(account.role)) routes.push(["Gestão Acadêmica","/gestao-academica"],["Auditoria","/auditoria"],["Monitoramento","/monitoramento"]);
-  if(account.role==="admin") routes.push(["Usuários e Permissões","/usuarios"]);
+  if(account.role==="admin") routes.push(["Usuários e Permissões","/usuarios"],["Vínculos Institucionais","/vinculos-institucionais"]);
   return routes.map(([name,href])=>({name,href}));
 }
 

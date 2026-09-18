@@ -63,6 +63,7 @@ const shortcutCatalog: CatalogItem[] = [
   { label: "Auditoria", href: "/auditoria", roles: ["manager", "admin"] },
   { label: "Monitoramento", href: "/monitoramento", roles: ["manager", "admin"] },
   { label: "Usuários e permissões", href: "/usuarios", roles: ["admin"] },
+  { label: "Vínculos institucionais", href: "/vinculos-institucionais", roles: ["admin"] },
 ];
 
 export function getShortcutCatalog(role: AppRole) {

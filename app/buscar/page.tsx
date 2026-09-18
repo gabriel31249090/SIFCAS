@@ -37,6 +37,7 @@ const routes: RouteResult[] = [
   { href: "/documentos-academicos", label: "Documentos acadêmicos", description: "Declaração, histórico e certificado.", roles: ["student", "manager", "admin"] },
   { href: "/gestao-academica", label: "Gestão acadêmica", description: "Cursos, turmas, vínculos, horários e matrículas.", roles: ["manager", "admin"] },
   { href: "/painel-institucional", label: "Painel institucional", description: "Publicação de notícias, editais, eventos e comunicados.", roles: ["staff", "manager", "admin"] },
+  { href: "/vinculos-institucionais", label: "Vínculos Institucionais", description: "Importação, validação e aplicação da base oficial de usuários.", roles: ["admin"] },
   { href: "/notificacoes", label: "Notificações", description: "Avisos enviados ao seu perfil institucional." },
   { href: "/perfil", label: "Perfil", description: "Dados pessoais, papel institucional e segurança." },
 ];

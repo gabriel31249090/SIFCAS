@@ -6,7 +6,7 @@ import { requireAccount, type AppRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 
 const validRoles = new Set<AppRole>(["student", "teacher", "staff", "manager", "admin"]);
-const validStatuses = new Set(["active", "suspended"]);
+const validStatuses = new Set(["active", "pending", "suspended"]);
 
 function text(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
@@ -36,7 +36,7 @@ export async function setUserRole(formData: FormData) {
   if (current.is_general_admin && role !== "admin") finish("O Administrador Geral não pode ser rebaixado.", true);
   if (userId === account.id && role !== "admin") finish("Você não pode remover seu próprio acesso administrativo.", true);
 
-  const { error } = await supabase.from("user_roles").update({ role, updated_at: new Date().toISOString() }).eq("user_id", userId);
+  const { error } = await supabase.from("user_roles").update({ role, role_source: "manual", updated_at: new Date().toISOString() }).eq("user_id", userId);
   if (error) finish("Não foi possível alterar o papel.", true);
   finish("Papel institucional atualizado.");
 }
@@ -54,5 +54,10 @@ export async function setAccountStatus(formData: FormData) {
 
   const { error } = await supabase.from("profiles").update({ account_status: status, updated_at: new Date().toISOString() }).eq("id", userId);
   if (error) finish("Não foi possível alterar o status da conta.", true);
-  finish(status === "active" ? "Conta reativada." : "Conta suspensa. Novos acessos internos serão bloqueados.");
+
+  if (status === "active") {
+    await supabase.from("user_roles").update({ role_source: "manual", updated_at: new Date().toISOString() }).eq("user_id", userId).eq("role_source", "unverified");
+  }
+
+  finish(status === "active" ? "Conta ativada manualmente." : status === "pending" ? "Conta movida para validação pendente." : "Conta suspensa. Novos acessos internos serão bloqueados.");
 }

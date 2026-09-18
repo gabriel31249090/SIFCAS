@@ -1,4 +1,4 @@
-import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, Compass, FileCheck2, ListTodo, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
+import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, Compass, FileCheck2, ListTodo, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog, UserRoundSearch } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 
@@ -57,6 +57,7 @@ export default async function AppsPage() {
 
     if (account.role === "admin") modules.push(
       { title: "Usuários e permissões", description: "Papéis e suspensão/reativação de contas.", icon: UserCog, badge: "ADM", href: "/usuarios" },
+      { title: "Vínculos institucionais", description: "Importe e valide a base oficial de estudantes, professores, servidores e gestores.", icon: UserRoundSearch, badge: "ADM", href: "/vinculos-institucionais" },
     );
   }
 

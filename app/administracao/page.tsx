@@ -1,4 +1,4 @@
-import { Activity, BookOpenCheck, Bug, ClipboardList, FileCheck2, Megaphone, ShieldCheck, UserCog, Users } from "lucide-react";
+import { Activity, BookOpenCheck, Bug, ClipboardList, FileCheck2, Megaphone, ShieldCheck, UserCog, UserRoundSearch, Users } from "lucide-react";
 import { GenericModules, type Module } from "@/components/GenericModules";
 import { requireAccount } from "@/lib/auth";
 
@@ -18,6 +18,7 @@ export default async function AdministrationPage() {
   }
   if (account.role === "admin") {
     modules.push({ title: "Usuários e Permissões", description: "Papéis, suspensão/reativação e proteção do Administrador Geral.", icon: UserCog, badge: "ADM", href: "/usuarios" });
+    modules.push({ title: "Vínculos Institucionais", description: "Importe a base oficial e identifique automaticamente estudante, professor, servidor ou gestor.", icon: UserRoundSearch, badge: "identidade", href: "/vinculos-institucionais" });
   }
 
   modules.push({ title: "Documentos Acadêmicos", description: "Emissão, validação e consulta de documentos acadêmicos.", icon: ShieldCheck, badge: "documentos", href: "/documentos-academicos" });

@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 export type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
-export type AccountStatus = "active" | "suspended";
+export type AccountStatus = "active" | "pending" | "suspended";
 
 export const roleLabels: Record<AppRole, string> = {
   student: "Estudante",
@@ -54,7 +54,7 @@ export async function getCurrentAccount(): Promise<CurrentAccount | null> {
     campus: profile?.campus?.trim() || "Campus Cáceres",
     avatarUrl: profile?.avatar_url ?? null,
     role,
-    accountStatus: (profile?.account_status ?? "active") as AccountStatus,
+    accountStatus: (profile?.account_status ?? "pending") as AccountStatus,
     isGeneralAdmin: Boolean(roleRow?.is_general_admin),
   };
 }
@@ -63,6 +63,7 @@ export async function requireAccount() {
   const account = await getCurrentAccount();
   if (!account) redirect("/login");
   if (account.accountStatus === "suspended") redirect("/acesso-negado?reason=suspended");
+  if (account.accountStatus === "pending") redirect("/acesso-negado?reason=pending");
   return account;
 }
 
