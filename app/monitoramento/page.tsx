@@ -25,7 +25,7 @@ export default async function MonitoringPage() {
   const databaseOk = !healthRes.error && Boolean(healthRes.data);
 
   return <>
-    <PageHeader title="Monitoramento e Produção" description="Visão operacional do banco, Storage, auditoria, atendimento e integração da MAISA." action={<span className="badge"><span className={\`statusDot \${databaseOk ? "" : "danger"}\`}/>{databaseOk ? "Banco online" : "Verificar banco"}</span>}/>
+    <PageHeader title="Monitoramento e Produção" description="Visão operacional do banco, Storage, auditoria, atendimento e integração da MAISA." action={<span className="badge"><span className={`statusDot ${databaseOk ? "" : "danger"}`}/>{databaseOk ? "Banco online" : "Verificar banco"}</span>}/>
 
     <div className="statGrid">
       <StatCard label="Banco" value={databaseOk ? "OK" : "ERRO"} foot="RPC de saúde" icon={Database}/>

@@ -16,5 +16,5 @@ export function getDifyConfig(): DifyConfig {
 }
 
 export function getDifyUserId(userId: string) {
-  return \`sifcas:\${userId}\`;
+  return `sifcas:${userId}`;
 }

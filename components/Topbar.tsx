@@ -18,7 +18,7 @@ export async function Topbar() {
           <Bell size={18}/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}
         </Link>
         {account ? (
-          <Link className={\`userChip \${account.accountStatus === "suspended" ? "suspendedChip" : ""}\`} href={account.accountStatus === "suspended" ? "/acesso-negado?reason=suspended" : "/perfil"}>
+          <Link className={`userChip ${account.accountStatus === "suspended" ? "suspendedChip" : ""}`} href={account.accountStatus === "suspended" ? "/acesso-negado?reason=suspended" : "/perfil"}>
             <span className="avatar">{initials(account.fullName)}</span>
             <span><strong>{account.fullName}</strong><small>{account.accountStatus === "suspended" ? "Conta suspensa" : roleLabels[account.role]}</small></span>
           </Link>

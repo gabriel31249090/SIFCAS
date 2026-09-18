@@ -54,6 +54,6 @@ export default async function AppsPage() {
   return <>
     <PageHeader title="Aplicativos SIFCAS" description="Atalhos funcionais para todos os módulos disponíveis ao seu perfil."/>
     <SectionTitle title={account ? "Meus aplicativos" : "Serviços públicos"} description={account ? "A lista é adaptada ao seu papel institucional." : "Entre na sua conta para visualizar também os módulos internos."}/>
-    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={\`\${module.href}-\${module.title}\`} {...module}/>)}</div>
+    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={`${module.href}-${module.title}`} {...module}/>)}</div>
   </>;
 }

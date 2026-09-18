@@ -17,7 +17,7 @@ export function Sidebar() {
           <div className="navGroup" key={group.group}>
             <p>{group.group}</p>
             {group.items.map(({ href, label, icon: Icon }) => (
-              <Link key={href} href={href} className={\`navItem \${pathname === href ? "active" : ""}\`}>
+              <Link key={href} href={href} className={`navItem ${pathname === href ? "active" : ""}`}>
                 <Icon size={18} strokeWidth={1.9}/><span>{label}</span>
               </Link>
             ))}

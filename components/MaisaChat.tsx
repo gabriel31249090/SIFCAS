@@ -26,7 +26,7 @@ const suggestions = [
 function makeId() {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
-    : \`\${Date.now()}-\${Math.random().toString(16).slice(2)}\`;
+    : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 function nextFrame(buffer: string) {
@@ -49,7 +49,7 @@ export function MaisaChat({
   const initialMessage = useMemo<ChatMessage>(() => ({
     id: "welcome",
     role: "assistant",
-    content: \`Olá, \${firstName}. Eu sou a MAISA, assistente inteligente do SIFCAS. Posso orientar você sobre o sistema e, conforme novas ferramentas forem habilitadas, consultar informações autorizadas da sua conta.\`,
+    content: `Olá, ${firstName}. Eu sou a MAISA, assistente inteligente do SIFCAS. Posso orientar você sobre o sistema e, conforme novas ferramentas forem habilitadas, consultar informações autorizadas da sua conta.`,
   }), [firstName]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -65,7 +65,7 @@ export function MaisaChat({
   function resetConversation() {
     if (sending) return;
     setConversationId("");
-    setMessages([{ ...initialMessage, id: \`welcome-\${Date.now()}\` }]);
+    setMessages([{ ...initialMessage, id: `welcome-${Date.now()}` }]);
     setInput("");
   }
 
@@ -189,7 +189,7 @@ export function MaisaChat({
       <div className="maisaBody card">
         <div className="maisaMessages" aria-live="polite">
           {messages.map((message) => (
-            <article className={\`maisaMessage \${message.role}\`} key={message.id}>
+            <article className={`maisaMessage ${message.role}`} key={message.id}>
               <span className="maisaAvatar">
                 {message.role === "assistant" ? <Bot size={18}/> : <UserRound size={18}/>}
               </span>

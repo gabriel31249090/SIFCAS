@@ -21,7 +21,7 @@ function lineNumber(source, index) {
 }
 
 function report(file, source, index, message) {
-  errors.push(\`\${file}:\${lineNumber(source, index)} — \${message}\`);
+  errors.push(`${file}:${lineNumber(source, index)} — ${message}`);
 }
 
 for (const file of files) {
@@ -55,8 +55,8 @@ for (const file of files) {
 
 if (errors.length) {
   console.error("\nSIFCAS UI interaction audit failed:\n");
-  errors.forEach((error) => console.error(\`- \${error}\`));
+  errors.forEach((error) => console.error(`- ${error}`));
   process.exit(1);
 }
 
-console.log(\`SIFCAS UI interaction audit passed: \${files.length} TSX/JSX files checked.\`);
+console.log(`SIFCAS UI interaction audit passed: ${files.length} TSX/JSX files checked.`);

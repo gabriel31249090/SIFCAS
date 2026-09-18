@@ -5,7 +5,7 @@ import { requireAccount, roleLabels } from "@/lib/auth";
 import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
 
 function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(\`\${iso}T12:00:00-04:00\`));
+  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(`${iso}T12:00:00-04:00`));
 }
 
 export default async function Home() {
@@ -31,7 +31,7 @@ export default async function Home() {
           <strong>{formatDate(nextEntry.entryDate).toUpperCase()}</strong>
           <hr/>
           <small>{nextEntry.className}</small>
-          <b>{nextEntry.subjectName}{nextEntry.startsAt ? \` • \${nextEntry.startsAt.slice(0, 5)}\` : ""}</b>
+          <b>{nextEntry.subjectName}{nextEntry.startsAt ? ` • ${nextEntry.startsAt.slice(0, 5)}` : ""}</b>
           <span>{nextEntry.title}</span>
         </> : <>
           <strong>SEM ITENS</strong>
@@ -47,7 +47,7 @@ export default async function Home() {
       <StatCard label="Meu perfil" value={roleLabels[account.role]} foot={account.campus} icon={UserRound}/>
       <StatCard label="Matrícula ativa" value={studentAcademic ? "1" : "0"} foot={studentAcademic?.className ?? "Sem turma vinculada"} icon={GraduationCap}/>
       <StatCard label="Agenda futura" value={String(agenda.entries.length)} foot="Próximos 35 dias" icon={ListChecks}/>
-      <StatCard label="Estrutura acadêmica" value={String(overview.classCount)} foot={\`\${overview.courseCount} cursos • \${overview.subjectCount} disciplinas\`} icon={Layers3}/>
+      <StatCard label="Estrutura acadêmica" value={String(overview.classCount)} foot={`${overview.courseCount} cursos • ${overview.subjectCount} disciplinas`} icon={Layers3}/>
     </div>
 
     <SectionTitle title="Acesso rápido" description="Os caminhos principais do SIFCAS."/>

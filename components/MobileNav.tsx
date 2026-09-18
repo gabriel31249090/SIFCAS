@@ -16,7 +16,7 @@ export function MobileNav() {
   const pathname = usePathname();
   return <nav className="mobileNav" aria-label="Navegação móvel">
     {items.map(({ href, label, icon: Icon }) => {
-      const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(\`\${href}/\`);
+      const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
       return <Link key={href} href={href} className={active ? "active" : ""}><Icon size={19}/><span>{label}</span></Link>;
     })}
   </nav>;
