@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { getCurrentAccount } from "@/lib/auth";
+import { buildMaisaContext } from "@/lib/maisa/context";
 import { getDifyConfig, getDifyUserId } from "@/lib/dify";
 
 export const dynamic = "force-dynamic";
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
 
   if (!query) return jsonError("Digite uma mensagem para a MAISA.", 400);
   if (query.length > MAX_QUERY_LENGTH) {
-    return jsonError(`A mensagem deve ter no máximo ${MAX_QUERY_LENGTH} caracteres.`, 400);
+    return jsonError("A mensagem deve ter no máximo " + MAX_QUERY_LENGTH + " caracteres.", 400);
   }
   if (conversationId && !UUID_RE.test(conversationId)) {
     return jsonError("Identificador de conversa inválido.", 400);
@@ -62,18 +63,26 @@ export async function POST(request: NextRequest) {
     return jsonError("A MAISA ainda não está configurada no servidor.", 503);
   }
 
+  let context;
+  try {
+    context = await buildMaisaContext(account, query);
+  } catch (error) {
+    console.error("MAISA context tools failed", error instanceof Error ? error.message : "unknown");
+    return jsonError("Não foi possível consultar os dados do SIFCAS para esta pergunta.", 502);
+  }
+
   let upstream: Response;
   try {
-    upstream = await fetch(`${dify.apiUrl}/chat-messages`, {
+    upstream = await fetch(dify.apiUrl + "/chat-messages", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${dify.apiKey}`,
+        Authorization: "Bearer " + dify.apiKey,
         "Content-Type": "application/json",
         Accept: "text/event-stream",
       },
       body: JSON.stringify({
         inputs: {},
-        query,
+        query: context.enrichedQuery,
         response_mode: "streaming",
         conversation_id: conversationId,
         user: getDifyUserId(account.id),
@@ -109,8 +118,13 @@ export async function POST(request: NextRequest) {
       let terminalSent = false;
 
       const send = (payload: Record<string, unknown>) => {
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify(payload)}\n\n`));
+        controller.enqueue(encoder.encode("data: " + JSON.stringify(payload) + "\n\n"));
       };
+
+      send({ type: "context", tools: context.toolsUsed });
+      if (context.serviceRequestProposal) {
+        send({ type: "action_proposal", action: "open_service_request", proposal: context.serviceRequestProposal });
+      }
 
       const handleFrame = (frame: string) => {
         const dataLine = frame.split(/\r?\n/).find((line) => line.startsWith("data: "));

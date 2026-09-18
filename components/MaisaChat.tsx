@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { Bot, RotateCcw, Send, ShieldCheck, Sparkles, UserRound } from "lucide-react";
+import { Bot, CheckCircle2, Database, RotateCcw, Send, ShieldCheck, Sparkles, TicketPlus, UserRound, X } from "lucide-react";
 
 type ChatMessage = {
   id: string;
@@ -9,24 +9,63 @@ type ChatMessage = {
   content: string;
 };
 
+type ServiceRequestProposal = {
+  category: "academic" | "documents" | "people" | "infrastructure" | "it" | "transport" | "other";
+  priority: "low" | "normal" | "high" | "urgent";
+  title: string;
+  description: string;
+};
+
 type StreamPayload = {
-  type?: "delta" | "done" | "error";
+  type?: "context" | "action_proposal" | "delta" | "done" | "error";
   text?: string;
   message?: string;
   conversationId?: string | null;
   messageId?: string | null;
+  tools?: string[];
+  action?: string;
+  proposal?: ServiceRequestProposal;
 };
 
 const suggestions = [
-  "O que você pode fazer no SIFCAS?",
-  "Como você protege meus dados?",
-  "Quais informações você ainda não consegue consultar?",
+  "Qual é minha próxima atividade?",
+  "Como estão minhas notas e frequência?",
+  "Há editais ou oportunidades abertas?",
+  "Quais documentos acadêmicos eu tenho?",
 ];
+
+const toolLabels: Record<string, string> = {
+  consultar_notas: "Notas",
+  consultar_frequencia: "Frequência",
+  consultar_agenda: "Agenda",
+  consultar_editais: "Editais",
+  consultar_publicacoes: "Notícias e eventos",
+  consultar_documentos: "Documentos",
+  consultar_solicitacoes: "Solicitações",
+  abrir_solicitacao: "Abertura de solicitação",
+};
+
+const categoryLabels: Record<ServiceRequestProposal["category"], string> = {
+  academic: "Acadêmico",
+  documents: "Documentos",
+  people: "Pessoas",
+  infrastructure: "Infraestrutura",
+  it: "Tecnologia",
+  transport: "Transporte",
+  other: "Outros",
+};
+
+const priorityLabels: Record<ServiceRequestProposal["priority"], string> = {
+  low: "Baixa",
+  normal: "Normal",
+  high: "Alta",
+  urgent: "Urgente",
+};
 
 function makeId() {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
-    : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    : String(Date.now()) + "-" + Math.random().toString(16).slice(2);
 }
 
 function nextFrame(buffer: string) {
@@ -39,52 +78,49 @@ function nextFrame(buffer: string) {
   return { frame: buffer.slice(0, crlf), rest: buffer.slice(crlf + 4) };
 }
 
-export function MaisaChat({
-  firstName,
-  roleLabel,
-}: {
-  firstName: string;
-  roleLabel: string;
-}) {
+export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLabel: string }) {
   const initialMessage = useMemo<ChatMessage>(() => ({
     id: "welcome",
     role: "assistant",
-    content: `Olá, ${firstName}. Eu sou a MAISA, assistente inteligente do SIFCAS. Posso orientar você sobre o sistema e, conforme novas ferramentas forem habilitadas, consultar informações autorizadas da sua conta.`,
+    content: "Olá, " + firstName + ". Eu sou a MAISA. Agora consigo consultar, com suas permissões do SIFCAS, informações como agenda, notas, frequência, editais, documentos e solicitações. Também posso preparar a abertura de um chamado para você confirmar.",
   }), [firstName]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
   const [conversationId, setConversationId] = useState("");
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [toolsUsed, setToolsUsed] = useState<string[]>([]);
+  const [proposal, setProposal] = useState<ServiceRequestProposal | null>(null);
+  const [actionBusy, setActionBusy] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages, sending]);
+  }, [messages, sending, proposal]);
 
   function resetConversation() {
-    if (sending) return;
+    if (sending || actionBusy) return;
     setConversationId("");
-    setMessages([{ ...initialMessage, id: `welcome-${Date.now()}` }]);
+    setMessages([{ ...initialMessage, id: "welcome-" + Date.now() }]);
     setInput("");
+    setToolsUsed([]);
+    setProposal(null);
   }
 
   function updateAssistant(id: string, updater: (content: string) => string) {
-    setMessages((current) =>
-      current.map((message) =>
-        message.id === id ? { ...message, content: updater(message.content) } : message,
-      ),
-    );
+    setMessages((current) => current.map((message) => message.id === id ? { ...message, content: updater(message.content) } : message));
   }
 
   async function sendMessage(raw?: string) {
     const query = (raw ?? input).trim();
-    if (!query || sending) return;
+    if (!query || sending || actionBusy) return;
 
     const userId = makeId();
     const assistantId = makeId();
     setInput("");
     setSending(true);
+    setToolsUsed([]);
+    setProposal(null);
     setMessages((current) => [
       ...current,
       { id: userId, role: "user", content: query },
@@ -122,6 +158,8 @@ export function MaisaChat({
         }
 
         if (payload.conversationId) setConversationId(payload.conversationId);
+        if (payload.type === "context" && Array.isArray(payload.tools)) setToolsUsed(payload.tools);
+        if (payload.type === "action_proposal" && payload.action === "open_service_request" && payload.proposal) setProposal(payload.proposal);
 
         if (payload.type === "delta" && typeof payload.text === "string") {
           receivedText = true;
@@ -129,10 +167,7 @@ export function MaisaChat({
         }
 
         if (payload.type === "error") {
-          updateAssistant(
-            assistantId,
-            (current) => current || payload.message || "A MAISA encontrou um erro ao responder.",
-          );
+          updateAssistant(assistantId, (current) => current || payload.message || "A MAISA encontrou um erro ao responder.");
         }
       };
 
@@ -140,7 +175,6 @@ export function MaisaChat({
         const { value, done } = await reader.read();
         if (done) break;
         buffer += decoder.decode(value, { stream: true });
-
         while (true) {
           const part = nextFrame(buffer);
           if (!part) break;
@@ -151,20 +185,41 @@ export function MaisaChat({
 
       buffer += decoder.decode();
       if (buffer.trim()) handleFrame(buffer);
-
-      if (!receivedText) {
-        updateAssistant(
-          assistantId,
-          (current) => current || "A MAISA concluiu a execução sem retornar uma resposta de texto.",
-        );
-      }
+      if (!receivedText) updateAssistant(assistantId, (current) => current || "A MAISA concluiu a execução sem retornar uma resposta de texto.");
     } catch (error) {
-      updateAssistant(
-        assistantId,
-        () => error instanceof Error ? error.message : "Não foi possível conversar com a MAISA agora.",
-      );
+      updateAssistant(assistantId, () => error instanceof Error ? error.message : "Não foi possível conversar com a MAISA agora.");
     } finally {
       setSending(false);
+    }
+  }
+
+  async function confirmServiceRequest() {
+    if (!proposal || actionBusy) return;
+    setActionBusy(true);
+    try {
+      const response = await fetch("/api/maisa/actions/service-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(proposal),
+      });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(typeof body.error === "string" ? body.error : "Não foi possível abrir a solicitação.");
+      const requestId = typeof body.request?.id === "string" ? body.request.id : "";
+      setMessages((current) => [...current, {
+        id: makeId(),
+        role: "assistant",
+        content: "Solicitação aberta com sucesso" + (requestId ? " (protocolo " + requestId + ")" : "") + ". Você pode acompanhar em Solicitações.",
+      }]);
+      setProposal(null);
+      setToolsUsed((current) => [...new Set([...current, "consultar_solicitacoes"])]);
+    } catch (error) {
+      setMessages((current) => [...current, {
+        id: makeId(),
+        role: "assistant",
+        content: error instanceof Error ? error.message : "Não foi possível abrir a solicitação.",
+      }]);
+    } finally {
+      setActionBusy(false);
     }
   }
 
@@ -177,11 +232,11 @@ export function MaisaChat({
     <section className="maisaWorkspace">
       <div className="maisaStatusBar">
         <div>
-          <span className="maisaLive"><span/>Dify conectado ao SIFCAS</span>
-          <strong>Conversa protegida por autenticação institucional</strong>
-          <small>Perfil atual: {roleLabel}. A chave do Dify nunca é enviada ao navegador.</small>
+          <span className="maisaLive"><span/>MAISA + ferramentas SIFCAS</span>
+          <strong>Contexto real consultado com as permissões da sua conta</strong>
+          <small>Perfil atual: {roleLabel}. O Dify não recebe acesso direto ao banco.</small>
         </div>
-        <button className="button soft" type="button" onClick={resetConversation} disabled={sending}>
+        <button className="button soft" type="button" onClick={resetConversation} disabled={sending || actionBusy}>
           <RotateCcw size={15}/> Nova conversa
         </button>
       </div>
@@ -189,60 +244,37 @@ export function MaisaChat({
       <div className="maisaBody card">
         <div className="maisaMessages" aria-live="polite">
           {messages.map((message) => (
-            <article className={`maisaMessage ${message.role}`} key={message.id}>
-              <span className="maisaAvatar">
-                {message.role === "assistant" ? <Bot size={18}/> : <UserRound size={18}/>}
-              </span>
+            <article className={"maisaMessage " + message.role} key={message.id}>
+              <span className="maisaAvatar">{message.role === "assistant" ? <Bot size={18}/> : <UserRound size={18}/>}</span>
               <div>
                 <b>{message.role === "assistant" ? "MAISA" : "Você"}</b>
-                <p>{message.content || (sending && message.role === "assistant" ? "Pensando…" : "")}</p>
+                <p>{message.content || (sending && message.role === "assistant" ? "Consultando o SIFCAS…" : "")}</p>
               </div>
             </article>
           ))}
           <div ref={endRef}/>
         </div>
 
-        {messages.length <= 1 && (
-          <div className="maisaSuggestions">
-            <span><Sparkles size={15}/> Experimente perguntar</span>
-            <div>
-              {suggestions.map((suggestion) => (
-                <button key={suggestion} type="button" onClick={() => void sendMessage(suggestion)} disabled={sending}>
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        {toolsUsed.length > 0 && <div className="maisaTools"><span><Database size={14}/> Contexto usado</span><div>{toolsUsed.map((tool) => <span className="badge" key={tool}>{toolLabels[tool] ?? tool}</span>)}</div></div>}
+
+        {proposal && <section className="maisaActionCard">
+          <div className="maisaActionHead"><span className="iconBox"><TicketPlus size={18}/></span><div><b>Confirmar abertura de solicitação</b><small>A MAISA preparou a ação, mas nada será gravado sem sua confirmação.</small></div></div>
+          <dl><div><dt>Categoria</dt><dd>{categoryLabels[proposal.category]}</dd></div><div><dt>Prioridade</dt><dd>{priorityLabels[proposal.priority]}</dd></div><div className="wide"><dt>Título</dt><dd>{proposal.title}</dd></div></dl>
+          <div className="maisaActionButtons"><button type="button" className="button primary" onClick={() => void confirmServiceRequest()} disabled={actionBusy}><CheckCircle2 size={15}/>{actionBusy ? "Abrindo…" : "Confirmar e abrir"}</button><button type="button" className="button soft" onClick={() => setProposal(null)} disabled={actionBusy}><X size={15}/>Cancelar</button></div>
+        </section>}
+
+        {messages.length <= 1 && <div className="maisaSuggestions">
+          <span><Sparkles size={15}/> Experimente perguntar</span>
+          <div>{suggestions.map((suggestion) => <button key={suggestion} type="button" onClick={() => void sendMessage(suggestion)} disabled={sending}>{suggestion}</button>)}</div>
+        </div>}
 
         <form className="maisaComposer" onSubmit={submit}>
-          <textarea
-            aria-label="Mensagem para a MAISA"
-            placeholder="Pergunte algo para a MAISA..."
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" && !event.shiftKey) {
-                event.preventDefault();
-                void sendMessage();
-              }
-            }}
-            maxLength={6000}
-            rows={3}
-            disabled={sending}
-          />
-          <div className="maisaComposerFooter">
-            <span><ShieldCheck size={14}/> O SIFCAS envia somente sua mensagem e um identificador interno ao Dify.</span>
-            <button className="button primary maisaSend" type="submit" disabled={sending || !input.trim()}>
-              <Send size={16}/>{sending ? "Respondendo…" : "Enviar"}
-            </button>
-          </div>
+          <textarea aria-label="Mensagem para a MAISA" placeholder="Pergunte sobre notas, agenda, editais, documentos, solicitações..." value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); void sendMessage(); } }} maxLength={6000} rows={3} disabled={sending || actionBusy}/>
+          <div className="maisaComposerFooter"><span><ShieldCheck size={14}/>Consultas respeitam sua sessão e RLS do SIFCAS.</span><button className="button primary maisaSend" type="submit" disabled={sending || actionBusy || !input.trim()}><Send size={16}/>{sending ? "Consultando…" : "Enviar"}</button></div>
         </form>
       </div>
 
-      <p className="maisaPrivacy">
-        As mensagens são processadas pelo Dify e pelo modelo configurado no fluxo da MAISA. Dados acadêmicos ou administrativos só poderão ser usados quando ferramentas seguras do SIFCAS forem explicitamente conectadas.
-      </p>
+      <p className="maisaPrivacy">A MAISA envia ao Dify somente sua pergunta e o contexto mínimo necessário para respondê-la. Ações que modificam o SIFCAS exigem confirmação explícita.</p>
     </section>
   );
 }
