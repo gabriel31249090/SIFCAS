@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AlertTriangle, Bot, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks, Link2 } from "lucide-react";
+import { AlertTriangle, Bot, Compass, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks, Link2 } from "lucide-react";
 import { SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
@@ -59,6 +59,7 @@ export default async function Home() {
       <Link href="/estudante"><GraduationCap/>Minha vida acadêmica</Link>
       <Link href="/agenda-aluno"><CalendarDays/>Minha agenda</Link>
       <Link href="/documentos"><FileText/>Documentos</Link>
+      <Link href="/oportunidades"><Compass/>Oportunidades</Link>
       <Link href="/editais"><Pin/>Editais e bolsas</Link>
       <Link href="/ensino"><BookOpen/>Ensino</Link>
       <Link href="/campus"><School/>Meu campus</Link>

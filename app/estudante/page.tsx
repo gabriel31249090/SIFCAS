@@ -69,8 +69,8 @@ export default async function EstudantePage() {
       <ModuleCard title="Minhas disciplinas" description="Componentes curriculares, códigos e carga horária da turma." icon={BookOpenCheck} badge="novo" href="/disciplinas"/>
       <ModuleCard title="Locais e horários de aula" description="Grade semanal, horários e salas cadastradas." icon={Clock3} badge="novo" href="/horarios"/>
       <ModuleCard title="Declarações e certificados" description="Emissão e acompanhamento de documentos acadêmicos." icon={FileText} badge="funcional" href="/documentos-academicos"/>
-      <ModuleCard title="Estágios" description="Vagas, termos, avaliações e acompanhamento." icon={BriefcaseBusiness} badge="planejado"/>
-      <ModuleCard title="Bolsas e auxílios" description="Editais, inscrições, resultados e benefícios." icon={BadgeDollarSign} badge="planejado"/>
+      <ModuleCard title="Estágios" description="Vagas, inscrições e acompanhamento de oportunidades profissionais." icon={BriefcaseBusiness} badge="funcional" href="/estagios"/>
+      <ModuleCard title="Bolsas e auxílios" description="Programas, inscrições, análise e resultados de assistência estudantil." icon={BadgeDollarSign} badge="funcional" href="/auxilios"/>
       <ModuleCard title="Biblioteca" description="Empréstimos, renovações, catálogo e pendências." icon={Library} badge="integração futura"/>
     </div>
   </>;

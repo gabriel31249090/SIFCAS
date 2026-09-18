@@ -1,4 +1,4 @@
-import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, FileCheck2, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
+import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, Compass, FileCheck2, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 
@@ -24,7 +24,8 @@ export default async function AppsPage() {
       { title: "Preferências de notificações", description: "Controle as categorias de novos avisos.", icon: Settings2, badge: "preferências", href: "/preferencias-notificacoes" },
       { title: "Reportar erro", description: "Registre um problema e acompanhe a análise.", icon: Bug, badge: "qualidade", href: "/reportar-erro" },
       { title: "Solicitações", description: "Abra e acompanhe demandas institucionais.", icon: ClipboardList, badge: "serviços", href: "/solicitacoes" },
-      { title: "Documentos", description: "Documentos acadêmicos e validação.", icon: Files, badge: "serviços", href: "/documentos" },
+      { title: "Documentos", description: "Documentos acadêmicos, processos e validação.", icon: Files, badge: "serviços", href: "/documentos" },
+      { title: "Oportunidades", description: "Estágios, auxílios, projetos, TCC e processos institucionais.", icon: Compass, badge: "acadêmico", href: "/oportunidades" },
     );
 
     if (account.role === "student") modules.push(

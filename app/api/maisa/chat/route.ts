@@ -71,6 +71,27 @@ export async function POST(request: NextRequest) {
     return jsonError("Não foi possível consultar os dados do SIFCAS para esta pergunta.", 502);
   }
 
+  if (context.directAnswer) {
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(encoder.encode("data: " + JSON.stringify({ type: "context", tools: context.toolsUsed }) + "\n\n"));
+        controller.enqueue(encoder.encode("data: " + JSON.stringify({ type: "delta", text: context.directAnswer }) + "\n\n"));
+        controller.enqueue(encoder.encode("data: " + JSON.stringify({ type: "done" }) + "\n\n"));
+        controller.close();
+      },
+    });
+    return new Response(stream, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/event-stream; charset=utf-8",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Connection: "keep-alive",
+        "X-Accel-Buffering": "no",
+      },
+    });
+  }
+
   let upstream: Response;
   try {
     upstream = await fetch(dify.apiUrl + "/chat-messages", {

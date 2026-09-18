@@ -42,6 +42,11 @@ const toolLabels: Record<string, string> = {
   consultar_publicacoes: "Notícias e eventos",
   consultar_documentos: "Documentos",
   consultar_solicitacoes: "Solicitações",
+  consultar_processos: "Processos",
+  consultar_estagios: "Estágios",
+  consultar_auxilios: "Auxílios",
+  consultar_tcc: "TCC",
+  consultar_projetos: "Projetos",
   abrir_solicitacao: "Abertura de solicitação",
 };
 
@@ -82,7 +87,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
   const initialMessage = useMemo<ChatMessage>(() => ({
     id: "welcome",
     role: "assistant",
-    content: "Olá, " + firstName + ". Eu sou a MAISA. Agora consigo consultar, com suas permissões do SIFCAS, informações como agenda, notas, frequência, editais, documentos e solicitações. Também posso preparar a abertura de um chamado para você confirmar.",
+    content: "Olá, " + firstName + ". Eu sou a MAISA. Consigo consultar, com as permissões da sua conta, notas, frequência, agenda, editais, documentos, processos, estágios, auxílios, TCC, projetos e solicitações. Para notas de outro estudante, informe nome, matrícula ou e-mail institucional. Também posso preparar a abertura de um chamado para você confirmar.",
   }), [firstName]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);

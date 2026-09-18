@@ -27,6 +27,7 @@ export default async function EnsinoPage() {
       <ModuleCard title="Turmas e vínculos" description="Turmas, disciplinas ofertadas, matrículas e professores vinculados." icon={UsersRound} badge="RBAC + RLS"/>
       <ModuleCard title="Períodos letivos" description="Períodos acadêmicos associados a cada unidade." icon={CalendarRange} badge="estrutura"/>
       <ModuleCard title="Agenda das turmas" description="Planejamento publicado por professores e exibido somente aos vínculos autorizados." icon={CalendarRange} badge="funcional" href="/agenda-aluno"/>
+      <ModuleCard title="Agenda de Defesas de TCC" description="Defesas, bancas, horários, locais e resultados." icon={CalendarClock} badge="funcional" href="/tcc"/>
       <ModuleCard title="Diário do Professor" description="Conteúdo ministrado, chamada, avaliações e lançamento de notas por turma." icon={BookOpenCheck} badge={account.role === "teacher" || account.role === "manager" || account.role === "admin" ? "funcional" : "acesso docente"} href="/diario-professor"/>
       <ModuleCard title="Boletim e frequência" description="Visão do estudante calculada a partir dos lançamentos feitos no diário." icon={BookOpen} badge="funcional" href="/boletim"/>
       {account.role === "student" && <ModuleCard title="Minhas disciplinas" description="Componentes curriculares, códigos e carga horária." icon={BookOpen} badge="aluno" href="/disciplinas"/>}
