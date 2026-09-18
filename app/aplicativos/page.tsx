@@ -1,4 +1,4 @@
-import { Activity, Bell, BookOpenCheck, Bot, CalendarDays, CalendarRange, ClipboardList, FileCheck2, Files, GraduationCap, Grid3X3, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
+import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, FileCheck2, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 
@@ -19,6 +19,10 @@ export default async function AppsPage() {
       { title: "Início", description: "Resumo personalizado do seu vínculo institucional.", icon: Grid3X3, badge: "conta", href: "/" },
       { title: "Perfil", description: "Dados pessoais e segurança da conta.", icon: UserRoundCog, badge: "conta", href: "/perfil" },
       { title: "Notificações", description: "Avisos e novas publicações destinadas ao seu perfil.", icon: Bell, badge: "conta", href: "/notificacoes" },
+      { title: "Base de conhecimento", description: "Tutoriais e orientações de autoatendimento.", icon: BookOpen, badge: "ajuda", href: "/base-conhecimento" },
+      { title: "Meus atalhos", description: "Personalize os acessos mais usados no painel inicial.", icon: Link2, badge: "personalização", href: "/atalhos" },
+      { title: "Preferências de notificações", description: "Controle as categorias de novos avisos.", icon: Settings2, badge: "preferências", href: "/preferencias-notificacoes" },
+      { title: "Reportar erro", description: "Registre um problema e acompanhe a análise.", icon: Bug, badge: "qualidade", href: "/reportar-erro" },
       { title: "Solicitações", description: "Abra e acompanhe demandas institucionais.", icon: ClipboardList, badge: "serviços", href: "/solicitacoes" },
       { title: "Documentos", description: "Documentos acadêmicos e validação.", icon: Files, badge: "serviços", href: "/documentos" },
     );
@@ -27,6 +31,9 @@ export default async function AppsPage() {
       { title: "Área do estudante", description: "Turma, disciplinas, horários e serviços acadêmicos.", icon: GraduationCap, badge: "estudante", href: "/estudante" },
       { title: "Agenda do aluno", description: "Aulas, provas, trabalhos e avisos da turma.", icon: CalendarRange, badge: "estudante", href: "/agenda-aluno" },
       { title: "Boletim", description: "Notas e frequência lançadas no diário acadêmico.", icon: BookOpenCheck, badge: "estudante", href: "/boletim" },
+      { title: "Minhas avaliações", description: "Provas, trabalhos e atividades avaliativas.", icon: CalendarClock, badge: "estudante", href: "/avaliacoes" },
+      { title: "Minhas disciplinas", description: "Componentes curriculares e carga horária.", icon: BookOpen, badge: "estudante", href: "/disciplinas" },
+      { title: "Horários de aula", description: "Grade semanal e locais cadastrados.", icon: Clock3, badge: "estudante", href: "/horarios" },
       { title: "Documentos acadêmicos", description: "Declaração, histórico e certificado quando elegível.", icon: FileCheck2, badge: "estudante", href: "/documentos-academicos" },
     );
 
@@ -54,6 +61,6 @@ export default async function AppsPage() {
   return <>
     <PageHeader title="Aplicativos SIFCAS" description="Atalhos funcionais para todos os módulos disponíveis ao seu perfil."/>
     <SectionTitle title={account ? "Meus aplicativos" : "Serviços públicos"} description={account ? "A lista é adaptada ao seu papel institucional." : "Entre na sua conta para visualizar também os módulos internos."}/>
-    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={`${module.href}-${module.title}`} {...module}/>)}</div>
+    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={module.href + "-" + module.title} {...module}/>)}</div>
   </>;
 }

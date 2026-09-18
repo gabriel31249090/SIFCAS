@@ -1,7 +1,7 @@
 import {
   Home, GraduationCap, BookOpen, FlaskConical, Sprout, School, Grid3X3,
   Files, Building2, Users, Pin, Newspaper, CalendarDays, CalendarRange,
-  Search, UserRoundCog, Settings2, ClipboardList, Bot
+  Search, UserRoundCog, Settings2, ClipboardList, Bot, BookOpenCheck, Link2
 } from "lucide-react";
 
 export const navigation = [
@@ -21,6 +21,8 @@ export const navigation = [
   { group: "Serviços", items: [
     { href: "/servicos", label: "Serviços", icon: Grid3X3 },
     { href: "/solicitacoes", label: "Solicitações", icon: ClipboardList },
+    { href: "/base-conhecimento", label: "Base de Conhecimento", icon: BookOpenCheck },
+    { href: "/atalhos", label: "Meus Atalhos", icon: Link2 },
     { href: "/documentos", label: "Documentos e Processos", icon: Files },
     { href: "/administracao", label: "Administração", icon: Building2 },
     { href: "/pessoas", label: "Pessoas", icon: Users },

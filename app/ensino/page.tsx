@@ -1,4 +1,4 @@
-import { BookOpen, BookOpenCheck, CalendarRange, GraduationCap, School, UsersRound } from "lucide-react";
+import { BookOpen, BookOpenCheck, CalendarClock, CalendarRange, Clock3, GraduationCap, School, UsersRound } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getAcademicOverview } from "@/lib/academic";
@@ -18,7 +18,7 @@ export default async function EnsinoPage() {
       <StatCard label="Campi ativos" value={String(overview.campusCount)} foot="Unidades cadastradas" icon={School}/>
       <StatCard label="Cursos ativos" value={String(overview.courseCount)} foot="Catálogo acadêmico" icon={GraduationCap}/>
       <StatCard label="Disciplinas" value={String(overview.subjectCount)} foot="Componentes curriculares" icon={BookOpen}/>
-      <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={`${overview.enrollmentCount} matrículas ativas`} icon={UsersRound}/>
+      <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={overview.enrollmentCount + " matrículas ativas"} icon={UsersRound}/>
     </div>
 
     <SectionTitle title="Estrutura acadêmica" description="Os módulos abaixo utilizam a fundação de dados e permissões do SIFCAS."/>
@@ -29,6 +29,9 @@ export default async function EnsinoPage() {
       <ModuleCard title="Agenda das turmas" description="Planejamento publicado por professores e exibido somente aos vínculos autorizados." icon={CalendarRange} badge="funcional" href="/agenda-aluno"/>
       <ModuleCard title="Diário do Professor" description="Conteúdo ministrado, chamada, avaliações e lançamento de notas por turma." icon={BookOpenCheck} badge={account.role === "teacher" || account.role === "manager" || account.role === "admin" ? "funcional" : "acesso docente"} href="/diario-professor"/>
       <ModuleCard title="Boletim e frequência" description="Visão do estudante calculada a partir dos lançamentos feitos no diário." icon={BookOpen} badge="funcional" href="/boletim"/>
+      {account.role === "student" && <ModuleCard title="Minhas disciplinas" description="Componentes curriculares, códigos e carga horária." icon={BookOpen} badge="aluno" href="/disciplinas"/>}
+      {account.role === "student" && <ModuleCard title="Locais e horários de aula" description="Grade semanal, salas e horários cadastrados." icon={Clock3} badge="aluno" href="/horarios"/>}
+      {account.role === "student" && <ModuleCard title="Minhas avaliações" description="Provas, trabalhos e atividades avaliativas." icon={CalendarClock} badge="aluno" href="/avaliacoes"/>}
     </div>
 
     <SectionTitle title="Campi cadastrados" description="Unidades disponíveis na base acadêmica."/>

@@ -42,6 +42,10 @@ function routesFor(account: CurrentAccount) {
     ["Notificações", "/notificacoes"],
     ["Perfil", "/perfil"],
     ["Solicitações", "/solicitacoes"],
+    ["Base de Conhecimento", "/base-conhecimento"],
+    ["Meus Atalhos", "/atalhos"],
+    ["Preferências de Notificações", "/preferencias-notificacoes"],
+    ["Reportar Erro", "/reportar-erro"],
     ["Documentos e Processos", "/documentos"],
     ["Editais", "/editais"],
     ["Notícias e Eventos", "/noticias"],
@@ -54,6 +58,9 @@ function routesFor(account: CurrentAccount) {
       ["Área do Estudante", "/estudante"],
       ["Agenda do Aluno", "/agenda-aluno"],
       ["Boletim e Frequência", "/boletim"],
+      ["Minhas Disciplinas", "/disciplinas"],
+      ["Locais e Horários de Aula", "/horarios"],
+      ["Minhas Avaliações", "/avaliacoes"],
       ["Documentos Acadêmicos", "/documentos-academicos"],
     );
   }

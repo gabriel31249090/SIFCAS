@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { FileSearch, Search, Sparkles } from "lucide-react";
+import { BookOpenCheck, FileSearch, Search, Sparkles } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount, type AppRole } from "@/lib/auth";
+import { listKnowledgeArticles } from "@/lib/experience";
 import { publicationKindLabels, searchAccessiblePublications } from "@/lib/institutional";
 
 type SearchParams = Promise<{ q?: string }>;
@@ -13,7 +14,16 @@ const routes: RouteResult[] = [
   { href: "/agenda-institucional", label: "Agenda institucional", description: "Eventos, prazos e compromissos oficiais.", public: true },
   { href: "/campus", label: "Campus Cáceres", description: "Informações e serviços do campus.", public: true },
   { href: "/verificar-documento", label: "Verificar documento", description: "Consulta pública de autenticidade por código SIF.", public: true },
+  { href: "/maisa", label: "MAISA", description: "Assistente inteligente integrada ao SIFCAS." },
+  { href: "/servicos", label: "Central de Serviços", description: "Solicitações, autoatendimento, documentos e suporte." },
+  { href: "/base-conhecimento", label: "Base de conhecimento", description: "Tutoriais, orientações e respostas rápidas." },
+  { href: "/atalhos", label: "Meus atalhos", description: "Personalize os módulos exibidos como acesso rápido." },
+  { href: "/reportar-erro", label: "Reportar erro", description: "Registre e acompanhe problemas do SIFCAS." },
+  { href: "/preferencias-notificacoes", label: "Preferências de notificações", description: "Controle quais categorias podem gerar novos avisos." },
   { href: "/estudante", label: "Área do estudante", description: "Turma, disciplinas, horários e serviços acadêmicos.", roles: ["student"] },
+  { href: "/disciplinas", label: "Minhas disciplinas", description: "Componentes curriculares, códigos e carga horária.", roles: ["student"] },
+  { href: "/horarios", label: "Locais e horários de aula", description: "Grade semanal e salas da turma.", roles: ["student"] },
+  { href: "/avaliacoes", label: "Minhas avaliações", description: "Provas, trabalhos e atividades avaliativas.", roles: ["student"] },
   { href: "/agenda-aluno", label: "Agenda do aluno e da turma", description: "Aulas, provas, trabalhos, materiais e avisos.", roles: ["student", "teacher", "manager", "admin"] },
   { href: "/boletim", label: "Boletim e frequência", description: "Notas, médias, presença e faltas.", roles: ["student"] },
   { href: "/diario-professor", label: "Diário do professor", description: "Conteúdo ministrado, chamada, avaliações e notas.", roles: ["teacher", "manager", "admin"] },
@@ -33,19 +43,22 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
   const routeMatches = query.length >= 2 ? routes.filter((route) => {
     const allowed = route.public || (account && (!route.roles || route.roles.includes(account.role)));
     if (!allowed) return false;
-    return `${route.label} ${route.description}`.toLocaleLowerCase("pt-BR").includes(normalized);
+    return (route.label + " " + route.description).toLocaleLowerCase("pt-BR").includes(normalized);
   }) : [];
 
   const publicationMatches = query.length >= 2 ? await searchAccessiblePublications(query) : [];
-  const total = routeMatches.length + publicationMatches.length;
+  const knowledgeMatches = account && query.length >= 2
+    ? (await listKnowledgeArticles()).filter((article) => (article.title + " " + article.summary + " " + article.content).toLocaleLowerCase("pt-BR").includes(normalized)).slice(0, 12)
+    : [];
+  const total = routeMatches.length + publicationMatches.length + knowledgeMatches.length;
 
   return <>
-    <PageHeader title="Busca global" description="Pesquise módulos, serviços, editais, eventos, comunicados e notícias disponíveis para você." action={<span className="badge">{total} resultados</span>}/>
+    <PageHeader title="Busca global" description="Pesquise módulos, serviços, artigos de ajuda, editais, eventos, comunicados e notícias disponíveis para você." action={<span className="badge">{total} resultados</span>}/>
 
     <section className="card panel searchPageForm">
       <form action="/buscar" method="get" className="formStack">
         <label>O que você procura?
-          <input name="q" defaultValue={query} placeholder="Ex.: edital, boletim, evento, documentos..." minLength={2} maxLength={100} autoFocus/>
+          <input name="q" defaultValue={query} placeholder="Ex.: edital, boletim, senha, avaliação, documentos..." minLength={2} maxLength={100} autoFocus/>
         </label>
         <button className="button primary" type="submit"><Search size={16}/> Buscar</button>
       </form>
@@ -59,10 +72,17 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
         </Link>)}</div>
       </>}
 
+      {knowledgeMatches.length > 0 && <>
+        <SectionTitle title="Base de conhecimento" description="Orientações de autoatendimento relacionadas à sua busca."/>
+        <div className="searchResults">{knowledgeMatches.map((article) => <Link className="card searchResult" href={"/base-conhecimento?q=" + encodeURIComponent(article.title)} key={article.id}>
+          <span className="iconBox"><BookOpenCheck size={18}/></span><span><b>{article.title}</b><small>{article.summary}</small></span>
+        </Link>)}</div>
+      </>}
+
       {publicationMatches.length > 0 && <>
         <SectionTitle title="Publicações institucionais" description="Conteúdo publicado e disponível ao seu perfil."/>
-        <div className="searchResults">{publicationMatches.map((publication) => <Link className="card searchResult" href={`/publicacoes/${publication.id}`} key={publication.id}>
-          <span className="iconBox"><FileSearch size={18}/></span><span><b>{publication.title}</b><small>{publicationKindLabels[publication.kind]}{publication.referenceCode ? ` • ${publication.referenceCode}` : ""}{publication.summary ? ` • ${publication.summary}` : ""}</small></span>
+        <div className="searchResults">{publicationMatches.map((publication) => <Link className="card searchResult" href={"/publicacoes/" + publication.id} key={publication.id}>
+          <span className="iconBox"><FileSearch size={18}/></span><span><b>{publication.title}</b><small>{publicationKindLabels[publication.kind]}{publication.referenceCode ? " • " + publication.referenceCode : ""}{publication.summary ? " • " + publication.summary : ""}</small></span>
         </Link>)}</div>
       </>}
     </>}

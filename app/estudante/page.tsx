@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BadgeDollarSign, BarChart3, BriefcaseBusiness, CalendarDays, FileText, GraduationCap, Library, NotebookTabs } from "lucide-react";
+import { BadgeDollarSign, BarChart3, BookOpenCheck, BriefcaseBusiness, CalendarClock, CalendarDays, Clock3, FileText, GraduationCap, Library, NotebookTabs } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getStudentAcademicContext } from "@/lib/academic";
@@ -43,31 +43,34 @@ export default async function EstudantePage() {
         <StatCard label="Turma" value={academic.className} foot={academic.classCode} icon={GraduationCap}/>
         <StatCard label="Curso" value={academic.courseCode || "Ativo"} foot={academic.courseName} icon={NotebookTabs}/>
         <StatCard label="Disciplinas" value={String(academic.subjects.length)} foot={academic.periodName} icon={BarChart3}/>
-        <StatCard label="Turno" value={shiftLabels[academic.shift] ?? academic.shift} foot={academic.enrollmentNumber ? `Matrícula ${academic.enrollmentNumber}` : "Matrícula ativa"} icon={CalendarDays}/>
+        <StatCard label="Turno" value={shiftLabels[academic.shift] ?? academic.shift} foot={academic.enrollmentNumber ? "Matrícula " + academic.enrollmentNumber : "Matrícula ativa"} icon={CalendarDays}/>
       </div>
 
       <div className="twoCols dashboardLower">
         <section className="card panel">
-          <SectionTitle title="Minhas disciplinas" description="Componentes vinculados à sua turma."/>
+          <SectionTitle title="Minhas disciplinas" description="Componentes vinculados à sua turma." href="/disciplinas" linkLabel="Abrir disciplinas"/>
           {academic.subjects.length === 0 ? <div className="infoBox">Nenhuma disciplina vinculada à turma.</div> : <div className="stackList">
-            {academic.subjects.map((subject) => <div key={subject.id}><b>{subject.name}</b><span>{subject.code} • {subject.workloadHours}h</span></div>)}
+            {academic.subjects.slice(0,6).map((subject) => <div key={subject.id}><b>{subject.name}</b><span>{subject.code} • {subject.workloadHours}h</span></div>)}
           </div>}
         </section>
         <section className="card panel">
-          <SectionTitle title="Horário da turma" description="Aulas cadastradas na grade semanal."/>
+          <SectionTitle title="Horário da turma" description="Aulas cadastradas na grade semanal." href="/horarios" linkLabel="Abrir grade"/>
           {academic.schedules.length === 0 ? <div className="infoBox">O horário ainda não foi publicado.</div> : <div className="stackList">
-            {academic.schedules.map((schedule) => <div key={schedule.id}><b>{weekdayLabels[schedule.weekday] ?? `Dia ${schedule.weekday}`} • {schedule.startsAt.slice(0, 5)}–{schedule.endsAt.slice(0, 5)}</b><span>{schedule.subjectName}{schedule.room ? ` • ${schedule.room}` : ""}</span></div>)}
+            {academic.schedules.slice(0,6).map((schedule) => <div key={schedule.id}><b>{weekdayLabels[schedule.weekday] ?? "Dia " + schedule.weekday} • {schedule.startsAt.slice(0, 5)}–{schedule.endsAt.slice(0, 5)}</b><span>{schedule.subjectName}{schedule.room ? " • " + schedule.room : ""}</span></div>)}
           </div>}
         </section>
       </div>
     </>}
 
-    <SectionTitle title="Outros serviços do estudante" description="Os módulos complementares continuam disponíveis enquanto conectamos suas bases específicas."/>
+    <SectionTitle title="Serviços acadêmicos" description="Acessos diretos inspirados nos fluxos de ensino do SUAP, usando a base real do SIFCAS."/>
     <div className="moduleGrid">
-      <ModuleCard title="Boletim e frequência" description="Notas e presença lançadas pelos professores no diário acadêmico." icon={BarChart3} badge="funcional" href="/boletim"/>
-      <ModuleCard title="Declarações e certificados" description="Solicitação e acompanhamento de documentos acadêmicos." icon={FileText} badge="documentos"/>
-      <ModuleCard title="Estágios" description="Vagas, termos, avaliações e acompanhamento." icon={BriefcaseBusiness} badge="oportunidades"/>
-      <ModuleCard title="Bolsas e auxílios" description="Editais, inscrições, resultados e benefícios." icon={BadgeDollarSign} badge="assistência"/>
+      <ModuleCard title="Boletim e frequência" description="Notas, médias, presença e faltas lançadas pelos professores." icon={BarChart3} badge="funcional" href="/boletim"/>
+      <ModuleCard title="Minhas avaliações" description="Provas, trabalhos e atividades avaliativas do período letivo." icon={CalendarClock} badge="novo" href="/avaliacoes"/>
+      <ModuleCard title="Minhas disciplinas" description="Componentes curriculares, códigos e carga horária da turma." icon={BookOpenCheck} badge="novo" href="/disciplinas"/>
+      <ModuleCard title="Locais e horários de aula" description="Grade semanal, horários e salas cadastradas." icon={Clock3} badge="novo" href="/horarios"/>
+      <ModuleCard title="Declarações e certificados" description="Emissão e acompanhamento de documentos acadêmicos." icon={FileText} badge="funcional" href="/documentos-academicos"/>
+      <ModuleCard title="Estágios" description="Vagas, termos, avaliações e acompanhamento." icon={BriefcaseBusiness} badge="planejado"/>
+      <ModuleCard title="Bolsas e auxílios" description="Editais, inscrições, resultados e benefícios." icon={BadgeDollarSign} badge="planejado"/>
       <ModuleCard title="Biblioteca" description="Empréstimos, renovações, catálogo e pendências." icon={Library} badge="integração futura"/>
     </div>
   </>;
