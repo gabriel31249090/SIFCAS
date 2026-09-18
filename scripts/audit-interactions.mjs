@@ -21,7 +21,7 @@ function lineNumber(source, index) {
 }
 
 function report(file, source, index, message) {
-  errors.push(`${file}:${lineNumber(source, index)} — ${message}`);
+  errors.push(\`\${file}:\${lineNumber(source, index)} — \${message}\`);
 }
 
 for (const file of files) {
@@ -38,7 +38,8 @@ for (const file of files) {
     const attrs = match[1] ?? "";
     const hasAction = /\baction\s*=/.test(attrs);
     const isGet = /\bmethod\s*=\s*["']get["']/.test(attrs);
-    if (!hasAction && !isGet) report(file, source, match.index ?? 0, "formulário sem action ou método GET");
+    const hasSubmitHandler = /\bonSubmit\s*=/.test(attrs);
+    if (!hasAction && !isGet && !hasSubmitHandler) report(file, source, match.index ?? 0, "formulário sem action, onSubmit ou método GET");
   }
 
   for (const match of source.matchAll(/<Link\b([^>]*)>/gs)) {
@@ -54,8 +55,8 @@ for (const file of files) {
 
 if (errors.length) {
   console.error("\nSIFCAS UI interaction audit failed:\n");
-  errors.forEach((error) => console.error(`- ${error}`));
+  errors.forEach((error) => console.error(\`- \${error}\`));
   process.exit(1);
 }
 
-console.log(`SIFCAS UI interaction audit passed: ${files.length} TSX/JSX files checked.`);
+console.log(\`SIFCAS UI interaction audit passed: \${files.length} TSX/JSX files checked.\`);

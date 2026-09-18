@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks } from "lucide-react";
+import { Bot, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks } from "lucide-react";
 import { SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
 
 function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(`${iso}T12:00:00-04:00`));
+  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(\`\${iso}T12:00:00-04:00\`));
 }
 
 export default async function Home() {
@@ -22,8 +22,8 @@ export default async function Home() {
       <div>
         <span className="eyebrow">Portal integrado IFMT</span>
         <h1>Olá, {account.fullName.split(" ")[0]}.</h1>
-        <p>O SIFCAS agora usa autenticação e núcleo acadêmico reais para montar sua experiência conforme seu vínculo institucional.</p>
-        <div className="heroActions"><Link className="button primary" href="/estudante">Abrir área do estudante</Link><Link className="button glass" href="/agenda-aluno">Abrir agenda</Link></div>
+        <p>O SIFCAS reúne sua vida institucional e agora conta com a MAISA, assistente inteligente conectada ao Dify por uma camada segura do próprio sistema.</p>
+        <div className="heroActions"><Link className="button primary" href="/maisa"><Bot size={16}/>Falar com a MAISA</Link><Link className="button glass" href="/aplicativos">Abrir aplicativos</Link></div>
       </div>
       <aside className="todayPanel">
         <small>Próxima publicação</small>
@@ -31,7 +31,7 @@ export default async function Home() {
           <strong>{formatDate(nextEntry.entryDate).toUpperCase()}</strong>
           <hr/>
           <small>{nextEntry.className}</small>
-          <b>{nextEntry.subjectName}{nextEntry.startsAt ? ` • ${nextEntry.startsAt.slice(0, 5)}` : ""}</b>
+          <b>{nextEntry.subjectName}{nextEntry.startsAt ? \` • \${nextEntry.startsAt.slice(0, 5)}\` : ""}</b>
           <span>{nextEntry.title}</span>
         </> : <>
           <strong>SEM ITENS</strong>
@@ -47,11 +47,12 @@ export default async function Home() {
       <StatCard label="Meu perfil" value={roleLabels[account.role]} foot={account.campus} icon={UserRound}/>
       <StatCard label="Matrícula ativa" value={studentAcademic ? "1" : "0"} foot={studentAcademic?.className ?? "Sem turma vinculada"} icon={GraduationCap}/>
       <StatCard label="Agenda futura" value={String(agenda.entries.length)} foot="Próximos 35 dias" icon={ListChecks}/>
-      <StatCard label="Estrutura acadêmica" value={String(overview.classCount)} foot={`${overview.courseCount} cursos • ${overview.subjectCount} disciplinas`} icon={Layers3}/>
+      <StatCard label="Estrutura acadêmica" value={String(overview.classCount)} foot={\`\${overview.courseCount} cursos • \${overview.subjectCount} disciplinas\`} icon={Layers3}/>
     </div>
 
     <SectionTitle title="Acesso rápido" description="Os caminhos principais do SIFCAS."/>
     <div className="quickGrid">
+      <Link href="/maisa"><Bot/>Falar com a MAISA</Link>
       <Link href="/estudante"><GraduationCap/>Minha vida acadêmica</Link>
       <Link href="/agenda-aluno"><CalendarDays/>Minha agenda</Link>
       <Link href="/documentos"><FileText/>Documentos</Link>
@@ -72,7 +73,7 @@ export default async function Home() {
         </div>}
       </section>
       <section className="card panel">
-        <SectionTitle title="Núcleo acadêmico" description="Status da nova base estrutural."/>
+        <SectionTitle title="Núcleo acadêmico" description="Status da base estrutural."/>
         <div className="stackList">
           <div><b>{overview.campusCount} campus ativo</b><span>Estrutura institucional</span></div>
           <div><b>{overview.courseCount} cursos cadastrados</b><span>Catálogo acadêmico</span></div>

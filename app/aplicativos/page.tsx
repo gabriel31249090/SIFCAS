@@ -1,4 +1,4 @@
-import { Activity, Bell, BookOpenCheck, CalendarDays, CalendarRange, ClipboardList, FileCheck2, Files, GraduationCap, Grid3X3, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
+import { Activity, Bell, BookOpenCheck, Bot, CalendarDays, CalendarRange, ClipboardList, FileCheck2, Files, GraduationCap, Grid3X3, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 
@@ -15,6 +15,7 @@ export default async function AppsPage() {
 
   if (account && account.accountStatus === "active") {
     modules.push(
+      { title: "MAISA", description: "Assistente inteligente do SIFCAS conectada ao Dify com sessão protegida.", icon: Bot, badge: "IA", href: "/maisa" },
       { title: "Início", description: "Resumo personalizado do seu vínculo institucional.", icon: Grid3X3, badge: "conta", href: "/" },
       { title: "Perfil", description: "Dados pessoais e segurança da conta.", icon: UserRoundCog, badge: "conta", href: "/perfil" },
       { title: "Notificações", description: "Avisos e novas publicações destinadas ao seu perfil.", icon: Bell, badge: "conta", href: "/notificacoes" },
@@ -42,7 +43,7 @@ export default async function AppsPage() {
     if (["manager", "admin"].includes(account.role)) modules.push(
       { title: "Gestão acadêmica", description: "Cursos, turmas, vínculos, horários e matrículas.", icon: Settings2, badge: "gestão", href: "/gestao-academica" },
       { title: "Auditoria", description: "Rastreabilidade das alterações críticas.", icon: FileCheck2, badge: "gestão", href: "/auditoria" },
-      { title: "Monitoramento", description: "Saúde do sistema e checklist de produção.", icon: Activity, badge: "gestão", href: "/monitoramento" },
+      { title: "Monitoramento", description: "Saúde do sistema, banco, Storage e MAISA.", icon: Activity, badge: "gestão", href: "/monitoramento" },
     );
 
     if (account.role === "admin") modules.push(
@@ -53,6 +54,6 @@ export default async function AppsPage() {
   return <>
     <PageHeader title="Aplicativos SIFCAS" description="Atalhos funcionais para todos os módulos disponíveis ao seu perfil."/>
     <SectionTitle title={account ? "Meus aplicativos" : "Serviços públicos"} description={account ? "A lista é adaptada ao seu papel institucional." : "Entre na sua conta para visualizar também os módulos internos."}/>
-    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={`${module.href}-${module.title}`} {...module}/>)}</div>
+    <div className="moduleGrid">{modules.map((module) => <ModuleCard key={\`\${module.href}-\${module.title}\`} {...module}/>)}</div>
   </>;
 }

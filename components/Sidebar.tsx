@@ -17,14 +17,14 @@ export function Sidebar() {
           <div className="navGroup" key={group.group}>
             <p>{group.group}</p>
             {group.items.map(({ href, label, icon: Icon }) => (
-              <Link key={href} href={href} className={`navItem ${pathname === href ? "active" : ""}`}>
+              <Link key={href} href={href} className={\`navItem \${pathname === href ? "active" : ""}\`}>
                 <Icon size={18} strokeWidth={1.9}/><span>{label}</span>
               </Link>
             ))}
           </div>
         ))}
       </nav>
-      <div className="prototypeNote"><strong>Base funcional</strong><span>Núcleo acadêmico e institucional conectado ao Supabase. MAISA será a etapa final via Dify.</span></div>
+      <div className="prototypeNote"><strong>MAISA integrada</strong><span>Chat institucional conectado ao Dify por uma rota segura do SIFCAS. Dados pessoais continuam protegidos pelas permissões do sistema.</span></div>
     </aside>
   );
 }
