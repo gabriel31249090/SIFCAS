@@ -26,6 +26,9 @@ function report(file, source, index, message) {
 
 for (const file of files) {
   const source = fs.readFileSync(file, "utf8");
+  const executableSource = source
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/(^|[^:])\/\/.*$/gm, "$1");
 
   const forbidden = [
     [/dangerouslySetInnerHTML/g, "dangerouslySetInnerHTML não é permitido sem revisão explícita"],
@@ -38,7 +41,7 @@ for (const file of files) {
   ];
 
   for (const [regex, message] of forbidden) {
-    for (const match of source.matchAll(regex)) report(file, source, match.index ?? 0, message);
+    for (const match of executableSource.matchAll(regex)) report(file, executableSource, match.index ?? 0, message);
   }
 
   for (const match of source.matchAll(/<a\b([^>]*)target\s*=\s*["']_blank["']([^>]*)>/gs)) {
