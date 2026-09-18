@@ -180,7 +180,7 @@ export async function buildMaisaContext(account: CurrentAccount, rawQuery: strin
       expires_at: row.expiresAt,
       location: row.location,
       url: row.externalUrl,
-      sifcas_route: "/editais/" + row.id,
+      sifcas_route: "/publicacoes/" + row.id,
     }));
     tools.add("consultar_editais");
   }
@@ -194,7 +194,7 @@ export async function buildMaisaContext(account: CurrentAccount, rawQuery: strin
       starts_at: row.startsAt,
       ends_at: row.endsAt,
       location: row.location,
-      sifcas_route: "/noticias/" + row.id,
+      sifcas_route: "/publicacoes/" + row.id,
     }));
     tools.add("consultar_publicacoes");
   }
