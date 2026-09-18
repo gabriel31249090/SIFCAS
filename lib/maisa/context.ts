@@ -260,30 +260,30 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string):
   if(wantsProcesses){
     let processQuery=supabase.from("electronic_processes").select("protocol,process_type,subject,status,priority,current_sector,opened_at,updated_at").order("updated_at",{ascending:false}).limit(10);
     if(!["staff","manager","admin"].includes(account.role)) processQuery=processQuery.eq("requester_user_id",account.id);
-    const {data,error}=await processQuery;
+    const {data:processRows,error}=await processQuery;
     if(error) throw error;
-    data.electronic_processes=data??[];
+    data.electronic_processes=processRows??[];
     tools.add("consultar_processos");
   }
 
   if(wantsInternships){
-    const {data,error}=await supabase.from("internship_opportunities").select("id,title,organization,location,workload_hours,stipend,slots,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
+    const {data:internshipRows,error}=await supabase.from("internship_opportunities").select("id,title,organization,location,workload_hours,stipend,slots,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
     if(error) throw error;
-    data.internships=(data??[]).map(row=>({...row,sifcas_route:"/estagios"}));
+    data.internships=(internshipRows??[]).map(row=>({...row,sifcas_route:"/estagios"}));
     tools.add("consultar_estagios");
   }
 
   if(wantsAid){
-    const {data,error}=await supabase.from("student_aid_programs").select("id,title,benefit_type,benefit_value,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
+    const {data:aidRows,error}=await supabase.from("student_aid_programs").select("id,title,benefit_type,benefit_value,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
     if(error) throw error;
-    data.student_aid=(data??[]).map(row=>({...row,sifcas_route:"/auxilios"}));
+    data.student_aid=(aidRows??[]).map(row=>({...row,sifcas_route:"/auxilios"}));
     tools.add("consultar_auxilios");
   }
 
   if(wantsTcc){
-    const {data,error}=await supabase.from("tcc_defenses").select("id,title,scheduled_at,room,status,panel_members").gte("scheduled_at",new Date().toISOString()).eq("status","scheduled").order("scheduled_at").limit(8);
+    const {data:tccRows,error}=await supabase.from("tcc_defenses").select("id,title,scheduled_at,room,status,panel_members").gte("scheduled_at",new Date().toISOString()).eq("status","scheduled").order("scheduled_at").limit(8);
     if(error) throw error;
-    data.tcc_defenses=(data??[]).map(row=>({...row,sifcas_route:"/tcc"}));
+    data.tcc_defenses=(tccRows??[]).map(row=>({...row,sifcas_route:"/tcc"}));
     tools.add("consultar_tcc");
   }
 
@@ -293,9 +293,9 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string):
     else if(hasAny(q,["extensao","extensão"])) axis="extension";
     let projectQuery=supabase.from("institutional_projects").select("id,axis,title,summary,status,open_for_applications,starts_on,ends_on").in("status",["published","in_progress","completed"]).order("created_at",{ascending:false}).limit(8);
     if(axis) projectQuery=projectQuery.eq("axis",axis);
-    const {data,error}=await projectQuery;
+    const {data:projectRows,error}=await projectQuery;
     if(error) throw error;
-    data.projects=(data??[]).map(row=>({...row,sifcas_route:"/projetos"+(axis?"?eixo="+axis:"")}));
+    data.projects=(projectRows??[]).map(row=>({...row,sifcas_route:"/projetos"+(axis?"?eixo="+axis:"")}));
     tools.add("consultar_projetos");
   }
 
