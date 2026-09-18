@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AlertTriangle, Bot, Compass, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks, Link2 } from "lucide-react";
+import { AlertTriangle, Bot, Compass, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks, Link2, ListTodo } from "lucide-react";
 import { SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
@@ -56,6 +56,7 @@ export default async function Home() {
     <SectionTitle title="Acesso rápido" description="Os caminhos principais do SIFCAS."/>
     <div className="quickGrid">
       <Link href="/maisa"><Bot/>Falar com a MAISA</Link>
+      <Link href="/pendencias"><ListTodo/>Minhas pendências</Link>
       <Link href="/estudante"><GraduationCap/>Minha vida acadêmica</Link>
       <Link href="/agenda-aluno"><CalendarDays/>Minha agenda</Link>
       <Link href="/documentos"><FileText/>Documentos</Link>

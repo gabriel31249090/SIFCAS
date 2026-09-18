@@ -11,6 +11,7 @@ const statuses=new Set(["open","triage","in_progress","waiting_user","completed"
 
 function done(message:string,error=false):never{
   revalidatePath("/processos");
+  revalidatePath("/pendencias");
   redirect("/processos?"+(error?"error=":"message=")+encodeURIComponent(message));
 }
 
@@ -32,24 +33,19 @@ export async function createProcess(formData:FormData){
 export async function updateProcess(formData:FormData){
   const account=await requireAccount();
   if(!["staff","manager","admin"].includes(account.role)) redirect("/acesso-negado");
-  const id=String(formData.get("id")??"");
-  const status=String(formData.get("status")??"");
+  const id=String(formData.get("id")??"").trim();
+  const status=String(formData.get("status")??"").trim();
   const sector=String(formData.get("sector")??"Protocolo").trim();
   const note=String(formData.get("note")??"").trim();
   if(!id||!statuses.has(status)||sector.length<2||sector.length>120||note.length>8000) done("Dados de tramitação inválidos.",true);
 
   const supabase=await createClient();
-  const {data:current,error:readError}=await supabase.from("electronic_processes").select("status").eq("id",id).single();
-  if(readError) done("Processo não encontrado.",true);
-  const now=new Date().toISOString();
-  const {error:updateError}=await supabase.from("electronic_processes").update({
-    status,current_sector:sector,updated_at:now,closed_at:["completed","archived"].includes(status)?now:null
-  }).eq("id",id);
-  if(updateError) done("Não foi possível atualizar o processo.",true);
-
-  const {error:movementError}=await supabase.from("process_movements").insert({
-    process_id:id,actor_user_id:account.id,action:"Tramitação",note,from_status:current.status,to_status:status
+  const {error}=await supabase.rpc("advance_electronic_process",{
+    p_id:id,p_status:status,p_sector:sector,p_note:note
   });
-  if(movementError) done("Processo atualizado, mas o histórico não pôde ser registrado.",true);
-  done("Processo atualizado.");
+  if(error){
+    console.error("process advance failed",error.message);
+    done("Não foi possível registrar a tramitação do processo.",true);
+  }
+  done("Processo atualizado com histórico registrado.");
 }

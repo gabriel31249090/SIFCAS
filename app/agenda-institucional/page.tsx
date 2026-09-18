@@ -15,7 +15,7 @@ export default async function InstitutionalAgendaPage() {
   const events = entries.filter((row) => row.kind === "event").length;
   const deadlines = entries.filter((row) => row.kind === "edital" && row.endsAt).length;
   const notices = entries.filter((row) => row.kind === "notice").length;
-  const canPublish = !!account && ["staff", "manager", "admin"].includes(account.role);
+  const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
     <PageHeader title="Agenda Institucional" description="Calendário real de eventos, prazos e compromissos publicados pela instituição e pelo campus." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar compromisso</Link> : <span className="badge">Agenda oficial</span>}/>

@@ -1,13 +1,14 @@
 import {
   Home, GraduationCap, BookOpen, FlaskConical, Sprout, School, Grid3X3,
   Files, Building2, Users, Pin, Newspaper, CalendarDays, CalendarRange,
-  Search, UserRoundCog, Settings2, ClipboardList, Bot, BookOpenCheck, Link2, Compass
+  Search, UserRoundCog, Settings2, ClipboardList, Bot, BookOpenCheck, Link2, Compass, ListTodo
 } from "lucide-react";
 
 export const navigation = [
   { group: "Principal", items: [
     { href: "/", label: "Início", icon: Home },
     { href: "/maisa", label: "MAISA", icon: Bot },
+    { href: "/pendencias", label: "Pendências", icon: ListTodo },
     { href: "/estudante", label: "Estudante", icon: GraduationCap },
     { href: "/ensino", label: "Ensino", icon: BookOpen },
   ]},

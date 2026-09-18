@@ -15,6 +15,7 @@ const routes: RouteResult[] = [
   { href: "/campus", label: "Campus Cáceres", description: "Informações e serviços do campus.", public: true },
   { href: "/verificar-documento", label: "Verificar documento", description: "Consulta pública de autenticidade por código SIF.", public: true },
   { href: "/maisa", label: "MAISA", description: "Assistente inteligente integrada ao SIFCAS." },
+  { href: "/pendencias", label: "Central de Pendências", description: "Itens que aguardam leitura, análise, prazo ou acompanhamento." },
   { href: "/servicos", label: "Central de Serviços", description: "Solicitações, autoatendimento, documentos e suporte." },
   { href: "/base-conhecimento", label: "Base de conhecimento", description: "Tutoriais, orientações e respostas rápidas." },
   { href: "/atalhos", label: "Meus atalhos", description: "Personalize os módulos exibidos como acesso rápido." },
@@ -44,16 +45,17 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
   const params = await searchParams;
   const query = (params.q ?? "").trim().slice(0, 100);
   const account = await getCurrentAccount();
+  const activeAccount = account?.accountStatus === "active" ? account : null;
   const normalized = query.toLocaleLowerCase("pt-BR");
 
   const routeMatches = query.length >= 2 ? routes.filter((route) => {
-    const allowed = route.public || (account && (!route.roles || route.roles.includes(account.role)));
+    const allowed = route.public || (activeAccount && (!route.roles || route.roles.includes(activeAccount.role)));
     if (!allowed) return false;
     return (route.label + " " + route.description).toLocaleLowerCase("pt-BR").includes(normalized);
   }) : [];
 
   const publicationMatches = query.length >= 2 ? await searchAccessiblePublications(query) : [];
-  const knowledgeMatches = account && query.length >= 2
+  const knowledgeMatches = activeAccount && query.length >= 2
     ? (await listKnowledgeArticles()).filter((article) => (article.title + " " + article.summary + " " + article.content).toLocaleLowerCase("pt-BR").includes(normalized)).slice(0, 12)
     : [];
   const total = routeMatches.length + publicationMatches.length + knowledgeMatches.length;

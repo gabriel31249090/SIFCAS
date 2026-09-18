@@ -13,8 +13,8 @@ export async function Topbar() {
       <GlobalSearch/>
       <div className="topActions">
         <Link className="iconAction" href="/aplicativos" aria-label="Abrir aplicativos" title="Aplicativos"><Grid2X2 size={18}/></Link>
-        <Link className="iconAction" href={account ? "/maisa" : "/login?next=/maisa"} aria-label="Abrir MAISA" title="MAISA"><Bot size={18}/></Link>
-        <Link className="iconAction notificationAction" href={account ? "/notificacoes" : "/login?next=/notificacoes"} aria-label="Abrir notificações" title="Notificações">
+        <Link className="iconAction" href={account ? (account.accountStatus === "active" ? "/maisa" : "/acesso-negado?reason=suspended") : "/login?next=/maisa"} aria-label="Abrir MAISA" title="MAISA"><Bot size={18}/></Link>
+        <Link className="iconAction notificationAction" href={account ? (account.accountStatus === "active" ? "/notificacoes" : "/acesso-negado?reason=suspended") : "/login?next=/notificacoes"} aria-label="Abrir notificações" title="Notificações">
           <Bell size={18}/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}
         </Link>
         {account ? (

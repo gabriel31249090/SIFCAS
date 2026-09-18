@@ -25,7 +25,7 @@ export default async function PublicationPage({ params }: { params: Promise<{ id
   if (!publication) notFound();
   const attachments = await listPublicationAttachments(id);
   const Icon = kindIcons[publication.kind];
-  const canManage = !!account && ["staff", "manager", "admin"].includes(account.role);
+  const canManage = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
     <PageHeader

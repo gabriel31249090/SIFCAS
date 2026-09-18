@@ -1,8 +1,9 @@
-import { Bell, BookOpenCheck, Bug, CalendarDays, FileCheck2, Files, Link2, Search, Settings2, Wrench } from "lucide-react";
+import { Bell, BookOpenCheck, Bug, CalendarDays, FileCheck2, Files, Link2, Search, ListTodo, Settings2, Wrench } from "lucide-react";
 import { GenericModules } from "@/components/GenericModules";
 
 const modules = [
   { title: "Solicitações e atendimento", description: "Abra e acompanhe demandas acadêmicas, administrativas, TI, infraestrutura e transporte.", icon: Wrench, badge: "atendimento", href: "/solicitacoes" },
+  { title: "Central de Pendências", description: "Reúna avisos, processos, candidaturas e prazos que precisam de atenção.", icon: ListTodo, badge: "produtividade", href: "/pendencias" },
   { title: "Base de conhecimento", description: "Tutoriais rápidos para resolver dúvidas comuns antes de abrir um chamado.", icon: BookOpenCheck, badge: "autoatendimento", href: "/base-conhecimento" },
   { title: "Meus atalhos", description: "Monte seu conjunto pessoal de acessos rápidos aos módulos mais usados.", icon: Link2, badge: "personalização", href: "/atalhos" },
   { title: "Preferências de notificações", description: "Escolha quais categorias podem gerar novos avisos para sua conta.", icon: Settings2, badge: "preferências", href: "/preferencias-notificacoes" },

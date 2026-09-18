@@ -15,7 +15,7 @@ export default async function EditaisPage() {
   const now = Date.now();
   const open = editais.filter((row) => !row.endsAt || new Date(row.endsAt).getTime() >= now).length;
   const endingSoon = editais.filter((row) => row.endsAt && new Date(row.endsAt).getTime() >= now && new Date(row.endsAt).getTime() <= now + 1000 * 60 * 60 * 24 * 14).length;
-  const canPublish = !!account && ["staff", "manager", "admin"].includes(account.role);
+  const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
     <PageHeader title="Editais e Oportunidades" description="Editais, bolsas, processos seletivos e chamadas institucionais publicados no SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar edital</Link> : <span className="badge">Consulta pública</span>}/>

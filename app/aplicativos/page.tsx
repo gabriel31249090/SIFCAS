@@ -1,4 +1,4 @@
-import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, Compass, FileCheck2, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
+import { Activity, Bell, BookOpen, BookOpenCheck, Bot, Bug, CalendarClock, CalendarDays, CalendarRange, ClipboardList, Clock3, Compass, FileCheck2, ListTodo, Files, GraduationCap, Grid3X3, Link2, Newspaper, Pin, School, Search, Settings2, ShieldCheck, UserCog, UserRoundCog } from "lucide-react";
 import { ModuleCard, PageHeader, SectionTitle } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 
@@ -19,6 +19,7 @@ export default async function AppsPage() {
       { title: "Início", description: "Resumo personalizado do seu vínculo institucional.", icon: Grid3X3, badge: "conta", href: "/" },
       { title: "Perfil", description: "Dados pessoais e segurança da conta.", icon: UserRoundCog, badge: "conta", href: "/perfil" },
       { title: "Notificações", description: "Avisos e novas publicações destinadas ao seu perfil.", icon: Bell, badge: "conta", href: "/notificacoes" },
+      { title: "Central de Pendências", description: "Notificações, processos, candidaturas e prazos reunidos em uma tela.", icon: ListTodo, badge: "produtividade", href: "/pendencias" },
       { title: "Base de conhecimento", description: "Tutoriais e orientações de autoatendimento.", icon: BookOpen, badge: "ajuda", href: "/base-conhecimento" },
       { title: "Meus atalhos", description: "Personalize os acessos mais usados no painel inicial.", icon: Link2, badge: "personalização", href: "/atalhos" },
       { title: "Preferências de notificações", description: "Controle as categorias de novos avisos.", icon: Settings2, badge: "preferências", href: "/preferencias-notificacoes" },

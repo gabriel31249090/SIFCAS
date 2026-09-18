@@ -36,6 +36,7 @@ type CatalogItem = { label: string; href: string; roles?: AppRole[] };
 const shortcutCatalog: CatalogItem[] = [
   { label: "MAISA", href: "/maisa" },
   { label: "Notificações", href: "/notificacoes" },
+  { label: "Central de Pendências", href: "/pendencias" },
   { label: "Solicitações", href: "/solicitacoes" },
   { label: "Base de conhecimento", href: "/base-conhecimento" },
   { label: "Editais", href: "/editais" },

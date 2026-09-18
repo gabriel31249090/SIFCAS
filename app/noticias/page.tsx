@@ -15,7 +15,7 @@ export default async function NewsPage() {
   const news = publications.filter((row) => row.kind === "news").length;
   const notices = publications.filter((row) => row.kind === "notice").length;
   const events = publications.filter((row) => row.kind === "event").length;
-  const canPublish = !!account && ["staff", "manager", "admin"].includes(account.role);
+  const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
     <PageHeader title="Notícias e Eventos" description="Notícias, comunicados e eventos institucionais publicados em uma única fonte do SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Nova publicação</Link> : <span className="badge">Conteúdo institucional</span>}/>

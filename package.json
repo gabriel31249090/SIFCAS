@@ -1,15 +1,16 @@
 {
   "name": "sifcas",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "audit:ui": "node scripts/audit-interactions.mjs",
     "audit:routes": "node scripts/audit-routes.mjs",
-    "audit": "npm run audit:ui && npm run audit:routes",
+    "audit": "npm run audit:ui && npm run audit:routes && npm run audit:quality",
     "build": "npm run audit && next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "audit:quality": "node scripts/audit-quality.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",

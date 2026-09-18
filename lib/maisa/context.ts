@@ -29,7 +29,7 @@ function nowCuiaba(){
 
 function routesFor(account:CurrentAccount){
   const routes:Array<[string,string]>=[
-    ["MAISA","/maisa"],["Aplicativos","/aplicativos"],["Busca","/buscar"],["Notificações","/notificacoes"],
+    ["MAISA","/maisa"],["Pendências","/pendencias"],["Aplicativos","/aplicativos"],["Busca","/buscar"],["Notificações","/notificacoes"],
     ["Perfil","/perfil"],["Solicitações","/solicitacoes"],["Base de Conhecimento","/base-conhecimento"],
     ["Meus Atalhos","/atalhos"],["Preferências de Notificações","/preferencias-notificacoes"],["Reportar Erro","/reportar-erro"],
     ["Documentos e Processos","/documentos"],["Processos Eletrônicos","/processos"],["Oportunidades","/oportunidades"],
