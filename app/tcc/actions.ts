@@ -38,7 +38,7 @@ export async function createTccDefense(formData:FormData){
 
   const {error}=await supabase.from("tcc_defenses").insert({
     student_user_id:studentId,course_id:courseId,advisor_user_id:account.role==="teacher"?account.id:null,
-    title,summary,scheduled_at:parsedDate.toISOString(),room,panel_members,created_by:account.id
+    title,summary,scheduled_at:parsedDate.toISOString(),room,panel_members:panelMembers,created_by:account.id
   });
   if(error){
     console.error("tcc defense insert failed",error.message);
