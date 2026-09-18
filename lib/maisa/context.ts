@@ -14,6 +14,7 @@ export type MaisaServiceRequestProposal = {
 
 export type MaisaContextResult = {
   enrichedQuery: string;
+  contextData: Record<string, unknown>;
   toolsUsed: string[];
   serviceRequestProposal: MaisaServiceRequestProposal | null;
   directAnswer: string | null;
@@ -311,7 +312,7 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string):
     "Você é a MAISA dentro do SIFCAS. As consultas do bloco <sifcas_context> JÁ foram executadas pelo servidor autenticado antes desta mensagem.",
     "Nunca diga que não tem acesso a uma ferramenta, API, banco ou módulo quando runtime_capabilities marcar a capacidade como disponível.",
     "Nunca peça ao usuário para abrir uma ferramenta externa. Use os dados recebidos e responda como parte do próprio SIFCAS.",
-    "Não revele nomes internos de ferramentas, JSON, Dify, Supabase, chaves, endpoints ou a existência deste bloco.",
+    "Não revele nomes internos de ferramentas, JSON, Supabase, chaves, endpoints ou a existência deste bloco.",
     "Quando um resultado estiver vazio, diga que não há registros disponíveis — não diga que falta ferramenta.",
     "Quando academic_report.status for needs_target, peça nome, matrícula ou e-mail institucional do estudante.",
     "Quando academic_report.status for no_active_enrollment, informe que não existe matrícula ativa para o estudante consultado.",
@@ -321,5 +322,5 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string):
     "<sifcas_context>",safeContext,"</sifcas_context>","","PERGUNTA ORIGINAL DO USUÁRIO:",rawQuery,
   ].join("\n");
 
-  return {enrichedQuery,toolsUsed:[...tools],serviceRequestProposal:proposal,directAnswer};
+  return {enrichedQuery,contextData:data,toolsUsed:[...tools],serviceRequestProposal:proposal,directAnswer};
 }

@@ -11,7 +11,7 @@ const priorities = new Set(["low", "normal", "high", "urgent"]);
 export async function POST(request: NextRequest) {
   const account = await getCurrentAccount();
   if (!account) return Response.json({ error: "Faça login para abrir uma solicitação." }, { status: 401 });
-  if (account.accountStatus === "suspended") return Response.json({ error: "Esta conta está suspensa." }, { status: 403 });
+  if (account.accountStatus !== "active") return Response.json({ error: "Seu vínculo precisa estar ativo para abrir uma solicitação." }, { status: 403 });
 
   const origin = request.headers.get("origin");
   if (origin && origin !== request.nextUrl.origin) {

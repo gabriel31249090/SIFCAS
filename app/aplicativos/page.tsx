@@ -15,7 +15,7 @@ export default async function AppsPage() {
 
   if (account && account.accountStatus === "active") {
     modules.push(
-      { title: "MAISA", description: "Assistente inteligente do SIFCAS conectada ao Dify com sessão protegida.", icon: Bot, badge: "IA", href: "/maisa" },
+      { title: "MAISA", description: "Assistente local do SIFCAS com consultas protegidas por sessão e RLS.", icon: Bot, badge: "IA", href: "/maisa" },
       { title: "Início", description: "Resumo personalizado do seu vínculo institucional.", icon: Grid3X3, badge: "conta", href: "/" },
       { title: "Perfil", description: "Dados pessoais e segurança da conta.", icon: UserRoundCog, badge: "conta", href: "/perfil" },
       { title: "Notificações", description: "Avisos e novas publicações destinadas ao seu perfil.", icon: Bell, badge: "conta", href: "/notificacoes" },

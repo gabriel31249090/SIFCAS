@@ -24,7 +24,7 @@ export function Sidebar() {
           </div>
         ))}
       </nav>
-      <div className="prototypeNote"><strong>MAISA integrada</strong><span>Chat institucional conectado ao Dify por uma rota segura do SIFCAS. Dados pessoais continuam protegidos pelas permissões do sistema.</span></div>
+      <div className="prototypeNote"><strong>MAISA integrada</strong><span>Assistente local baseada em regras, busca e ferramentas internas do SIFCAS. Dados pessoais continuam protegidos pelas permissões do sistema.</span></div>
     </aside>
   );
 }

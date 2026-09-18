@@ -79,3 +79,27 @@ export async function applyInstitutionalBatch(formData: FormData) {
       " conflito(s).",
   );
 }
+
+
+export async function resyncInstitutionalAcademics(formData: FormData) {
+  await requireAdmin();
+  const batchId = String(formData.get("batchId") ?? "").trim() || null;
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("resync_institutional_academics", { p_batch_id: batchId });
+
+  if (error) {
+    console.error("institutional academic sync failed", error.message);
+    done("Não foi possível sincronizar os vínculos acadêmicos.", true);
+  }
+
+  const result = (data ?? {}) as { applied?: number; pending?: number; conflicts?: number };
+  done(
+    "Sincronização acadêmica concluída: " +
+      String(result.applied ?? 0) +
+      " matrícula(s) aplicada(s), " +
+      String(result.pending ?? 0) +
+      " pendente(s) e " +
+      String(result.conflicts ?? 0) +
+      " conflito(s).",
+  );
+}

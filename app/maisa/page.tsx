@@ -13,16 +13,16 @@ export default async function MaisaPage() {
     <>
       <PageHeader
         title="MAISA"
-        description="Módulo de Assistência Inteligente em Serviços Acadêmicos e Administrativos, integrado ao SIFCAS por uma API segura."
-        action={<span className="badge"><Sparkles size={13}/> Dify + SIFCAS</span>}
+        description="Módulo de Assistência Inteligente em Serviços Acadêmicos e Administrativos, executado pelo próprio SIFCAS."
+        action={<span className="badge"><Sparkles size={13}/> Motor local v1</span>}
       />
 
       <section className="maisaHero card">
         <div className="maisaHeroIcon"><Bot size={30}/></div>
         <div>
-          <span className="eyebrow">Assistente institucional</span>
+          <span className="eyebrow">Assistente institucional local</span>
           <h2>Olá, {firstName}. A MAISA está online.</h2>
-          <p>Converse com a assistente sem expor a chave da API no navegador. Cada conversa é isolada pelo seu usuário autenticado no SIFCAS.</p>
+          <p>A MAISA usa regras, busca na Base de Conhecimento e ferramentas internas do SIFCAS. Nesta versão ela não depende de um provedor externo de IA.</p>
         </div>
         <span className="maisaRole"><ShieldCheck size={15}/>{roleLabels[account.role]}</span>
       </section>

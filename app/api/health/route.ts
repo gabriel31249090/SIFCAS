@@ -1,25 +1,16 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { getDifyConfig } from "@/lib/dify";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const dify = getDifyConfig();
-
   try {
     const supabase = await createClient();
     const { data, error } = await supabase.rpc("sifcas_health");
 
     if (error) {
       return NextResponse.json(
-        {
-          ok: false,
-          service: "sifcas",
-          database: "error",
-          maisa: { configured: dify.configured },
-          error: error.message,
-        },
+        { ok: false, service: "sifcas", database: "error", maisa: { configured: true, engine: "sifcas-local-v1" }, error: error.message },
         { status: 503 },
       );
     }
@@ -28,17 +19,11 @@ export async function GET() {
       ok: true,
       service: "sifcas",
       database: data,
-      maisa: { configured: dify.configured },
+      maisa: { configured: true, engine: "sifcas-local-v1", external_provider: false },
     });
   } catch (error) {
     return NextResponse.json(
-      {
-        ok: false,
-        service: "sifcas",
-        database: "unreachable",
-        maisa: { configured: dify.configured },
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
+      { ok: false, service: "sifcas", database: "unreachable", maisa: { configured: true, engine: "sifcas-local-v1" }, error: error instanceof Error ? error.message : "Unknown error" },
       { status: 503 },
     );
   }

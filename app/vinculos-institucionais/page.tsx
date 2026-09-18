@@ -3,7 +3,7 @@ import { CheckCircle2, FileSpreadsheet, ShieldCheck, Upload, UserCheck, UserRoun
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels, type AppRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { applyInstitutionalBatch, importInstitutionalCsv } from "./actions";
+import { applyInstitutionalBatch, importInstitutionalCsv, resyncInstitutionalAcademics } from "./actions";
 import { redirect } from "next/navigation";
 
 type Params = Promise<{ message?: string; error?: string }>;
@@ -18,6 +18,10 @@ const statusLabels: Record<string,string> = {
   awaiting_account: "Aguardando conta",
   conflict: "Conflito",
   inactive: "Inativo",
+  not_applicable: "Não se aplica",
+  course_not_found: "Curso não encontrado",
+  class_not_found: "Turma não encontrada",
+  ambiguous: "Ambíguo",
 };
 
 function fmt(value: string | null) {
@@ -39,7 +43,7 @@ export default async function InstitutionalLinksPage({ searchParams }: { searchP
       .limit(20),
     supabase
       .from("institutional_identity_records")
-      .select("id,batch_id,external_id,full_name,institutional_email,proposed_role,campus,course_code,class_code,situation,approval_status,match_status,validation_error,created_at,applied_at")
+      .select("id,batch_id,external_id,full_name,institutional_email,proposed_role,campus,course_code,class_code,situation,approval_status,match_status,validation_error,academic_sync_status,academic_sync_message,enrollment_id,created_at,applied_at")
       .order("updated_at",{ascending:false})
       .limit(200),
   ]);
@@ -98,12 +102,15 @@ export default async function InstitutionalLinksPage({ searchParams }: { searchP
           <span className="badge">{batch.invalid_rows} inválidas</span>
           {batch.status === "applied" && <><span className="badge">{batch.applied_rows} aplicadas</span><span className="badge">{batch.awaiting_rows} aguardando</span><span className="badge">{batch.conflict_rows} conflitos</span></>}
         </div>
-        {batch.status !== "applied" && <form action={applyInstitutionalBatch}><input type="hidden" name="batchId" value={batch.id}/><button className="button primary" type="submit"><CheckCircle2 size={15}/> Aprovar e aplicar lote</button></form>}
+        <div className="heroActions">
+          {batch.status !== "applied" && <form action={applyInstitutionalBatch}><input type="hidden" name="batchId" value={batch.id}/><button className="button primary" type="submit"><CheckCircle2 size={15}/> Aprovar e aplicar lote</button></form>}
+          {batch.status === "applied" && <form action={resyncInstitutionalAcademics}><input type="hidden" name="batchId" value={batch.id}/><button className="button soft" type="submit">Sincronizar matrículas</button></form>}
+        </div>
       </article>)}
     </div>
 
     <SectionTitle title="3. Registros institucionais" description="A origem continua separada das contas do SIFCAS para permitir sincronização e auditoria futuras."/>
-    <div className="tableScroll"><table className="dataTable"><thead><tr><th>Pessoa</th><th>Identificador</th><th>Vínculo</th><th>Campus/Acadêmico</th><th>Validação</th><th>Correspondência</th></tr></thead><tbody>
+    <div className="tableScroll"><table className="dataTable"><thead><tr><th>Pessoa</th><th>Identificador</th><th>Vínculo</th><th>Campus/Acadêmico</th><th>Validação</th><th>Correspondência</th><th>Matrícula acadêmica</th></tr></thead><tbody>
       {all.map((row) => <tr key={row.id}>
         <td><b>{row.full_name}</b><br/><small>{row.institutional_email}</small></td>
         <td>{row.external_id}</td>
@@ -111,11 +118,12 @@ export default async function InstitutionalLinksPage({ searchParams }: { searchP
         <td>{row.campus}<br/><small>{[row.course_code,row.class_code].filter(Boolean).join(" • ") || "Sem curso/turma na fonte"}</small></td>
         <td>{row.validation_error ? <span className="badge">Erro</span> : <span className="badge">{statusLabels[row.approval_status] ?? row.approval_status}</span>}<br/><small>{row.validation_error || "Registro estruturalmente válido"}</small></td>
         <td><span className="badge">{statusLabels[row.match_status] ?? row.match_status}</span>{row.applied_at && <><br/><small>{fmt(row.applied_at)}</small></>}</td>
+        <td><span className="badge">{statusLabels[row.academic_sync_status] ?? row.academic_sync_status}</span><br/><small>{row.academic_sync_message || (row.proposed_role === "student" ? "Aguardando sincronização." : "Não se aplica.")}</small></td>
       </tr>)}
     </tbody></table></div>
 
     <div className="infoBox" style={{ marginTop: 18 }}>
-      Novas contas sem correspondência oficial ficam com acesso interno pendente. Quando o e-mail confirmado corresponder a um registro aprovado, o SIFCAS aplica o papel automaticamente. Alterações manuais continuam disponíveis em <Link href="/usuarios"><b>Usuários e Permissões</b></Link>.
+      Novas contas sem correspondência oficial ficam com acesso interno pendente. Quando o e-mail confirmado corresponder a um registro aprovado, o SIFCAS aplica o papel automaticamente. Para estudantes, se curso e turma existirem no SIFCAS, a matrícula também é criada automaticamente; caso contrário o registro fica pendente para nova sincronização. Alterações manuais continuam disponíveis em <Link href="/usuarios"><b>Usuários e Permissões</b></Link>.
     </div>
   </>;
 }

@@ -87,7 +87,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
   const initialMessage = useMemo<ChatMessage>(() => ({
     id: "welcome",
     role: "assistant",
-    content: "Olá, " + firstName + ". Eu sou a MAISA. Consigo consultar, com as permissões da sua conta, notas, frequência, agenda, editais, documentos, processos, estágios, auxílios, TCC, projetos e solicitações. Para notas de outro estudante, informe nome, matrícula ou e-mail institucional. Também posso preparar a abertura de um chamado para você confirmar.",
+    content: "Olá, " + firstName + ". Eu sou a MAISA Local, a assistente simples do próprio SIFCAS. Consigo consultar, com as permissões da sua conta, notas, frequência, agenda, editais, documentos, processos, estágios, auxílios, TCC, projetos e solicitações. Também encontro páginas, consulta a Base de Conhecimento e posso preparar um chamado para você confirmar.",
   }), [firstName]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -237,9 +237,9 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
     <section className="maisaWorkspace">
       <div className="maisaStatusBar">
         <div>
-          <span className="maisaLive"><span/>MAISA + ferramentas SIFCAS</span>
+          <span className="maisaLive"><span/>MAISA Local + ferramentas SIFCAS</span>
           <strong>Contexto real consultado com as permissões da sua conta</strong>
-          <small>Perfil atual: {roleLabel}. O Dify não recebe acesso direto ao banco.</small>
+          <small>Perfil atual: {roleLabel}. Motor local do SIFCAS, sem provedor externo de IA.</small>
         </div>
         <button className="button soft" type="button" onClick={resetConversation} disabled={sending || actionBusy}>
           <RotateCcw size={15}/> Nova conversa
@@ -279,7 +279,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
         </form>
       </div>
 
-      <p className="maisaPrivacy">A MAISA envia ao Dify somente sua pergunta e o contexto mínimo necessário para respondê-la. Ações que modificam o SIFCAS exigem confirmação explícita.</p>
+      <p className="maisaPrivacy">A MAISA processa a pergunta dentro do SIFCAS usando regras, busca e ferramentas internas. Ações que modificam dados continuam exigindo confirmação explícita.</p>
     </section>
   );
 }
