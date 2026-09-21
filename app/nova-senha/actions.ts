@@ -2,12 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { newPasswordError } from "@/lib/password-policy";
 import { createClient } from "@/lib/supabase/server";
 
 export async function updatePassword(formData: FormData) {
   const raw = formData.get("password");
   const password = typeof raw === "string" ? raw : "";
-  if (password.length < 8) redirect(`/nova-senha?error=${encodeURIComponent("A senha deve ter pelo menos 8 caracteres.")}`);
+  const passwordError = newPasswordError(password);
+  if (passwordError) redirect(`/nova-senha?error=${encodeURIComponent(passwordError)}`);
 
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();

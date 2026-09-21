@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { requireAccount, type AppRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 
-const GENERAL_ADMIN_EMAIL = "gabriel31249090@gmail.com";
 const validRoles = new Set<AppRole>(["student", "teacher", "staff", "manager", "admin"]);
 
 function value(formData: FormData, name: string) {
@@ -166,10 +165,16 @@ export async function setUserRole(formData: FormData) {
   const email = value(formData, "email").toLowerCase();
   const role = value(formData, "role") as AppRole;
   if (!email.includes("@") || !validRoles.has(role)) fail("Informe um e-mail e um papel válidos.");
-  if (email === GENERAL_ADMIN_EMAIL && role !== "admin") fail("O Administrador Geral do SIFCAS não pode ser rebaixado por este painel.");
   const profile = await findProfileByEmail(email);
   if (profile.id === account.id && role !== "admin") fail("Você não pode remover seu próprio acesso administrativo.");
   const supabase = await createClient();
+  const { data: currentRole, error: currentRoleError } = await supabase
+    .from("user_roles")
+    .select("is_general_admin")
+    .eq("user_id", profile.id)
+    .maybeSingle();
+  if (currentRoleError) fail("Não foi possível verificar as proteções dessa conta.");
+  if (currentRole?.is_general_admin && role !== "admin") fail("O Administrador Geral do SIFCAS não pode ser rebaixado por este painel.");
   const { error } = await supabase.from("user_roles").upsert({ user_id: profile.id, role, role_source: "manual", updated_at: new Date().toISOString() }, { onConflict: "user_id" });
   if (error) fail("Não foi possível atualizar o papel da conta.");
   success(`Papel de ${profile.full_name || email} atualizado.`);

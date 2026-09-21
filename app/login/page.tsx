@@ -1,10 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, GraduationCap, BookOpenCheck, Building2, LockKeyhole, Mail } from "lucide-react";
 import { Brand } from "@/components/Brand";
 import { PasswordInput } from "@/components/PasswordInput";
 import { SubmitButton } from "@/components/SubmitButton";
+import { NEW_PASSWORD_MIN_LENGTH } from "@/lib/password-policy";
 import { safeInternalPath } from "@/lib/safe-path";
 import { login, signup } from "./actions";
+
+export const metadata: Metadata = {
+  title: "Entrar",
+  description: "Acesse seu espaço no SIFCAS.",
+  robots: { index: false, follow: false },
+};
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 const textParam = (value: string | string[] | undefined) => typeof value === "string" ? value : "";
 export default async function LoginPage({ searchParams }: { searchParams: SearchParams }) {
@@ -47,7 +55,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
             <form action={signup} className="authForm compact">
               <label>Nome completo<input name="fullName" type="text" autoComplete="name" minLength={2} maxLength={160} required /></label>
               <label>E-mail<input name="email" type="email" autoComplete="email" required /></label>
-              <PasswordInput label="Crie uma senha" autoComplete="new-password" />
+              <PasswordInput label="Crie uma senha" autoComplete="new-password" minLength={NEW_PASSWORD_MIN_LENGTH} />
               <SubmitButton className="authSecondary" pendingLabel="Criando conta…">Criar conta</SubmitButton>
             </form>
           </details>

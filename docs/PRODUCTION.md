@@ -76,17 +76,27 @@ Antes de abertura institucional ampla:
    - Site URL: `https://sifcas.vercel.app`
    - Redirect URLs: `https://sifcas.vercel.app/**`
 2. Authentication > Security
-   - Ativar Leaked Password Protection.
+   - Confirmar mínimo de 12 caracteres.
+   - Ativar Leaked Password Protection somente se o plano contratado oferecer o recurso.
 3. Authentication > Bot and Abuse Protection
    - Configurar CAPTCHA.
 4. Authentication > Emails / SMTP
-   - Usar SMTP institucional.
+   - Manter o fluxo padrão enquanto não houver um provedor institucional aprovado.
+   - Antes de uma abertura ampla, configurar SMTP institucional para destinatários externos.
 5. Revisar Security Advisor e Performance Advisor.
 6. Proteger a organização Supabase com MFA.
 
 ## Backup
 
 Use exportações lógicas regulares e mantenha cópias fora do Supabase e da Vercel.
+
+Fluxo multiplataforma recomendado:
+
+```bash
+npm run db:backup
+```
+
+O comando valida o arquivo e gera seu SHA-256. Faça mensalmente um ensaio com `npm run db:restore-test` em um banco vazio e descartável; o script recusa o projeto de produção.
 
 No Windows/PowerShell:
 
@@ -115,4 +125,5 @@ npm run build
 - `/solicitacoes` — fila operacional.
 - `/vinculos-institucionais` — validação de identidade e matrícula.
 - Vercel Runtime Logs — erros da aplicação.
+- Vercel Web Analytics e Speed Insights — navegação e Core Web Vitals reais.
 - Supabase Security/Performance Advisors — banco, RLS e performance.

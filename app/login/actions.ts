@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { newPasswordError } from "@/lib/password-policy";
 import { createClient } from "@/lib/supabase/server";
 import { safeInternalPath } from "@/lib/safe-path";
 
@@ -58,9 +59,10 @@ export async function signup(formData: FormData) {
   const fullName = value(formData, "fullName");
   const email = value(formData, "email").toLowerCase();
   const password = String(formData.get("password") ?? "");
+  const passwordError = newPasswordError(password);
 
-  if (fullName.length < 2 || !email || password.length < 8) {
-    redirect(`/login?mode=cadastro&error=${encodeURIComponent("Preencha nome, e-mail e uma senha de pelo menos 8 caracteres.")}`);
+  if (fullName.length < 2 || !email || passwordError) {
+    redirect(`/login?mode=cadastro&error=${encodeURIComponent(passwordError ?? "Preencha um nome e um e-mail válidos.")}`);
   }
 
   const supabase = await createClient();

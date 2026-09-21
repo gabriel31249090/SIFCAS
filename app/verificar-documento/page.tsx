@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { BadgeCheck, CircleAlert, SearchCheck } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/UI";
 import { academicDocumentLabels, verifyAcademicDocument } from "@/lib/documents";
+
+export const metadata: Metadata = {
+  title: "Verificar documento",
+  description: "Consulte a autenticidade de documentos acadêmicos emitidos pelo SIFCAS.",
+  alternates: { canonical: "/verificar-documento" },
+};
 
 type SearchParams = Promise<{ codigo?: string }>;
 

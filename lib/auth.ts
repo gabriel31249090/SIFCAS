@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseUrl } from "@/lib/supabase/config";
 
 export type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
 export type AccountStatus = "active" | "pending" | "suspended";
@@ -24,7 +26,13 @@ export type CurrentAccount = {
   isGeneralAdmin: boolean;
 };
 
+const authCookiePrefix = `sb-${new URL(supabaseUrl).hostname.split(".")[0]}-auth-token`;
+
 export const getCurrentAccount = cache(async (): Promise<CurrentAccount | null> => {
+  const cookieStore = await cookies();
+  const hasSession = cookieStore.getAll().some(({ name }) => name === authCookiePrefix || name.startsWith(`${authCookiePrefix}.`));
+  if (!hasSession) return null;
+
   const supabase = await createClient();
   const { data: claimsData, error } = await supabase.auth.getClaims();
   const claims = claimsData?.claims;
