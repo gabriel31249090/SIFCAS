@@ -10,6 +10,8 @@
     "audit:routes": "node scripts/audit-routes.mjs",
     "audit": "npm run audit:ui && npm run audit:routes && npm run audit:quality",
     "build": "npm run audit && npm test && next build",
+    "supabase:email-config": "node scripts/sync-supabase-email-templates.mjs",
+    "supabase:email-apply": "node scripts/sync-supabase-email-templates.mjs --apply",
     "start": "next start",
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",

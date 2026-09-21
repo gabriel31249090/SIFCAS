@@ -1,0 +1,13 @@
+{
+  "projectRef": "xqhilujzacwebeexljaf",
+  "templates": {
+    "confirmation": {
+      "subject": "Confirme seu e-mail no SIFCAS",
+      "contentPath": "supabase/templates/confirmation.html"
+    },
+    "recovery": {
+      "subject": "Redefina sua senha do SIFCAS",
+      "contentPath": "supabase/templates/recovery.html"
+    }
+  }
+}

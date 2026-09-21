@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Confirme seu e-mail no SIFCAS</title>
+  </head>
+  <body style="margin:0;padding:0;background:#eef4f1;color:#19362e;font-family:Arial,Helvetica,sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">Só falta confirmar seu e-mail para concluir o cadastro no SIFCAS.</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#eef4f1;">
+      <tr>
+        <td align="center" style="padding:32px 16px;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:600px;background:#ffffff;border:1px solid #d6e2da;border-radius:20px;overflow:hidden;">
+            <tr>
+              <td style="padding:28px 32px;background:#0b3f36;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="vertical-align:middle;padding-right:13px;">
+                      <img src="{{ .SiteURL }}/icon.png" width="48" height="48" alt="" style="display:block;width:48px;height:48px;border:0;border-radius:13px;">
+                    </td>
+                    <td style="vertical-align:middle;">
+                      <div style="font-size:22px;line-height:1.1;font-weight:800;letter-spacing:1px;color:#ffffff;">SIFCAS<span style="color:#dda929;">.</span></div>
+                      <div style="margin-top:4px;font-size:12px;line-height:1.4;color:#bdd7cc;">Campus, pessoas e serviços</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:38px 32px 18px;">
+                <div style="display:inline-block;padding:6px 10px;border-radius:999px;background:#eaf7ef;color:#176145;font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.7px;text-transform:uppercase;">Verificação de conta</div>
+                <h1 style="margin:18px 0 12px;font-size:28px;line-height:1.2;color:#19362e;">Confirme seu e-mail</h1>
+                <p style="margin:0;font-size:16px;line-height:1.7;color:#526b62;">Olá! Recebemos um cadastro no SIFCAS com este endereço. Confirme o e-mail para validar sua identidade e continuar o acesso ao portal.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 32px 18px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td align="center" bgcolor="#116b4d" style="border-radius:11px;">
+                      <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/" style="display:inline-block;padding:15px 24px;color:#ffffff;font-size:15px;line-height:1.2;font-weight:700;text-decoration:none;border-radius:11px;">Confirmar meu e-mail</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 32px 32px;">
+                <div style="padding:16px 18px;border:1px solid #dce8e2;border-radius:12px;background:#f7faf8;">
+                  <p style="margin:0 0 7px;font-size:13px;line-height:1.55;font-weight:700;color:#29483d;">O botão não abriu?</p>
+                  <p style="margin:0;font-size:12px;line-height:1.6;color:#667a74;word-break:break-all;">Copie e cole este endereço no navegador:<br><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/" style="color:#116b4d;text-decoration:underline;">{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/</a></p>
+                </div>
+                <p style="margin:20px 0 0;font-size:13px;line-height:1.65;color:#667a74;">Se você não criou uma conta no SIFCAS, ignore esta mensagem. Não compartilhe este link: ele é pessoal e só deve ser aberto por você.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 32px;border-top:1px solid #e1ebe6;background:#fbfdfc;text-align:center;">
+                <p style="margin:0;font-size:12px;line-height:1.6;color:#70847d;">SIFCAS · Campus Cáceres<br>Mensagem automática — não responda a este e-mail.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
