@@ -22,7 +22,7 @@ export default async function MonitoringPage() {
     supabase.from("institutional_publications").select("id", { count: "exact", head: true }).eq("status", "published"),
   ]);
 
-  const databaseOk = !healthRes.error && Boolean(healthRes.data);
+  const databaseOk = !healthRes.error && healthRes.data?.status === "ok";
 
   return <>
     <PageHeader title="Monitoramento e Produção" description="Visão operacional do banco, Storage, auditoria, atendimento e motor local da MAISA." action={<span className="badge"><span className={`statusDot ${databaseOk ? "" : "danger"}`}/>{databaseOk ? "Banco online" : "Verificar banco"}</span>}/>
@@ -48,8 +48,8 @@ export default async function MonitoringPage() {
       <div><FileCheck2 size={19}/><span><b>RLS + RBAC</b><small>Aplicados às tabelas acadêmicas, institucionais, solicitações, auditoria, vínculos e anexos.</small></span></div>
       <div><Bot size={19}/><span><b>MAISA Local</b><small>Motor interno ativo. Não depende de Dify, OpenAI ou outro provedor de IA.</small></span></div>
       <div><Archive size={19}/><span><b>Backup lógico</b><small>O repositório inclui scripts de pg_dump. Em projeto Free, mantenha exportações regulares fora da plataforma.</small></span></div>
-      <div><ShieldAlert size={19}/><span><b>Proteção de senha vazada</b><small>Ative “Leaked Password Protection” no Dashboard do Supabase Auth.</small></span></div>
-      <div><ShieldAlert size={19}/><span><b>CAPTCHA e SMTP</b><small>Recomendados antes de abertura pública em larga escala; exigem provedor/chaves definidos pelo administrador.</small></span></div>
+      <div><ShieldAlert size={19}/><span><b>Política de senha</b><small>Novos cadastros e redefinições exigem 12 caracteres. A checagem de senhas vazadas depende de um plano compatível do Supabase.</small></span></div>
+      <div><ShieldAlert size={19}/><span><b>CAPTCHA e limites de autenticação</b><small>O Supabase aplica limites básicos. CAPTCHA continua pendente até a instituição definir um provedor e suas chaves.</small></span></div>
     </section>
 
     <div className="adminLinkGrid" style={{ marginTop: 18 }}>

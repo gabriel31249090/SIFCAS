@@ -68,6 +68,15 @@ npm run check
 
 O build de produção repete as auditorias e os testes antes do `next build`. A suíte cobre, entre outros pontos, destinos de redirecionamento, visibilidade por papel, catálogo de módulos e busca tolerante a acentos.
 
+Os fluxos públicos também possuem testes E2E em Chromium:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+No GitHub Actions, o navegador é instalado depois do build e valida login, política de senha, placeholders do Campus, `robots.txt`, sitemap e manifesto.
+
 ## Interface
 
 - Identidade visual e marca próprias do SIFCAS
@@ -76,6 +85,49 @@ O build de produção repete as auditorias e os testes antes do `next build`. A 
 - Busca e filtros mais claros
 - Estados de carregamento, erro, vazio e página não encontrada
 - Foco visível, link de salto, alvos de toque e redução de movimento
+
+## Produção e observabilidade
+
+- Vercel Web Analytics e Speed Insights montados no layout raiz
+- endpoint `/api/health` sem cache e com validação estrita da RPC do banco
+- CSP, bloqueio de iframe, política de permissões e cabeçalhos defensivos
+- metadados por página pública, Open Graph próprio, manifesto, robots e sitemap
+- páginas públicas anônimas evitam consultar o Supabase Auth quando não existe cookie de sessão
+
+As métricas aparecem depois que Web Analytics e Speed Insights estiverem habilitados no projeto correto da Vercel e esta versão for implantada.
+
+## Supabase versionado
+
+O CLI está fixado nas dependências de desenvolvimento e `supabase/config.toml` mantém a configuração local. O repositório ainda não contém uma baseline SQL porque ela precisa vir do banco real, nunca de inferências do código.
+
+Com acesso ao projeto correto:
+
+```bash
+npm run supabase:link
+npm run supabase:pull
+npm run supabase:types
+npm run supabase:lint
+```
+
+Revise integralmente a migração criada pelo `db pull`, gere os tipos apenas após confirmar o projeto e teste a baseline em um projeto Supabase separado antes de qualquer aplicação em produção. Detalhes e bloqueios atuais estão em `supabase/README.md`.
+
+## Backup e ensaio de restauração
+
+O backup lógico exige `pg_dump`, `pg_restore` e `SUPABASE_DB_URL`:
+
+```bash
+npm run db:backup
+```
+
+O comando valida o arquivo com `pg_restore --list` e gera um SHA-256. O ensaio completo só aceita um destino explicitamente confirmado e recusa o projeto de produção:
+
+```bash
+SIFCAS_RESTORE_TEST_DB_URL=postgresql://... \
+SIFCAS_CONFIRM_RESTORE_TEST=RESTORE_SIFCAS_TEST_ONLY \
+npm run db:restore-test -- backups/sifcas-AAAA.dump
+```
+
+Use apenas um banco vazio e descartável. Arquivos do Supabase Storage precisam de uma cópia separada.
 
 ## Desenvolvimento
 
@@ -89,3 +141,7 @@ Para build de produção:
 ```bash
 npm run build
 ```
+
+## Dados institucionais
+
+A carga de contatos, setores, horários, infraestrutura, cardápio, transporte, biblioteca e demais dados oficiais fica por último. Até a validação das fontes, a página Campus identifica essas áreas como planejadas e não apresenta cartões sem destino como serviços ativos.

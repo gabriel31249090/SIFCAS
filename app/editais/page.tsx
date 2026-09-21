@@ -1,9 +1,16 @@
 import { getRequestTimestamp } from "@/lib/request-time";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarClock, FileCheck2, Pin, Send, TimerReset } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listPublishedPublications } from "@/lib/institutional";
+
+export const metadata: Metadata = {
+  title: "Editais e oportunidades",
+  description: "Editais, bolsas, seleções e chamadas institucionais publicados no SIFCAS.",
+  alternates: { canonical: "/editais" },
+};
 
 function formatDate(value: string | null) {
   if (!value) return "Sem prazo informado";

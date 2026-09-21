@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BadgeDollarSign, BookOpenCheck, CalendarClock, ChartNoAxesCombined, FlaskConical, GraduationCap, Landmark, Newspaper, School, Sprout } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  title: "Transparência",
+  description: "Indicadores institucionais públicos e agregados do SIFCAS.",
+  alternates: { canonical: "/transparencia" },
+};
 
 type Snapshot = {
   generated_at: string;

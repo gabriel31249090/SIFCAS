@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, Download, ExternalLink, FileText, MapPin, Newspaper, Paperclip, Pin, ShieldCheck } from "lucide-react";
@@ -18,7 +19,23 @@ function formatSize(bytes: number) {
 
 const kindIcons = { news: Newspaper, notice: ShieldCheck, edital: Pin, event: CalendarDays } as const;
 
-export default async function PublicationPage({ params }: { params: Promise<{ id: string }> }) {
+type PublicationParams = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: PublicationParams): Promise<Metadata> {
+  const { id } = await params;
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return { title: "Publicação não encontrada", robots: { index: false } };
+  const publication = await getPublicationById(id);
+  if (!publication) return { title: "Publicação não encontrada", robots: { index: false } };
+  const description = publication.summary || `${publicationKindLabels[publication.kind]} publicado no SIFCAS.`;
+  return {
+    title: publication.title,
+    description,
+    alternates: { canonical: `/publicacoes/${publication.id}` },
+    openGraph: { title: publication.title, description, type: "article" },
+  };
+}
+
+export default async function PublicationPage({ params }: PublicationParams) {
   const { id } = await params;
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
   const [publication, account] = await Promise.all([getPublicationById(id), getCurrentAccount()]);

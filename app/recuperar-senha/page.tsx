@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { requestPasswordReset } from "./actions";
+
+export const metadata: Metadata = {
+  title: "Recuperar senha",
+  robots: { index: false, follow: false },
+};
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 

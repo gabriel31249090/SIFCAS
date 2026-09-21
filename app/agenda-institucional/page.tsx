@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays, Clock3, Megaphone, Pin, Send, Users } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listAgendaPublications, publicationKindLabels } from "@/lib/institutional";
+
+export const metadata: Metadata = {
+  title: "Agenda institucional",
+  description: "Eventos, prazos e compromissos oficiais do Campus Cáceres.",
+  alternates: { canonical: "/agenda-institucional" },
+};
 
 function formatDate(value: string | null) {
   if (!value) return "—";

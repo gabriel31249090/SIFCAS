@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/UI";
 import { ModuleDirectory } from "@/components/ModuleDirectory";
 import { getCurrentAccount } from "@/lib/auth";
+
+export const metadata: Metadata = {
+  title: "Aplicativos e serviços",
+  description: "Catálogo de aplicativos, serviços públicos e áreas autenticadas do SIFCAS.",
+  alternates: { canonical: "/aplicativos" },
+};
 export default async function AppsPage() {
   const account = await getCurrentAccount();
   const role = account?.accountStatus === "active" ? account.role : null;

@@ -11,7 +11,7 @@ export function StatCard({ label, value, icon: Icon, foot }: { label: string; va
 
 export function ModuleCard({ title, description, icon: Icon, href, badge }: { title: string; description: string; icon: LucideIcon; href?: string; badge?: string }) {
   const content = <><div className="moduleTop"><span className="iconBox"><Icon size={20}/></span>{badge && <span className="badge">{badge}</span>}</div><h3>{title}</h3><p>{description}</p></>;
-  return href ? <Link href={href} className="card moduleCard">{content}</Link> : <article className="card moduleCard">{content}</article>;
+  return href ? <Link href={href} className="card moduleCard">{content}</Link> : <article className="card moduleCard moduleCardStatic">{content}</article>;
 }
 
 export function SectionTitle({ title, description, href, linkLabel }: { title: string; description?: string; href?: string; linkLabel?: string }) {

@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays, Megaphone, Newspaper, Send, Sparkles } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listPublishedPublications, publicationKindLabels } from "@/lib/institutional";
+
+export const metadata: Metadata = {
+  title: "Notícias e eventos",
+  description: "Notícias, comunicados e eventos oficiais do SIFCAS e do Campus Cáceres.",
+  alternates: { canonical: "/noticias" },
+};
 
 function formatDate(value: string | null) {
   if (!value) return "—";

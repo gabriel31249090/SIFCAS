@@ -1,6 +1,7 @@
 import type { AppRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { publicationSearchTerm } from "@/lib/search-utils";
+import { cache } from "react";
 
 export type PublicationKind = "news" | "notice" | "edital" | "event";
 export type PublicationStatus = "draft" | "published" | "archived";
@@ -64,7 +65,30 @@ export type SifcasNotification = {
 
 const PUBLICATION_COLUMNS = "id,campus_id,kind,reference_code,title,summary,content,status,visibility,audience_roles,starts_at,ends_at,expires_at,location,external_url,created_by,updated_by,published_at,created_at,updated_at";
 
-function mapPublication(row: any): InstitutionalPublication {
+type PublicationRow = {
+  id: string;
+  campus_id: string | null;
+  kind: string;
+  reference_code: string | null;
+  title: string;
+  summary: string | null;
+  content: string | null;
+  status: string;
+  visibility: string;
+  audience_roles: string[] | null;
+  starts_at: string | null;
+  ends_at: string | null;
+  expires_at: string | null;
+  location: string | null;
+  external_url: string | null;
+  created_by: string;
+  updated_by: string | null;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+function mapPublication(row: PublicationRow): InstitutionalPublication {
   return {
     id: row.id,
     campusId: row.campus_id ?? null,
@@ -91,10 +115,12 @@ function mapPublication(row: any): InstitutionalPublication {
 
 export async function listPublishedPublications(kinds?: PublicationKind[], limit = 60) {
   const supabase = await createClient();
+  const now = new Date().toISOString();
   let query = supabase
     .from("institutional_publications")
     .select(PUBLICATION_COLUMNS)
     .eq("status", "published")
+    .or(`expires_at.is.null,expires_at.gt.${now}`)
     .order("published_at", { ascending: false })
     .limit(limit);
 
@@ -136,7 +162,7 @@ export async function listManagedPublications(limit = 120) {
   return (data ?? []).map(mapPublication);
 }
 
-export async function getPublicationById(id: string) {
+export const getPublicationById = cache(async (id: string) => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("institutional_publications")
@@ -145,7 +171,7 @@ export async function getPublicationById(id: string) {
     .maybeSingle();
   if (error) throw error;
   return data ? mapPublication(data) : null;
-}
+});
 
 export async function listPublicationAttachments(publicationId: string): Promise<PublicationAttachment[]> {
   const supabase = await createClient();
@@ -180,9 +206,11 @@ export async function searchAccessiblePublications(rawQuery: string) {
   const query = publicationSearchTerm(rawQuery);
   if (query.length < 2) return [] as InstitutionalPublication[];
   const supabase = await createClient();
+  const now = new Date().toISOString();
   const { data, error } = await supabase.from("institutional_publications")
     .select(PUBLICATION_COLUMNS)
     .eq("status", "published")
+    .or(`expires_at.is.null,expires_at.gt.${now}`)
     .or(`title.ilike.%${query}%,summary.ilike.%${query}%,content.ilike.%${query}%,reference_code.ilike.%${query}%`)
     .order("published_at", { ascending: false })
     .limit(30);

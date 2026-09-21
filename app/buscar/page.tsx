@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpenCheck, FileSearch, Search } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/UI";
@@ -7,6 +8,12 @@ import { matchesSearch } from "@/lib/search-utils";
 import { ModuleIcon } from "@/components/ModuleIcon";
 import { listKnowledgeArticles } from "@/lib/experience";
 import { publicationKindLabels, searchAccessiblePublications } from "@/lib/institutional";
+
+export const metadata: Metadata = {
+  title: "Busca global",
+  description: "Pesquise serviços, módulos e conteúdo institucional disponível no SIFCAS.",
+  robots: { index: false, follow: true },
+};
 
 type SearchParams = Promise<{ q?: string | string[] }>;
 export default async function SearchPage({ searchParams }: { searchParams: SearchParams }) {
