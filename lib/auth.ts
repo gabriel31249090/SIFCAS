@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 
 export type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
@@ -23,14 +24,14 @@ export type CurrentAccount = {
   isGeneralAdmin: boolean;
 };
 
-export async function getCurrentAccount(): Promise<CurrentAccount | null> {
+export const getCurrentAccount = cache(async (): Promise<CurrentAccount | null> => {
   const supabase = await createClient();
   const { data: claimsData, error } = await supabase.auth.getClaims();
   const claims = claimsData?.claims;
 
   if (error || !claims?.sub) return null;
 
-  const [{ data: profile }, { data: roleRow }] = await Promise.all([
+  const [{ data: profile, error: profileError }, { data: roleRow, error: roleError }] = await Promise.all([
     supabase
       .from("profiles")
       .select("full_name,campus,avatar_url,account_status")
@@ -42,6 +43,9 @@ export async function getCurrentAccount(): Promise<CurrentAccount | null> {
       .eq("user_id", claims.sub)
       .maybeSingle(),
   ]);
+
+  // Fail closed on missing authorization data, never infer an active account.
+  if (profileError || roleError) throw new Error("Não foi possível verificar seu vínculo. Tente novamente.");
 
   const role = (roleRow?.role ?? "student") as AppRole;
   const email = typeof claims.email === "string" ? claims.email : "";
@@ -57,7 +61,7 @@ export async function getCurrentAccount(): Promise<CurrentAccount | null> {
     accountStatus: (profile?.account_status ?? "pending") as AccountStatus,
     isGeneralAdmin: Boolean(roleRow?.is_general_admin),
   };
-}
+});
 
 export async function requireAccount() {
   const account = await getCurrentAccount();

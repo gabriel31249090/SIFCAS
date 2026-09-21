@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { AlertTriangle, Bot, Compass, CalendarDays, FileText, GraduationCap, Pin, BookOpen, School, Clock3, UserRound, Layers3, ListChecks, Link2, ListTodo } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarDays, CheckCheck, GraduationCap, ListTodo, BookmarkPlus, Sparkles, Layers3, UserRound, CircleAlert } from "lucide-react";
 import { SectionTitle, StatCard } from "@/components/UI";
+import { ModuleIcon } from "@/components/ModuleIcon";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
 import { getHomeAttention, listUserShortcuts } from "@/lib/experience";
+import { getAccessibleModules } from "@/lib/module-catalog";
+import { safeInternalPath } from "@/lib/safe-path";
 
 function formatDate(iso: string) {
   return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(iso + "T12:00:00-04:00"));
@@ -11,100 +14,47 @@ function formatDate(iso: string) {
 
 export default async function Home() {
   const account = await requireAccount();
-  const [overview, agenda, studentAcademic, attention, shortcuts] = await Promise.all([
-    getAcademicOverview(),
+  const canManage = ["manager", "admin"].includes(account.role);
+  const [overview, agenda, academic, attention, shortcuts] = await Promise.all([
+    canManage ? getAcademicOverview() : Promise.resolve(null),
     getAgendaContext(account),
     account.role === "student" ? getStudentAcademicContext(account.id) : Promise.resolve(null),
     getHomeAttention(account),
     listUserShortcuts(account.id),
   ]);
-  const nextEntry = agenda.entries[0] ?? null;
+  const modules = getAccessibleModules(account.role);
+  const preferred = account.role === "student"
+    ? ["/boletim", "/agenda-aluno", "/documentos-academicos", "/solicitacoes", "/oportunidades", "/editais"]
+    : account.role === "teacher"
+      ? ["/diario-professor", "/agenda-aluno", "/solicitacoes", "/documentos", "/projetos", "/editais"]
+      : canManage
+        ? ["/gestao-academica", "/painel-institucional", "/usuarios", "/vinculos-institucionais", "/monitoramento", "/solicitacoes"]
+        : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/agenda-institucional"];
+  const quickLinks = preferred.flatMap((href) => modules.find((item) => item.href === href) ?? []);
+  const date = new Intl.DateTimeFormat("pt-BR", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Cuiaba" }).format(new Date());
+  const nextEntry = agenda.entries[0];
 
   return <>
-    <section className="hero">
-      <div>
-        <span className="eyebrow">Portal integrado IFMT</span>
-        <h1>Olá, {account.fullName.split(" ")[0]}.</h1>
-        <p>O SIFCAS reúne sua vida institucional e agora conta com MAISA, atalhos pessoais, alertas e autoatendimento em uma única interface.</p>
-        <div className="heroActions"><Link className="button primary" href="/maisa"><Bot size={16}/>Falar com a MAISA</Link><Link className="button glass" href="/aplicativos">Abrir aplicativos</Link></div>
-      </div>
-      <aside className="todayPanel">
-        <small>Próxima publicação</small>
-        {nextEntry ? <>
-          <strong>{formatDate(nextEntry.entryDate).toUpperCase()}</strong>
-          <hr/>
-          <small>{nextEntry.className}</small>
-          <b>{nextEntry.subjectName}{nextEntry.startsAt ? " • " + nextEntry.startsAt.slice(0, 5) : ""}</b>
-          <span>{nextEntry.title}</span>
-        </> : <>
-          <strong>SEM ITENS</strong>
-          <hr/>
-          <small>Agenda acadêmica</small>
-          <b>Nenhuma atividade futura publicada</b>
-          <span>Novos itens aparecerão automaticamente.</span>
-        </>}
-      </aside>
-    </section>
-
-    <div className="statGrid">
-      <StatCard label="Meu perfil" value={roleLabels[account.role]} foot={account.campus} icon={UserRound}/>
-      <StatCard label="Matrícula ativa" value={studentAcademic ? "1" : "0"} foot={studentAcademic?.className ?? "Sem turma vinculada"} icon={GraduationCap}/>
-      <StatCard label="Agenda futura" value={String(agenda.entries.length)} foot="Próximos 35 dias" icon={ListChecks}/>
-      <StatCard label="Estrutura acadêmica" value={String(overview.classCount)} foot={overview.courseCount + " cursos • " + overview.subjectCount + " disciplinas"} icon={Layers3}/>
+    <div className="dashboardHeading"><div><span className="sectionEyebrow">{account.campus}</span><h1>Olá, {account.fullName.split(" ")[0]}<span className="greetingDot">.</span></h1><p>Vamos cuidar da sua rotina no campus?</p></div><div className="dashboardDate"><CalendarDays size={19} /><span>{date}</span></div></div>
+    <div className="dashboardLead">
+      <section className="workspaceWelcome"><div><span className="welcomeKicker">SEU PRÓXIMO PASSO</span><h2>Tudo em dia começa<br />por aqui.</h2><p>Confira seus prazos, acompanhe solicitações e encontre os serviços de que precisa.</p><Link className="button light" href="/pendencias">Ver minhas pendências<ArrowRight size={18} /></Link></div><div className="welcomeEmblem" aria-hidden="true"><CheckCheck size={72} strokeWidth={1.25} /></div></section>
+      <section className="card nextAppointment"><div className="appointmentTitle"><span className="iconBox"><CalendarDays size={22} /></span><span>Na sua agenda</span></div>{nextEntry ? <><span className="appointmentDate">{formatDate(nextEntry.entryDate)}</span><h2>{nextEntry.title}</h2><p>{nextEntry.subjectName}{nextEntry.startsAt ? " · " + nextEntry.startsAt.slice(0, 5) : ""}</p><small>{nextEntry.className}</small></> : <><span className="appointmentDate quiet">Um espaço para planejar.</span><h2>Sem atividades publicadas</h2><p>Quando houver um novo compromisso vinculado a você, ele aparecerá aqui.</p></>}<Link href={account.role === "staff" ? "/agenda-institucional" : "/agenda-aluno"}>Abrir agenda<ArrowUpRight size={17} /></Link></section>
     </div>
-
-    <SectionTitle title="Acesso rápido" description="Os caminhos principais do SIFCAS."/>
-    <div className="quickGrid">
-      <Link href="/maisa"><Bot/>Falar com a MAISA</Link>
-      <Link href="/pendencias"><ListTodo/>Minhas pendências</Link>
-      <Link href="/estudante"><GraduationCap/>Minha vida acadêmica</Link>
-      <Link href="/agenda-aluno"><CalendarDays/>Minha agenda</Link>
-      <Link href="/documentos"><FileText/>Documentos</Link>
-      <Link href="/oportunidades"><Compass/>Oportunidades</Link>
-      <Link href="/editais"><Pin/>Editais e bolsas</Link>
-      <Link href="/ensino"><BookOpen/>Ensino</Link>
-      <Link href="/campus"><School/>Meu campus</Link>
-      <Link href="/agenda-institucional"><CalendarDays/>Agenda institucional</Link>
-      <Link href="/noticias"><Clock3/>Eventos e notícias</Link>
+    <div className="statGrid dashboardStats">
+      <StatCard label="Seu vínculo" value={roleLabels[account.role]} foot={account.campus} icon={UserRound} />
+      {account.role === "student" ? <StatCard label="Minha turma" value={academic?.className ?? "Não vinculada"} foot={academic?.courseName ?? "Aguardando vínculo acadêmico"} icon={GraduationCap} /> : <StatCard label="Meus atalhos" value={String(shortcuts.length)} foot="Acessos personalizados" icon={BookmarkPlus} />}
+      <StatCard label="Agenda acadêmica" value={String(agenda.entries.length)} foot="Atividades nos próximos 35 dias" icon={CalendarDays} />
+      {overview ? <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={overview.courseCount + " cursos cadastrados"} icon={Layers3} /> : <StatCard label="Pontos de atenção" value={String(attention.filter((item) => Number(item.value) > 0 || item.kind !== "info").length)} foot="Confira os detalhes abaixo" icon={ListTodo} />}
     </div>
-
+    <SectionTitle title="Direto ao que importa" description="Acessos selecionados para o seu vínculo." href="/aplicativos" linkLabel="Todos os aplicativos" />
+    <div className="dashboardQuick">{quickLinks.map((item) => <Link href={item.href} key={item.href}><span className="moduleIconTile"><ModuleIcon name={item.icon} /></span><strong>{item.label}</strong><ArrowUpRight size={16} className="quickArrow" /></Link>)}</div>
     <div className="twoCols dashboardLower">
-      <section className="card panel">
-        <SectionTitle title="Fique atento" description="Pendências e pontos que podem exigir sua ação."/>
-        <div className="attentionList">
-          {attention.map((item) => <Link href={item.href} className={"attentionItem " + item.kind} key={item.label}>
-            <span className="iconBox"><AlertTriangle size={17}/></span>
-            <span><b>{item.label}</b><small>{item.detail}</small></span>
-            <strong>{item.value}</strong>
-          </Link>)}
-        </div>
-      </section>
-
-      <section className="card panel">
-        <SectionTitle title="Meus atalhos" description="Acessos pessoais inspirados no recurso de atalhos do SUAP." href="/atalhos" linkLabel="Gerenciar"/>
-        {shortcuts.length === 0 ? <div className="infoBox">Você ainda não configurou atalhos. Abra “Gerenciar” para montar seu acesso rápido.</div> : <div className="personalShortcutGrid">
-          {shortcuts.slice(0,8).map((item) => <Link href={item.href} key={item.id}><Link2 size={15}/>{item.label}</Link>)}
-        </div>}
-      </section>
+      <section className="card panel"><SectionTitle title="Sua atenção faz a diferença" description="Pendências e avisos para acompanhar." href="/pendencias" linkLabel="Ver detalhes" /><div className="attentionList">{attention.map((item) => <Link href={item.href} className={"attentionItem " + item.kind} key={item.label}><span className="iconBox">{item.kind === "info" ? <CheckCheck size={21} /> : <CircleAlert size={21} />}</span><span><b>{item.label}</b><small>{item.detail}</small></span><strong>{item.value}</strong></Link>)}</div></section>
+      <section className="maisaInvite"><span className="maisaInviteIcon"><Sparkles size={28} /></span><span className="sectionEyebrow">CONHEÇA A MAISA</span><h2>Precisa encontrar<br />um caminho?</h2><p>Consulte orientações e informações disponíveis para o seu perfil com a assistente local.</p><Link href="/maisa">Conversar com a MAISA<ArrowRight size={18} /></Link></section>
     </div>
-
     <div className="twoCols dashboardLower">
-      <section className="card panel">
-        <SectionTitle title="Minha agenda" description="Próximas publicações associadas ao seu vínculo." href="/agenda-aluno" linkLabel="Agenda completa"/>
-        {agenda.entries.length === 0 ? <div className="infoBox">Nenhuma atividade futura disponível.</div> : <div className="timeline">
-          {agenda.entries.slice(0, 5).map((entry) => <div className="timelineRow" key={entry.id}>
-            <time>{entry.startsAt?.slice(0, 5) ?? formatDate(entry.entryDate)}</time><span className="timelineDot"/><div><strong>{entry.subjectName} • {entry.title}</strong><small>{entry.className} • {formatDate(entry.entryDate)}</small></div>
-          </div>)}
-        </div>}
-      </section>
-      <section className="card panel">
-        <SectionTitle title="Núcleo acadêmico" description="Status da base estrutural."/>
-        <div className="stackList">
-          <div><b>{overview.campusCount} campus ativo</b><span>Estrutura institucional</span></div>
-          <div><b>{overview.courseCount} cursos cadastrados</b><span>Catálogo acadêmico</span></div>
-          <div><b>{overview.classCount} turmas ativas</b><span>{overview.enrollmentCount} matrículas ativas</span></div>
-        </div>
-      </section>
+      <section className="card panel"><SectionTitle title="Próximos compromissos" description="Atividades associadas ao seu vínculo." href={account.role === "staff" ? "/agenda-institucional" : "/agenda-aluno"} linkLabel="Agenda completa" />{agenda.entries.length ? <div className="timeline">{agenda.entries.slice(0, 5).map((entry) => <div className="timelineRow" key={entry.id}><time>{formatDate(entry.entryDate)}</time><span className="timelineDot" /><div><strong>{entry.title}</strong><small>{entry.subjectName} · {entry.className}{entry.startsAt ? " · " + entry.startsAt.slice(0, 5) : ""}</small></div></div>)}</div> : <div className="quietEmpty"><CalendarDays size={28} /><p>Sem atividades futuras publicadas.</p><small>Confira também a agenda institucional do campus.</small></div>}</section>
+      <section className="card panel"><SectionTitle title="Do seu jeito" description="Seus acessos favoritos, sempre por perto." href="/atalhos" linkLabel="Personalizar" />{shortcuts.length ? <div className="personalShortcutGrid">{shortcuts.slice(0, 8).map((item) => <Link href={safeInternalPath(item.href, "/aplicativos")} key={item.id}><BookmarkPlus size={18} />{item.label}</Link>)}</div> : <div className="quietEmpty"><BookmarkPlus size={28} /><p>Quais caminhos você usa mais?</p><Link className="button soft" href="/atalhos">Adicionar meus atalhos</Link></div>}</section>
     </div>
   </>;
 }

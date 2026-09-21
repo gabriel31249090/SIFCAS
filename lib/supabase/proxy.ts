@@ -26,7 +26,7 @@ const STAFF_PREFIXES = ["/administracao", "/pessoas", "/painel-institucional"];
 const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
 const MANAGEMENT_PREFIXES = ["/gestao-academica", "/auditoria", "/monitoramento"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
-const ADMIN_PREFIXES = ["/usuarios"];
+const ADMIN_PREFIXES = ["/usuarios", "/vinculos-institucionais", "/modelo-vinculos-institucionais"];
 const DIARY_PREFIXES = ["/diario-professor"];
 const DIARY_ROLES: AppRole[] = ["teacher", "manager", "admin"];
 
@@ -84,6 +84,9 @@ export async function updateSession(request: NextRequest) {
 
     if (profile?.account_status === "suspended") {
       return redirectWithSession(request, response, "/acesso-negado", { reason: "suspended" });
+    }
+    if (!profile || profile.account_status !== "active") {
+      return redirectWithSession(request, response, "/acesso-negado", { reason: "pending" });
     }
   }
 

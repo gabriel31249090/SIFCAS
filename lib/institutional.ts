@@ -1,5 +1,6 @@
 import type { AppRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { publicationSearchTerm } from "@/lib/search-utils";
 
 export type PublicationKind = "news" | "notice" | "edital" | "event";
 export type PublicationStatus = "draft" | "published" | "archived";
@@ -176,15 +177,17 @@ export async function listPublicationCampuses() {
 }
 
 export async function searchAccessiblePublications(rawQuery: string) {
-  const query = rawQuery.trim().toLocaleLowerCase("pt-BR").slice(0, 100);
+  const query = publicationSearchTerm(rawQuery);
   if (query.length < 2) return [] as InstitutionalPublication[];
-  const rows = await listPublishedPublications(undefined, 160);
-  return rows.filter((row) => {
-    const haystack = [row.title, row.summary, row.content, row.referenceCode ?? "", publicationKindLabels[row.kind]]
-      .join(" ")
-      .toLocaleLowerCase("pt-BR");
-    return haystack.includes(query);
-  }).slice(0, 30);
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("institutional_publications")
+    .select(PUBLICATION_COLUMNS)
+    .eq("status", "published")
+    .or(`title.ilike.%${query}%,summary.ilike.%${query}%,content.ilike.%${query}%,reference_code.ilike.%${query}%`)
+    .order("published_at", { ascending: false })
+    .limit(30);
+  if (error) throw error;
+  return (data ?? []).map(mapPublication);
 }
 
 export async function getUnreadNotificationCount(userId: string) {

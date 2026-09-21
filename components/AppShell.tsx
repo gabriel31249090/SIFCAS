@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import { Sidebar } from "./Sidebar";
+import { getCurrentAccount } from "@/lib/auth";
 import { Topbar } from "./Topbar";
-import { MobileNav } from "./MobileNav";
-
-export function AppShell({ children }: { children: ReactNode }) {
-  return <div className="appShell"><Sidebar/><div className="appMain"><Topbar/><main className="pageContainer">{children}</main><MobileNav/></div></div>;
+import { AppChrome } from "./AppChrome";
+export async function AppShell({ children }: { children: ReactNode }) {
+  const account = await getCurrentAccount();
+  const role = account?.accountStatus === "active" ? account.role : null;
+  return <AppChrome role={role} topbar={<Topbar />}>{children}</AppChrome>;
 }

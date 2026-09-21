@@ -4,6 +4,8 @@
 
 Plataforma em Next.js 16 + React 19 + TypeScript, integrada ao Supabase e publicada na Vercel.
 
+Requer Node.js 24. A instalação e os deploys usam o `package-lock.json` com `npm ci` para manter builds reproduzíveis.
+
 ## Estado atual
 
 O SIFCAS possui autenticação SSR, perfis e papéis institucionais, validação de vínculos, núcleo acadêmico, agenda por turma, diário do professor, notas, frequência, boletim, documentos acadêmicos verificáveis, processos, oportunidades e uma camada institucional de notícias, editais, eventos e notificações.
@@ -58,20 +60,27 @@ Operações que alteram dados, como abertura de solicitação, continuam exigind
 
 ## Qualidade
 
-O build executa:
+Para validar lint, tipos, testes de regressão e auditorias internas:
 
 ```bash
-npm run audit:ui
-npm run audit:routes
-npm run audit:quality
+npm run check
 ```
 
-antes de `next build`.
+O build de produção repete as auditorias e os testes antes do `next build`. A suíte cobre, entre outros pontos, destinos de redirecionamento, visibilidade por papel, catálogo de módulos e busca tolerante a acentos.
+
+## Interface
+
+- Identidade visual e marca próprias do SIFCAS
+- Catálogo único de módulos e ícones Lucide consistentes
+- Navegação responsiva com menu lateral e barra móvel
+- Busca e filtros mais claros
+- Estados de carregamento, erro, vazio e página não encontrada
+- Foco visível, link de salto, alvos de toque e redução de movimento
 
 ## Desenvolvimento
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 

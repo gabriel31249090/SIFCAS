@@ -1,3 +1,4 @@
+import { getRequestTimestamp } from "@/lib/request-time";
 import { redirect } from "next/navigation";
 import { Activity, Database, FileClock, ShieldCheck } from "lucide-react";
 import { PageHeader, StatCard } from "@/components/UI";
@@ -24,7 +25,7 @@ export default async function AuditPage({ searchParams }: { searchParams: Params
   const actorIds = [...new Set((logs ?? []).map((row) => row.actor_user_id).filter(Boolean) as string[])];
   const { data: profiles } = actorIds.length ? await supabase.from("profiles").select("id,full_name,institutional_email").in("id", actorIds) : { data: [] };
   const actorMap = new Map((profiles ?? []).map((row) => [row.id, row.full_name || row.institutional_email || "Usuário"]));
-  const now = Date.now();
+  const now = getRequestTimestamp();
   const last24 = (logs ?? []).filter((row) => now - new Date(row.created_at).getTime() <= 86400000).length;
   const entities = new Set((logs ?? []).map((row) => row.entity_type)).size;
 

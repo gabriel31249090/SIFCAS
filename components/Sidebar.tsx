@@ -1,30 +1,32 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navigation } from "@/lib/navigation";
+import { ArrowUpRight, CircleHelp, LayoutGrid } from "lucide-react";
+import type { AppRole } from "@/lib/auth";
+import { getAccessibleModules, moduleGroups } from "@/lib/module-catalog";
+import { Brand } from "./Brand";
+import { ModuleIcon } from "./ModuleIcon";
 
-export function Sidebar() {
+export function Sidebar({ role, onNavigate }: { role: AppRole | null; onNavigate?: () => void }) {
   const pathname = usePathname();
-  return (
-    <aside className="sidebar">
-      <Link href="/" className="brand">
-        <span className="brandMark">S</span>
-        <span><strong>SIFCAS</strong><small>Sistema Integrado Federal de Campus,<br/>Administração e Serviços</small></span>
-      </Link>
-      <nav className="nav">
-        {navigation.map((group) => (
-          <div className="navGroup" key={group.group}>
-            <p>{group.group}</p>
-            {group.items.map(({ href, label, icon: Icon }) => (
-              <Link key={href} href={href} className={`navItem ${pathname === href ? "active" : ""}`}>
-                <Icon size={18} strokeWidth={1.9}/><span>{label}</span>
-              </Link>
-            ))}
-          </div>
-        ))}
-      </nav>
-      <div className="prototypeNote"><strong>MAISA integrada</strong><span>Assistente local baseada em regras, busca e ferramentas internas do SIFCAS. Dados pessoais continuam protegidos pelas permissões do sistema.</span></div>
-    </aside>
-  );
+  const items = getAccessibleModules(role).filter((item) => item.navigation);
+  return <aside className="sidebar">
+    <Link href={role ? "/" : "/noticias"} className="brand" aria-label="SIFCAS, início" onClick={onNavigate}><Brand /></Link>
+    <div className="campusLabel"><span>IFMT</span> Campus Cáceres</div>
+    <nav className="nav" aria-label="Navegação principal">
+      {moduleGroups.map((group) => {
+        const groupItems = items.filter((item) => item.group === group);
+        if (!groupItems.length) return null;
+        return <div className="navGroup" key={group}><p>{group}</p>{groupItems.map((item) => {
+          const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
+          return <Link key={item.href} href={item.href} className={"navItem " + (active ? "active" : "")} aria-current={active ? "page" : undefined} onClick={onNavigate}><ModuleIcon name={item.icon} size={20} /><span>{item.label}</span></Link>;
+        })}</div>;
+      })}
+    </nav>
+    <div className="sidebarFooter">
+      <Link href="/aplicativos" className="sidebarAllApps" onClick={onNavigate}><LayoutGrid size={19} />Todos os aplicativos<ArrowUpRight size={16} /></Link>
+      <Link href={role ? "/base-conhecimento" : "/login"} className="sidebarHelp" onClick={onNavigate}><CircleHelp size={17} />{role ? "Precisa de ajuda?" : "Acessar minha conta"}</Link>
+      <small>Sistema Integrado Federal de Campus,<br />Administração e Serviços</small>
+    </div>
+  </aside>;
 }

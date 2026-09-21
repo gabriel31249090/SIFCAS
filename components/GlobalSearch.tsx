@@ -19,7 +19,7 @@ export function GlobalSearch() {
 
   return <form className="globalSearch" action="/buscar" method="get" role="search">
     <button className="searchSubmit" type="submit" aria-label="Executar busca"><Search size={18}/></button>
-    <input ref={inputRef} name="q" aria-label="Busca global" placeholder="Buscar serviços, documentos, editais, notícias..." autoComplete="off"/>
+    <input ref={inputRef} name="q" aria-label="Busca global" placeholder="O que você precisa encontrar?" minLength={2} maxLength={100} autoComplete="off"/>
     <kbd>Ctrl K</kbd>
   </form>;
 }

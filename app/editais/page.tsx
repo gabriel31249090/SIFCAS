@@ -1,3 +1,4 @@
+import { getRequestTimestamp } from "@/lib/request-time";
 import Link from "next/link";
 import { CalendarClock, FileCheck2, Pin, Send, TimerReset } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
@@ -12,7 +13,7 @@ function formatDate(value: string | null) {
 export default async function EditaisPage() {
   const account = await getCurrentAccount();
   const editais = await listPublishedPublications(["edital"], 100);
-  const now = Date.now();
+  const now = getRequestTimestamp();
   const open = editais.filter((row) => !row.endsAt || new Date(row.endsAt).getTime() >= now).length;
   const endingSoon = editais.filter((row) => row.endsAt && new Date(row.endsAt).getTime() >= now && new Date(row.endsAt).getTime() <= now + 1000 * 60 * 60 * 24 * 14).length;
   const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);

@@ -1,3 +1,4 @@
+import { getRequestTimestamp } from "@/lib/request-time";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Activity, Archive, Bot, Database, FileCheck2, ShieldAlert } from "lucide-react";
@@ -9,7 +10,7 @@ export default async function MonitoringPage() {
   const account = await requireAccount();
   if (!["manager", "admin"].includes(account.role)) redirect("/acesso-negado");
   const supabase = await createClient();
-  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const since = new Date(getRequestTimestamp() - 24 * 60 * 60 * 1000).toISOString();
 
   const [healthRes, openRequests, audit24h, attachments, suspended, pending, published] = await Promise.all([
     supabase.rpc("sifcas_health"),
