@@ -37,7 +37,7 @@ export const moduleCatalog: readonly CampusModule[] = [
   { href: "/noticias", label: "Notícias e eventos", description: "Publicações e atividades institucionais.", icon: "news", group: "Institucional", public: true, navigation: true },
   { href: "/editais", label: "Editais", description: "Chamadas, bolsas, seleções e oportunidades.", icon: "notice", group: "Institucional", public: true, navigation: true, keywords: "edital" },
   { href: "/agenda-institucional", label: "Agenda do campus", description: "Eventos e compromissos institucionais.", icon: "calendar", group: "Institucional", public: true, navigation: true },
-  { href: "/campus", label: "Campus Cáceres", description: "Informações e serviços do campus.", icon: "campus", group: "Institucional", public: true },
+  { href: "/campus", label: "Campus Cáceres", description: "Cursos, contatos, calendário e guias do SUAP e AVA.", icon: "campus", group: "Institucional", public: true, navigation: true, keywords: "ifmt biblioteca secretaria serviços cursos suap ava moodle" },
   { href: "/transparencia", label: "Transparência", description: "Informações institucionais agregadas.", icon: "shield", group: "Institucional", public: true },
   { href: "/verificar-documento", label: "Verificar documento", description: "Consulte a autenticidade pelo código SIF.", icon: "file", group: "Institucional", public: true },
   { href: "/buscar", label: "Busca global", description: "Pesquise serviços e conteúdo disponível para você.", icon: "search", group: "Institucional", public: true },

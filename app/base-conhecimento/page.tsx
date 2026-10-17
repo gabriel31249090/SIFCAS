@@ -2,6 +2,8 @@ import { BookOpenCheck, FileText, GraduationCap, Search, ShieldCheck, Sparkles, 
 import { PageHeader, SectionTitle } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { listKnowledgeArticles } from "@/lib/experience";
+import { CampusResources } from "@/components/CampusResources";
+import { findCampusEntries } from "@/lib/campus-content";
 
 type Params = Promise<{ q?: string }>;
 
@@ -18,6 +20,7 @@ export default async function KnowledgeBasePage({ searchParams }: { searchParams
   const query = (params.q ?? "").trim().toLocaleLowerCase("pt-BR");
   const articles = await listKnowledgeArticles();
   const filtered = query.length >= 2 ? articles.filter((article) => (article.title + " " + article.summary + " " + article.content).toLocaleLowerCase("pt-BR").includes(query)) : articles;
+  const campusGuides = query ? findCampusEntries(query).map((entry) => entry.slug) : ["recuperar-senha-suap", "ava-moodle", "guia-docente-ava"];
 
   return <>
     <PageHeader title="Base de Conhecimento" description="Tutoriais rápidos e orientações para resolver dúvidas comuns sem abrir chamado." action={<span className="badge"><BookOpenCheck size={13}/> Autoatendimento</span>}/>
@@ -28,7 +31,8 @@ export default async function KnowledgeBasePage({ searchParams }: { searchParams
       </form>
     </section>
 
-    <SectionTitle title="Artigos disponíveis" description={query ? "Resultados relacionados à sua pesquisa." : "Conteúdo de ajuda disponível para o seu perfil."}/>
+    <CampusResources title="Orientações do IFMT, SUAP e AVA" slugs={campusGuides}/>
+    <SectionTitle title="Artigos do SIFCAS" description={query ? "Resultados relacionados à sua pesquisa." : "Conteúdo de ajuda disponível para o seu perfil."}/>
     {filtered.length === 0 ? <div className="infoBox">Nenhum artigo encontrado.</div> : <div className="knowledgeGrid">
       {filtered.map((article) => {
         const Icon = categoryIcons[article.category] ?? Search;

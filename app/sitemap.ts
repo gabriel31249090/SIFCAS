@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { campusEntries, campusReviewedAt } from "@/lib/campus-content";
 
 const publicRoutes = [
   { path: "/noticias", priority: 1, changeFrequency: "daily" as const },
@@ -10,9 +11,14 @@ const publicRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return publicRoutes.map((route) => ({
+  return [...publicRoutes.map((route) => ({
     url: `https://sifcas.vercel.app${route.path}`,
     priority: route.priority,
     changeFrequency: route.changeFrequency,
-  }));
+  })), ...campusEntries.map((entry) => ({
+    url: `https://sifcas.vercel.app/campus/${entry.slug}`,
+    lastModified: campusReviewedAt,
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+  }))];
 }

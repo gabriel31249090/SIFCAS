@@ -2,6 +2,7 @@ import { BookOpen, BookOpenCheck, CalendarClock, CalendarRange, Clock3, Graduati
 import { ModuleCard, PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getAcademicOverview } from "@/lib/academic";
+import { CampusResources } from "@/components/CampusResources";
 
 export default async function EnsinoPage() {
   const account = await requireAccount();
@@ -14,6 +15,7 @@ export default async function EnsinoPage() {
       action={<span className="badge">Base acadêmica ativa</span>}
     />
 
+    <CampusResources title="Estudar no IFMT Cáceres" description="Cursos, calendário e orientação para consultar a vida acadêmica no SUAP." slugs={["informatica", "calendario-academico", "boletim-suap"]}/>
     <div className="statGrid">
       <StatCard label="Campi ativos" value={String(overview.campusCount)} foot="Unidades cadastradas" icon={School}/>
       <StatCard label="Cursos ativos" value={String(overview.courseCount)} foot="Catálogo acadêmico" icon={GraduationCap}/>

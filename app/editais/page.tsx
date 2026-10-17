@@ -5,6 +5,7 @@ import { CalendarClock, FileCheck2, Pin, Send, TimerReset } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listPublishedPublications } from "@/lib/institutional";
+import { CampusResources } from "@/components/CampusResources";
 
 export const metadata: Metadata = {
   title: "Editais e oportunidades",
@@ -19,7 +20,9 @@ function formatDate(value: string | null) {
 
 export default async function EditaisPage() {
   const account = await getCurrentAccount();
-  const editais = await listPublishedPublications(["edital"], 100);
+  const [result] = await Promise.allSettled([listPublishedPublications(["edital"], 100)]);
+  const unavailable = result.status === "rejected";
+  const editais = result.status === "fulfilled" ? result.value : [];
   const now = getRequestTimestamp();
   const open = editais.filter((row) => !row.endsAt || new Date(row.endsAt).getTime() >= now).length;
   const endingSoon = editais.filter((row) => row.endsAt && new Date(row.endsAt).getTime() >= now && new Date(row.endsAt).getTime() <= now + 1000 * 60 * 60 * 24 * 14).length;
@@ -28,15 +31,16 @@ export default async function EditaisPage() {
   return <>
     <PageHeader title="Editais e Oportunidades" description="Editais, bolsas, processos seletivos e chamadas institucionais publicados no SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar edital</Link> : <span className="badge">Consulta pública</span>}/>
 
-    <div className="statGrid">
+    <CampusResources title="Seleções e apoio ao estudante" description="Consulte o painel oficial e os setores responsáveis. Confira o prazo de cada chamada na fonte." slugs={["editais-oficiais", "assistencia-estudantil", "estagio"]}/>
+    {!unavailable && <div className="statGrid">
       <StatCard label="Publicados" value={String(editais.length)} foot="Disponíveis na base" icon={Pin}/>
       <StatCard label="Em andamento" value={String(open)} foot="Sem prazo vencido" icon={FileCheck2}/>
       <StatCard label="Encerram em 14 dias" value={String(endingSoon)} foot="Acompanhe os prazos" icon={TimerReset}/>
       <StatCard label="Atualização" value="Tempo real" foot="Painel institucional" icon={CalendarClock}/>
-    </div>
+    </div>}
 
     <SectionTitle title="Editais publicados" description="Abra qualquer item para consultar texto, prazo, local e link oficial quando informado."/>
-    {editais.length === 0 ? <div className="emptyState card"><Pin size={28}/><h2>Nenhum edital publicado</h2><p>Os próximos editais aparecerão aqui assim que forem publicados pela instituição.</p></div> : <div className="publicationGrid">
+    {unavailable ? <div className="infoBox" role="status">Não foi possível carregar os editais do SIFCAS agora. Consulte o painel oficial pelo guia acima.</div> : editais.length === 0 ? <div className="emptyState card"><Pin size={28}/><h2>Nenhum edital publicado</h2><p>Os próximos editais aparecerão aqui assim que forem publicados pela instituição.</p></div> : <div className="publicationGrid">
       {editais.map((row) => <Link className="card publicationCard" href={`/publicacoes/${row.id}`} key={row.id}>
         <div className="publicationCardHead"><span className="badge">{row.referenceCode || "Edital"}</span><time>{formatDate(row.publishedAt)}</time></div>
         <h2>{row.title}</h2><p>{row.summary || "Abra para consultar os detalhes deste edital."}</p>

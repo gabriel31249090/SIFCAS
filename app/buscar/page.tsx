@@ -8,6 +8,7 @@ import { matchesSearch } from "@/lib/search-utils";
 import { ModuleIcon } from "@/components/ModuleIcon";
 import { listKnowledgeArticles } from "@/lib/experience";
 import { publicationKindLabels, searchAccessiblePublications } from "@/lib/institutional";
+import { findCampusEntries } from "@/lib/campus-content";
 
 export const metadata: Metadata = {
   title: "Busca global",
@@ -31,7 +32,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
   const publicationMatches = publications.status === "fulfilled" ? publications.value : [];
   const knowledgeMatches = knowledge.status === "fulfilled" ? knowledge.value.filter((article) => matchesSearch(article.title + " " + article.summary + " " + article.content, query)).slice(0, 12) : [];
   const partialError = publications.status === "rejected" || knowledge.status === "rejected";
-  const total = routeMatches.length + publicationMatches.length + knowledgeMatches.length;
+  const campusMatches = query.length >= 2 ? findCampusEntries(query) : [];
+  const total = routeMatches.length + publicationMatches.length + knowledgeMatches.length + campusMatches.length;
 
   return <>
     <PageHeader title="Busca global" description="Pesquise módulos, serviços, artigos de ajuda, editais, eventos, comunicados e notícias disponíveis para você." action={<span className="badge">{total} resultados</span>}/>
@@ -51,6 +53,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
         <SectionTitle title="Aplicativos e serviços" description="Atalhos do SIFCAS relacionados à sua busca."/>
         <div className="searchResults">{routeMatches.map((result) => <Link className="card searchResult" href={result.href} key={result.href}>
           <span className="iconBox"><ModuleIcon name={result.icon} size={22}/></span><span><b>{result.label}</b><small>{result.description}</small></span>
+        </Link>)}</div>
+      </>}
+
+      {campusMatches.length > 0 && <>
+        <SectionTitle title="Guia do Campus Cáceres" description="Cursos, contatos e orientações públicas do IFMT, SUAP e AVA."/>
+        <div className="searchResults">{campusMatches.map((entry) => <Link className="card searchResult" href={`/campus/${entry.slug}`} key={entry.slug}>
+          <span className="iconBox"><BookOpenCheck size={18}/></span><span><b>{entry.title}</b><small>{entry.category} • {entry.summary}</small></span>
         </Link>)}</div>
       </>}
 
