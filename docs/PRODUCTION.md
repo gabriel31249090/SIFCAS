@@ -1,6 +1,6 @@
 # SIFCAS — checklist de produção
 
-Este documento cobre a base de produção do SIFCAS, os vínculos institucionais e a MAISA Local.
+Este documento cobre a base de produção do SIFCAS, os vínculos institucionais e a LUMA Local.
 
 ## Responsabilidade do código
 
@@ -19,11 +19,11 @@ Este documento cobre a base de produção do SIFCAS, os vínculos institucionais
 - Auditores de interface, rotas e qualidade antes do build.
 - Headers HTTP de segurança.
 - Navegação mobile.
-- MAISA Local em `/maisa`.
+- LUMA Local em `/maisa`.
 
-## MAISA Local
+## LUMA Local
 
-A MAISA executa dentro do SIFCAS e não depende de chave de API de Dify, OpenAI ou outro provedor.
+A LUMA executa dentro do SIFCAS e não depende de chave de API de Dify, OpenAI ou outro provedor.
 
 O fluxo é:
 

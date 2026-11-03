@@ -14,7 +14,7 @@ export async function Topbar() {
     <PageLocation />
     <GlobalSearch />
     <div className="topActions">
-      <Link className="iconAction maisaAction" href={account ? (active ? "/maisa" : blockedPath) : "/login?next=/maisa"} aria-label="Abrir MAISA" title="MAISA"><Sparkles size={20} /></Link>
+      <Link className="iconAction maisaAction" href={account ? (active ? "/maisa" : blockedPath) : "/login?next=/maisa"} aria-label="Abrir LUMA" title="LUMA"><Sparkles size={20} /></Link>
       <Link className="iconAction notificationAction" href={account ? (active ? "/notificacoes" : blockedPath) : "/login?next=/notificacoes"} aria-label={unreadCount ? unreadCount + " notificações não lidas" : "Abrir notificações"} title="Notificações"><Bell size={20} />{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}</Link>
       {account ? <Link className={"userChip " + (!active ? "suspendedChip" : "")} href={active ? "/perfil" : blockedPath}>
         <span className="avatar">{initials(account.fullName)}</span>

@@ -87,7 +87,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
   const initialMessage = useMemo<ChatMessage>(() => ({
     id: "welcome",
     role: "assistant",
-    content: "Olá, " + firstName + ". Eu sou a MAISA Local, a assistente simples do próprio SIFCAS. Consigo consultar, com as permissões da sua conta, notas, frequência, agenda, editais, documentos, processos, estágios, auxílios, TCC, projetos e solicitações. Também encontro páginas, consulta a Base de Conhecimento e posso preparar um chamado para você confirmar.",
+    content: "Olá, " + firstName + ". Eu sou a LUMA, a assistente local do próprio SIFCAS. Consigo consultar, com as permissões da sua conta, notas, frequência, agenda, editais, documentos, processos, estágios, auxílios, TCC, projetos e solicitações. Também encontro páginas, consulto a Base de Conhecimento e posso preparar um chamado para você confirmar.",
   }), [firstName]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -140,11 +140,11 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
       });
 
       if (!response.ok) {
-        const body = await response.json().catch(() => ({ error: "Falha ao falar com a MAISA." }));
-        throw new Error(typeof body.error === "string" ? body.error : "Falha ao falar com a MAISA.");
+        const body = await response.json().catch(() => ({ error: "Falha ao falar com a LUMA." }));
+        throw new Error(typeof body.error === "string" ? body.error : "Falha ao falar com a LUMA.");
       }
 
-      if (!response.body) throw new Error("A MAISA não retornou conteúdo.");
+      if (!response.body) throw new Error("A LUMA não retornou conteúdo.");
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -172,7 +172,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
         }
 
         if (payload.type === "error") {
-          updateAssistant(assistantId, (current) => current || payload.message || "A MAISA encontrou um erro ao responder.");
+          updateAssistant(assistantId, (current) => current || payload.message || "A LUMA encontrou um erro ao responder.");
         }
       };
 
@@ -190,9 +190,9 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
 
       buffer += decoder.decode();
       if (buffer.trim()) handleFrame(buffer);
-      if (!receivedText) updateAssistant(assistantId, (current) => current || "A MAISA concluiu a execução sem retornar uma resposta de texto.");
+      if (!receivedText) updateAssistant(assistantId, (current) => current || "A LUMA concluiu a execução sem retornar uma resposta de texto.");
     } catch (error) {
-      updateAssistant(assistantId, () => error instanceof Error ? error.message : "Não foi possível conversar com a MAISA agora.");
+      updateAssistant(assistantId, () => error instanceof Error ? error.message : "Não foi possível conversar com a LUMA agora.");
     } finally {
       setSending(false);
     }
@@ -237,7 +237,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
     <section className="maisaWorkspace">
       <div className="maisaStatusBar">
         <div>
-          <span className="maisaLive"><span/>MAISA Local + ferramentas SIFCAS</span>
+          <span className="maisaLive"><span/>LUMA Local + ferramentas SIFCAS</span>
           <strong>Contexto real consultado com as permissões da sua conta</strong>
           <small>Perfil atual: {roleLabel}. Motor local do SIFCAS, sem provedor externo de IA.</small>
         </div>
@@ -252,7 +252,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
             <article className={"maisaMessage " + message.role} key={message.id}>
               <span className="maisaAvatar">{message.role === "assistant" ? <Bot size={18}/> : <UserRound size={18}/>}</span>
               <div>
-                <b>{message.role === "assistant" ? "MAISA" : "Você"}</b>
+                <b>{message.role === "assistant" ? "LUMA" : "Você"}</b>
                 <p>{message.content || (sending && message.role === "assistant" ? "Consultando o SIFCAS…" : "")}</p>
               </div>
             </article>
@@ -263,7 +263,7 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
         {toolsUsed.length > 0 && <div className="maisaTools"><span><Database size={14}/> Contexto usado</span><div>{toolsUsed.map((tool) => <span className="badge" key={tool}>{toolLabels[tool] ?? tool}</span>)}</div></div>}
 
         {proposal && <section className="maisaActionCard">
-          <div className="maisaActionHead"><span className="iconBox"><TicketPlus size={18}/></span><div><b>Confirmar abertura de solicitação</b><small>A MAISA preparou a ação, mas nada será gravado sem sua confirmação.</small></div></div>
+          <div className="maisaActionHead"><span className="iconBox"><TicketPlus size={18}/></span><div><b>Confirmar abertura de solicitação</b><small>A LUMA preparou a ação, mas nada será gravado sem sua confirmação.</small></div></div>
           <dl><div><dt>Categoria</dt><dd>{categoryLabels[proposal.category]}</dd></div><div><dt>Prioridade</dt><dd>{priorityLabels[proposal.priority]}</dd></div><div className="wide"><dt>Título</dt><dd>{proposal.title}</dd></div></dl>
           <div className="maisaActionButtons"><button type="button" className="button primary" onClick={() => void confirmServiceRequest()} disabled={actionBusy}><CheckCircle2 size={15}/>{actionBusy ? "Abrindo…" : "Confirmar e abrir"}</button><button type="button" className="button soft" onClick={() => setProposal(null)} disabled={actionBusy}><X size={15}/>Cancelar</button></div>
         </section>}
@@ -274,12 +274,12 @@ export function MaisaChat({ firstName, roleLabel }: { firstName: string; roleLab
         </div>}
 
         <form className="maisaComposer" onSubmit={submit}>
-          <textarea aria-label="Mensagem para a MAISA" placeholder="Pergunte sobre notas, agenda, editais, documentos, solicitações..." value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); void sendMessage(); } }} maxLength={6000} rows={3} disabled={sending || actionBusy}/>
+          <textarea aria-label="Mensagem para a LUMA" placeholder="Pergunte sobre notas, agenda, editais, documentos, solicitações..." value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); void sendMessage(); } }} maxLength={6000} rows={3} disabled={sending || actionBusy}/>
           <div className="maisaComposerFooter"><span><ShieldCheck size={14}/>Consultas respeitam sua sessão e RLS do SIFCAS.</span><button className="button primary maisaSend" type="submit" disabled={sending || actionBusy || !input.trim()}><Send size={16}/>{sending ? "Consultando…" : "Enviar"}</button></div>
         </form>
       </div>
 
-      <p className="maisaPrivacy">A MAISA processa a pergunta dentro do SIFCAS usando regras, busca e ferramentas internas. Ações que modificam dados continuam exigindo confirmação explícita.</p>
+      <p className="maisaPrivacy">A LUMA processa a pergunta dentro do SIFCAS usando regras, busca e ferramentas internas. Ações que modificam dados continuam exigindo confirmação explícita.</p>
     </section>
   );
 }

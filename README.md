@@ -32,11 +32,11 @@ O SIFCAS possui autenticação SSR, perfis e papéis institucionais, validação
 - Busca global
 - Transparência agregada
 - Central de aplicativos
-- MAISA Local
+- LUMA Local
 
-## MAISA Local
+## LUMA Local
 
-A MAISA não depende de Dify ou de outro provedor externo de IA.
+A LUMA não depende de Dify ou de outro provedor externo de IA.
 
 O motor local usa:
 

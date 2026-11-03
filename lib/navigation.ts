@@ -7,7 +7,7 @@ import {
 export const navigation = [
   { group: "Principal", items: [
     { href: "/", label: "Início", icon: Home },
-    { href: "/maisa", label: "MAISA", icon: Bot },
+    { href: "/maisa", label: "LUMA", icon: Bot },
     { href: "/pendencias", label: "Pendências", icon: ListTodo },
     { href: "/estudante", label: "Estudante", icon: GraduationCap },
     { href: "/ensino", label: "Ensino", icon: BookOpen },

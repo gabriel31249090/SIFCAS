@@ -7,7 +7,7 @@ export function MobileNav({ signedIn }: { signedIn: boolean }) {
   const items = [
     { href: signedIn ? "/" : "/noticias", label: "Início", icon: LayoutDashboard },
     { href: "/aplicativos", label: "Aplicativos", icon: LayoutGrid },
-    { href: signedIn ? "/maisa" : "/login?next=/maisa", label: "MAISA", icon: Sparkles },
+    { href: signedIn ? "/maisa" : "/login?next=/maisa", label: "LUMA", icon: Sparkles },
     { href: "/buscar", label: "Buscar", icon: Search },
     { href: signedIn ? "/perfil" : "/login", label: signedIn ? "Perfil" : "Entrar", icon: UserRound },
   ];
