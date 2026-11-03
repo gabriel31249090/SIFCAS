@@ -4,6 +4,8 @@ Projeto referenciado pela aplicação: `xqhilujzacwebeexljaf`.
 
 ## Estado desta atualização
 
+Atualização de integração em 03/11/2026: o `/api/health` de produção respondeu HTTP 200, mas ambas as conexões administrativas disponíveis negaram acesso ao projeto correto. Não houve inventário remoto nem aplicação de migrations. Os contratos em `isolated/` são exclusivamente de homologação, com schema mínimo sintético para testes PostgreSQL/PGlite e rollback; não constituem baseline remota. Consulte `docs/integracoes-ifmt.md` antes de habilitar as flags.
+
 Nenhuma mudança de schema, política RLS, função, usuário ou dado foi aplicada ao Supabase. A conexão disponível não possuía permissão para inspecionar este projeto. O endpoint de saúde da aplicação não substitui auditoria de RLS nem teste dos fluxos autenticados.
 
 O diretório agora foi inicializado pelo Supabase CLI `2.117.0`. O arquivo `config.toml` descreve somente o ambiente local e não prova que o banco remoto usa a mesma versão de Postgres ou as mesmas opções de Auth. Antes de iniciar/resetar o banco local, confirme `server_version` no projeto real e ajuste `[db].major_version` se necessário.

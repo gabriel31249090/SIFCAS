@@ -130,6 +130,24 @@ export async function listPublishedPublications(kinds?: PublicationKind[], limit
   return (data ?? []).map(mapPublication);
 }
 
+/** Explicit public scope even when the visitor has a privileged authenticated session. */
+export async function listPublicNoticePublications() {
+  const supabase = await createClient();
+  const now = new Date().toISOString();
+  const { data, error } = await supabase.from("institutional_publications")
+    .select(PUBLICATION_COLUMNS)
+    .eq("kind", "edital")
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .lte("published_at", now)
+    .or(`expires_at.is.null,expires_at.gt.${now}`)
+    .order("published_at", { ascending: false })
+    .limit(200);
+  if (error) throw error;
+  // Defense in depth: never forward a restricted/draft row to the public catalog.
+  return (data ?? []).filter((row) => row.kind === "edital" && row.status === "published" && row.visibility === "public").map(mapPublication);
+}
+
 export async function listAgendaPublications() {
   const rows = await listPublishedPublications(["event", "notice", "edital"], 120);
   const now = Date.now();

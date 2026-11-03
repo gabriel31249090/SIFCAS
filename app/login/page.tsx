@@ -6,6 +6,7 @@ import { PasswordInput } from "@/components/PasswordInput";
 import { SubmitButton } from "@/components/SubmitButton";
 import { NEW_PASSWORD_MIN_LENGTH } from "@/lib/password-policy";
 import { safeInternalPath } from "@/lib/safe-path";
+import { supabaseConfigurationError } from "@/lib/supabase/config";
 import { login, signup } from "./actions";
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           <div className="authSmallBrand"><Brand /></div>
           <div className="authCardHeader"><span className="sectionEyebrow">SEU ESPAÇO NO CAMPUS</span><h2>Bom ter você aqui.</h2><p>Entre na sua conta para continuar.</p></div>
           {error && <div className="authAlert error" role="alert">{error}</div>}
+          {supabaseConfigurationError && <div className="authAlert" role="status">{supabaseConfigurationError}</div>}
           {message && <div className="authAlert success" role="status">{message}</div>}
           <form action={login} className="authForm">
             <input type="hidden" name="next" value={safeInternalPath(textParam(params.next))} />

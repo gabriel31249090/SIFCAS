@@ -1,3 +1,5 @@
+import { parseCsv } from "./csv.ts";
+
 export type InstitutionalImportRow = {
   external_id: string;
   full_name: string;
@@ -30,38 +32,6 @@ function normalize(value: string) {
     .replace(/\s+/g, "_");
 }
 
-function parseCsvLine(line: string, delimiter: string) {
-  const values: string[] = [];
-  let current = "";
-  let quoted = false;
-
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    if (char === '"') {
-      if (quoted && line[i + 1] === '"') {
-        current += '"';
-        i += 1;
-      } else {
-        quoted = !quoted;
-      }
-    } else if (char === delimiter && !quoted) {
-      values.push(current.trim());
-      current = "";
-    } else {
-      current += char;
-    }
-  }
-
-  values.push(current.trim());
-  return values;
-}
-
-function detectDelimiter(header: string) {
-  const semicolons = (header.match(/;/g) ?? []).length;
-  const commas = (header.match(/,/g) ?? []).length;
-  return semicolons >= commas ? ";" : ",";
-}
-
 function mapRole(raw: string): InstitutionalImportRow["proposed_role"] {
   const value = normalize(raw).replace(/_/g, " ");
   if (["aluno","estudante","discente","student"].includes(value)) return "student";
@@ -75,24 +45,21 @@ function mapRole(raw: string): InstitutionalImportRow["proposed_role"] {
 function mapSituation(raw: string): InstitutionalImportRow["situation"] {
   const value = normalize(raw).replace(/_/g, " ");
   if (!value) return "active";
-  if (["ativo","ativa","active","matriculado","matriculada","em exercicio","em_atividade"].includes(value)) return "active";
+  if (["ativo","ativa","active","matriculado","matriculada","em exercicio","em atividade"].includes(value)) return "active";
   if (["inativo","inativa","inactive","desligado","desligada","concluido","concluida","afastado","afastada"].includes(value)) return "inactive";
   return "";
 }
 
 export function parseInstitutionalCsv(text: string): InstitutionalImportRow[] {
-  const source = text.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-  const lines = source.split("\n").filter((line) => line.trim().length > 0);
-  if (lines.length < 2) throw new Error("O arquivo precisa ter cabeçalho e pelo menos uma linha de dados.");
-
-  const delimiter = detectDelimiter(lines[0]);
-  const rawHeaders = parseCsvLine(lines[0], delimiter);
+  const { headers: rawHeaders, rows } = parseCsv(text);
   const normalizedHeaders = rawHeaders.map(normalize);
   const indexByField = new Map<string, number>();
 
   for (const [field, aliases] of Object.entries(headerAliases)) {
     const accepted = new Set([field, ...aliases].map(normalize));
-    const index = normalizedHeaders.findIndex((header) => accepted.has(header));
+    const matching = normalizedHeaders.flatMap((header, index) => accepted.has(header) ? [index] : []);
+    if (matching.length > 1) throw new Error("Colunas ambíguas para " + field + ". Mantenha apenas uma.");
+    const index = matching[0] ?? -1;
     if (index >= 0) indexByField.set(field, index);
   }
 
@@ -107,18 +74,19 @@ export function parseInstitutionalCsv(text: string): InstitutionalImportRow[] {
     return index === undefined ? "" : (values[index] ?? "").trim();
   };
 
-  return lines.slice(1).map((line, offset) => {
-    const values = parseCsvLine(line, delimiter);
+  return rows.map(({ values, sourceRow }) => {
+    const proposedRole = mapRole(pick(values, "proposed_role"));
+    if (proposedRole === "admin") throw new Error(`Linha ${sourceRow}: importação não pode conceder Administrador Geral.`);
     return {
       external_id: pick(values, "external_id"),
       full_name: pick(values, "full_name"),
       institutional_email: pick(values, "institutional_email").toLowerCase(),
-      proposed_role: mapRole(pick(values, "proposed_role")),
+      proposed_role: proposedRole,
       campus: pick(values, "campus") || "Campus Cáceres",
       course_code: pick(values, "course_code").toUpperCase(),
       class_code: pick(values, "class_code").toUpperCase(),
       situation: mapSituation(pick(values, "situation")),
-      source_row: offset + 2,
+      source_row: sourceRow,
     };
   });
 }

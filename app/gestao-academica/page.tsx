@@ -3,6 +3,8 @@ import { BookOpenCheck, CalendarClock, GraduationCap, School, ShieldCheck, UserR
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
+import { ImportedAcademicSummary } from "@/components/ImportedAcademicSummary";
 import {
   assignTeacher,
   attachSubjectToClass,
@@ -80,6 +82,8 @@ export default async function AcademicManagementPage({ searchParams }: { searchP
       description="Painel central para montar a estrutura acadêmica do SIFCAS, atribuir papéis, vincular professores, matricular estudantes e definir horários."
       action={<span className="badge">{roleLabels[account.role]}</span>}
     />
+    <p><Link href="/importar-dados-academicos" className="button soft">Revisar importações acadêmicas</Link></p>
+    <ImportedAcademicSummary account={account}/>
 
     {params.message && <div className="infoBox successBox">{params.message}</div>}
     {params.error && <div className="infoBox errorBox">{params.error}</div>}

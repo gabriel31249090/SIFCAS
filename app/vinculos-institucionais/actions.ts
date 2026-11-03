@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAccount } from "@/lib/auth";
 import { parseInstitutionalCsv } from "@/lib/institutional-import";
+import { decodeCsvBytes } from "@/lib/csv";
 import { createClient } from "@/lib/supabase/server";
 
 function done(message: string, error = false): never {
@@ -32,7 +33,7 @@ export async function importInstitutionalCsv(formData: FormData) {
 
   let rows;
   try {
-    rows = parseInstitutionalCsv(await file.text());
+    rows = parseInstitutionalCsv(decodeCsvBytes(new Uint8Array(await file.arrayBuffer())));
   } catch (error) {
     done(error instanceof Error ? error.message : "Não foi possível interpretar o CSV.", true);
   }
@@ -48,7 +49,7 @@ export async function importInstitutionalCsv(formData: FormData) {
   });
 
   if (error || !batchId) {
-    console.error("institutional import failed", error?.message);
+    console.error("institutional import failed", error?.code);
     done("Não foi possível registrar o lote de vínculos.", true);
   }
 
@@ -64,7 +65,7 @@ export async function applyInstitutionalBatch(formData: FormData) {
   const { data, error } = await supabase.rpc("apply_institutional_batch", { p_batch_id: batchId });
 
   if (error) {
-    console.error("institutional batch apply failed", error.message);
+    console.error("institutional batch apply failed", error.code);
     done("Não foi possível aplicar o lote.", true);
   }
 
@@ -88,7 +89,7 @@ export async function resyncInstitutionalAcademics(formData: FormData) {
   const { data, error } = await supabase.rpc("resync_institutional_academics", { p_batch_id: batchId });
 
   if (error) {
-    console.error("institutional academic sync failed", error.message);
+    console.error("institutional academic sync failed", error.code);
     done("Não foi possível sincronizar os vínculos acadêmicos.", true);
   }
 

@@ -1,47 +1,63 @@
-import { getRequestTimestamp } from "@/lib/request-time";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarClock, FileCheck2, Pin, Send, TimerReset } from "lucide-react";
-import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
-import { getCurrentAccount } from "@/lib/auth";
-import { listPublishedPublications } from "@/lib/institutional";
+import { ExternalLink, Pin, Search } from "lucide-react";
+import { PageHeader, SectionTitle } from "@/components/UI";
+import { filterPublicNotices, noticeStatusLabels } from "@/lib/public-notices";
+import { publicNoticeSources } from "@/lib/public-notices-data";
+import { loadPublicNoticeCatalog } from "@/lib/public-notices-server";
+import { NoticeCards } from "./NoticeCards";
+import styles from "./editais.module.css";
+import { CampusResources } from "@/components/CampusResources";
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Editais e oportunidades",
-  description: "Editais, bolsas, seleções e chamadas institucionais publicados no SIFCAS.",
+  title: "Central de editais", description: "Editais do IFMT com fontes oficiais, revisão editorial, retificações e filtros por campus. Consulta pública no projeto SIFCAS.",
   alternates: { canonical: "/editais" },
 };
 
-function formatDate(value: string | null) {
-  if (!value) return "Sem prazo informado";
-  return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Cuiaba" }).format(new Date(value));
-}
+type Params = Record<string, string | string[] | undefined>;
+function scalar(value: Params[string], fallback = "") { return typeof value === "string" ? value.slice(0, 100) : fallback; }
 
-export default async function EditaisPage() {
-  const account = await getCurrentAccount();
-  const editais = await listPublishedPublications(["edital"], 100);
-  const now = getRequestTimestamp();
-  const open = editais.filter((row) => !row.endsAt || new Date(row.endsAt).getTime() >= now).length;
-  const endingSoon = editais.filter((row) => row.endsAt && new Date(row.endsAt).getTime() >= now && new Date(row.endsAt).getTime() <= now + 1000 * 60 * 60 * 24 * 14).length;
-  const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
+export default async function EditaisPage({ searchParams }: { searchParams: Promise<Params> }) {
+  const params = await searchParams;
+  const filters = { q: scalar(params.q), campus: scalar(params.campus, "Cáceres"), category: scalar(params.tema), year: scalar(params.ano), status: scalar(params.status) };
+  const catalog = await loadPublicNoticeCatalog();
+  const now = new Date();
+  const notices = filterPublicNotices(catalog.notices, filters, now);
+  const campuses = [...new Set(catalog.notices.map((notice) => notice.campus))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+  const categories = [...new Set(catalog.notices.map((notice) => notice.category))].sort();
+  const years = [...new Set(catalog.notices.map((notice) => notice.year))].sort((a, b) => b - a);
 
   return <>
-    <PageHeader title="Editais e Oportunidades" description="Editais, bolsas, processos seletivos e chamadas institucionais publicados no SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar edital</Link> : <span className="badge">Consulta pública</span>}/>
-
-    <div className="statGrid">
-      <StatCard label="Publicados" value={String(editais.length)} foot="Disponíveis na base" icon={Pin}/>
-      <StatCard label="Em andamento" value={String(open)} foot="Sem prazo vencido" icon={FileCheck2}/>
-      <StatCard label="Encerram em 14 dias" value={String(endingSoon)} foot="Acompanhe os prazos" icon={TimerReset}/>
-      <StatCard label="Atualização" value="Tempo real" foot="Painel institucional" icon={CalendarClock}/>
+    <PageHeader title="Central de editais" description="Consulte oportunidades, acompanhe retificações e abra os documentos na fonte oficial." action={<a className="button soft" href="https://ifmt.edu.br/painel-de-editais/" target="_blank" rel="noopener noreferrer"><ExternalLink size={16}/> Painel oficial do IFMT</a>}/>
+    <div className="infoBox" role="note">O SIFCAS é um projeto de portal e não se apresenta como portal oficial do IFMT. Este catálogo reúne metadados revisados; inscrições, requisitos e documentos válidos permanecem na origem.</div>
+    <div className={styles.sourceStatus} role="status">
+      <strong>Revisão editorial · sem coleta automática</strong>
+      <span>Fontes do catálogo conferidas em 03/11/2026. Prazos antigos não permanecem abertos automaticamente.</span>
+      {catalog.editorialStatus === "unavailable" && <span>A fonte editorial do banco está indisponível. O catálogo revisado abaixo foi preservado; confirme novas atualizações no painel oficial.</span>}
+      {catalog.editorialStatus === "unconfigured" && <span>A conexão editorial com o banco aguarda configuração. O catálogo público revisado continua disponível.</span>}
     </div>
 
-    <SectionTitle title="Editais publicados" description="Abra qualquer item para consultar texto, prazo, local e link oficial quando informado."/>
-    {editais.length === 0 ? <div className="emptyState card"><Pin size={28}/><h2>Nenhum edital publicado</h2><p>Os próximos editais aparecerão aqui assim que forem publicados pela instituição.</p></div> : <div className="publicationGrid">
-      {editais.map((row) => <Link className="card publicationCard" href={`/publicacoes/${row.id}`} key={row.id}>
-        <div className="publicationCardHead"><span className="badge">{row.referenceCode || "Edital"}</span><time>{formatDate(row.publishedAt)}</time></div>
-        <h2>{row.title}</h2><p>{row.summary || "Abra para consultar os detalhes deste edital."}</p>
-        <div className="publicationCardFoot"><span><CalendarClock size={15}/>{row.endsAt ? `Prazo: ${formatDate(row.endsAt)}` : "Prazo não informado"}</span><strong>Consultar →</strong></div>
-      </Link>)}
-    </div>}
+    <section className={`card panel ${styles.filters}`} aria-label="Filtrar editais">
+      <form method="get" action="/editais" className="formStack">
+        <div className={styles.filterGrid}>
+          <label>Texto ou número<input type="search" name="q" maxLength={100} defaultValue={filters.q} placeholder="Ex.: 39/2026, extensão"/></label>
+          <label>Campus<select name="campus" defaultValue={filters.campus}><option value="all">Todos os campi</option>{campuses.map((campus) => <option key={campus}>{campus}</option>)}</select></label>
+          <label>Tema<select name="tema" defaultValue={filters.category}><option value="">Todos os temas</option>{categories.map((category) => <option key={category}>{category}</option>)}</select></label>
+          <label>Ano<select name="ano" defaultValue={filters.year}><option value="">Todos os anos</option>{years.map((year) => <option key={year}>{year}</option>)}</select></label>
+          <label>Situação<select name="status" defaultValue={filters.status}><option value="">Todas as situações</option>{Object.entries(noticeStatusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+        </div>
+        <div className={styles.actions}><button className="button primary" type="submit"><Search size={16}/> Aplicar filtros</button><Link className="button soft" href="/editais">Limpar filtros</Link><Link className="button soft" href="/agenda-institucional">Agenda institucional</Link></div>
+      </form>
+    </section>
+
+    <SectionTitle title="Editais encontrados" description={`${notices.length} resultado(s). Cáceres é o campus selecionado por padrão; outros campi estão no filtro.`}/>
+    {notices.length ? <NoticeCards notices={notices} now={now.toISOString()}/> : <div className="emptyState card"><Pin size={28}/><h2>Nenhum edital para estes filtros</h2><p>Altere a busca ou consulte o painel oficial para novos editais.</p></div>}
+
+    <SectionTitle title="Fontes e revisão" description="A consulta dos links é pública. A automação depende de formato documentado, permissão e revisão da fonte."/>
+    <section className="card panel"><ul className={styles.sources}>{publicNoticeSources.map((source) => <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer"><strong>{source.title} ↗</strong></a><p>{source.mode}. {source.pending}</p></li>)}</ul>
+      <p>Cadastro editorial: responsáveis com acesso podem registrar editais públicos e seu link oficial no <Link href="/painel-institucional">Painel Institucional</Link>. Publicações restritas e rascunhos não entram nesta central.</p>
+    </section>
+    <CampusResources title="Seleções e apoio ao estudante" slugs={["editais-oficiais", "assistencia-estudantil", "estagio"]}/>
   </>;
 }

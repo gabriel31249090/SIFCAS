@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     const context = await buildMaisaContext(account, query, { conversationId, history });
     const answer = await answerWithLocalMaisa(account, query, context, history);
     const encoder = new TextEncoder();
-    const nextHistory = [...history, { role: "user", content: query, createdAt: new Date().toISOString() }, { role: "assistant", content: answer, createdAt: new Date().toISOString() }];
+    const nextHistory: typeof history = [...history, { role: "user", content: query, createdAt: new Date().toISOString() }, { role: "assistant", content: answer, createdAt: new Date().toISOString() }];
     storeConversationMemory(account.id, conversationId, nextHistory);
 
     const stream = new ReadableStream<Uint8Array>({

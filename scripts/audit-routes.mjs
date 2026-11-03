@@ -36,10 +36,13 @@ const routeRegexes = pageRoutes.map((route) => {
 
 const ignoredPrefixes = ["/_next", "/favicon.ico"];
 const missing = [];
+const publicFiles = new Set();
+walk("public", (file) => publicFiles.add("/" + path.relative("public", file).split(path.sep).join("/")));
 
 function routeExists(href) {
   const pathname = href.split(/[?#]/)[0] || "/";
   if (ignoredPrefixes.some((prefix) => pathname.startsWith(prefix))) return true;
+  if (publicFiles.has(pathname)) return true;
   return routeRegexes.some((regex) => regex.test(pathname));
 }
 

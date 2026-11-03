@@ -1,6 +1,7 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
+import { assertSupabaseConfigured, supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
 export function createClient() {
+  assertSupabaseConfigured();
   return createBrowserClient(supabaseUrl, supabasePublishableKey);
 }

@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://xqhilujzacwebeexljaf.supabase.co";
+const supabaseOrigin = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "http://127.0.0.1:54321").origin;
 const isDevelopment = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",

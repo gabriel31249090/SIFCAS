@@ -5,6 +5,7 @@ import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getStudentAcademicContext } from "@/lib/academic";
 import { getStudentReport } from "@/lib/diary";
+import { ImportedAcademicSummary } from "@/components/ImportedAcademicSummary";
 
 function formatMetric(value: number | null, suffix = "") {
   return value === null ? "—" : `${value.toLocaleString("pt-BR", { maximumFractionDigits: 1, minimumFractionDigits: 1 })}${suffix}`;
@@ -19,6 +20,7 @@ export default async function BoletimPage() {
     return <>
       <PageHeader title="Boletim e Frequência" description="Notas e presença são exibidas a partir da sua matrícula real no SIFCAS."/>
       <section className="card panel"><div className="infoBox">Sua conta ainda não possui matrícula ativa vinculada.</div></section>
+      <ImportedAcademicSummary account={account} kinds={["assessment", "grade", "attendance"]}/>
     </>;
   }
 
@@ -57,5 +59,6 @@ export default async function BoletimPage() {
     <div className="infoBox" style={{ marginTop: 18 }}>
       Enquanto uma disciplina não tiver notas ou chamadas registradas, o SIFCAS mostra “—” em vez de criar valores fictícios.
     </div>
+    <ImportedAcademicSummary account={account} kinds={["assessment", "grade", "attendance"]}/>
   </>;
 }

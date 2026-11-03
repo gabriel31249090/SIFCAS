@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://sifcas.vercel.app"),
   applicationName: "SIFCAS",
   title: { default: "SIFCAS — Campus Cáceres", template: "%s | SIFCAS" },
-  description: "Sistema Integrado Federal de Campus, Administração e Serviços do Campus Cáceres.",
+  description: "Projeto SIFCAS: organização da vida acadêmica e guias públicos do Campus Cáceres. Portal independente, sem caráter oficial do IFMT.",
   category: "education",
   creator: "SIFCAS",
   publisher: "SIFCAS",

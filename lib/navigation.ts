@@ -18,6 +18,7 @@ export const navigation = [
     { href: "/extensao", label: "Extensão", icon: Sprout },
     { href: "/campus", label: "Campus Cáceres", icon: School },
     { href: "/agenda-aluno", label: "Agenda do Aluno", icon: CalendarRange },
+    { href: "/importar-dados-academicos", label: "Importar dados acadêmicos", icon: Files },
     { href: "/gestao-academica", label: "Gestão Acadêmica", icon: Settings2 },
   ]},
   { group: "Serviços", items: [

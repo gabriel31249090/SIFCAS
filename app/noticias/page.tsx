@@ -4,6 +4,7 @@ import { CalendarDays, Megaphone, Newspaper, Send, Sparkles } from "lucide-react
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listPublishedPublications, publicationKindLabels } from "@/lib/institutional";
+import { CampusResources } from "@/components/CampusResources";
 
 export const metadata: Metadata = {
   title: "Notícias e eventos",
@@ -18,7 +19,9 @@ function formatDate(value: string | null) {
 
 export default async function NewsPage() {
   const account = await getCurrentAccount();
-  const publications = await listPublishedPublications(["news", "notice", "event"], 100);
+  const publicationResult = await Promise.allSettled([listPublishedPublications(["news", "notice", "event"], 100)]);
+  const unavailable = publicationResult[0].status === "rejected";
+  const publications = publicationResult[0].status === "fulfilled" ? publicationResult[0].value : [];
   const news = publications.filter((row) => row.kind === "news").length;
   const notices = publications.filter((row) => row.kind === "notice").length;
   const events = publications.filter((row) => row.kind === "event").length;
@@ -35,12 +38,13 @@ export default async function NewsPage() {
     </div>
 
     <SectionTitle title="Publicações recentes" description="Conteúdo oficial disponível para seu perfil ou para consulta pública."/>
-    {publications.length === 0 ? <div className="emptyState card"><Newspaper size={28}/><h2>Nenhuma publicação</h2><p>Quando a instituição publicar uma notícia, comunicado ou evento, ele aparecerá aqui.</p></div> : <div className="publicationGrid">
+    {unavailable ? <div className="infoBox" role="status">A fonte de publicações está indisponível ou sem configuração. Consulte o portal oficial e os guias abaixo.</div> : publications.length === 0 ? <div className="emptyState card"><Newspaper size={28}/><h2>Nenhuma publicação</h2><p>Quando a instituição publicar uma notícia, comunicado ou evento, ele aparecerá aqui.</p></div> : <div className="publicationGrid">
       {publications.map((row) => <Link className="card publicationCard" href={`/publicacoes/${row.id}`} key={row.id}>
         <div className="publicationCardHead"><span className="badge">{publicationKindLabels[row.kind]}</span><time>{formatDate(row.publishedAt ?? row.startsAt)}</time></div>
         <h2>{row.title}</h2><p>{row.summary || "Abra a publicação para consultar o conteúdo completo."}</p>
         <div className="publicationCardFoot"><span>{row.location || (row.kind === "event" ? "Local não informado" : "SIFCAS")}</span><strong>Abrir →</strong></div>
       </Link>)}
     </div>}
+    <CampusResources title="Acompanhe o IFMT Cáceres" slugs={["noticias-campus", "editais-oficiais", "calendario-academico"]}/>
   </>;
 }

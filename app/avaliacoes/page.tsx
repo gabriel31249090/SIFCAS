@@ -4,6 +4,7 @@ import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getStudentAssessments } from "@/lib/experience";
 import { redirect } from "next/navigation";
+import { ImportedAcademicSummary } from "@/components/ImportedAcademicSummary";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium",timeZone:"America/Cuiaba"}).format(new Date(value + "T12:00:00-04:00"));
@@ -43,5 +44,6 @@ export default async function AssessmentsPage() {
         {past.slice().reverse().map((item) => <tr key={item.id}><td>{formatDate(item.assessmentDate)}</td><td>{item.subjectName}</td><td>{item.title}</td><td>{item.maxScore.toLocaleString("pt-BR")}</td><td>{item.weight.toLocaleString("pt-BR")}</td></tr>)}
       </tbody></table></div>}
     </>}
+    <ImportedAcademicSummary account={account} kinds={["assessment", "grade"]}/>
   </>;
 }

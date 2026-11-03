@@ -1,0 +1,13 @@
+﻿"kind";"external_id";"diary_id";"period";"student_id";"title";"date";"starts_at";"ends_at";"content";"session_id";"assessment_id";"status";"score";"max_score";"weight";"weekday";"room";"url"
+"diary";"000123";"000123";"2026/2";;"Matemática — turma sintética";;;;;;;;;;;;;
+"enrollment";"E001";"000123";"2026/2";"000001";;;;;;;;"active";;;;;;
+"enrollment";"E002";"000123";"2026/2";"000002";;;;;;;;"active";;;;;;
+"session";"A001";"000123";"2026/2";;;"03/11/2026";"08:00";"09:00";"Matrizes; operações
+Exercícios sintéticos";;;;;;;;;
+"attendance";"F001";"000123";"2026/2";"000001";;;;;;"A001";;"present";;;;;;
+"attendance";"F002";"000123";"2026/2";"000002";;;;;;"A001";;"absent";;;;;;
+"assessment";"AV001";"000123";"2026/2";;"Avaliação sintética";"2026-11-06";;;;;;;;"10";"1";;;
+"grade";"N001";"000123";"2026/2";"000001";;;;;;;"AV001";"graded";"0";;;;;
+"grade";"N002";"000123";"2026/2";"000002";;;;;;;"AV001";"missing";;;;;;
+"schedule";"H001";"000123";"2026/2";;;;"08:00";"09:00";;;;;;;;"2";"Laboratório sintético";
+"event";"EV001";"000123";"2026/2";;"Entrega de exercício";"2026-11-10";;;"Referência de atividade sintética";;;;;;;;;

@@ -2,6 +2,8 @@ import { PageHeader } from "@/components/UI";
 import { requireAccount } from "@/lib/auth";
 import { getAgendaContext } from "@/lib/academic";
 import { publishAgendaEntry } from "./actions";
+import { ImportedAcademicSummary } from "@/components/ImportedAcademicSummary";
+import { PersonalCalendar } from "@/components/PersonalCalendar";
 
 const typeLabels: Record<string, string> = {
   class: "Aula",
@@ -36,7 +38,7 @@ export default async function AgendaAluno({ searchParams }: { searchParams: Prom
     <PageHeader
       title="Agenda do Aluno e da Turma"
       description="Planejamento real das turmas: aulas, provas, trabalhos, atividades, materiais e avisos publicados por professores vinculados."
-      action={<span className="badge">Dados em tempo real</span>}
+      action={<span className="badge">Planejamento local do SIFCAS</span>}
     />
 
     {params.message && <div className="infoBox" style={{ marginBottom: 14 }}>{params.message}</div>}
@@ -104,5 +106,7 @@ export default async function AgendaAluno({ searchParams }: { searchParams: Prom
         )}
       </aside>
     </div>
+    <ImportedAcademicSummary account={account} kinds={["session", "assessment", "schedule", "event"]}/>
+    <PersonalCalendar account={account}/>
   </>;
 }

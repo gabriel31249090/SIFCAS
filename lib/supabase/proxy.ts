@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
+import { isSupabaseConfigured, supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
 type AppRole = "student" | "teacher" | "staff" | "manager" | "admin";
 
@@ -8,6 +8,7 @@ const PUBLIC_PREFIXES = [
   "/login",
   "/auth",
   "/api/health",
+  "/modelo-importacao-academica.csv",
   "/api/anexos",
   "/manifest.webmanifest",
   "/opengraph-image",
@@ -50,6 +51,13 @@ function redirectWithSession(request: NextRequest, response: NextResponse, pathn
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+  const pathname = request.nextUrl.pathname;
+  const cookiePrefix = `sb-${new URL(supabaseUrl).hostname.split(".")[0]}-auth-token`;
+  const hasSession = request.cookies.getAll().some(({ name }) => name === cookiePrefix || name.startsWith(`${cookiePrefix}.`));
+  if (!isSupabaseConfigured || !hasSession) {
+    if (isPublic(pathname)) return response;
+    return redirectWithSession(request, response, "/login", { next: `${pathname}${request.nextUrl.search}` });
+  }
 
   const supabase = createServerClient(supabaseUrl, supabasePublishableKey, {
     cookies: {
@@ -67,7 +75,6 @@ export async function updateSession(request: NextRequest) {
 
   const { data: claimsData } = await supabase.auth.getClaims();
   const claims = claimsData?.claims;
-  const pathname = request.nextUrl.pathname;
 
   if (!claims?.sub) {
     if (isPublic(pathname)) return response;

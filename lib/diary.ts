@@ -1,5 +1,6 @@
 import type { CurrentAccount } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { DiaryValidationError, readDiaryIds, readDiaryPage, readDiaryRows, selectDiaryRecord } from "@/lib/diary-security";
 
 export type DiaryOption = {
   classSubjectId: string;
@@ -44,6 +45,10 @@ export type DiaryContext = {
   selectedAssessmentId: string | null;
   attendance: Record<string, string>;
   grades: Record<string, number>;
+  selectedSession: DiarySession | null;
+  selectedAssessment: DiaryAssessment | null;
+  sessionPagination: { page: number; pages: number; total: number };
+  assessmentPagination: { page: number; pages: number; total: number };
 };
 
 export type StudentReportRow = {
@@ -68,51 +73,55 @@ function unique(values: string[]) {
   return [...new Set(values.filter(Boolean))];
 }
 
+function emptyDiary(options: DiaryOption[] = []): DiaryContext {
+  return {
+    options, selected: null, students: [], sessions: [], assessments: [],
+    selectedSessionId: null, selectedAssessmentId: null, attendance: {}, grades: {},
+    selectedSession: null, selectedAssessment: null,
+    sessionPagination: { page: 1, pages: 1, total: 0 },
+    assessmentPagination: { page: 1, pages: 1, total: 0 },
+  };
+}
+
 export async function getDiaryContext(
   account: CurrentAccount,
   requestedClassSubjectId?: string,
   requestedSessionId?: string,
   requestedAssessmentId?: string,
+  pagination: { sessionsPage?: unknown; assessmentsPage?: unknown } = {},
 ): Promise<DiaryContext> {
   const supabase = await createClient();
   let classSubjectIds: string[] = [];
 
   if (account.role === "teacher") {
-    const { data, error } = await supabase
+    const data = await readDiaryRows((from, to) => supabase
       .from("teaching_assignments")
       .select("class_subject_id")
-      .eq("teacher_user_id", account.id);
-    if (error) throw error;
+      .eq("teacher_user_id", account.id).order("id").range(from, to));
     classSubjectIds = (data ?? []).map((row) => row.class_subject_id);
   } else if (["manager", "admin"].includes(account.role)) {
-    const { data, error } = await supabase.from("class_subjects").select("id").eq("active", true);
-    if (error) throw error;
+    const data = await readDiaryRows((from, to) => supabase.from("class_subjects").select("id").eq("active", true).order("id").range(from, to));
     classSubjectIds = (data ?? []).map((row) => row.id);
   }
 
   classSubjectIds = unique(classSubjectIds);
   if (!classSubjectIds.length) {
-    return {
-      options: [], selected: null, students: [], sessions: [], assessments: [],
-      selectedSessionId: null, selectedAssessmentId: null, attendance: {}, grades: {},
-    };
+    if (requestedClassSubjectId) throw new DiaryValidationError("Você não possui permissão para essa turma.");
+    return emptyDiary();
   }
 
-  const { data: classSubjects, error: classSubjectError } = await supabase
+  const classSubjects = await readDiaryIds(classSubjectIds, (ids, from, to) => supabase
     .from("class_subjects")
     .select("id,class_id,subject_id")
-    .in("id", classSubjectIds)
-    .eq("active", true);
-  if (classSubjectError) throw classSubjectError;
+    .in("id", ids)
+    .eq("active", true).order("id").range(from, to));
 
   const classIds = unique((classSubjects ?? []).map((row) => row.class_id));
   const subjectIds = unique((classSubjects ?? []).map((row) => row.subject_id));
-  const [{ data: classes, error: classesError }, { data: subjects, error: subjectsError }] = await Promise.all([
-    supabase.from("classes").select("id,name,code").in("id", classIds),
-    supabase.from("subjects").select("id,name,code").in("id", subjectIds),
+  const [classes, subjects] = await Promise.all([
+    readDiaryIds(classIds, (ids, from, to) => supabase.from("classes").select("id,name,code").in("id", ids).order("id").range(from, to)),
+    readDiaryIds(subjectIds, (ids, from, to) => supabase.from("subjects").select("id,name,code").in("id", ids).order("id").range(from, to)),
   ]);
-  if (classesError) throw classesError;
-  if (subjectsError) throw subjectsError;
 
   const classMap = new Map((classes ?? []).map((row) => [row.id, row]));
   const subjectMap = new Map((subjects ?? []).map((row) => [row.id, row]));
@@ -130,44 +139,40 @@ export async function getDiaryContext(
     };
   }).sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
 
+  if (requestedClassSubjectId && !options.some((option) => option.classSubjectId === requestedClassSubjectId)) {
+    throw new DiaryValidationError("Você não possui permissão para essa turma.");
+  }
   const selected = options.find((option) => option.classSubjectId === requestedClassSubjectId) ?? options[0] ?? null;
   if (!selected) {
-    return {
-      options, selected: null, students: [], sessions: [], assessments: [],
-      selectedSessionId: null, selectedAssessmentId: null, attendance: {}, grades: {},
-    };
+    return emptyDiary(options);
   }
 
-  const [{ data: enrollments, error: enrollmentError }, { data: sessions, error: sessionsError }, { data: assessments, error: assessmentsError }] = await Promise.all([
-    supabase
+  const [enrollments, sessionsResult, assessmentsResult] = await Promise.all([
+    readDiaryRows((from, to) => supabase
       .from("enrollments")
       .select("id,student_user_id,enrollment_number")
       .eq("class_id", selected.classId)
       .eq("status", "active")
-      .order("enrolled_at"),
-    supabase
+      .order("enrolled_at").order("id").range(from, to)),
+    readDiaryPage((from, to) => supabase
       .from("class_sessions")
-      .select("id,session_date,starts_at,ends_at,content,notes")
+      .select("id,session_date,starts_at,ends_at,content,notes", { count: "exact" })
       .eq("class_subject_id", selected.classSubjectId)
       .order("session_date", { ascending: false })
-      .limit(24),
-    supabase
+      .order("id").range(from, to), pagination.sessionsPage),
+    readDiaryPage((from, to) => supabase
       .from("academic_assessments")
-      .select("id,title,description,assessment_date,max_score,weight")
+      .select("id,title,description,assessment_date,max_score,weight", { count: "exact" })
       .eq("class_subject_id", selected.classSubjectId)
       .order("assessment_date", { ascending: false })
-      .limit(24),
+      .order("id").range(from, to), pagination.assessmentsPage),
   ]);
-  if (enrollmentError) throw enrollmentError;
-  if (sessionsError) throw sessionsError;
-  if (assessmentsError) throw assessmentsError;
+  const sessions = sessionsResult.rows;
+  const assessments = assessmentsResult.rows;
 
   const studentIds = unique((enrollments ?? []).map((row) => row.student_user_id));
-  const profilesResult = studentIds.length
-    ? await supabase.from("profiles").select("id,full_name").in("id", studentIds)
-    : { data: [], error: null };
-  if (profilesResult.error) throw profilesResult.error;
-  const profileMap = new Map((profilesResult.data ?? []).map((row) => [row.id, row.full_name]));
+  const profiles = await readDiaryIds(studentIds, (ids, from, to) => supabase.from("profiles").select("id,full_name").in("id", ids).order("id").range(from, to));
+  const profileMap = new Map(profiles.map((row) => [row.id, row.full_name]));
 
   const students: DiaryStudent[] = (enrollments ?? []).map((row) => ({
     userId: row.student_user_id,
@@ -193,22 +198,26 @@ export async function getDiaryContext(
     weight: Number(row.weight),
   }));
 
-  const selectedSessionId = mappedSessions.some((row) => row.id === requestedSessionId)
-    ? requestedSessionId!
-    : mappedSessions[0]?.id ?? null;
-  const selectedAssessmentId = mappedAssessments.some((row) => row.id === requestedAssessmentId)
-    ? requestedAssessmentId!
-    : mappedAssessments[0]?.id ?? null;
+  const selectedSession = await selectDiaryRecord(mappedSessions, requestedSessionId, async (id) => {
+    const { data, error } = await supabase.from("class_sessions").select("id,session_date,starts_at,ends_at,content,notes")
+      .eq("id", id).eq("class_subject_id", selected.classSubjectId).maybeSingle();
+    if (error) throw error;
+    return data ? { id: data.id, sessionDate: data.session_date, startsAt: data.starts_at, endsAt: data.ends_at, content: data.content, notes: data.notes } : null;
+  });
+  const selectedAssessment = await selectDiaryRecord(mappedAssessments, requestedAssessmentId, async (id) => {
+    const { data, error } = await supabase.from("academic_assessments").select("id,title,description,assessment_date,max_score,weight")
+      .eq("id", id).eq("class_subject_id", selected.classSubjectId).maybeSingle();
+    if (error) throw error;
+    return data ? { id: data.id, title: data.title, description: data.description, assessmentDate: data.assessment_date, maxScore: Number(data.max_score), weight: Number(data.weight) } : null;
+  });
+  const selectedSessionId = selectedSession?.id ?? null;
+  const selectedAssessmentId = selectedAssessment?.id ?? null;
 
-  const attendanceResult = selectedSessionId
-    ? await supabase.from("attendance_records").select("student_user_id,status").eq("session_id", selectedSessionId)
-    : { data: [], error: null };
-  if (attendanceResult.error) throw attendanceResult.error;
+  const attendance = selectedSessionId
+    ? await readDiaryRows((from, to) => supabase.from("attendance_records").select("student_user_id,status").eq("session_id", selectedSessionId).order("student_user_id").range(from, to)) : [];
 
-  const gradesResult = selectedAssessmentId
-    ? await supabase.from("grades").select("student_user_id,score").eq("assessment_id", selectedAssessmentId)
-    : { data: [], error: null };
-  if (gradesResult.error) throw gradesResult.error;
+  const grades = selectedAssessmentId
+    ? await readDiaryRows((from, to) => supabase.from("grades").select("student_user_id,score").eq("assessment_id", selectedAssessmentId).order("student_user_id").range(from, to)) : [];
 
   return {
     options,
@@ -218,19 +227,22 @@ export async function getDiaryContext(
     assessments: mappedAssessments,
     selectedSessionId,
     selectedAssessmentId,
-    attendance: Object.fromEntries((attendanceResult.data ?? []).map((row) => [row.student_user_id, row.status])),
-    grades: Object.fromEntries((gradesResult.data ?? []).map((row) => [row.student_user_id, Number(row.score)])),
+    selectedSession,
+    selectedAssessment,
+    sessionPagination: { page: sessionsResult.page, pages: sessionsResult.pages, total: sessionsResult.total },
+    assessmentPagination: { page: assessmentsResult.page, pages: assessmentsResult.pages, total: assessmentsResult.total },
+    attendance: Object.fromEntries(attendance.map((row) => [row.student_user_id, row.status])),
+    grades: Object.fromEntries(grades.filter((row) => row.score !== null).map((row) => [row.student_user_id, Number(row.score)])),
   };
 }
 
 export async function getStudentReport(userId: string, classId: string): Promise<StudentReport> {
   const supabase = await createClient();
-  const { data: classSubjects, error: classSubjectsError } = await supabase
+  const classSubjects = await readDiaryRows((from, to) => supabase
     .from("class_subjects")
     .select("id,subject_id")
     .eq("class_id", classId)
-    .eq("active", true);
-  if (classSubjectsError) throw classSubjectsError;
+    .eq("active", true).order("id").range(from, to));
 
   const classSubjectIds = unique((classSubjects ?? []).map((row) => row.id));
   const subjectIds = unique((classSubjects ?? []).map((row) => row.subject_id));
@@ -238,31 +250,22 @@ export async function getStudentReport(userId: string, classId: string): Promise
     return { rows: [], overallAverage10: null, overallFrequency: null, totalAbsences: 0 };
   }
 
-  const [{ data: subjects, error: subjectsError }, { data: assessments, error: assessmentsError }, { data: sessions, error: sessionsError }] = await Promise.all([
-    supabase.from("subjects").select("id,name,code").in("id", subjectIds),
-    supabase.from("academic_assessments").select("id,class_subject_id,max_score,weight").in("class_subject_id", classSubjectIds),
-    supabase.from("class_sessions").select("id,class_subject_id").in("class_subject_id", classSubjectIds),
+  const [subjects, assessments, sessions] = await Promise.all([
+    readDiaryIds(subjectIds, (ids, from, to) => supabase.from("subjects").select("id,name,code").in("id", ids).order("id").range(from, to)),
+    readDiaryIds(classSubjectIds, (ids, from, to) => supabase.from("academic_assessments").select("id,class_subject_id,max_score,weight").in("class_subject_id", ids).order("id").range(from, to)),
+    readDiaryIds(classSubjectIds, (ids, from, to) => supabase.from("class_sessions").select("id,class_subject_id").in("class_subject_id", ids).order("id").range(from, to)),
   ]);
-  if (subjectsError) throw subjectsError;
-  if (assessmentsError) throw assessmentsError;
-  if (sessionsError) throw sessionsError;
 
   const assessmentIds = (assessments ?? []).map((row) => row.id);
   const sessionIds = (sessions ?? []).map((row) => row.id);
-  const gradesResult = assessmentIds.length
-    ? await supabase.from("grades").select("assessment_id,score").eq("student_user_id", userId).in("assessment_id", assessmentIds)
-    : { data: [], error: null };
-  const attendanceResult = sessionIds.length
-    ? await supabase.from("attendance_records").select("session_id,status").eq("student_user_id", userId).in("session_id", sessionIds)
-    : { data: [], error: null };
-  if (gradesResult.error) throw gradesResult.error;
-  if (attendanceResult.error) throw attendanceResult.error;
+  const [grades, attendance] = await Promise.all([
+    readDiaryIds(assessmentIds, (ids, from, to) => supabase.from("grades").select("assessment_id,score").eq("student_user_id", userId).in("assessment_id", ids).order("assessment_id").range(from, to)),
+    readDiaryIds(sessionIds, (ids, from, to) => supabase.from("attendance_records").select("session_id,status").eq("student_user_id", userId).in("session_id", ids).order("session_id").range(from, to)),
+  ]);
 
   const subjectMap = new Map((subjects ?? []).map((row) => [row.id, row]));
   const subjectIdByClassSubject = new Map((classSubjects ?? []).map((row) => [row.id, row.subject_id]));
-  const assessmentMap = new Map((assessments ?? []).map((row) => [row.id, row]));
-  const sessionMap = new Map((sessions ?? []).map((row) => [row.id, row]));
-  const gradeMap = new Map((gradesResult.data ?? []).map((row) => [row.assessment_id, Number(row.score)]));
+  const gradeMap = new Map(grades.filter((row) => row.score !== null).map((row) => [row.assessment_id, Number(row.score)]));
 
   const rows: StudentReportRow[] = classSubjectIds.map((classSubjectId) => {
     const subjectId = subjectIdByClassSubject.get(classSubjectId) ?? "";
@@ -279,7 +282,7 @@ export async function getStudentReport(userId: string, classId: string): Promise
     });
 
     const subjectSessionIds = new Set((sessions ?? []).filter((row) => row.class_subject_id === classSubjectId).map((row) => row.id));
-    const subjectAttendance = (attendanceResult.data ?? []).filter((row) => subjectSessionIds.has(row.session_id));
+    const subjectAttendance = attendance.filter((row) => subjectSessionIds.has(row.session_id));
     const absences = subjectAttendance.filter((row) => row.status === "absent").length;
     const frequency = subjectAttendance.length
       ? ((subjectAttendance.length - absences) / subjectAttendance.length) * 100
