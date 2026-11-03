@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (error) {
-    console.error("MAISA service request insert failed", error.message);
+    console.error("LUMA service request insert failed", error.message);
     return Response.json({ error: "Não foi possível abrir a solicitação." }, { status: 500 });
   }
 

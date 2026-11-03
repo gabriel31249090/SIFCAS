@@ -6,18 +6,39 @@ import { answerWithLocalMaisa } from "@/lib/maisa/local";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
-const MAX_QUERY_LENGTH = 6000;
+const MAX_QUERY_LENGTH = 12000;
+const MAX_MEMORY_TURNS = 12;
+const MAX_MEMORY_CHARS_PER_TURN = 1800;
 
-type ChatRequestBody = { query?: unknown };
+const memoryStore = new Map<string, { updatedAt: number; messages: { role: "user" | "assistant"; content: string; createdAt: string }[] }>();
+
+type ChatRequestBody = { query?: unknown; conversationId?: unknown };
 
 function jsonError(message: string, status: number) {
   return Response.json({ error: message }, { status, headers: { "Cache-Control": "no-store" } });
 }
 
+function getConversationKey(accountId: string, conversationId: string) {
+  return `${accountId}:${conversationId}`;
+}
+
+function readConversationMemory(accountId: string, conversationId: string) {
+  if (!conversationId) return [] as { role: "user" | "assistant"; content: string; createdAt: string }[];
+  return memoryStore.get(getConversationKey(accountId, conversationId))?.messages ?? [];
+}
+
+function storeConversationMemory(accountId: string, conversationId: string, messages: { role: "user" | "assistant"; content: string; createdAt: string }[]) {
+  const trimmed = messages.slice(-MAX_MEMORY_TURNS).map((message) => ({
+    ...message,
+    content: message.content.slice(0, MAX_MEMORY_CHARS_PER_TURN),
+  }));
+  memoryStore.set(getConversationKey(accountId, conversationId), { updatedAt: Date.now(), messages: trimmed });
+}
+
 export async function POST(request: NextRequest) {
   const account = await getCurrentAccount();
-  if (!account) return jsonError("Faça login para conversar com a MAISA.", 401);
-  if (account.accountStatus !== "active") return jsonError("Seu vínculo precisa estar ativo para usar a MAISA.", 403);
+  if (!account) return jsonError("Faça login para conversar com a LUMA.", 401);
+  if (account.accountStatus !== "active") return jsonError("Seu vínculo precisa estar ativo para usar a LUMA.", 403);
 
   const origin = request.headers.get("origin");
   if (origin && origin !== request.nextUrl.origin) return jsonError("Origem da requisição não permitida.", 403);
@@ -29,21 +50,25 @@ export async function POST(request: NextRequest) {
     return jsonError("Corpo da requisição inválido.", 400);
   }
 
+  const conversationId = typeof body.conversationId === "string" && body.conversationId.trim() ? body.conversationId.trim() : crypto.randomUUID();
   const query = typeof body.query === "string" ? body.query.trim() : "";
-  if (!query) return jsonError("Digite uma mensagem para a MAISA.", 400);
+  if (!query) return jsonError("Digite uma mensagem para a LUMA.", 400);
   if (query.length > MAX_QUERY_LENGTH) return jsonError("A mensagem deve ter no máximo " + MAX_QUERY_LENGTH + " caracteres.", 400);
 
   try {
-    const context = await buildMaisaContext(account, query);
-    const answer = await answerWithLocalMaisa(account, query, context);
+    const history = readConversationMemory(account.id, conversationId);
+    const context = await buildMaisaContext(account, query, { conversationId, history });
+    const answer = await answerWithLocalMaisa(account, query, context, history);
     const encoder = new TextEncoder();
+    const nextHistory = [...history, { role: "user", content: query, createdAt: new Date().toISOString() }, { role: "assistant", content: answer, createdAt: new Date().toISOString() }];
+    storeConversationMemory(account.id, conversationId, nextHistory);
 
     const stream = new ReadableStream<Uint8Array>({
       start(controller) {
         const send = (payload: Record<string, unknown>) =>
           controller.enqueue(encoder.encode("data: " + JSON.stringify(payload) + "\n\n"));
 
-        send({ type: "context", tools: context.toolsUsed, engine: "sifcas-local-v1" });
+        send({ type: "context", tools: context.toolsUsed, engine: "sifcas-local-v1", conversationId });
 
         if (context.serviceRequestProposal) {
           send({
@@ -53,11 +78,11 @@ export async function POST(request: NextRequest) {
           });
         }
 
-        for (let offset = 0; offset < answer.length; offset += 180) {
-          send({ type: "delta", text: answer.slice(offset, offset + 180) });
+        for (let offset = 0; offset < answer.length; offset += 240) {
+          send({ type: "delta", text: answer.slice(offset, offset + 240) });
         }
 
-        send({ type: "done", engine: "sifcas-local-v1" });
+        send({ type: "done", engine: "sifcas-local-v1", conversationId });
         controller.close();
       },
     });
@@ -72,7 +97,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("MAISA local engine failed", error instanceof Error ? error.message : "unknown");
+    console.error("LUMA local engine failed", error instanceof Error ? error.message : "unknown");
     return jsonError("Não foi possível consultar os dados do SIFCAS para esta pergunta.", 502);
   }
 }

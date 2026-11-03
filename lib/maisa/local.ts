@@ -209,6 +209,7 @@ export async function answerWithLocalMaisa(
   account: CurrentAccount,
   rawQuery: string,
   context: MaisaContextResult,
+  history: Array<{ role: "user" | "assistant"; content: string; createdAt: string }> = [],
 ) {
   if (context.directAnswer) return context.directAnswer;
 
@@ -216,12 +217,19 @@ export async function answerWithLocalMaisa(
   const data = context.contextData;
   const sections: string[] = [];
 
+  if (history.length > 0) {
+    const memoryContext = history.slice(-4).map((entry) => `${entry.role === "user" ? "Usuário" : "LUMA"}: ${String(entry.content).replace(/\s+/g, " ").slice(0, 240)}`).join("\n");
+    if (hasAny(q, ["continuar", "continue", "mais sobre", "lembra", "lembrar", "contexto", "o que falamos"])) {
+      sections.push("Memória recente da conversa\n" + memoryContext);
+    }
+  }
+
   if (hasAny(q, ["oi", "ola", "bom dia", "boa tarde", "boa noite"]) && context.toolsUsed.length === 0) {
-    return "Olá, " + account.fullName.split(/\s+/)[0] + ". Eu sou a MAISA local do SIFCAS. Posso consultar seus dados permitidos, encontrar módulos e explicar procedimentos do sistema.";
+    return "Olá, " + account.fullName.split(/\s+/)[0] + ". Eu sou a LUMA local do SIFCAS. Posso consultar seus dados permitidos, encontrar módulos e explicar procedimentos do sistema.";
   }
 
   if (hasAny(q, ["o que voce faz", "o que você faz", "como voce pode ajudar", "como você pode ajudar", "suas funcoes", "suas funções"])) {
-    return "Eu sou a MAISA local do SIFCAS. Consigo consultar notas e frequência, agenda, editais, notícias, documentos, solicitações, processos, estágios, auxílios, TCC e projetos. Também encontro páginas do sistema, consulto a Base de Conhecimento e preparo uma solicitação para você confirmar.";
+    return "Eu sou a LUMA local do SIFCAS. Consigo consultar notas e frequência, agenda, editais, notícias, documentos, solicitações, processos, estágios, auxílios, TCC e projetos. Também encontro páginas do sistema, consulto a Base de Conhecimento e preparo uma solicitação para você confirmar.";
   }
 
   if (hasAny(q, ["quem sou eu", "meu perfil", "qual meu perfil", "qual meu papel"])) {
