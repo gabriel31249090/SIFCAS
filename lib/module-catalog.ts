@@ -7,7 +7,8 @@ export type CampusModule = { href: string; label: string; description: string; i
 export const moduleCatalog: readonly CampusModule[] = [
   { href: "/", label: "Visão geral", description: "Sua rotina, agenda e pendências em um só lugar.", icon: "home", group: "Meu espaço", navigation: true },
   { href: "/pendencias", label: "Minhas pendências", description: "Acompanhe prazos e itens que precisam de atenção.", icon: "tasks", group: "Meu espaço", navigation: true },
-  { href: "/maisa", label: "MAISA", description: "Encontre orientações e consulte seus dados com a assistente local.", icon: "assistant", group: "Meu espaço", navigation: true },
+  { href: "/maisa", label: "LUMA", description: "Encontre orientações e consulte seus dados com a assistente local.", icon: "assistant", group: "Meu espaço", navigation: true },
+  { href: "/portal-evolucao", label: "Portal em evolução", description: "Roadmap de melhorias do produto e da experiência do usuário.", icon: "activity", group: "Meu espaço", navigation: true },
   { href: "/notificacoes", label: "Notificações", description: "Leia os avisos enviados ao seu perfil.", icon: "bell", group: "Meu espaço" },
   { href: "/perfil", label: "Meu perfil", description: "Dados pessoais, vínculo e segurança da conta.", icon: "profile", group: "Meu espaço" },
   { href: "/atalhos", label: "Meus atalhos", description: "Organize seus acessos mais usados.", icon: "link", group: "Meu espaço" },
@@ -19,6 +20,7 @@ export const moduleCatalog: readonly CampusModule[] = [
   { href: "/avaliacoes", label: "Avaliações", description: "Provas, trabalhos e atividades avaliativas.", icon: "grades", group: "Vida acadêmica", roles: ["student"] },
   { href: "/agenda-aluno", label: "Agenda acadêmica", description: "Aulas, provas, trabalhos e avisos das turmas.", icon: "calendar", group: "Vida acadêmica", roles: ["student", "teacher", "manager", "admin"], navigation: true },
   { href: "/diario-professor", label: "Diário do professor", description: "Registre aulas, chamadas, avaliações e notas.", icon: "book", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
+  { href: "/minhas-turmas", label: "Minhas turmas", description: "Diários, períodos, cópias importadas e conflitos da sua turma.", icon: "student", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
   { href: "/importar-dados-academicos", label: "Importar dados acadêmicos", description: "Revise uma cópia de diário, matrículas e registros de um arquivo SIFCAS.", icon: "file", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
   { href: "/importar-calendario", label: "Importar calendário do AVA", description: "Importe eventos de um arquivo .ics na sua agenda privada.", icon: "calendar", group: "Vida acadêmica" },
   { href: "/ensino", label: "Ensino", description: "Organização e serviços acadêmicos.", icon: "book", group: "Vida acadêmica" },

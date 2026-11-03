@@ -201,10 +201,14 @@ export async function getHomeAttention(account: CurrentAccount): Promise<Attenti
       kind: "info",
     },
   ];
+  for (const [index, result] of [notifications, requests, reports].entries()) {
+    if (result.error || result.count === null) items[index] = { ...items[index], value: "—", detail: "Esta fonte está indisponível. Abra o módulo para tentar novamente.", kind: "warn" };
+  }
 
   if (account.role === "student") {
+    try {
     const { assessments } = await getStudentAssessments(account.id);
-    const today = new Date().toISOString().slice(0, 10);
+    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Cuiaba", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
     const upcoming = assessments.filter((assessment) => assessment.assessmentDate >= today);
     items.push({
       label: "Próximas avaliações",
@@ -213,6 +217,9 @@ export async function getHomeAttention(account: CurrentAccount): Promise<Attenti
       href: "/avaliacoes",
       kind: upcoming.length ? "warn" : "info",
     });
+    } catch {
+      items.push({ label: "Próximas avaliações", value: "—", detail: "Avaliações indisponíveis. Consulte também o sistema de origem.", href: "/avaliacoes", kind: "warn" });
+    }
   }
 
   return items;

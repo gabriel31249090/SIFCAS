@@ -133,6 +133,8 @@ Use apenas um banco vazio e descartável. Arquivos do Supabase Storage precisam 
 
 ### Importação acadêmica e catálogo público (homologação)
 
+A continuação adiciona homepage Frutiger Aero/Metro, painel **Hoje**, **Minhas turmas** e um percurso local completo com sessões sintéticas assinadas: `npm run dev:academic` (escolher perfil em `http://127.0.0.1:54331/`) e `npm run test:e2e:academic`. Não exige credenciais reais e não altera autenticação de produção. Veja [prévia visual e demonstração local](docs/frutiger-e-homologacao-local.md).
+
 A branch de integração entrega `/importar-dados-academicos` (CSV próprio do SIFCAS, cópia de leitura), `/importar-calendario` (agenda privada `.ics`) e `/editais` (catálogo editorial público revisado). Não há sincronização privada SUAP/AVA ativa nem mudança em produção. As telas de diário, boletim, horários, avaliações e agenda distinguem cópias importadas de lançamentos locais.
 
 Configure **URL e chave de um Supabase local/homologação** usando `.env.example`. O fallback de produção foi removido; sem configuração os guias e editais públicos continuam disponíveis e o banco é sinalizado como indisponível. As flags de importação ficam desativadas até homologar o contrato isolado.

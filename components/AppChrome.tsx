@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { Menu, X, Leaf, MapPin, ArrowUpRight } from "lucide-react";
 import type { AppRole } from "@/lib/auth";
 import { Sidebar } from "./Sidebar";
 import { MobileNav } from "./MobileNav";
+import { AeroIcon } from "./AeroIcon";
 
 export function AppChrome({ children, topbar, role }: { children: ReactNode; topbar: ReactNode; role: AppRole | null }) {
   const pathname = usePathname();
@@ -22,6 +24,10 @@ export function AppChrome({ children, topbar, role }: { children: ReactNode; top
       <button type="button" className="drawerClose" onClick={closeMenu} aria-label="Fechar menu"><X size={22} /></button>
       <Sidebar role={role} onNavigate={closeMenu} />
     </dialog>
-    <div className="appMain">{topbar}<main className="pageContainer" id="main-content" tabIndex={-1}>{children}</main><footer className="workspaceFooter"><span>SIFCAS</span><span>Campus Cáceres · Mato Grosso</span></footer><MobileNav signedIn={role !== null} /></div>
+    <div className="appMain">{topbar}<main className="pageContainer" id="main-content" tabIndex={-1}>{children}</main><footer className="workspaceFooter">
+      <div className="footerIdentity"><AeroIcon icon={Leaf} tone="leaf" size={18}/><div><strong>SIFCAS<span>.</span></strong><small>Um campus de possibilidades.</small></div></div>
+      <nav className="footerLinks" aria-label="Links do rodapé"><Link href="/campus">Guia do campus</Link><Link href="/editais">Editais</Link><a href="https://cas.ifmt.edu.br/" target="_blank" rel="noopener noreferrer">Portal oficial<ArrowUpRight size={13} aria-hidden="true"/></a></nav>
+      <div className="footerPlace"><span><MapPin size={13} aria-hidden="true"/>Cáceres · Mato Grosso</span><small>Projeto independente. Fontes oficiais sempre identificadas.</small></div>
+    </footer><MobileNav signedIn={role !== null} /></div>
   </div>;
 }

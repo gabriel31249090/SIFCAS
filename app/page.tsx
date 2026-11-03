@@ -1,60 +1,81 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CalendarDays, CheckCheck, GraduationCap, ListTodo, BookmarkPlus, Sparkles, Layers3, UserRound, CircleAlert } from "lucide-react";
-import { SectionTitle, StatCard } from "@/components/UI";
-import { ModuleIcon } from "@/components/ModuleIcon";
+import { ArrowRight, ArrowUpRight, Bell, BookOpen, CalendarDays, CircleAlert, Clock3, Leaf, ListTodo, RefreshCw, Sparkles, Sun, Upload, Waves } from "lucide-react";
+import { AeroIcon } from "@/components/AeroIcon";
+import { SectionTitle } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
-import { getAcademicOverview, getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
-import { getHomeAttention, listUserShortcuts } from "@/lib/experience";
+import { getHomeAttention, listUserShortcuts, type AttentionItem } from "@/lib/experience";
+import { getHomeToday } from "@/lib/home-today-server";
+import { getTeacherWorkspace } from "@/lib/teacher-workspace";
 import { getAccessibleModules } from "@/lib/module-catalog";
+import { formatNoticeDate } from "@/lib/public-notices";
+import { getRequestTimestamp } from "@/lib/request-time";
 import { safeInternalPath } from "@/lib/safe-path";
+import type { TodayItem } from "@/lib/home-today";
+import styles from "./home.module.css";
 
-function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(iso + "T12:00:00-04:00"));
+function shortDate(date: string) {
+  return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "UTC" }).format(new Date(`${date}T12:00:00Z`));
+}
+const eventIcons = { class: BookOpen, assessment: ListTodo, task: Clock3, event: CalendarDays, notice: Bell };
+function sourceDate(value: string) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) ? shortDate(value) : new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "America/Cuiaba" }).format(new Date(value));
+}
+
+function AgendaRows({ items, today }: { items: TodayItem[]; today: string }) {
+  return <div className={styles.agendaList}>{items.map((item) => <Link href={item.href} className={styles.agendaRow} key={`${item.sourceId}:${item.id}`}>
+    <div className={styles.agendaTime}><strong>{item.time ?? "Dia todo"}</strong><small>{item.date === today ? "hoje" : shortDate(item.date)}</small></div>
+    <span className={styles.agendaLine} aria-hidden="true"/>
+    <div className={styles.agendaContent}><strong>{item.title}</strong><small>{item.detail}</small><span className={styles.origin}><span/>{item.sourceLabel}{item.imported ? " · cópia" : ""}{item.time && !item.timeZone ? " · horário na origem" : ""}</span></div>
+    <AeroIcon icon={eventIcons[item.kind]} size={15} tone={item.kind === "notice" ? "amber" : item.kind === "class" ? "leaf" : "sky"}/>
+  </Link>)}</div>;
 }
 
 export default async function Home() {
   const account = await requireAccount();
-  const canManage = ["manager", "admin"].includes(account.role);
-  const [overview, agenda, academic, attention, shortcuts] = await Promise.all([
-    canManage ? getAcademicOverview() : Promise.resolve(null),
-    getAgendaContext(account),
-    account.role === "student" ? getStudentAcademicContext(account.id) : Promise.resolve(null),
-    getHomeAttention(account),
-    listUserShortcuts(account.id),
+  const teacher = ["teacher", "manager", "admin"].includes(account.role);
+  const [today, attentionResult, shortcutResult, workspaceResult] = await Promise.all([
+    getHomeToday(account), Promise.allSettled([getHomeAttention(account)]), Promise.allSettled([listUserShortcuts(account.id)]),
+    teacher ? getTeacherWorkspace(account) : Promise.resolve(null),
   ]);
+  const attention: AttentionItem[] = attentionResult[0].status === "fulfilled" ? attentionResult[0].value : [{ label: "Sua central de atenção", value: "—", detail: "Não foi possível consultar esta fonte. Abra a central para tentar novamente.", href: "/pendencias", kind: "warn" }];
+  const shortcuts = shortcutResult[0].status === "fulfilled" ? shortcutResult[0].value : [];
+  const unknownAttention = attention.some((entry) => entry.value === "—");
+  const alerts = attention.filter((entry) => Number(entry.value) > 0);
   const modules = getAccessibleModules(account.role);
-  const preferred = account.role === "student"
-    ? ["/boletim", "/agenda-aluno", "/documentos-academicos", "/solicitacoes", "/oportunidades", "/editais"]
-    : account.role === "teacher"
-      ? ["/diario-professor", "/agenda-aluno", "/solicitacoes", "/documentos", "/projetos", "/editais"]
-      : canManage
-        ? ["/gestao-academica", "/painel-institucional", "/usuarios", "/vinculos-institucionais", "/monitoramento", "/solicitacoes"]
-        : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/agenda-institucional"];
-  const quickLinks = preferred.flatMap((href) => modules.find((item) => item.href === href) ?? []);
-  const date = new Intl.DateTimeFormat("pt-BR", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Cuiaba" }).format(new Date());
-  const nextEntry = agenda.entries[0];
+  const preferred = account.role === "student" ? ["/boletim", "/agenda-aluno", "/disciplinas", "/documentos-academicos", "/solicitacoes", "/editais"]
+    : teacher ? ["/minhas-turmas", "/importar-dados-academicos", "/diario-professor", "/agenda-aluno", "/solicitacoes", "/editais"]
+      : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/editais"];
+  const quickLinks = preferred.flatMap((href) => modules.find((module) => module.href === href) ?? []);
+  const date = new Intl.DateTimeFormat("pt-BR", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Cuiaba" }).format(new Date(getRequestTimestamp()));
+  const upcoming = today.items.filter((item) => item.date !== today.today);
+  const pendingDates = today.items.filter((item) => ["task", "assessment", "notice"].includes(item.kind));
+  const cardCount = teacher && workspaceResult && !["unavailable", "forbidden"].includes(workspaceResult.status) ? String(workspaceResult.cards.length) : "—";
 
-  return <>
-    <div className="dashboardHeading"><div><span className="sectionEyebrow">{account.campus}</span><h1>Olá, {account.fullName.split(" ")[0]}<span className="greetingDot">.</span></h1><p>Vamos cuidar da sua rotina no campus?</p></div><div className="dashboardDate"><CalendarDays size={19} /><span>{date}</span></div></div>
-    <div className="dashboardLead">
-      <section className="workspaceWelcome"><div><span className="welcomeKicker">SEU PRÓXIMO PASSO</span><h2>Tudo em dia começa<br />por aqui.</h2><p>Confira seus prazos, acompanhe solicitações e encontre os serviços de que precisa.</p><Link className="button light" href="/pendencias">Ver minhas pendências<ArrowRight size={18} /></Link></div><div className="welcomeEmblem" aria-hidden="true"><CheckCheck size={72} strokeWidth={1.25} /></div></section>
-      <section className="card nextAppointment"><div className="appointmentTitle"><span className="iconBox"><CalendarDays size={22} /></span><span>Na sua agenda</span></div>{nextEntry ? <><span className="appointmentDate">{formatDate(nextEntry.entryDate)}</span><h2>{nextEntry.title}</h2><p>{nextEntry.subjectName}{nextEntry.startsAt ? " · " + nextEntry.startsAt.slice(0, 5) : ""}</p><small>{nextEntry.className}</small></> : <><span className="appointmentDate quiet">Um espaço para planejar.</span><h2>Sem atividades publicadas</h2><p>Quando houver um novo compromisso vinculado a você, ele aparecerá aqui.</p></>}<Link href={account.role === "staff" ? "/agenda-institucional" : "/agenda-aluno"}>Abrir agenda<ArrowUpRight size={17} /></Link></section>
+  return <div className={styles.home}>
+    <div className={styles.heading}><div><span className={styles.eyebrow}><span/> SEU ESPAÇO NO CAMPUS</span><h1>Olá, {account.fullName.split(" ")[0]}<span>!</span></h1><p>Um novo dia para aprender, criar e fazer acontecer.</p></div><div className={styles.date}><Sun size={20} aria-hidden="true"/><span>{date}<small>Campus Cáceres · America/Cuiaba</small></span></div></div>
+    <section className={styles.hero} aria-labelledby="home-welcome">
+      <div className={styles.heroContent}><span className={styles.heroLabel}><Leaf size={13} aria-hidden="true"/> CONECTE-SE AO QUE IMPORTA</span><h2 id="home-welcome">Seu campus.<br/>Um mundo de possibilidades.</h2><p>Sua agenda, suas turmas e novos caminhos.<br/>Tudo mais perto, para você ir mais longe.</p><div className={styles.heroActions}><Link className="button primary" href={teacher ? "/minhas-turmas" : "/agenda-aluno"}>{teacher ? <BookOpen size={16}/> : <CalendarDays size={16}/>}{teacher ? "Explorar minhas turmas" : "Explorar minha agenda"}<ArrowRight size={16}/></Link><Link href="/aplicativos">Todos os aplicativos <ArrowUpRight size={15}/></Link></div></div>
+      <div className={styles.heroLandscape} aria-hidden="true"/><div className={styles.heroGlassNote}><AeroIcon icon={Waves} tone="leaf" size={16}/><span>Conhecimento que conecta.<small>Comunidade, natureza e possibilidades.</small></span></div>
+    </section>
+    <div className={styles.metrics}>
+      {[{ label: "Na sua agenda hoje", value: String(today.todayItems.length), detail: "Nas fontes disponíveis", icon: CalendarDays, tone: "sky" as const },
+        { label: "Prazos nesta semana", value: String(pendingDates.length), detail: "Avaliações, tarefas e editais", icon: Clock3, tone: "amber" as const },
+        { label: teacher ? "Minhas turmas" : "Seu vínculo", value: teacher ? cardCount : roleLabels[account.role], detail: teacher ? "Diários sob sua responsabilidade" : today.academic?.className ?? account.campus, icon: BookOpen, tone: "leaf" as const },
+        { label: "Pontos de atenção", value: unknownAttention ? "—" : String(alerts.length), detail: unknownAttention ? "Uma fonte precisa ser consultada" : "Avisos e solicitações locais", icon: Bell, tone: "coral" as const }].map((metric) => <article className={styles.metric} key={metric.label}><AeroIcon icon={metric.icon} tone={metric.tone} size={20}/><div><span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.detail}</small></div></article>)}
     </div>
-    <div className="statGrid dashboardStats">
-      <StatCard label="Seu vínculo" value={roleLabels[account.role]} foot={account.campus} icon={UserRound} />
-      {account.role === "student" ? <StatCard label="Minha turma" value={academic?.className ?? "Não vinculada"} foot={academic?.courseName ?? "Aguardando vínculo acadêmico"} icon={GraduationCap} /> : <StatCard label="Meus atalhos" value={String(shortcuts.length)} foot="Acessos personalizados" icon={BookmarkPlus} />}
-      <StatCard label="Agenda acadêmica" value={String(agenda.entries.length)} foot="Atividades nos próximos 35 dias" icon={CalendarDays} />
-      {overview ? <StatCard label="Turmas ativas" value={String(overview.classCount)} foot={overview.courseCount + " cursos cadastrados"} icon={Layers3} /> : <StatCard label="Pontos de atenção" value={String(attention.filter((item) => Number(item.value) > 0 || item.kind !== "info").length)} foot="Confira os detalhes abaixo" icon={ListTodo} />}
+    <SectionTitle title="Seus caminhos, a um clique" description="Um atalho para o que faz parte da sua rotina." href="/aplicativos" linkLabel="Ver todos"/>
+    <div className={styles.quickLinks}>{quickLinks.map((module) => <Link href={module.href} key={module.href}><AeroIcon name={module.icon} size={23}/><strong>{module.label}</strong><ArrowUpRight size={14} aria-hidden="true"/></Link>)}</div>
+    <div className={styles.mainGrid}>
+      <section className={styles.panel} aria-labelledby="today-heading"><div className={styles.panelHead}><div><span className={styles.kicker}>UM DIA DE CADA VEZ</span><h2 id="today-heading">O que acontece hoje <span>{today.todayItems.length}</span></h2></div><Link href="/agenda-aluno" aria-label="Abrir agenda completa"><CalendarDays size={19}/></Link></div>
+        {today.todayItems.length ? <AgendaRows items={today.todayItems.slice(0, 5)} today={today.today}/> : <div className={styles.empty}><AeroIcon name="calendar" size={24}/><strong>Um espaço para se organizar.</strong><p>{today.emptyMessage}</p><Link href="/agenda-aluno">Abrir minha agenda <ArrowRight size={14}/></Link></div>}
+        <div className={styles.sourceNote}><CircleAlert size={14} aria-hidden="true"/><span>SUAP e AVA direto ainda não conectados. Os itens acima mantêm sua origem identificada.</span></div><Link className={styles.panelFooter} href="/agenda-aluno">Ver agenda completa <ArrowRight size={15}/></Link>
+      </section>
+      <aside className={styles.rightColumn}><section className={styles.assistant}><div className={styles.assistantTop}><AeroIcon icon={Sparkles} tone="violet" size={26}/><span><i/> LUMA LOCAL</span></div><h2>Um pouco de ajuda.<br/>Um monte de possibilidades.</h2><p>Encontre um serviço, tire uma dúvida e descubra o próximo passo com a sua assistente.</p><Link href="/maisa">Vamos conversar <ArrowUpRight size={17}/></Link><div className={styles.assistantOrbits} aria-hidden="true"/></section><section className={styles.importInvite}><AeroIcon icon={Upload} size={20} tone="leaf"/><div><h3>Menos retrabalho. Mais tempo.</h3><p>{teacher ? "Aproveite dados de um diário existente com uma cópia revisada." : "Traga os eventos do seu AVA para a sua agenda privada."}</p><Link href={teacher ? "/importar-dados-academicos" : "/importar-calendario"}>{teacher ? "Importar um diário" : "Importar calendário"}<ArrowRight size={14}/></Link></div></section></aside>
     </div>
-    <SectionTitle title="Direto ao que importa" description="Acessos selecionados para o seu vínculo." href="/aplicativos" linkLabel="Todos os aplicativos" />
-    <div className="dashboardQuick">{quickLinks.map((item) => <Link href={item.href} key={item.href}><span className="moduleIconTile"><ModuleIcon name={item.icon} /></span><strong>{item.label}</strong><ArrowUpRight size={16} className="quickArrow" /></Link>)}</div>
-    <div className="twoCols dashboardLower">
-      <section className="card panel"><SectionTitle title="Sua atenção faz a diferença" description="Pendências e avisos para acompanhar." href="/pendencias" linkLabel="Ver detalhes" /><div className="attentionList">{attention.map((item) => <Link href={item.href} className={"attentionItem " + item.kind} key={item.label}><span className="iconBox">{item.kind === "info" ? <CheckCheck size={21} /> : <CircleAlert size={21} />}</span><span><b>{item.label}</b><small>{item.detail}</small></span><strong>{item.value}</strong></Link>)}</div></section>
-      <section className="maisaInvite"><span className="maisaInviteIcon"><Sparkles size={28} /></span><span className="sectionEyebrow">CONHEÇA A MAISA</span><h2>Precisa encontrar<br />um caminho?</h2><p>Consulte orientações e informações disponíveis para o seu perfil com a assistente local.</p><Link href="/maisa">Conversar com a MAISA<ArrowRight size={18} /></Link></section>
-    </div>
-    <div className="twoCols dashboardLower">
-      <section className="card panel"><SectionTitle title="Próximos compromissos" description="Atividades associadas ao seu vínculo." href={account.role === "staff" ? "/agenda-institucional" : "/agenda-aluno"} linkLabel="Agenda completa" />{agenda.entries.length ? <div className="timeline">{agenda.entries.slice(0, 5).map((entry) => <div className="timelineRow" key={entry.id}><time>{formatDate(entry.entryDate)}</time><span className="timelineDot" /><div><strong>{entry.title}</strong><small>{entry.subjectName} · {entry.className}{entry.startsAt ? " · " + entry.startsAt.slice(0, 5) : ""}</small></div></div>)}</div> : <div className="quietEmpty"><CalendarDays size={28} /><p>Sem atividades futuras publicadas.</p><small>Confira também a agenda institucional do campus.</small></div>}</section>
-      <section className="card panel"><SectionTitle title="Do seu jeito" description="Seus acessos favoritos, sempre por perto." href="/atalhos" linkLabel="Personalizar" />{shortcuts.length ? <div className="personalShortcutGrid">{shortcuts.slice(0, 8).map((item) => <Link href={safeInternalPath(item.href, "/aplicativos")} key={item.id}><BookmarkPlus size={18} />{item.label}</Link>)}</div> : <div className="quietEmpty"><BookmarkPlus size={28} /><p>Quais caminhos você usa mais?</p><Link className="button soft" href="/atalhos">Adicionar meus atalhos</Link></div>}</section>
-    </div>
-  </>;
+    <div className={styles.secondaryGrid}><section className={styles.panel}><div className={styles.panelHead}><div><span className={styles.kicker}>OLHE PARA A FRENTE</span><h2>Vem por aí</h2></div><Link href="/agenda-aluno">Próximos 7 dias <ArrowUpRight size={14}/></Link></div>{upcoming.length ? <AgendaRows items={upcoming.slice(0, 4)} today={today.today}/> : <p className={styles.quiet}>Não há itens futuros disponíveis nestas fontes. Consulte também a agenda do campus.</p>}</section><section className={styles.panel}><div className={styles.panelHead}><div><span className={styles.kicker}>NOVOS CAMINHOS</span><h2>Oportunidades para você</h2></div><AeroIcon name="compass" size={17} tone="leaf"/></div>{today.notices.length ? <div className={styles.notices}>{today.notices.slice(0, 2).map((notice) => <Link href={`/editais?q=${encodeURIComponent(`${notice.number}/${notice.year}`)}`} key={notice.id}><span>{notice.category} · {notice.number}/{notice.year}</span><strong>{notice.title}</strong><small>Prazo informado: {formatNoticeDate(notice.closes)}</small><ArrowUpRight size={16}/></Link>)}</div> : <p className={styles.quiet}>Consulte a central de editais para ver o catálogo, retificações e informações a confirmar.</p>}<Link href="/editais" className={styles.panelFooter}>Explorar editais <ArrowRight size={15}/></Link></section></div>
+    <section className={styles.attention}><div><AeroIcon icon={ListTodo} size={21} tone="amber"/><div><h2>Sua atenção faz a diferença</h2><p>Acompanhe o que pede um próximo passo.</p></div></div><div className={styles.attentionItems}>{attention.slice(0, 3).map((entry) => <Link href={entry.href} key={entry.label}><span><strong>{entry.label}</strong><small>{entry.detail}</small></span><b>{entry.value}</b></Link>)}</div></section>
+    <section className={styles.sources} aria-label="Estado das fontes"><div className={styles.sourcesHeading}><RefreshCw size={16}/><span>Transparência que aproxima.</span><small>Cada informação tem sua origem.</small></div><div className={styles.sourceChips}>{today.sources.map((source) => <Link href={source.href} title={source.detail} data-state={source.status} key={source.id}><i/>{source.label}<span>{source.status === "ready" ? "disponível" : source.status === "imported" ? "cópia por arquivo" : source.status === "unavailable" ? "indisponível" : "a configurar"}</span>{source.updatedAt && <time dateTime={source.updatedAt} title="Última atualização ou revisão">· {sourceDate(source.updatedAt)}</time>}</Link>)}</div><p>Cópias por arquivo dependem de nova importação. Uma fonte desconectada ou indisponível pode ter compromissos que ainda não aparecem aqui.</p></section>
+    {shortcuts.length > 0 && <div className={styles.favorites}><span>Do seu jeito</span>{shortcuts.slice(0, 5).map((shortcut) => <Link href={safeInternalPath(shortcut.href, "/aplicativos")} key={shortcut.id}>{shortcut.label}<ArrowUpRight size={13}/></Link>)}<Link href="/atalhos">Personalizar</Link></div>}
+    <p className={styles.evolution}>Um portal feito para evoluir com a comunidade. <Link href="/portal-evolucao">Conheça as próximas prioridades <ArrowUpRight size={13}/></Link></p>
+  </div>;
 }

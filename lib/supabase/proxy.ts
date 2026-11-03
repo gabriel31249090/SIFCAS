@@ -32,7 +32,7 @@ const STAFF_ROLES: AppRole[] = ["staff", "manager", "admin"];
 const MANAGEMENT_PREFIXES = ["/gestao-academica", "/auditoria", "/monitoramento"];
 const MANAGEMENT_ROLES: AppRole[] = ["manager", "admin"];
 const ADMIN_PREFIXES = ["/usuarios", "/vinculos-institucionais", "/modelo-vinculos-institucionais"];
-const DIARY_PREFIXES = ["/diario-professor"];
+const DIARY_PREFIXES = ["/diario-professor", "/minhas-turmas"];
 const DIARY_ROLES: AppRole[] = ["teacher", "manager", "admin"];
 
 function isPublic(pathname: string) {

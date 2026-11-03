@@ -61,6 +61,35 @@ button:disabled {cursor:wait;opacity:.65}
 .pageContainer {max-width:1500px;padding:34px;min-height:calc(100svh - 150px)}
 .pageContainer:focus {outline:none}
 .pageHeader {margin-bottom:28px;align-items:center}
+.portalRoadmapSection {margin-top:26px}
+.roadmapGrid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.roadmapCard {padding:20px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#f9fbfa 0%, #f1f7f2 100%);display:flex;flex-direction:column;gap:12px}
+.roadmapBadge {display:inline-flex;align-items:center;align-self:flex-start;padding:6px 10px;border-radius:999px;background:#e8f4eb;color:#1b6a4f;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.roadmapCard strong {font-size:17px;line-height:1.4;letter-spacing:-.02em}
+.roadmapCard p {margin:0;font-size:13px;line-height:1.7;color:var(--muted)}
+.portalOverview {display:grid;grid-template-columns:1.2fr .8fr;gap:20px;padding:26px 28px;align-items:center;margin-bottom:22px}
+.portalOverview h2 {margin:10px 0 0;font-size:28px;letter-spacing:-.04em;line-height:1.15}
+.portalOverview p {margin:0;font-size:14px;line-height:1.8;color:var(--muted)}
+.portalRoadmapGrid {display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:22px 0}
+.portalRoadmapCard {padding:22px;display:flex;flex-direction:column;gap:14px;min-height:220px}
+.portalRoadmapCard h3 {margin:0;font-size:18px;letter-spacing:-.02em}
+.portalRoadmapCard p {margin:0;font-size:13px;line-height:1.75;color:var(--muted)}
+.portalRoadmapIcon {width:46px;height:46px;border-radius:12px;background:#ebf6ee;color:#1d6d4b;display:grid;place-items:center}
+.portalPhaseSection {padding:22px 24px}
+.portalPhaseGrid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.portalPhaseCard {padding:18px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#ffffff 0%, #f3f9f5 100%);display:flex;flex-direction:column;gap:12px}
+.portalPhaseLabel {display:inline-flex;align-items:center;align-self:flex-start;padding:6px 9px;border-radius:999px;background:#ecf5ee;color:#1f6b4d;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.portalPhaseCard h3 {margin:0;font-size:18px;letter-spacing:-.02em}
+.portalPhaseCard p {margin:0;font-size:13px;line-height:1.7;color:var(--muted)}
+.portalResult {padding:28px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:22px}
+.portalResult h2 {margin:0;font-size:28px;letter-spacing:-.04em;line-height:1.15}
+.portalResult p {margin:0;font-size:14px;line-height:1.8;color:var(--muted);max-width:760px}
+.portalEvolutionCard {display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:28px;border-radius:16px;background:linear-gradient(135deg,#0f382b 0%, #164d3f 100%);color:#f0fff6;box-shadow:var(--shadow)}
+.portalEvolutionCard .sectionEyebrow {color:#9fe4be}
+.portalEvolutionCard h2 {margin:0;font-size:31px;line-height:1.1;letter-spacing:-.05em}
+.portalEvolutionCard p {margin:0;font-size:14px;line-height:1.7;color:#dfeee6}
+.portalEvolutionCard a {display:inline-flex;align-items:center;justify-content:center;gap:8px;width:fit-content;padding:12px 16px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600}
+.maisaInviteIcon {width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.11);display:grid;place-items:center;color:#bfeed1}
 .pageHeader h1 {font-size:30px;font-weight:650;letter-spacing:-.04em;line-height:1.2}
 .pageHeader p {font-size:14px;line-height:1.7;max-width:700px;margin-top:10px}
 .sectionEyebrow {font-size:10px;letter-spacing:.16em;font-weight:700;color:#3c7960;text-transform:uppercase}

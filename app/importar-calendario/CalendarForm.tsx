@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { parseCalendar, type PersonalCalendarEvent } from "@/lib/ical";
 import { decodeCsvBytes } from "@/lib/csv";
 import { importPersonalCalendar } from "./actions";
+import { CalendarPlus, FileUp } from "lucide-react";
 
 export function CalendarForm() {
   const [events, setEvents] = useState<PersonalCalendarEvent[]>([]);
@@ -11,7 +12,7 @@ export function CalendarForm() {
   const [pending, setPending] = useState(false);
   const selection = useRef(0);
   return <form action={importPersonalCalendar} className="formStack">
-    <label>Arquivo .ics exportado pelo seu AVA<input name="file" type="file" accept=".ics,text/calendar" required onChange={async (event) => {
+    <label><span className="formFieldLabel"><FileUp size={16} aria-hidden="true"/>Arquivo .ics exportado pelo seu AVA</span><input name="file" type="file" accept=".ics,text/calendar" required onChange={async (event) => {
       setEvents([]); setError(""); setPending(true);
       const selected = ++selection.current;
       const file = event.target.files?.[0];
@@ -32,6 +33,6 @@ export function CalendarForm() {
       {events.length > 20 && <p>Primeiros 20 eventos exibidos de {events.length}.</p>}
       <label><input type="checkbox" name="confirmed" value="yes" required/> Confirmo que esta é uma exportação autorizada para minha própria agenda.</label>
     </>}
-    <button className="button primary" type="submit" disabled={!events.length || pending}>Confirmar importação privada</button>
+    <button className="button primary" type="submit" disabled={!events.length || pending}><CalendarPlus size={17} aria-hidden="true"/>Confirmar importação privada</button>
   </form>;
 }

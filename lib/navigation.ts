@@ -8,6 +8,7 @@ export const navigation = [
   { group: "Principal", items: [
     { href: "/", label: "Início", icon: Home },
     { href: "/maisa", label: "LUMA", icon: Bot },
+    { href: "/portal-evolucao", label: "Portal em evolução", icon: Compass },
     { href: "/pendencias", label: "Pendências", icon: ListTodo },
     { href: "/estudante", label: "Estudante", icon: GraduationCap },
     { href: "/ensino", label: "Ensino", icon: BookOpen },

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: ["/noticias", "/editais", "/agenda-institucional", "/campus", "/transparencia", "/verificar-documento", "/publicacoes/"],
-      disallow: ["/api/", "/auth/", "/login", "/recuperar-senha", "/nova-senha", "/buscar", "/gestao-academica", "/painel-institucional", "/usuarios", "/auditoria", "/monitoramento", "/importar-dados-academicos", "/importar-calendario", "/diario-professor", "/boletim", "/agenda-aluno"],
+      disallow: ["/api/", "/auth/", "/login", "/recuperar-senha", "/nova-senha", "/buscar", "/gestao-academica", "/painel-institucional", "/usuarios", "/auditoria", "/monitoramento", "/importar-dados-academicos", "/importar-calendario", "/diario-professor", "/boletim", "/agenda-aluno", "/minhas-turmas"],
     },
     sitemap: "https://sifcas.vercel.app/sitemap.xml",
     host: "https://sifcas.vercel.app",

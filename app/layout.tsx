@@ -10,6 +10,7 @@ import "./institutional.css";
 import "./production.css";
 import "./maisa.css";
 import "./workspace.css";
+import "./aero.css";
 
 const inter = localFont({ src: "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", display: "swap" });
 

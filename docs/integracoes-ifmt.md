@@ -56,7 +56,8 @@ Reversão: desabilitar flags, preservar trilha necessária segundo a política i
 | Aulas, conteúdos, frequência, avaliações, notas e escala | Importação validada em fixture isolada | Zero/ausente/dispensado/não informado distintos; conflitos preservam versão anterior |
 | Horários e eventos por turma | Importação validada em fixture isolada | Seções de leitura nas telas existentes |
 | Agenda pessoal AVA `.ics` | Importação validada em fixture isolada | UID/título/data/situação; UTC, America/Cuiaba ou dia inteiro; recorrência e horários flutuantes recusados |
-| Agenda unificada “Hoje”, progresso e fila de correção | Integração aguardando autorização | Sem consulta privada aprovada; ausência de dados não significa ausência de pendências. A página inicial anterior foi preservada |
+| Agenda unificada “Hoje” | Agregação local implementada | Planejamento/avaliações/horários SIFCAS, cópias de diários, calendário privado e editais; fontes identificadas, falhas explícitas e datas Cuiabá. Ver docs/frutiger-e-homologacao-local.md |
+| Progresso e fila oficial de correção | Integração aguardando autorização | Sem consulta privada aprovada; estados da cópia não comprovam entrega/correção/fechamento |
 | Vínculos/períodos/matrículas SUAP próprios; boletim oficial | Integração aguardando autorização | Não deduzir papel do e-mail; identidade externa precisa de vínculo verificado |
 | Salas, seções, tarefas, questionários e prazos AVA | Integração aguardando autorização | Confirmar instância, funções de leitura e capacidades por usuário; entrega/correção na origem |
 | Cursos, períodos, ofertas, docentes e lotes campus | Integração aguardando autorização | Schema real, escopo de campus, revisão e contrato de lote institucional |

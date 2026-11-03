@@ -31,6 +31,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  distDir: process.env.SIFCAS_TEST_DIST_DIR === ".next-academic" ? ".next-academic" : ".next",
+  devIndicators: process.env.SIFCAS_TEST_DIST_DIR === ".next-academic" ? false : undefined,
+  experimental: { turbopackFileSystemCacheForDev: process.env.SIFCAS_TEST_DIST_DIR === ".next-academic" ? false : undefined },
   poweredByHeader: false,
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
