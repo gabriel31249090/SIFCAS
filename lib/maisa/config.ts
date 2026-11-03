@@ -1,0 +1,18 @@
+export const LUMA_CONFIG = {
+  maxQueryLength: 20000,
+  maxMemoryTurns: 20,
+  maxMemoryCharsPerTurn: 2500,
+  answerStreamChunkSize: 400,
+  contextMemorySummaryTurns: 8,
+  routeSuggestionLimit: 5,
+  knowledgeResultLimit: 8,
+  maxAcademicSubjects: 12,
+  maxAgendaEntries: 10,
+  maxPublicationEntries: 8,
+  maxRequestEntries: 10,
+  maxProcessEntries: 10,
+  maxServiceRequestTitleLength: 220,
+  maxServiceRequestDescriptionLength: 12000,
+  memorySummaryLength: 1200,
+  maxConversationRecall: 6,
+} as const;

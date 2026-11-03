@@ -1,14 +1,11 @@
 import { NextRequest } from "next/server";
 import { getCurrentAccount } from "@/lib/auth";
+import { LUMA_CONFIG } from "@/lib/maisa/config";
 import { buildMaisaContext } from "@/lib/maisa/context";
 import { answerWithLocalMaisa } from "@/lib/maisa/local";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-
-const MAX_QUERY_LENGTH = 12000;
-const MAX_MEMORY_TURNS = 12;
-const MAX_MEMORY_CHARS_PER_TURN = 1800;
 
 const memoryStore = new Map<string, { updatedAt: number; messages: { role: "user" | "assistant"; content: string; createdAt: string }[] }>();
 
@@ -28,9 +25,9 @@ function readConversationMemory(accountId: string, conversationId: string) {
 }
 
 function storeConversationMemory(accountId: string, conversationId: string, messages: { role: "user" | "assistant"; content: string; createdAt: string }[]) {
-  const trimmed = messages.slice(-MAX_MEMORY_TURNS).map((message) => ({
+  const trimmed = messages.slice(-LUMA_CONFIG.maxMemoryTurns).map((message) => ({
     ...message,
-    content: message.content.slice(0, MAX_MEMORY_CHARS_PER_TURN),
+    content: message.content.slice(0, LUMA_CONFIG.maxMemoryCharsPerTurn),
   }));
   memoryStore.set(getConversationKey(accountId, conversationId), { updatedAt: Date.now(), messages: trimmed });
 }
@@ -53,7 +50,7 @@ export async function POST(request: NextRequest) {
   const conversationId = typeof body.conversationId === "string" && body.conversationId.trim() ? body.conversationId.trim() : crypto.randomUUID();
   const query = typeof body.query === "string" ? body.query.trim() : "";
   if (!query) return jsonError("Digite uma mensagem para a LUMA.", 400);
-  if (query.length > MAX_QUERY_LENGTH) return jsonError("A mensagem deve ter no máximo " + MAX_QUERY_LENGTH + " caracteres.", 400);
+  if (query.length > LUMA_CONFIG.maxQueryLength) return jsonError("A mensagem deve ter no máximo " + LUMA_CONFIG.maxQueryLength + " caracteres.", 400);
 
   try {
     const history = readConversationMemory(account.id, conversationId);
@@ -78,8 +75,8 @@ export async function POST(request: NextRequest) {
           });
         }
 
-        for (let offset = 0; offset < answer.length; offset += 240) {
-          send({ type: "delta", text: answer.slice(offset, offset + 240) });
+        for (let offset = 0; offset < answer.length; offset += LUMA_CONFIG.answerStreamChunkSize) {
+          send({ type: "delta", text: answer.slice(offset, offset + LUMA_CONFIG.answerStreamChunkSize) });
         }
 
         send({ type: "done", engine: "sifcas-local-v1", conversationId });

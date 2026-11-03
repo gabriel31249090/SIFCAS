@@ -3,6 +3,7 @@ import { getAgendaContext, getStudentAcademicContext } from "@/lib/academic";
 import { getStudentReport } from "@/lib/diary";
 import { getDocumentEligibility } from "@/lib/documents";
 import { listPublishedPublications } from "@/lib/institutional";
+import { LUMA_CONFIG } from "@/lib/maisa/config";
 import { createClient } from "@/lib/supabase/server";
 
 export type MaisaServiceRequestProposal = {
@@ -190,8 +191,8 @@ async function buildAcademicReport(account:CurrentAccount,rawQuery:string,wantsG
 
 function summarizeConversationMemory(history: ConversationMemoryEntry[] = []) {
   if (!history.length) return null;
-  const recent = history.slice(-6).map((entry) => `${entry.role === "user" ? "Usuário" : "LUMA"}: ${String(entry.content).replace(/\s+/g, " ").slice(0, 500)}`).join("\n");
-  return recent.length > 0 ? recent : null;
+  const recent = history.slice(-LUMA_CONFIG.contextMemorySummaryTurns).map((entry) => `${entry.role === "user" ? "Usuário" : "LUMA"}: ${String(entry.content).replace(/\s+/g, " ").slice(0, 500)}`).join("\n");
+  return recent.length > 0 ? recent.slice(0, LUMA_CONFIG.memorySummaryLength) : null;
 }
 
 export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, options:MaisaContextOptions = {}):Promise<MaisaContextResult>{
@@ -218,7 +219,7 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
       student_aid:"available",
       tcc:"available",
       institutional_projects:"available",
-      memory_window:"12 turnos",
+      memory_window: LUMA_CONFIG.maxMemoryTurns + " turnos",
     },
   };
 
@@ -245,19 +246,19 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
 
   if(wantsAgenda){
     const agenda=await getAgendaContext(account);
-    data.agenda=agenda.entries.slice(0,8).map(entry=>({date:entry.entryDate,starts_at:entry.startsAt,type:entry.entryType,title:entry.title,description:entry.description,class:entry.className,subject:entry.subjectName}));
+    data.agenda=agenda.entries.slice(0,LUMA_CONFIG.maxAgendaEntries).map(entry=>({date:entry.entryDate,starts_at:entry.startsAt,type:entry.entryType,title:entry.title,description:entry.description,class:entry.className,subject:entry.subjectName}));
     tools.add("consultar_agenda");
   }
 
   if(wantsEdicts){
     const rows=await listPublishedPublications(["edital"],20);
-    data.edicts=rows.slice(0,6).map(row=>({title:row.title,reference_code:row.referenceCode,summary:row.summary,starts_at:row.startsAt,ends_at:row.endsAt,expires_at:row.expiresAt,location:row.location,url:row.externalUrl,sifcas_route:"/publicacoes/"+row.id}));
+    data.edicts=rows.slice(0,LUMA_CONFIG.maxPublicationEntries).map(row=>({title:row.title,reference_code:row.referenceCode,summary:row.summary,starts_at:row.startsAt,ends_at:row.endsAt,expires_at:row.expiresAt,location:row.location,url:row.externalUrl,sifcas_route:"/publicacoes/"+row.id}));
     tools.add("consultar_editais");
   }
 
   if(wantsInstitutional){
     const rows=await listPublishedPublications(["news","notice","event"],20);
-    data.institutional_updates=rows.slice(0,6).map(row=>({kind:row.kind,title:row.title,summary:row.summary,starts_at:row.startsAt,ends_at:row.endsAt,location:row.location,sifcas_route:"/publicacoes/"+row.id}));
+    data.institutional_updates=rows.slice(0,LUMA_CONFIG.maxPublicationEntries).map(row=>({kind:row.kind,title:row.title,summary:row.summary,starts_at:row.startsAt,ends_at:row.endsAt,location:row.location,sifcas_route:"/publicacoes/"+row.id}));
     tools.add("consultar_publicacoes");
   }
 
@@ -269,7 +270,7 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
       account.role==="student"?getDocumentEligibility(account.id):Promise.resolve(null),
     ]);
     if(error) throw error;
-    data.documents={issued:(documents??[]).map(row=>({id:row.id,type:row.document_type,verification_code:row.verification_code,issued_at:row.issued_at,valid:!row.revoked_at,revocation_reason:row.revocation_reason,sifcas_route:"/documentos-academicos/"+row.id})),eligibility};
+    data.documents={issued:(documents??[]).slice(0,LUMA_CONFIG.maxPublicationEntries).map(row=>({id:row.id,type:row.document_type,verification_code:row.verification_code,issued_at:row.issued_at,valid:!row.revoked_at,revocation_reason:row.revocation_reason,sifcas_route:"/documentos-academicos/"+row.id})),eligibility};
     tools.add("consultar_documentos");
   }
 
@@ -279,7 +280,7 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
     if(!operationalQueue) requestQuery=requestQuery.eq("requester_user_id",account.id);
     const {data:requests,error}=await requestQuery;
     if(error) throw error;
-    data.service_requests=(requests??[]).map(row=>({id:row.id,category:row.category,title:row.title,priority:row.priority,status:row.status,response:row.response?.slice(0,1200)??null,created_at:row.created_at,updated_at:row.updated_at,resolved_at:row.resolved_at,sifcas_route:"/solicitacoes"}));
+    data.service_requests=(requests??[]).slice(0,LUMA_CONFIG.maxRequestEntries).map(row=>({id:row.id,category:row.category,title:row.title,priority:row.priority,status:row.status,response:row.response?.slice(0,1200)??null,created_at:row.created_at,updated_at:row.updated_at,resolved_at:row.resolved_at,sifcas_route:"/solicitacoes"}));
     tools.add("consultar_solicitacoes");
   }
 
@@ -288,26 +289,26 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
     if(!["staff","manager","admin"].includes(account.role)) processQuery=processQuery.eq("requester_user_id",account.id);
     const {data:processRows,error}=await processQuery;
     if(error) throw error;
-    data.electronic_processes=processRows??[];
+    data.electronic_processes=(processRows??[]).slice(0,LUMA_CONFIG.maxProcessEntries);
     tools.add("consultar_processos");
   }
 
   if(wantsInternships){
-    const {data:internshipRows,error}=await supabase.from("internship_opportunities").select("id,title,organization,location,workload_hours,stipend,slots,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
+    const {data:internshipRows,error}=await supabase.from("internship_opportunities").select("id,title,organization,location,workload_hours,stipend,slots,application_deadline,status").eq("status","open").order("application_deadline").limit(LUMA_CONFIG.maxPublicationEntries);
     if(error) throw error;
     data.internships=(internshipRows??[]).map(row=>({...row,sifcas_route:"/estagios"}));
     tools.add("consultar_estagios");
   }
 
   if(wantsAid){
-    const {data:aidRows,error}=await supabase.from("student_aid_programs").select("id,title,benefit_type,benefit_value,application_deadline,status").eq("status","open").order("application_deadline").limit(8);
+    const {data:aidRows,error}=await supabase.from("student_aid_programs").select("id,title,benefit_type,benefit_value,application_deadline,status").eq("status","open").order("application_deadline").limit(LUMA_CONFIG.maxPublicationEntries);
     if(error) throw error;
     data.student_aid=(aidRows??[]).map(row=>({...row,sifcas_route:"/auxilios"}));
     tools.add("consultar_auxilios");
   }
 
   if(wantsTcc){
-    const {data:tccRows,error}=await supabase.from("tcc_defenses").select("id,title,scheduled_at,room,status,panel_members").gte("scheduled_at",new Date().toISOString()).eq("status","scheduled").order("scheduled_at").limit(8);
+    const {data:tccRows,error}=await supabase.from("tcc_defenses").select("id,title,scheduled_at,room,status,panel_members").gte("scheduled_at",new Date().toISOString()).eq("status","scheduled").order("scheduled_at").limit(LUMA_CONFIG.maxPublicationEntries);
     if(error) throw error;
     data.tcc_defenses=(tccRows??[]).map(row=>({...row,sifcas_route:"/tcc"}));
     tools.add("consultar_tcc");
@@ -317,7 +318,7 @@ export async function buildMaisaContext(account:CurrentAccount,rawQuery:string, 
     let axis:string|undefined;
     if(hasAny(q,["pesquisa"])) axis="research";
     else if(hasAny(q,["extensao","extensão"])) axis="extension";
-    let projectQuery=supabase.from("institutional_projects").select("id,axis,title,summary,status,open_for_applications,starts_on,ends_on").in("status",["published","in_progress","completed"]).order("created_at",{ascending:false}).limit(8);
+    let projectQuery=supabase.from("institutional_projects").select("id,axis,title,summary,status,open_for_applications,starts_on,ends_on").in("status",["published","in_progress","completed"]).order("created_at",{ascending:false}).limit(LUMA_CONFIG.maxPublicationEntries);
     if(axis) projectQuery=projectQuery.eq("axis",axis);
     const {data:projectRows,error}=await projectQuery;
     if(error) throw error;

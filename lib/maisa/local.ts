@@ -1,5 +1,6 @@
 import type { CurrentAccount } from "@/lib/auth";
 import { listKnowledgeArticles } from "@/lib/experience";
+import { LUMA_CONFIG } from "@/lib/maisa/config";
 import type { MaisaContextResult } from "@/lib/maisa/context";
 
 type RouteEntry = { name?: string; href?: string };
@@ -180,7 +181,7 @@ async function knowledgeFallback(query: string) {
       if (contentTokens.has(token)) score += 1;
     }
     return { article, score };
-  }).filter((entry) => entry.score > 0).sort((a, b) => b.score - a.score);
+  }).filter((entry) => entry.score > 0).sort((a, b) => b.score - a.score).slice(0, LUMA_CONFIG.knowledgeResultLimit);
 
   if (!scored.length) return null;
   const best = scored[0].article;
@@ -198,10 +199,10 @@ function routeFallback(query: string, routes: RouteEntry[]) {
     }
     if (name && q.includes(name)) score += 5;
     return { route, score };
-  }).filter((entry) => entry.score > 0).sort((a, b) => b.score - a.score);
+  }).filter((entry) => entry.score > 0).sort((a, b) => b.score - a.score).slice(0, LUMA_CONFIG.routeSuggestionLimit);
 
   if (!ranked.length) return null;
-  const top = ranked.slice(0, 3);
+  const top = ranked;
   return "Acho que você procura " + top.map((entry) => (entry.route.name ?? "um módulo") + " (" + (entry.route.href ?? "/") + ")").join(", ") + ".";
 }
 
