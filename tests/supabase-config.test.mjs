@@ -9,11 +9,15 @@ test("missing config never falls back to production", () => {
   assert.equal(config.key, "");
 });
 
-test("development and test refuse the production project even with explicit configuration", () => {
+test("development and test refuse the production project unless a deliberate local opt-in is set", () => {
   for (const nodeEnv of ["development", "test", undefined]) {
     const config = resolveSupabaseConfiguration({ url: "https://xqhilujzacwebeexljaf.supabase.co", key: "sb_publishable_synthetic", nodeEnv });
     assert.equal(config.configured, false);
   }
+  const allowed = resolveSupabaseConfiguration({ url: "https://xqhilujzacwebeexljaf.supabase.co", key: "sb_publishable_synthetic", nodeEnv: "development", allowProductionInDev: true });
+  assert.equal(allowed.configured, true);
+  assert.equal(allowed.url, "https://xqhilujzacwebeexljaf.supabase.co");
+  assert.equal(resolveSupabaseConfiguration({ url: "https://other-project.supabase.co", key: "sb_publishable_synthetic", nodeEnv: "development", allowProductionInDev: true }).configured, true);
 });
 
 test("local/staging require both URL and public key and disallow credentials in URL", () => {

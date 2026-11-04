@@ -4,6 +4,7 @@ const configuration = resolveSupabaseConfiguration({
   url: process.env.NEXT_PUBLIC_SUPABASE_URL,
   key: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
   nodeEnv: process.env.NODE_ENV,
+  allowProductionInDev: process.env.SIFCAS_ALLOW_PRODUCTION_SUPABASE_IN_DEV === "true",
 });
 
 export const supabaseUrl = configuration.url;

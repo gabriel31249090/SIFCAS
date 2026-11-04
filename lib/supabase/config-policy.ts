@@ -1,7 +1,7 @@
 export const LOCAL_SUPABASE_URL = "http://127.0.0.1:54321";
 const productionHost = "xqhilujzacwebeexljaf.supabase.co";
 
-export function resolveSupabaseConfiguration(input: { url?: string; key?: string; nodeEnv?: string }) {
+export function resolveSupabaseConfiguration(input: { url?: string; key?: string; nodeEnv?: string; allowProductionInDev?: boolean }) {
   const url = input.url?.trim() || LOCAL_SUPABASE_URL;
   const key = input.key?.trim() || "";
   let error: string | null = null;
@@ -10,7 +10,7 @@ export function resolveSupabaseConfiguration(input: { url?: string; key?: string
     if (parsed.username || parsed.password || parsed.search || parsed.hash || !["https:", "http:"].includes(parsed.protocol)) throw new Error("url");
     const local = ["localhost", "127.0.0.1", "[::1]"].includes(parsed.hostname);
     if (parsed.protocol !== "https:" && !local) throw new Error("https");
-    if (input.nodeEnv !== "production" && parsed.hostname === productionHost) {
+    if (input.nodeEnv !== "production" && parsed.hostname === productionHost && input.allowProductionInDev !== true) {
       error = "Desenvolvimento e testes não podem usar o Supabase de produção. Configure um projeto local ou de homologação.";
     }
     if (parsed.pathname !== "/") throw new Error("path");
