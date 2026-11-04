@@ -19,9 +19,10 @@ MCP do VS Code.
 
 ## Antigravity
 
-No Antigravity, abra as configurações de MCP e adicione esta entrada ao objeto
-`mcpServers` do arquivo `mcp_config.json` (mescle com as entradas existentes,
-sem substituir o arquivo inteiro):
+No Windows, a configuração MCP do Antigravity fica em
+`%USERPROFILE%\.gemini\antigravity\mcp_config.json`. Adicione esta entrada ao
+objeto `mcpServers` (mescle com as entradas existentes, sem substituir o arquivo
+inteiro):
 
 ```json
 {
