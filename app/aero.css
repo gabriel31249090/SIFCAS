@@ -170,6 +170,34 @@ input:disabled,select:disabled,textarea:disabled {opacity:.7;background:#edf3f6!
 summary {color:#35758f;text-underline-offset:3px}
 summary:hover {color:#0879a5}
 
+/* Review screens put the learner's information ahead of file diagnostics. */
+.importBatchSummary {display:flex;align-items:center;gap:15px;margin-bottom:19px}
+.importBatchIcon {flex:none}
+.importBatchTitle {min-width:0}
+.importBatchTitle>span {color:#57869b;font-size:11px;font-weight:650;letter-spacing:.04em}
+.importBatchTitle h2 {margin:4px 0 5px;color:#245a75;font-size:20px;line-height:1.3;overflow-wrap:anywhere}
+.importBatchTitle p {display:flex;align-items:center;gap:7px;margin:0;color:#6a8798;font-size:12px;flex-wrap:wrap}
+.importBatchTitle p svg {color:#348ead;flex:none}
+.importBatchFacts {display:flex;gap:9px;flex-wrap:wrap;margin:0 0 15px}
+.importBatchFacts>span {display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid #d6e7ee;border-radius:10px;background:linear-gradient(#fff,#f4fafd);color:#54788b;font-size:11px}
+.importBatchFacts svg {color:#358aa8;flex:none}
+.importTechnicalDetails {margin-bottom:18px;border-top:1px solid #e0ecf1;padding-top:11px}
+.importTechnicalDetails summary {display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11px}
+.importTechnicalDetails p {display:grid;gap:3px;margin:9px 0 0;color:#758f9d;font-size:10px}
+.importTechnicalDetails code {overflow-wrap:anywhere;color:#456f84;font-size:10px}
+.importRecordCounts {display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 17px}
+.importRecordCounts>span {padding:6px 9px;border:1px solid #d0e5ee;border-radius:999px;background:linear-gradient(#fff,#edf8fc);color:#45758a;font-size:10px;font-weight:600}
+.importRecordFields {display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:7px 15px;margin:0}
+.importRecordFields>div {min-width:0}
+.importRecordFields>.importRecordLongField {grid-column:1/-1}
+.importRecordFields dt {margin:0 0 2px;color:#7b96a4;font-size:9px;letter-spacing:.03em}
+.importRecordFields dd {margin:0;color:#345f76;font-size:11px;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
+.importRecordFields>div:not(.importRecordLongField) dd {white-space:normal;font-variant-numeric:tabular-nums}
+.importExternalId {display:block;color:#315f77;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.importStudentId {display:block;margin-top:4px;color:#6f8d9c;font-size:9px;white-space:nowrap}
+.infoBox:has(svg) {display:flex;align-items:flex-start;gap:8px}
+.infoBox>svg {flex:none;margin-top:2px}
+
 /* Existing authentication flows retain their structure and gain the same visual language. */
 .authOverlay {background:radial-gradient(ellipse at 85% 10%,#d7efff,transparent 60%),#eff7fb}
 .authIntro {position:relative;overflow:hidden;background:radial-gradient(ellipse at 100% 95%,#75b93077,transparent 52%),radial-gradient(ellipse at 5% 5%,#77cfff7d,transparent 55%),linear-gradient(150deg,#087eae,#0c668b 64%,#1d7d76);color:#fff}
@@ -228,6 +256,7 @@ summary:hover {color:#0879a5}
 }
 @media(max-width:560px) {
   .topbar{gap:5px}.topActions{gap:2px}.iconAction{width:35px}.iconAction .aeroIcon{--aero-icon-size:15px!important}.userChip{padding-left:8px;margin-left:3px}.avatar{width:32px;height:32px;font-size:11px}.pageLocation>strong{font-size:11px;max-width:115px}.pageLocation>small{font-size:9px}.pageContainer{padding:23px 16px}.pageHeader{align-items:flex-start;gap:12px;flex-wrap:wrap}.pageHeaderIdentity{gap:11px}.pageHeaderIdentity>.aeroIcon{--aero-icon-size:20px!important}.pageHeader h1{font-size:25px}.pageHeader p{font-size:12px;margin-top:6px}.pageHeader>.button{margin-left:51px;min-height:38px;font-size:11px}.statCard{padding:16px;min-height:135px}.statCard>.aeroIcon{position:absolute;top:13px;right:12px;--aero-icon-size:14px!important}.statCard .mutedLabel{padding-right:29px;font-size:10px}.statCard strong{font-size:22px;margin-top:16px}.statCard small{font-size:10px}.panel{padding:19px}.sectionTitle{gap:12px}.sectionTitle h2{font-size:17px}.sectionTitle p{font-size:11px}.sectionTitle>a{font-size:10px}.button{min-height:41px;padding:10px 13px;font-size:11px}.workspaceFooter{grid-template-columns:1fr;gap:20px;padding:23px 16px}.footerLinks{justify-content:flex-start;gap:21px}.footerPlace{display:grid;gap:5px;grid-column:auto}.footerPlace>small{justify-self:start}.footerIdentity .aeroIcon{--aero-icon-size:16px!important}.footerIdentity strong{font-size:15px}.authEntry{background:radial-gradient(ellipse at top,#e6f6ff,transparent 65%),#fbfeff}.authCard{background:transparent}.authCardHeader h2{font-size:29px}.authPublicLink{font-size:11px}
+  .importBatchTitle h2{font-size:17px}.importBatchFacts{display:grid;grid-template-columns:1fr}.importRecordFields{grid-template-columns:1fr}.importRecordCounts{gap:5px}
 }
 @media(prefers-reduced-motion:reduce) {*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print {body{background:#fff}.card{background:#fff;box-shadow:none}.aeroIcon{box-shadow:none}.workspaceFooter{display:none}}

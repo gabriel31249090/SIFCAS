@@ -54,7 +54,7 @@ export type AcademicImportBatch = {
   inserted_rows: number; unchanged_rows: number; payload_hash: string;
   conflicts: Array<{ kind: string; external_id: string; reason: string }>;
   created_at: string; expires_at: string; applied_at: string | null;
-  payload: Array<{ kind: string; external_id: string; payload: Record<string, string | number | null> }> | null;
+  payload: Array<{ kind: string; external_id: string; student_external_id?: string | null; payload: Record<string, string | number | null> }> | null;
 };
 
 export async function getAcademicImportBatches(account: CurrentAccount): Promise<AcademicImportBatch[]> {

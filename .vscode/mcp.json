@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "sifcas-agent-bridge": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}\\scripts\\agent-bridge-mcp.mjs"],
+      "env": {
+        "AGENT_BRIDGE_AGENT": "copilot"
+      }
+    }
+  }
+}

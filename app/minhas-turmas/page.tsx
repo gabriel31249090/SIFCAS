@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, BookOpenCheck, CalendarDays, ClipboardList, FileUp, Filter, GraduationCap, RefreshCw, TriangleAlert } from "lucide-react";
+import { ArrowUpRight, BookOpenCheck, CalendarDays, ClipboardList, FileUp, Filter, GraduationCap, RefreshCw, Search, TriangleAlert } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { AeroIcon } from "@/components/AeroIcon";
 import { requireAccount } from "@/lib/auth";
@@ -35,7 +35,7 @@ export default async function TeacherWorkspacePage({ searchParams }: { searchPar
     {account.role !== "teacher" && <div className="infoBox">Esta visão usa somente turmas liberadas por escopo explícito de importação. Os demais registros de gestão continuam na Gestão Acadêmica, sujeitos às permissões do ambiente.</div>}
 
     <section className={`card panel ${styles.filters}`} aria-label="Filtrar minhas turmas">
-      <form action="/minhas-turmas" method="get"><label>Buscar turma ou disciplina<input name="q" type="search" defaultValue={query} maxLength={100} placeholder="Ex.: Informática, matemática…"/></label><label>Período<select name="periodo" defaultValue={period}><option value="">Todos os períodos disponíveis</option>{periods.map((item) => <option key={item}>{item}</option>)}</select></label><button className="button soft" type="submit"><Filter size={17} aria-hidden="true"/> Filtrar</button>{query || period ? <Link href="/minhas-turmas">Limpar</Link> : null}</form>
+      <form action="/minhas-turmas" method="get" className="formStack"><label><span className="formFieldLabel"><Search size={16} aria-hidden="true"/>Buscar turma ou disciplina</span><input name="q" type="search" defaultValue={query} maxLength={100} placeholder="Ex.: Informática, matemática…"/></label><label><span className="formFieldLabel"><CalendarDays size={16} aria-hidden="true"/>Período</span><select name="periodo" defaultValue={period}><option value="">Todos os períodos disponíveis</option>{periods.map((item) => <option key={item}>{item}</option>)}</select></label><button className="button soft" type="submit"><Filter size={17} aria-hidden="true"/> Filtrar</button>{query || period ? <Link href="/minhas-turmas">Limpar</Link> : null}</form>
     </section>
 
     <div className="statGrid">

@@ -48,6 +48,12 @@ O motor local usa:
 
 Operações que alteram dados, como abertura de solicitação, continuam exigindo confirmação explícita do usuário.
 
+## Integração MCP entre agentes
+
+O servidor local [agent bridge via MCP](docs/agent-bridge-mcp.md) permite que o
+Copilot no VS Code e o Antigravity troquem mensagens por uma fila SQLite
+compartilhada no mesmo computador.
+
 ## Segurança
 
 - RLS nas tabelas sensíveis
