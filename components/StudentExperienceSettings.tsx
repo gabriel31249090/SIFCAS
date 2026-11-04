@@ -85,7 +85,24 @@ export function StudentExperienceSettings() {
   return <div className="studentExperience personalizationStudio">
     <header className="studioHero"><div className="studioHeroCopy"><span className="studioEyebrow"><Sparkles size={13}/> SEU SIFCAS, DO SEU JEITO</span><h1>Personalização<span aria-hidden="true">.</span></h1><p>Um pouco mais de você.<br/>Em cada detalhe do seu campus.</p><span className="studioSaved"><CheckCheck size={14}/> {storageError ? "Alterações nesta sessão" : "Suas escolhas são salvas automaticamente"}</span></div><div className="studioHeroArt" aria-hidden="true"><div className="studioHeroOrb"><Leaf size={52} strokeWidth={1.5}/></div><span className="studioOrbit studioOrbitOne"/><span className="studioOrbit studioOrbitTwo"/><span className="studioPixelStar">✦</span><span className="studioHeroArtCaption">um espaço para ser você</span></div></header>
     <div className="studioNotice" role="status">{feedback && <span><Check size={16}/>{feedback}</span>}{storageError && <span className="studioStorageError"><HardDrive size={16}/>{storageError}</span>}</div>
-    <nav className="studioTabs" role="tablist" aria-label="Categorias de personalização">{tabs.map(({ id, label, icon: Icon }, index) => <button type="button" role="tab" id={`studio-tab-${id}`} aria-controls={`studio-panel-${id}`} aria-selected={activeTab === id} tabIndex={activeTab === id ? 0 : -1} onKeyDown={(event) => onTabKey(event, index)} onClick={() => setActiveTab(id)} key={id}><Icon size={16}/><span>{label}</span></button>)}</nav>
+    <nav className="studioTabs" role="tablist" aria-label="Categorias de personalização">
+  {tabs.map(({ id, label, icon: Icon }, index) => (
+    <button
+      key={id}
+      type="button"
+      role="tab"
+      id={`studio-tab-${id}`}
+      aria-controls={`studio-panel-${id}`}
+      aria-selected={activeTab === id}
+      tabIndex={activeTab === id ? 0 : -1}
+      onClick={() => setActiveTab(id)}
+      onKeyDown={(event) => onTabKey(event, index)}
+    >
+      <Icon size={16} />
+      <span>{label}</span>
+    </button>
+  ))}
+</nav>
     <div className="studioLayout"><div className="studioContent">
       <div role="tabpanel" id="studio-panel-appearance" aria-labelledby="studio-tab-appearance" hidden={activeTab !== "appearance"}>
         <StudioSection title="Encontre sua atmosfera" description="Comece por uma combinação pronta. Depois, deixe cada detalhe com a sua cara." icon={<Sparkles size={20}/>}>
