@@ -14,6 +14,6 @@ export function MobileNav({ signedIn }: { signedIn: boolean }) {
   ];
   return <nav className="mobileNav" aria-label="Acessos rápidos no celular">{items.map(({ href, label, icon: Icon, tone }) => {
     const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
-    return <Link key={href} href={href} className={active ? "active" : ""} aria-current={active ? "page" : undefined}><AeroIcon icon={Icon} size={14} tone={tone as AeroTone}/><span>{label}</span></Link>;
+    return <Link key={href} href={href} data-experience-href={href} className={active ? "active" : ""} aria-current={active ? "page" : undefined}><AeroIcon icon={Icon} size={14} tone={tone as AeroTone}/><span>{label}</span></Link>;
   })}</nav>;
 }

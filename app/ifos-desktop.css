@@ -1,0 +1,233 @@
+/* IFOS: open sky, polished glass and the little details of a personal desktop. */
+.ifosShell { min-height:100svh }
+.ifosDesktop.osDesktop {
+  --os-ink:#173f53; --os-muted:#557785; --os-line:#ffffffbd; --os-panel:#f8fdffe0;
+  position:relative; isolation:isolate; display:block; width:100%; height:100svh; min-height:580px;
+  margin:0; padding:0; overflow:hidden; border:0; border-radius:0; color:var(--os-ink);
+  background-size:cover; background-position:center; box-shadow:none; outline:0;
+}
+.osDesktop button,.osDesktop a { -webkit-tap-highlight-color:transparent }
+.osDesktop button { font-family:inherit; cursor:pointer }
+.osDesktop :focus-visible { outline:3px solid #0784bf; outline-offset:3px }
+.osScenery { position:absolute; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 45% 24%,#ffffffa0,transparent 48%),linear-gradient(180deg,#8cd8f130,transparent 65%) }
+.osSun { position:absolute; top:-190px; right:12%; width:650px; height:650px; border-radius:50%; background:radial-gradient(circle,#ffffffd6,transparent 66%) }
+.osHill { position:absolute; width:120%; height:53%; left:20%; bottom:-25%; border-radius:60% 0 0; transform:rotate(-9deg); background:linear-gradient(165deg,#b7df8bbf,#7fbc63b3 75%); box-shadow:inset 0 2px 0 #ffffff8c }
+.osHillBack { left:-20%; bottom:-19%; transform:rotate(12deg); background:linear-gradient(130deg,#e7f5c0d9,#a7d7a2a6) }
+.osScenery i { position:absolute; top:16%; right:29%; width:160px; aspect-ratio:1; border-radius:50%; border:1px solid #ffffffa1; background:radial-gradient(circle at 30% 25%,#ffffff8a,transparent 36%),linear-gradient(150deg,#ffffff21,#46b9e221); box-shadow:inset -6px -10px 22px #5eb5c313,0 12px 30px #158eaa05 }
+.osScenery i:nth-last-child(2) { top:45%; right:42%; width:64px }
+.osScenery i:nth-last-child(3) { top:68%; right:32%; width:100px }
+.osScenery i:last-child { top:20%; right:46%; width:25px }
+.osDesktop[data-wallpaper="water"] .osHill { background:linear-gradient(140deg,#b1e5f4a0,#4baec3aa) }
+.osDesktop[data-wallpaper="aurora"] .osScenery { background:radial-gradient(ellipse at 45% 24%,#d8c1f466,transparent 60%) }
+.osDesktop[data-wallpaper="aurora"] .osHill { background:linear-gradient(145deg,#98cfc894,#a7b3dfba) }
+.osDesktop[data-wallpaper^="photo-"] .osScenery { background:linear-gradient(90deg,#e8f8ff4d,transparent 60%) }
+.osDesktop[data-wallpaper^="photo-"] .osHill,.osDesktop[data-wallpaper^="photo-"] .osSun { display:none }
+.osTopbar { position:relative; z-index:70; height:62px; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:0 30px; border-bottom:1px solid #ffffff87; background:linear-gradient(180deg,#ffffffbd,#f0fbff6e); backdrop-filter:blur(24px); box-shadow:0 1px 20px #29657c06 }
+.osBrand { display:flex; align-items:center; gap:11px; color:var(--os-ink); text-decoration:none }
+.osBrandMark,.osStartButton>span { display:grid; place-items:center; width:33px; height:33px; border:1px solid #ffffffc9; border-radius:11px; color:white; background:linear-gradient(155deg,#a4e58b,#46a46f 55%,#258db0); box-shadow:inset 0 1px 2px #fff9,0 3px 9px #1d786137 }
+.osBrand b { font-size:28px; font-weight:800; line-height:1; letter-spacing:-1.7px }
+.osBrand b>span { font-weight:350 }
+.osBrand sup { display:inline-block; position:relative; top:-9px; margin-left:7px; padding:3px 5px; border:1px solid #7bacba5e; border-radius:4px; color:var(--os-muted); font-size:8px; letter-spacing:1px; font-weight:600; text-transform:uppercase }
+.osBrandDivider { height:20px; width:1px; background:#7cabb64d; margin-inline:4px }
+.osBrand>small { font-size:11px; color:var(--os-muted) }
+.osTopActions { display:flex; align-items:center; gap:19px }
+.osTopActions>button { display:grid; place-items:center; width:31px; height:31px; border:0; border-radius:8px; color:var(--os-muted); background:transparent }
+.osTopActions>button:hover { background:#ffffff9c }
+.osCampus { display:flex; align-items:center; gap:7px; color:var(--os-muted); font-size:11px }
+.osCampus>span,.osLiveDot { display:inline-block; width:6px; height:6px; flex-shrink:0; border-radius:50%; background:#4eaa7a; box-shadow:0 0 0 3px #73c89b1f }
+.osExit { display:flex; align-items:center; gap:7px; padding:8px 11px; border:1px solid #ffffffa6; border-radius:8px; background:#ffffff52; color:var(--os-ink); font-size:11px; text-decoration:none }
+.osExit:hover { background:#ffffffe0 }
+.osDesktopApps { position:absolute; top:89px; left:22px; bottom:105px; display:grid; grid-auto-flow:column; grid-template-rows:repeat(5,100px); grid-auto-columns:94px; align-content:start; gap:8px 8px }
+.osDesktopApp { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:8px; width:94px; min-height:96px; padding:9px 5px; border:1px solid transparent; border-radius:11px; background:transparent; color:#174a62; text-align:center }
+.osDesktopApp:hover,.osDesktopApp:focus-visible { background:#ffffff52; border-color:#ffffffa3; transform:translateY(-2px) }
+.osAppTile,.osSmallTile { --tile-light:#89d6f6; --tile-mid:#2d9dd5; --tile-deep:#1479b0; position:relative; display:grid; place-items:center; flex-shrink:0; width:55px; height:55px; overflow:hidden; border-radius:15px; border:1px solid #ffffffce; background:linear-gradient(150deg,var(--tile-light),var(--tile-mid) 56%,var(--tile-deep)); box-shadow:inset 0 1px 1px #fff, inset 0 -2px 3px #052e4426,0 6px 12px #205c6826; color:white; text-shadow:0 1px 2px #175b6f; transition:transform .3s ease-out }
+.osAppTile::before { content:""; position:absolute; top:-29px; left:-12px; width:85px; height:58px; border-radius:50%; background:linear-gradient(#ffffffa1,#ffffff26); transform:rotate(-12deg); pointer-events:none }
+.osAppTile svg,.osSmallTile svg { position:relative; z-index:1; filter:drop-shadow(0 1px 1px #17476255) }
+.osAppTile.green,.osSmallTile.green { --tile-light:#b7e68a; --tile-mid:#70b64b; --tile-deep:#418e36 }
+.osAppTile.violet,.osSmallTile.violet { --tile-light:#c9b6f2; --tile-mid:#9c83cc; --tile-deep:#7b5fb0 }
+.osAppTile.amber,.osSmallTile.amber { --tile-light:#ffe4a0; --tile-mid:#ecb44e; --tile-deep:#cc8c35 }
+.osAppTile.teal,.osSmallTile.teal { --tile-light:#98e1cf; --tile-mid:#41b7a4; --tile-deep:#258d8c }
+.osAppTile.rose,.osSmallTile.rose { --tile-light:#f3c2db; --tile-mid:#d98db4; --tile-deep:#b76598 }
+.osAppTile.glass { color:#397b91; background:linear-gradient(150deg,#ffffffe0,#c4e9f28c); box-shadow:inset 0 1px white,0 6px 12px #205c681a }
+.osDesktopApp strong { max-width:92px; font-size:10px; line-height:1.5; font-weight:600; text-shadow:0 1px 3px #fff,0 0 8px #ffffffad }
+.osRunningDot { position:absolute; bottom:0; width:4px; height:4px; background:#288cb1; border-radius:50% }
+.osWelcome { position:absolute; top:26%; left:clamp(245px,23.5vw,450px); right:350px; max-width:530px; color:var(--os-ink) }
+.osWelcomeTag { display:inline-flex; align-items:center; gap:7px; padding:7px 11px; border:1px solid #ffffffa8; border-radius:20px; background:#ffffff49; color:#33798b; font-size:8px; font-weight:650; letter-spacing:1.7px }
+.osWelcome h1 { margin:24px 0 20px; font-size:clamp(47px,5.1vw,86px); line-height:1.05; font-weight:350; letter-spacing:-3px; text-shadow:0 1px 4px #ffffff63; overflow-wrap:anywhere }
+.osWelcome h1>span { font-weight:700; color:#167898 }
+.osWelcome>p { margin:0 0 27px; color:#447585; font-size:14px; line-height:1.9; letter-spacing:.1px }
+.osWelcome>button { display:flex; align-items:center; gap:10px; padding:12px 14px; min-width:300px; max-width:100%; border:1px solid #ffffffde; border-radius:11px; background:#ffffffa3; color:#3b7384; box-shadow:0 6px 20px #35778d09,inset 0 1px white; font-size:11px; backdrop-filter:blur(14px) }
+.osWelcome>button:hover { background:#ffffffe6; transform:translateY(-2px) }
+.osWelcome kbd,.osSearch kbd { margin-left:auto; border:1px solid #88aeb52b; border-radius:4px; padding:3px 5px; color:#729198; font:9px inherit; white-space:nowrap }
+.osWelcomeNote { display:flex; align-items:center; gap:8px; margin-top:33px; color:#528779; font-size:10px }
+.osPixelFlower { font-size:19px; color:#63a76c; text-shadow:2px 2px #ffffff70 }
+.osGadgets { position:absolute; top:88px; right:27px; bottom:100px; width:265px; display:flex; flex-direction:column; gap:14px; overflow:auto; scrollbar-width:thin; padding:0 2px 12px }
+.osGadget { flex-shrink:0; padding:18px; border:1px solid #ffffffd4; border-radius:17px; background:linear-gradient(140deg,#ffffffcc,#f4ffff82); backdrop-filter:blur(22px); box-shadow:inset 0 1px 0 white,0 8px 24px #1b637710 }
+.osGadgetLabel { display:flex; align-items:center; justify-content:space-between; gap:8px; color:#568093; font-size:8px; letter-spacing:.8px; font-weight:650 }
+.osGadgetLabel>span:first-child { display:flex; align-items:center; gap:7px }
+.osGadgetLabel>small { font-size:8px; font-weight:400; letter-spacing:0 }
+.osBigTime { display:block; margin:12px 0 0; color:#1f5b72; font-size:56px; font-weight:300; line-height:1.1; letter-spacing:-2px; font-variant-numeric:tabular-nums }
+.osClock>p { margin:5px 0 17px; color:var(--os-muted); font-size:10px; text-transform:capitalize }
+.osCalendar { padding-top:14px; border-top:1px solid #8eb8c32f }
+.osCalendarHeading { display:flex; align-items:center; justify-content:space-between; gap:5px }
+.osCalendarHeading>strong { font-size:10px; font-weight:600; text-transform:capitalize }
+.osCalendarHeading>span { display:flex }
+.osCalendarHeading button { display:grid; place-items:center; width:23px; height:23px; padding:0; border:0; border-radius:6px; background:transparent; color:#658a96 }
+.osCalendarHeading button:hover { background:#ffffffb8 }
+.osCalendarGrid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px 1px; margin-top:8px; text-align:center; font-size:9px }
+.osCalendarGrid>span,.osCalendarGrid>small { display:grid; place-items:center; height:23px; border-radius:6px; color:#456f80 }
+.osCalendarGrid>small { height:20px; font-size:8px; color:#83a0a8 }
+.osCalendarGrid .today { background:#308fa8; color:white; box-shadow:0 2px 5px #3b97a93b; font-weight:700 }
+.osAgenda>a { display:flex; align-items:center; gap:9px; margin-top:16px; color:var(--os-ink); text-decoration:none }
+.osAgenda>a>span:nth-child(2) { flex:1; min-width:0 }
+.osAgenda>a strong { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-size:10px; line-height:1.6; font-weight:600 }
+.osAgenda>a small { display:block; margin-top:3px; color:var(--os-muted); font-size:8px; line-height:1.6 }
+.osEventDay { display:grid; justify-items:center; flex-shrink:0; width:36px; padding:5px 0; border:1px solid #bbdcd97d; border-radius:8px; background:#e4f2e8a1; font-size:17px; font-weight:500; color:#418871 }
+.osAgenda>a .osEventDay small { margin:0; font-size:8px; line-height:1; color:#5a8d76; text-transform:uppercase }
+.osTextButton { display:flex; justify-content:space-between; align-items:center; gap:10px; width:100%; margin-top:16px; padding:9px 0 0; border:0; border-top:1px solid #8eb8c32f; background:transparent; color:#3d7f90; font-size:9px; text-align:left }
+.osEmptyAgenda { font-size:12px; line-height:1.6; color:#3d7687 }
+.osEmptyAgenda>small { display:block; margin-top:6px; font-size:9px; line-height:1.7; color:var(--os-muted) }
+.osPixelBadge { border:1px solid #a8c6a975; padding:2px 3px; color:#5c946b; font-size:6px; font-family:monospace; letter-spacing:1px }
+.osFocusHeading { display:flex; justify-content:space-between; align-items:baseline; margin-top:16px }
+.osFocusHeading>strong { font-size:24px; font-weight:500 }
+.osFocusHeading small { color:var(--os-muted); font-size:10px; font-weight:400 }
+.osFocusHeading>span { color:#5b9872; font-size:10px }
+.osFocus progress { display:block; appearance:none; width:100%; height:5px; margin:13px 0 16px; overflow:hidden; border:0; border-radius:5px; background:#b3d4ca70 }
+.osFocus progress::-webkit-progress-bar { background:#b3d4ca70 }
+.osFocus progress::-webkit-progress-value { border-radius:5px; background:linear-gradient(90deg,#7fba68,#49a397) }
+.osFocus progress::-moz-progress-bar { background:#49a397 }
+.osFocus>button { display:flex; justify-content:space-between; align-items:center; gap:10px; width:100%; padding:10px; border:1px solid #c3e0c3; border-radius:8px; background:linear-gradient(#f6fff7,#e2efdf); color:#4f805d; font-size:9px; box-shadow:inset 0 1px white }
+.osDesktopBottom { position:absolute; left:30px; right:30px; bottom:74px; display:flex; align-items:center; justify-content:space-between; gap:20px; color:#427b6d; font-size:9px }
+.osDesktopBottom>span:first-child { display:flex; align-items:center; gap:6px }
+.osDesktopBottom>small { font-size:8px; opacity:.85 }
+.osDesktopBottom>span:last-child { font:8px monospace; letter-spacing:1.5px }
+.osTaskbar { position:absolute; z-index:100; left:0; right:0; bottom:0; display:flex; align-items:center; gap:8px; height:57px; padding:0 17px; border-top:1px solid #ffffffed; background:linear-gradient(#f0ffffb0,#e4f4f3cf); backdrop-filter:blur(28px); box-shadow:0 -3px 20px #2569720a,inset 0 1px white }
+.osStartButton { display:flex; align-items:center; gap:8px; height:43px; padding:4px 12px 4px 4px; border:1px solid transparent; border-radius:10px; background:transparent; color:#326b70 }
+.osStartButton strong { font-size:11px; font-weight:650 }
+.osStartButton>span { width:34px; height:34px; border-radius:50%; box-shadow:inset 0 1px 3px #fff,0 2px 6px #2d7d6033 }
+.osStartButton:hover,.osStartButton.isOpen { border-color:#ffffffd9; background:#ffffff70 }
+.osTaskSearch,.osSystemTray>button { display:grid; place-items:center; width:34px; height:37px; border:0; border-radius:8px; background:transparent; color:#527f88 }
+.osTaskSearch:hover,.osSystemTray>button:hover { background:#ffffff9c }
+.osTaskDivider { width:1px; height:24px; background:#87b1b438; margin:0 4px }
+.osTaskApps { display:flex; flex:1; gap:5px; min-width:0; height:100%; overflow:auto; scrollbar-width:none }
+.osTaskApps>button { position:relative; display:flex; align-items:center; justify-content:center; gap:8px; min-width:48px; max-width:168px; height:43px; margin-top:6px; padding:0 11px; border:1px solid transparent; border-radius:8px; background:#ffffff3d; color:#397687 }
+.osTaskApps>button:hover,.osTaskApps>button.isActive { border-color:#ffffffc2; background:#ffffffa6; box-shadow:0 2px 6px #316c700b }
+.osTaskApps>button>span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:10px }
+.osTaskApps i { position:absolute; bottom:2px; width:5px; height:3px; border-radius:3px; background:#77aab4 }
+.osTaskApps .isActive i { width:20px; background:#2698b3 }
+.osSystemTray { display:flex; align-items:center; gap:9px; margin-left:auto }
+.osTrayClock { display:grid; gap:2px; min-width:90px; text-align:right; color:#326b7b; font-variant-numeric:tabular-nums }
+.osTrayClock>b { font-size:11px; font-weight:600 }
+.osTrayClock>small { font-size:8px }
+.osSystemTray>.osShowDesktop { height:57px; width:25px; margin-right:-17px; border-radius:0; border-left:1px solid #ffffff8f; background:#ffffff21 }
+.osWindow { position:absolute; width:550px; max-height:calc(100% - 135px); overflow:hidden; border:1px solid #ffffffed; border-radius:13px; background:var(--os-panel); color:var(--os-ink); box-shadow:0 22px 70px #1a516d30,0 2px 10px #174b6b30,inset 0 1px white; backdrop-filter:blur(24px); display:flex; flex-direction:column; outline:none }
+.osWindow.osActiveWindow { box-shadow:0 25px 80px #134b7438,0 0 0 1px #74b5d64f; border-color:#eaffff }
+.osWindow.osMaximized { inset:72px 12px 69px; width:auto; max-height:none }
+.osWindowBar { display:flex; justify-content:space-between; gap:8px; min-height:43px; padding:0 5px 0 12px; border-bottom:1px solid #bfdce66b; background:linear-gradient(#ffffffd9,#d2eaf066) }
+.osWindowDrag { display:flex; flex:1; align-items:center; gap:8px; min-width:0; padding:7px 0; border:0; background:transparent; color:var(--os-ink); cursor:grab!important; touch-action:none; user-select:none }
+.osWindowDrag:active { cursor:grabbing!important }
+.osWindowDrag>strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; font-weight:600 }
+.osWindowDrag>svg { color:#3c839a; flex-shrink:0 }
+.osWindowControls { display:flex; align-items:center; gap:3px }
+.osWindowControls>button { display:grid; place-items:center; width:30px; height:27px; padding:0; border:1px solid transparent; border-radius:6px; background:transparent; color:#587d8b }
+.osWindowControls>button:hover { border-color:#ffffffd1; background:#ffffffb3 }
+.osWindowControls>button:last-child:hover { background:#d86f70; color:white }
+.osWindowBody { overflow:auto; padding:16px 25px 25px }
+.osWindowBreadcrumb { display:flex; align-items:center; gap:7px; margin-bottom:24px; color:var(--os-muted); font-size:8px }
+.osWindowBreadcrumb b { font-weight:500 }
+.osWindowIntro { display:flex; align-items:center; gap:16px }
+.osLabel { font-size:8px; font-weight:650; letter-spacing:1.1px; color:var(--os-muted); text-transform:uppercase }
+.osWindow h2 { color:var(--os-ink); margin:5px 0 0; font-size:23px; font-weight:650; line-height:1.3; letter-spacing:-.7px }
+.osWindowDescription { margin:17px 0 21px; color:var(--os-muted); font-size:12px; line-height:1.8 }
+.osAppDetails { padding:18px; border:1px solid #bedee066; border-radius:11px; background:#e4f4f460 }
+.osAppDetails>span { display:flex; align-items:center; gap:7px; color:#458a7a; font-size:11px }
+.osAppDetails>p { font-size:11px; line-height:1.8; color:var(--os-muted) }
+.osAppDetails>small { color:var(--os-muted); font-size:9px }
+.osWindowActions { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:24px }
+.osWindowActions>.button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:39px; padding:11px 17px; border-radius:9px; font-size:11px }
+.osFavoriteButton { display:flex; align-items:center; gap:7px; padding:8px 6px; border:0; background:transparent; color:#8a783b; font-size:10px }
+.osWindowAgenda { display:grid; gap:7px }
+.osWindowAgenda>a { display:flex; align-items:center; gap:12px; padding:11px; border:1px solid #c4dfe55e; border-radius:9px; background:#e7f3f54d; color:var(--os-ink); text-decoration:none }
+.osWindowAgenda>a>span { flex-shrink:0; width:48px; font-size:12px; font-weight:600; text-align:center }
+.osWindowAgenda small { display:block; margin-top:4px; font-size:8px; font-weight:400; color:var(--os-muted) }
+.osWindowAgenda>a>div { flex:1 }
+.osWindowAgenda>a strong { font-size:11px; font-weight:600 }
+.osWindowAgenda>a p { margin:3px 0; color:var(--os-muted); font-size:9px }
+.osWindowAgenda>p { font-size:12px; line-height:1.8; color:var(--os-muted) }
+.osWindowAgenda>.osSourceNote { padding:8px 0; line-height:1.8 }
+.osQuickPersonalize>div { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-top:12px }
+.osWallpaperChoice { display:grid; gap:8px; padding:5px 5px 9px; border:1px solid #b5d6df9c; border-radius:10px; background:#f7ffff96; color:var(--os-ink) }
+.osWallpaperChoice[aria-pressed="true"] { outline:2px solid #449cb7; outline-offset:1px }
+.osWallpaperChoice>span { display:grid; place-items:center; aspect-ratio:1.3; border-radius:6px; background:linear-gradient(145deg,#8cd9f4,#f4fcfd 60%,#acda91); color:white }
+.osWallpaperChoice.meadow>span { background:linear-gradient(145deg,#b1db80,#f2f8d5 60%,#8bbe98) }
+.osWallpaperChoice.aurora>span { background:linear-gradient(145deg,#a6a8dc,#d7e4fa 55%,#8acfc0) }
+.osWallpaperChoice.photo-lake>span { background:linear-gradient(145deg,#758b9f,#c0cdd6 45%,#42818f 48%,#6db5b9) }
+.osWallpaperChoice>strong { font-size:9px; font-weight:500 }
+.osQuickPersonalize>p { margin-top:15px; font-size:10px; line-height:1.8; color:var(--os-muted) }
+.osStartPanel { position:absolute; z-index:90; bottom:67px; left:16px; display:flex; flex-direction:column; width:610px; max-height:calc(100% - 145px); padding:0; overflow:hidden; border:1px solid #fffffff5; border-radius:19px; background:var(--os-panel); backdrop-filter:blur(35px); box-shadow:0 20px 70px #1a516d38,inset 0 1px white }
+.osStartPanel>header { display:flex; align-items:center; gap:11px; padding:20px 22px 16px }
+.osMenuAvatar { display:grid; place-items:center; flex-shrink:0; width:37px; height:37px; border:1px solid white; border-radius:12px; background:linear-gradient(145deg,#9cd9bf,#55a6b4); background-size:cover; background-position:center; font-size:17px; color:white; box-shadow:0 2px 6px #4e929324 }
+.osStartPanel>header>div { display:grid; gap:4px }
+.osStartPanel>header strong { font-size:13px; font-weight:650 }
+.osStartPanel>header small { color:var(--os-muted); font-size:10px }
+.osStartPanel>header>button { display:grid; place-items:center; width:30px; height:30px; margin-left:auto; border:0; border-radius:7px; color:var(--os-muted); background:transparent }
+.osStartPanel>header>button:hover { background:#a1c3d229 }
+.osSearch { display:flex; align-items:center; gap:10px; margin:0 22px; padding:11px 12px; border:1px solid #a5cfdc99; border-radius:10px; color:#6b95a2; background:#ffffffad; box-shadow:0 2px 6px #355e6d05 }
+.osSearch:focus-within { border-color:#69a8c1; box-shadow:0 0 0 3px #72b8d123 }
+.osSearch>input { flex:1; min-width:0; padding:0; border:0; outline:0; font:11px inherit; color:var(--os-ink); background:transparent!important; box-shadow:none }
+.osSearch>input:focus-visible { outline:0 }
+.osSearch>input::placeholder { color:#7999a3 }
+.osMenuCategories { display:flex; gap:5px; padding:13px 22px 12px; overflow:auto; flex-shrink:0; scrollbar-width:thin }
+.osMenuCategories>button { flex-shrink:0; padding:7px 9px; border:1px solid transparent; border-radius:7px; background:transparent; color:var(--os-muted); font-size:9px }
+.osMenuCategories>button[aria-pressed="true"] { color:#277e93; border-color:#c9e3e9; background:#dfedf1a6 }
+.osAppResults { min-height:0; overflow:auto; padding:0 15px 15px; scrollbar-width:thin }
+.osAppResults>.osLabel { margin:7px 8px 10px; font-size:7px }
+.osStartApps { display:grid; grid-template-columns:1fr 1fr; gap:4px }
+.osStartApps>button { display:flex; align-items:center; gap:10px; min-width:0; min-height:66px; padding:9px 8px; border:1px solid transparent; border-radius:10px; background:transparent; color:var(--os-ink); text-align:left }
+.osStartApps>button:hover { background:#d9edf275; border-color:#ffffffaa }
+.osSmallTile { width:36px; height:36px; border-radius:10px; box-shadow:inset 0 1px #ffffffd6,0 2px 5px #205c6812 }
+.osStartApps>button>span:nth-child(2) { display:grid; min-width:0; gap:5px; flex:1 }
+.osStartApps strong { font-size:10px; font-weight:600; line-height:1.5 }
+.osStartApps small { display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; color:var(--os-muted); font-size:8px; line-height:1.5 }
+.osStartApps>button>svg { color:#8ca9b4 }
+.osStartPanel>footer { display:flex; align-items:center; justify-content:space-between; flex-shrink:0; gap:8px; padding:12px 22px; border-top:1px solid #a6cbd333; background:#d7ebf11a; color:var(--os-muted); font-size:8px }
+.osStartPanel>footer>span,.osStartPanel>footer>a { display:flex; align-items:center; gap:6px }
+.osStartPanel>footer>a { color:var(--os-muted); text-decoration:none }
+.osSearchEmpty { display:grid; justify-items:center; gap:10px; padding:25px 15px; color:var(--os-muted); text-align:center }
+.osSearchEmpty>strong { margin-top:5px; font-size:13px; color:var(--os-ink) }
+.osSearchEmpty>p { margin:0; font-size:11px }
+.osSearchEmpty>button { margin-top:5px; padding:8px 13px; border:1px solid #aacdd7; border-radius:8px; background:#e3f3f6; color:#407b8b; font-size:10px }
+.osError { position:absolute; z-index:110; right:22px; bottom:78px; display:flex; align-items:center; gap:10px; max-width:380px; padding:13px; border:1px solid #efcc95; border-radius:11px; background:#fff7e8; color:#795f34; box-shadow:0 5px 20px #49361113 }
+.osError>p { margin:0; font-size:11px; line-height:1.7 }
+.osError>button { display:grid; padding:5px; border:0; background:transparent; color:inherit }
+.osPixelBurst { position:absolute; z-index:120; top:calc(50% - 108px); left:calc(50% - 112px) }
+.osMobile { display:flex; flex-direction:column; align-items:center; gap:20px; justify-content:center; min-height:100svh; padding:35px 24px; color:#24586e; text-align:center; background:radial-gradient(ellipse at 70% 15%,#c0eafa,transparent 50%),linear-gradient(145deg,#eefaff,#edf6df) }
+.osMobileArt { position:relative; display:grid; place-items:center; width:110px; height:110px; margin-bottom:8px; border:1px solid white; border-radius:28px; background:#ffffff8c; color:#4093a5; box-shadow:inset 0 1px white,0 12px 30px #397c8b12 }
+.osMobileArt>svg:last-child { position:absolute; top:18px; right:16px; color:#78a96f }
+.osMobile h1 { max-width:450px; margin:0; font-size:30px; letter-spacing:-1px; line-height:1.25 }
+.osMobile>p { max-width:430px; margin:0 0 8px; font-size:13px; line-height:1.9; color:#638590 }
+.osMobile>.button { display:flex; align-items:center; gap:12px; padding:12px 20px }
+.osMobile>a:last-child { color:#53838e; font-size:12px }
+html[data-experience-icons="flat"] :is(.osAppTile,.osSmallTile) { border-radius:12px; box-shadow:none; background:var(--tile-mid) }
+html[data-experience-icons="flat"] .osAppTile::before { display:none }
+html[data-experience-icons="pixel"] :is(.osAppTile,.osSmallTile) { border-radius:3px; image-rendering:pixelated; box-shadow:3px 3px 0 #365a6b40 }
+html[data-experience-icons="pixel"] .osAppTile::before { border-radius:0; transform:none; height:44px }
+html[data-experience-resolved-theme="dark"] .osDesktop { --os-ink:#d9eef5; --os-muted:#a0c0cb; --os-panel:#102f40f0 }
+html[data-experience-resolved-theme="dark"] .osScenery { background:linear-gradient(#061e40dd,#0a2e4abf) }
+html[data-experience-resolved-theme="dark"] .osHill { opacity:.2 }
+html[data-experience-resolved-theme="dark"] :is(.osTopbar,.osTaskbar,.osWindowBar) { background:linear-gradient(#1d4b62cf,#0d2f44e6); border-color:#71adc04a; box-shadow:none }
+html[data-experience-resolved-theme="dark"] :is(.osGadget,.osStartPanel,.osWindow) { background:var(--os-panel); border-color:#7fb8ca5c; box-shadow:0 12px 40px #02162633 }
+html[data-experience-resolved-theme="dark"] :is(.osWelcome h1,.osWelcome>p,.osBigTime,.osTrayClock,.osDesktopApp,.osBrand,.osTaskbar button,.osCalendarGrid>span) { color:#d9eef5 }
+html[data-experience-resolved-theme="dark"] .osWelcome h1>span { color:#91dce1 }
+html[data-experience-resolved-theme="dark"] .osDesktopApp strong { text-shadow:0 1px 4px #082737 }
+html[data-experience-resolved-theme="dark"] :is(.osWelcomeTag,.osWelcome>button,.osExit,.osSearch,.osWallpaperChoice) { background:#153b50bf; color:#c7e8f4; border-color:#76aec154 }
+html[data-experience-resolved-theme="dark"] :is(.osStartApps>button:hover,.osMenuCategories>button[aria-pressed="true"],.osTaskApps>button.isActive,.osStartButton:hover) { background:#2a596b8a; color:#d6f0f8; border-color:#77b4c454 }
+html[data-experience-resolved-theme="dark"] .osCalendarGrid .today { color:white; background:#267e98 }
+html[data-experience-resolved-theme="dark"] .osFocus>button { background:#214c46; color:#c0dfce; border-color:#4b7f70 }
+html[data-experience-resolved-theme="dark"] .osDesktopBottom { color:#a6c9ba }
+html[data-experience-resolved-theme="dark"] .osMobile { background:linear-gradient(145deg,#122f44,#1e423f); color:#d3eaf1 }
+html[data-experience-resolved-theme="dark"] .osMobileArt { background:#285468; border-color:#568392 }
+@media(min-height:850px) { .osDesktopApps { grid-template-rows:repeat(5,112px); gap:12px 8px } .osGadgets { gap:18px } .osGadget { padding:20px } }
+@media(max-width:1150px) { .osTopbar { padding-inline:22px } .osGadgets { width:236px; right:20px } .osWelcome { left:240px; right:280px } .osWelcome>button { min-width:0; font-size:10px } .osWelcome kbd { display:none } .osWelcome h1 { font-size:60px } .osWelcomeTag { letter-spacing:.6px; font-size:7px } .osDesktopApps { left:12px; grid-auto-columns:92px } .osTaskApps>button>span { display:none } .osBrand>small,.osBrandDivider { display:none } }
+@media(max-height:740px) { .osDesktopApps { top:80px; grid-template-rows:repeat(5,86px); gap:0 } .osDesktopApp { min-height:82px; padding-block:6px; gap:5px } .osDesktopApp .osAppTile { width:44px; height:44px; border-radius:12px } .osDesktopApp strong { font-size:9px } .osWelcome { top:24% } .osWelcome h1 { font-size:60px; margin-block:18px } .osWelcomeNote { margin-top:22px } .osGadgets { gap:10px; top:80px; bottom:87px } .osGadget { padding:14px } .osBigTime { font-size:42px } .osCalendar { padding-top:10px } .osCalendarGrid { gap:1px } .osCalendarGrid>span { height:20px } .osDesktopBottom { bottom:68px } }
+@media(prefers-reduced-motion:reduce) { .osDesktop *, .osDesktop *::before,.osDesktop *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important } }

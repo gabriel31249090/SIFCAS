@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
 
-const supabaseOrigin = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "NEXT_PUBLIC_SUPABASE_URL=https://xqhilujzacwebeexljaf.supabase.co").origin;
+const supabaseOrigin = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "http://127.0.0.1:54321").origin;
 const isDevelopment = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval' https://va.vercel-scripts.com" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
-  `img-src 'self' data: blob: ${supabaseOrigin}`,
+  `img-src 'self' data: blob: https://images.unsplash.com ${supabaseOrigin}`,
   `connect-src 'self' ${supabaseOrigin} wss://${new URL(supabaseOrigin).host}${isDevelopment ? " ws: wss: https://va.vercel-scripts.com" : ""}`,
   "media-src 'self' blob:",
   "worker-src 'self' blob:",

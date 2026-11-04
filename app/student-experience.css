@@ -1,0 +1,184 @@
+html[data-experience-palette="meadow"] { --sky:#4f9a52; --sky-deep:#337540; --green:#337540; --green2:#265d35; --soft:#edf7e9; --line:#d5e7d0 }
+html[data-experience-palette="sunset"] { --sky:#c26c42; --sky-deep:#904d34; --green:#9a5b3e; --green2:#75422e; --soft:#fff1e7; --line:#f0d7c7 }
+html[data-experience-palette="bubblegum"] { --sky:#8b69c1; --sky-deep:#684ba0; --green:#684ba0; --green2:#533a85; --soft:#f4efff; --line:#dfd3f1 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] body,
+html[data-experience-theme="dark"] body { color:#e7f2f7; background-color:#102331 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] .appMain,
+html[data-experience-theme="dark"] .appMain { color:#e7f2f7 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] .pageContainer,
+html[data-experience-theme="dark"] .pageContainer { color:#e7f2f7 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] .card,
+html[data-experience-theme="dark"] .card,
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] .panel,
+html[data-experience-theme="dark"] .panel { color:#e2eef4; background:linear-gradient(145deg,#183547f2,#142d3de8); border-color:#355366; box-shadow:inset 0 1px 0 #ffffff12,0 8px 24px #07172240 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] :is(.pageHeader h1,.sectionTitle h2,.panel h2,.panel h3,.pageContainer h1,.pageContainer h2,.pageContainer h3),
+html[data-experience-theme="dark"] :is(.pageHeader h1,.sectionTitle h2,.panel h2,.panel h3,.pageContainer h1,.pageContainer h2,.pageContainer h3) { color:#d5edf8 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] :is(.pageHeader p,.sectionTitle p,.panel p,.panel small,.mutedLabel),
+html[data-experience-theme="dark"] :is(.pageHeader p,.sectionTitle p,.panel p,.panel small,.mutedLabel) { color:#b0c9d6 }
+html[data-experience-theme="system"][data-experience-resolved-theme="dark"] :is(input,select,textarea),
+html[data-experience-theme="dark"] :is(input,select,textarea) { color:#e7f2f7; background-color:#102a3a; border-color:#496478 }
+
+html[data-experience-text="large"] { font-size:18px }
+html[data-experience-text="xlarge"] { font-size:20px }
+html[data-experience-density="compact"] .pageContainer .card,
+html[data-experience-density="compact"] .pageContainer .panel { padding:clamp(12px,1.3vw,18px) }
+html[data-experience-density="compact"] .pageContainer .sectionTitle { margin-block:18px 8px }
+html[data-experience-icons="flat"] .aeroIcon { border-radius:12px; box-shadow:none; filter:saturate(.55) }
+html[data-experience-icons="pixel"] .aeroIcon { border-radius:2px; image-rendering:pixelated; box-shadow:3px 3px 0 #184e6940; filter:saturate(1.2) contrast(1.05) }
+html[data-experience-animations="false"] *,
+html[data-experience-animations="false"] *::before,
+html[data-experience-animations="false"] *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important }
+html[data-experience-theme] body { background-repeat:no-repeat; background-position:center; background-size:cover; background-attachment:fixed }
+
+[hidden] { display:none!important }
+.navGroup { display:flex; flex-direction:column }
+[data-experience-home] { display:grid; grid-template-columns:minmax(0,1fr) }
+[data-experience-home] > :not([data-experience-widget]):not([data-experience-fixed]) { order:10 }
+[data-experience-home] > [data-experience-fixed="heading"] { order:-2 }
+[data-experience-home] > [data-experience-fixed="hero"] { order:-1 }
+[data-experience-home] > [data-experience-fixed="secondary"] { order:6 }
+[data-experience-home] > [data-experience-fixed="favorites"] { order:7 }
+[data-experience-home] > [data-experience-fixed="evolution"] { order:8 }
+.profileIdentity { position:relative; overflow:hidden }
+html[data-experience-banner="none"] .profileIdentity::before { display:none }
+.profileIdentity::before { content:""; display:block; height:76px; margin:-28px -22px 18px; border-bottom:1px solid #ffffff96; background:radial-gradient(circle at 76% 34%,#ffffffa8 0 3px,transparent 4px),radial-gradient(circle at 85% 50%,#ffffff66 0 8px,transparent 9px),linear-gradient(130deg,#bcecff,#83d4e5 50%,#c9efbc) }
+html[data-experience-banner="aurora"] .profileIdentity::before { background:linear-gradient(125deg,#d7eaff,#c7f5ea 48%,#e0f0b9) }
+html[data-experience-banner="bubbles"] .profileIdentity::before { background:radial-gradient(circle at 20% 45%,#ffffffbb 0 8px,transparent 9px),radial-gradient(circle at 54% 26%,#ffffff8a 0 13px,transparent 14px),radial-gradient(circle at 81% 75%,#ffffffa3 0 10px,transparent 11px),linear-gradient(125deg,#9cdef4,#b9f1e7) }
+html[data-experience-banner="leaves"] .profileIdentity::before { background:radial-gradient(ellipse at 32% 20%,#72ba73 0 18px,transparent 19px),radial-gradient(ellipse at 72% 66%,#9cca70 0 23px,transparent 24px),linear-gradient(120deg,#e7f8db,#b7e5cd) }
+html[data-experience-banner="pixel"] .profileIdentity::before { background:linear-gradient(90deg,transparent 50%,#fff5 50%) 0 0/16px 16px,linear-gradient(135deg,#82d9e8,#b8edb7); image-rendering:pixelated }
+.profileAvatar[data-experience-avatar],.avatar[data-experience-avatar] { background-position:center; background-size:cover; background-repeat:no-repeat }
+html[data-experience-frame="aqua"] [data-experience-avatar] { outline:3px solid #79d9ee; outline-offset:3px; box-shadow:0 0 0 6px #bdeefa88 }
+html[data-experience-frame="gold"] [data-experience-avatar] { outline:3px solid #e8bb53; outline-offset:3px; box-shadow:0 0 0 6px #f8e6ab8c }
+html[data-experience-frame="pixel"] [data-experience-avatar] { outline:3px dashed #7b66c8; outline-offset:3px; box-shadow:3px 3px 0 #32225c45; border-radius:7px }
+[data-experience-subject-color="aqua"] { border-inline-start:4px solid #23a5cc }
+[data-experience-subject-color="leaf"] { border-inline-start:4px solid #61a747 }
+[data-experience-subject-color="sunset"] { border-inline-start:4px solid #d88b38 }
+[data-experience-subject-color="violet"] { border-inline-start:4px solid #8a70c3 }
+[data-experience-subject-color="blue"] { border-inline-start:4px solid #4f76d0 }
+[data-experience-subject-color="rose"] { border-inline-start:4px solid #d76e9b }
+html[data-experience-calendar="agenda"] .calendarCard .weekGrid { display:block }
+html[data-experience-calendar="agenda"] .calendarCard .dayColumn { min-height:0; margin-bottom:10px }
+html[data-experience-calendar="week"] .calendarCard .weekGrid { grid-template-columns:repeat(7,minmax(115px,1fr)); overflow:auto }
+html[data-experience-calendar="week"] .calendarCard .dayColumn:nth-child(n+8) { display:none }
+html[data-experience-calendar="month"] .calendarCard .weekGrid { grid-template-columns:repeat(7,minmax(90px,1fr)); overflow:auto }
+
+.studentExperience { max-width:1420px; margin:0 auto }
+.experienceSettingsGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px }
+.experiencePanel { display:grid; align-content:start; gap:13px }
+.experiencePanel h2 { display:flex; align-items:center; gap:8px; margin:0; color:#245873; font-size:19px }
+.experiencePanel h3 { margin:8px 0 0; color:#315d72; font-size:14px }
+.experiencePanel p,.experiencePrivacy { margin:0; color:#688293; font-size:12px; line-height:1.65 }
+.experienceControlGrid,.experienceGoalGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px }
+.experiencePanel label { display:grid; gap:6px; color:#466a7d; font-size:12px; font-weight:650 }
+.experiencePanel input:not([type="checkbox"]):not([type="file"]),.experiencePanel select { min-width:0; min-height:42px; padding:9px 11px; border:1px solid #d0e3ec; border-radius:10px; background:#fff; color:#31576b }
+.experiencePanel input[type="checkbox"] { width:18px; height:18px; accent-color:#1682ad }
+.experienceToggle { display:flex!important; align-items:center; gap:10px!important; padding:11px; border:1px solid #d5e7ee; border-radius:12px; background:#f7fcff }
+.experienceToggle span,.experienceToggle b,.experienceToggle small { display:block }
+.experienceToggle small { margin-top:3px; color:#718b9b; font-weight:400 }
+.experienceCheckList { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px }
+.experienceCheckList label { display:flex; align-items:center; gap:8px; min-height:35px }
+.experienceOrderList { display:grid; gap:5px; padding:0; margin:0; list-style:none }
+.experienceOrderList li { display:flex; align-items:center; gap:6px; min-height:38px; padding:4px 8px; border:1px solid #dceaf0; border-radius:9px; background:#f8fcfe }
+.experienceOrderList li span { flex:1; font-size:12px }
+.experienceOrderList button { width:32px; height:32px; border:1px solid #d1e4ed; border-radius:8px; background:#fff; color:#397492 }
+.experienceOrderList button:disabled { opacity:.4 }
+.experienceSubjectColors { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px }
+.experienceSubjectColors label { display:grid; grid-template-columns:1fr minmax(100px,.8fr); align-items:center; gap:8px }
+.wallpaperPreview { min-height:105px; display:grid; place-items:center; border:1px solid #cfe5ee; border-radius:14px; background:linear-gradient(145deg,#bcecff,#eefaff 52%,#dff4e3) center/cover; overflow:hidden }
+.wallpaperPreview span { padding:8px 13px; border:1px solid #ffffffb8; border-radius:999px; background:#ffffffbd; color:#315d72; font-size:12px; backdrop-filter:blur(8px) }
+.experienceFileButton { position:relative; overflow:hidden; cursor:pointer }
+.experienceFileButton input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer }
+.experienceBottom { margin-top:16px }
+.experienceBottom .heroActions { margin:0 }
+.focusTimer { display:grid; justify-items:center; gap:7px; padding:16px; border:1px solid #cce4ed; border-radius:14px; background:linear-gradient(140deg,#f3fbff,#eff9eb) }
+.focusTimer>strong { color:#256888; font-size:36px; font-variant-numeric:tabular-nums }
+.focusTimer>span { color:#648293; font-size:12px }
+.focusTimer>div { display:flex; gap:8px; margin-top:4px }
+.experienceBadges { display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none }
+.experienceBadges li { padding:8px 10px; border:1px solid #cfe5ec; border-radius:9px; background:#f5fbfd; color:#32677e; font-size:12px }
+.experienceBadges li[data-locked="true"] { opacity:.45; filter:grayscale(1) }
+
+.ifosDesktop { --ifos-ink:#17455d; position:relative; isolation:isolate; display:flex; flex-direction:column; min-height:calc(100svh - 190px); overflow:hidden; border:1px solid #b8d9e8; border-radius:22px; background:linear-gradient(145deg,#92d9ef,#c9eff4 50%,#b5dfa9); background-position:center; background-size:cover; color:var(--ifos-ink); box-shadow:0 16px 38px #194f6724 }
+.ifosDesktop::before,.ifosDesktop::after { content:""; position:absolute; z-index:-1; border-radius:50%; pointer-events:none }
+.ifosDesktop::before { width:410px; height:410px; right:-90px; top:80px; background:radial-gradient(circle at 32% 27%,#ffffffce 0 3px,transparent 5px),radial-gradient(circle at 68% 54%,#ffffff80 0 8px,transparent 10px),radial-gradient(circle,#ffffff69,#ffffff00 68%); box-shadow:0 0 0 28px #ffffff18,0 0 0 60px #ffffff12 }
+.ifosDesktop::after { width:580px; height:190px; bottom:54px; left:-80px; border-radius:50% 50% 0 0; background:linear-gradient(180deg,#c7edaa,#78c679); opacity:.72 }
+.ifosTop { display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:9px 16px; border-bottom:1px solid #ffffff9e; background:#f5fcff99; backdrop-filter:blur(12px) }
+.ifosBrand { display:flex; align-items:center; gap:9px }
+.ifosLogo { display:grid; place-items:center; width:34px; height:34px; border:1px solid #fff; border-radius:10px; background:linear-gradient(150deg,#fff,#a8e7f2); color:#257496; font-weight:850; box-shadow:inset 0 1px 0 #fff,0 3px 7px #286d8b27 }
+.ifosBrand b,.ifosBrand small { display:block }
+.ifosBrand b { font-size:14px; letter-spacing:.08em }
+.ifosBrand small { color:#577c8e; font-size:9px }
+.ifosTop>div { display:flex; align-items:center; gap:9px; color:#466f84; font-size:11px }
+.ifosTop>div strong { font-size:15px; font-variant-numeric:tabular-nums }
+.ifosTop button,.ifosTaskbar>a { display:grid; place-items:center; width:34px; height:34px; border:1px solid #ffffffb8; border-radius:10px; background:#ffffffa8; color:#286c8d }
+.ifosGreeting { max-width:630px; margin:38px 0 16px; padding:21px 26px; border:1px solid #ffffffb8; border-radius:17px; background:linear-gradient(120deg,#ffffffc9,#ffffff85); box-shadow:0 6px 22px #38768a12; backdrop-filter:blur(10px) }
+.ifosEyebrow { color:#4d8c6a; font-size:9px; font-weight:800; letter-spacing:.14em }
+.ifosGreeting h1 { margin:7px 0; color:#1e607b; font-size:27px; letter-spacing:-.04em }
+.ifosGreeting p { margin:0 0 11px; color:#4f7385; font-size:12px }
+.ifosGreeting>a { display:inline-flex; align-items:center; gap:6px; color:#287898; font-size:11px; font-weight:700 }
+.ifosIcons { display:flex; flex-wrap:wrap; gap:9px; align-content:start; padding:9px 18px; max-width:800px }
+.ifosAppIcon { display:grid; justify-items:center; gap:7px; width:96px; min-height:100px; padding:9px 5px; border:1px solid transparent; border-radius:13px; background:transparent; color:#174b66; text-shadow:0 1px #ffffffd9; cursor:pointer }
+.ifosAppIcon:hover,.ifosAppIcon:focus-visible { border-color:#ffffffd9; background:#ffffff72; box-shadow:0 4px 14px #2c66831e; outline:2px solid #147ca3; outline-offset:2px }
+.ifosAppIcon>span { display:grid; place-items:center; width:52px; height:52px; border:1px solid #ffffffd9; border-radius:15px; background:linear-gradient(150deg,#fff,#c8eff6 56%,#d8efc5); color:#2686aa; box-shadow:inset 0 1px 0 #fff,0 4px 9px #2864802c }
+.ifosAppIcon strong { max-width:92px; font-size:10px; line-height:1.35 }
+.ifosWidgets { display:flex; align-items:end; flex-wrap:wrap; gap:12px; margin:auto 14px 68px; padding-top:16px }
+.ifosWidget { width:min(270px,100%); padding:15px; border:1px solid #ffffffc4; border-radius:14px; background:linear-gradient(145deg,#ffffffe0,#ffffffa6); box-shadow:0 6px 18px #2a71861b; backdrop-filter:blur(10px) }
+.ifosWidget>span { color:#638393; font-size:8px; font-weight:800; letter-spacing:.12em }
+.ifosWidget>strong { display:block; margin-top:6px; color:#286985; font-size:17px }
+.ifosWidget p { margin:6px 0 10px; color:#597a8b; font-size:10px; line-height:1.6 }
+.ifosWidget button,.ifosWidget>a { display:inline-flex; align-items:center; gap:6px; border:0; padding:0; background:none; color:#247895; font-size:10px; font-weight:750; cursor:pointer }
+.ifosWidgetPixel { border-radius:3px; box-shadow:3px 3px 0 #3c728438,6px 6px 0 #ffffff58; image-rendering:pixelated }
+.ifosWidgetPixel>strong { font-family:monospace; letter-spacing:.06em }
+.ifosTaskbar { position:absolute; inset:auto 0 0; display:flex; align-items:center; gap:8px; min-height:54px; padding:7px 10px; border-top:1px solid #ffffffc4; background:linear-gradient(180deg,#f4fcffcf,#d5eff6e8); backdrop-filter:blur(16px) }
+.ifosStartButton,.ifosTaskApp { display:flex; align-items:center; gap:7px; min-height:38px; padding:0 12px; border:1px solid #ffffffc9; border-radius:11px; background:linear-gradient(#fff,#d8f1f8); color:#256b8b; box-shadow:inset 0 1px 0 #fff,0 2px 6px #245e7920; cursor:pointer }
+.ifosStartButton span { font-size:11px; font-weight:750 }
+.ifosTaskApp { font-size:10px }
+.ifosTaskFill { flex:1 }
+.ifosTaskClock { display:grid; justify-items:end; color:#376a81; font-size:12px; font-variant-numeric:tabular-nums }
+.ifosTaskClock small { font-size:9px }
+.ifosStart { position:absolute; z-index:4; left:10px; bottom:62px; width:min(420px,calc(100% - 20px)); max-height:65%; overflow:auto; padding:14px; border:1px solid #ffffffd9; border-radius:16px; background:#f4fbffeF; box-shadow:0 12px 35px #174c663d; backdrop-filter:blur(18px) }
+.ifosStart>label { display:flex; align-items:center; gap:8px; padding:9px 10px; border:1px solid #cde2eb; border-radius:10px; background:white; color:#548195 }
+.ifosStart input { width:100%; border:0; outline:0; background:transparent; color:#244e64; font-size:12px }
+.ifosStart>div { display:grid; gap:4px; margin-top:9px }
+.ifosStart>div>button { display:flex; align-items:center; gap:10px; min-height:54px; padding:7px; border:0; border-radius:9px; background:transparent; color:#32718c; text-align:left; cursor:pointer }
+.ifosStart>div>button:hover { background:#e3f3f8 }
+.ifosStart>div>button span,.ifosStart>div>button strong,.ifosStart>div>button small { display:block }
+.ifosStart>div>button strong { color:#315c72; font-size:11px }
+.ifosStart>div>button small { display:-webkit-box; overflow:hidden; -webkit-line-clamp:1; -webkit-box-orient:vertical; max-width:330px; margin-top:3px; color:#718c9b; font-size:9px }
+.ifosWindow { position:absolute; z-index:3; top:18%; right:7%; width:min(440px,86%); overflow:hidden; border:1px solid #ffffffed; border-radius:15px; background:#f4fbfff2; box-shadow:0 15px 48px #164c6570; backdrop-filter:blur(18px) }
+.ifosWindow.maximized { inset:12% 4% 12%; width:auto }
+.ifosWindow>header { display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:42px; padding:5px 8px 5px 12px; border-bottom:1px solid #d4e7ef; background:linear-gradient(#fff,#eaf7fb) }
+.ifosWindow>header>span,.ifosWindow>header>div { display:flex; align-items:center; gap:8px }
+.ifosWindow>header>span { color:#357894 }
+.ifosWindow>header strong { color:#315d73; font-size:11px }
+.ifosWindow>header button { display:grid; place-items:center; width:29px; height:29px; border:1px solid #d4e7ef; border-radius:8px; background:#ffffffb8; color:#527d91; cursor:pointer }
+.ifosWindow>header button:last-child:hover { color:#a5363c }
+.ifosWindow>div { padding:22px }
+.ifosWindow h2 { margin:0 0 8px; color:#286a86; font-size:21px }
+.ifosWindow p { color:#597989; font-size:12px; line-height:1.7 }
+.ifosWindow .button { gap:8px }
+.ifosError { position:absolute; z-index:5; right:12px; bottom:65px; max-width:400px; padding:10px; border:1px solid #e9bfc2; border-radius:9px; background:#fff4f3; color:#8c3438; font-size:11px }
+.ifosDisclosure { position:absolute; left:14px; bottom:62px; max-width:430px; margin:0; color:#315b6e; font-size:8px; text-shadow:0 1px #fff }
+.ifosExit { position:absolute; top:70px; right:14px; padding:7px 10px; border:1px solid #ffffffbd; border-radius:9px; background:#ffffff80; color:#3e7389; font-size:10px }
+.ifosUnavailable { max-width:700px; margin:20px auto; text-align:center }
+.ifosUnavailable h1 { color:#265d77 }
+.ifosUnavailable p { color:#628091; line-height:1.7 }
+
+@media(max-width:1000px) {
+  .experienceSettingsGrid { grid-template-columns:1fr }
+  .ifosDesktop { min-height:calc(100svh - 160px) }
+}
+@media(max-width:700px) {
+  .experienceControlGrid,.experienceGoalGrid { grid-template-columns:1fr }
+  .experienceCheckList { grid-template-columns:1fr }
+  .experienceBottom .heroActions { align-items:stretch; flex-direction:column }
+  .ifosDesktop { min-height:calc(100svh - 180px) }
+  .ifosGreeting { margin:22px 12px 12px; padding:16px }
+  .ifosIcons { gap:4px; padding:6px }
+  .ifosAppIcon { width:78px }
+  .ifosWidgets { display:none }
+  .ifosDisclosure { display:none }
+}
+@media(prefers-reduced-motion:reduce) {
+  .ifosDesktop *, .ifosDesktop *::before,.ifosDesktop *::after { animation:none!important; scroll-behavior:auto!important; transition:none!important }
+}

@@ -19,7 +19,7 @@ export function Sidebar({ role, onNavigate }: { role: AppRole | null; onNavigate
         if (!groupItems.length) return null;
         return <div className="navGroup" key={group}><p>{group}</p>{groupItems.map((item) => {
           const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
-          return <Link key={item.href} href={item.href} className={"navItem " + (active ? "active" : "")} aria-current={active ? "page" : undefined} onClick={onNavigate}><AeroIcon name={item.icon} size={16}/><span>{item.label}</span></Link>;
+          return <Link key={item.href} href={item.href} data-experience-href={item.href} className={"navItem " + (active ? "active" : "")} aria-current={active ? "page" : undefined} onClick={onNavigate}><AeroIcon name={item.icon} size={16}/><span>{item.label}</span></Link>;
         })}</div>;
       })}
     </nav>

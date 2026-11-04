@@ -1,0 +1,50 @@
+
+
+eu mandei esse prompt pra outra IA e ela faz o trabalho eu quero que vc melhore oque ela ja fz e conserte oque ela deixou de fazer, alemd disso foque em deixar bem bonito e funcional
+
+
+
+ok adicone tudo isso e use essa referencias
+
+https://github.com/Zakintaliban/frutiger-aero?utm_source=chatgpt.com
+https://github.com/AamirrH/FrutigerAero?utm_source=chatgpt.com
+https://github.com/Fuheshka/portfolio?utm_source=chatgpt.com
+https://ui.codeatlas.com.br/atlas/frutiger-aero/?utm_source=chatgpt.com
+
+repo a priorizar para a personalização:
+https://github.com/patch-gg/pixelfx?utm_source=chatgpt.com
+
+uma idéia que eu tive tbm é um modo OS apenas para pc onde o navegador vira um IFOS(ifmtOS) pra facilitar pro usuario achar as coisas alem disso seria legal se fosse no mesmo estilo do site e ussasemos umas imagems da internet
+
+
+
+Relato do que foi feito
+Análise inicial do SIFCAS
+Revisei o estado do projeto e expliquei o que ainda impede considerar o site pronto para produção.
+Identifiquei que a importação acadêmica está deliberadamente bloqueada: faltam validar o banco de homologação, permissões/RLS, correspondência entre diários e matrículas, retenção de dados e a integração com SUAP/AVA. O importador deve tratar os dados como cópias de leitura — não como registros oficiais nem como sincronização.
+Acrescentei o .env.example, que era referenciado pela documentação mas estava faltando. Removi artefatos gerados de build que foram identificados como temporários; não apaguei arquivos-fonte do projeto.
+Expliquei os itens pendentes de produção e apresentei ideias de personalização, incluindo as 20 ideias que você pediu.
+Personalização dos alunos
+Implementei a página Personalização e seu conjunto de preferências, incluindo:
+
+temas, paletas, tamanho de fonte, densidade visual e papéis de parede;
+foto e moldura de perfil, banner e estilo dos ícones;
+atalhos e navegação personalizáveis, widgets da página inicial, cores por matéria e opções de calendário;
+saudação personalizada, metas de estudo, cronômetro de foco e conquistas;
+controles de som e movimento, predefinições e importar/exportar/restaurar preferências.
+As preferências ficam no navegador, separadas por conta; não alteram notas, frequência ou outros dados oficiais. A foto enviada é validada e limitada a JPG/PNG/WebP de até 512 KB. Lembretes e resumos são preferências de organização, não notificações efetivamente enviadas.
+
+IFOS
+Criei o IFOS: uma interface opcional, voltada a computadores, para encontrar e abrir módulos do SIFCAS, com busca, ícones, janelas, relógio e opção de tela cheia.
+Em telas pequenas, mostra uma alternativa apropriada para celular. É uma interface web experimental, não um sistema operacional e não incorpora os módulos por iframe.
+O visual foi inspirado nas referências enviadas. Os estilos e detalhes gráficos foram implementados no projeto, sem copiar ou instalar código ou sprites do pixelfx. Papéis de parede externos só são carregados quando escolhidos; ajustei a política de segurança de conteúdo para permitir as imagens.
+Arquivos e validação
+Atualizei a integração do provider e a navegação, estilos, catálogo de módulos e documentação, incluindo o guia de personalização.
+Adicionei testes unitários em tests/student-experience.test.mjs e um teste Playwright em tests/academic-browser/personalization.spec.ts.
+Na última verificação, 139/139 testes passaram; auditorias, ESLint, TypeScript e git diff --check também passaram.
+O build compilou e gerou as 106 páginas estáticas, mas o Turbopack não conseguiu persistir um arquivo de cache por falta de espaço em disco. Portanto, não considero o build totalmente limpo. O teste Playwright foi escrito, mas não chegou a ser executado.
+Ainda não foi implementado: integração real com SUAP/AVA, habilitação de importação oficial, envio de notificações e sincronização das preferências entre dispositivos. O arquivo HTML anexado não foi alterado
+
+
+
+

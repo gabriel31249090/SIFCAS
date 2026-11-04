@@ -33,6 +33,7 @@ O SIFCAS possui autenticação SSR, perfis e papéis institucionais, validação
 - Transparência agregada
 - Central de aplicativos
 - LUMA Local
+- Personalização local do estudante e IFOS desktop experimental
 
 ## LUMA Local
 
@@ -146,6 +147,8 @@ A branch de integração entrega `/importar-dados-academicos` (CSV próprio do S
 Configure **URL e chave de um Supabase local/homologação** usando `.env.example`. O fallback de produção foi removido; sem configuração os guias e editais públicos continuam disponíveis e o banco é sinalizado como indisponível. As flags de importação ficam desativadas até homologar o contrato isolado.
 
 Veja [configuração, matriz de cobertura e liberações da TI](docs/integracoes-ifmt.md), [formato e demonstração docente](docs/importacao-academica.md), [central de editais](docs/central-editais.md) e [resultados efetivos](docs/validacao-integracoes.md). `npm test` inclui PostgreSQL isolado via PGlite; não acessa produção.
+
+Personalização visual, foto local, metas pessoais e IFOS estão descritos em [personalização do estudante](docs/personalizacao-estudante.md). Preferências ficam no navegador, sem sincronização ou alteração de dados acadêmicos.
 
 ```bash
 npm ci

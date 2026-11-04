@@ -57,7 +57,7 @@ export default async function AgendaAluno({ searchParams }: { searchParams: Prom
           <div className="weekGrid">
             {[...byDate.entries()].map(([date, entries]) => <article className="dayColumn" key={date}>
               <header><b>{formatDate(date).split(" ")[0].toUpperCase()}</b><span>{formatDate(date).replace(/^\S+\s/, "")}</span></header>
-              {entries.map((entry) => <div className="agendaItem" key={entry.id}>
+              {entries.map((entry) => <div className="agendaItem" data-experience-subject={entry.subjectName} key={entry.id}>
                 <strong>{formatTime(entry.startsAt)} • {entry.subjectName}</strong>
                 <small>{typeLabels[entry.entryType] ?? entry.entryType} • {entry.title}</small>
                 {entry.description && <small>{entry.description}</small>}

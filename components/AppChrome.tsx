@@ -7,8 +7,9 @@ import type { AppRole } from "@/lib/auth";
 import { Sidebar } from "./Sidebar";
 import { MobileNav } from "./MobileNav";
 import { AeroIcon } from "./AeroIcon";
+import { StudentExperienceProvider } from "./StudentExperienceProvider";
 
-export function AppChrome({ children, topbar, role }: { children: ReactNode; topbar: ReactNode; role: AppRole | null }) {
+export function AppChrome({ children, topbar, role, accountId }: { children: ReactNode; topbar: ReactNode; role: AppRole | null; accountId: string | null }) {
   const pathname = usePathname();
   const menu = useRef<HTMLDialogElement>(null);
   const isAuth = ["/login", "/recuperar-senha", "/nova-senha"].includes(pathname) || pathname.startsWith("/auth/");
@@ -16,7 +17,8 @@ export function AppChrome({ children, topbar, role }: { children: ReactNode; top
   useEffect(() => { menu.current?.close(); document.body.style.overflow = ""; }, [pathname]);
   useEffect(() => () => { document.body.style.overflow = ""; }, []);
   if (isAuth) return <div className="authShell"><a className="skipLink" href="#main-content">Pular para o conteúdo</a><div id="main-content">{children}</div></div>;
-  return <div className="appShell">
+  if (pathname === "/ifos") return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role === "student"}><div className="ifosShell"><a className="skipLink" href="#main-content">Pular para o conteúdo</a>{children}</div></StudentExperienceProvider>;
+  return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role === "student"}><div className="appShell">
     <a className="skipLink" href="#main-content">Pular para o conteúdo</a>
     <div className="desktopSidebar"><Sidebar role={role} /></div>
     <button type="button" className="mobileMenuButton" onClick={() => { menu.current?.showModal(); document.body.style.overflow = "hidden"; }} aria-label="Abrir menu de navegação" aria-haspopup="dialog"><Menu size={22} /></button>
@@ -29,5 +31,5 @@ export function AppChrome({ children, topbar, role }: { children: ReactNode; top
       <nav className="footerLinks" aria-label="Links do rodapé"><Link href="/campus">Guia do campus</Link><Link href="/editais">Editais</Link><a href="https://cas.ifmt.edu.br/" target="_blank" rel="noopener noreferrer">Portal oficial<ArrowUpRight size={13} aria-hidden="true"/></a></nav>
       <div className="footerPlace"><span><MapPin size={13} aria-hidden="true"/>Cáceres · Mato Grosso</span><small>Projeto independente. Fontes oficiais sempre identificadas.</small></div>
     </footer><MobileNav signedIn={role !== null} /></div>
-  </div>;
+  </div></StudentExperienceProvider>;
 }

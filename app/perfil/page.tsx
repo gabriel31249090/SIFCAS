@@ -15,7 +15,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Sear
     <header className="pageHeader"><div><span className="eyebrow">Minha conta</span><h1>Perfil e segurança</h1><p>Seus dados pessoais ficam separados das permissões institucionais.</p></div></header>
     <div className="profileGrid">
       <aside className="card profileIdentity">
-        <div className="profileAvatar">{initials(account.fullName)}</div><h2>{account.fullName}</h2><span className="roleBadge"><ShieldCheck size={14}/>{roleLabels[account.role]}</span>
+        <div className="profileAvatar" data-experience-avatar>{initials(account.fullName)}</div><h2>{account.fullName}</h2><span className="roleBadge"><ShieldCheck size={14}/>{roleLabels[account.role]}</span>
         <div className="identityMeta"><span><Mail size={16}/>{account.email || "E-mail não disponível"}</span><span><MapPin size={16}/>{account.campus}</span></div>
         <form action="/auth/signout" method="post"><button className="button dangerOutline" type="submit">Sair da conta</button></form>
       </aside>
@@ -29,6 +29,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Sear
         </form>
         <div className="securityBlock"><LockKeyhole size={20}/><div><h3>Senha</h3><p>Altere sua senha usando o fluxo seguro de recuperação.</p></div><Link className="button" href="/recuperar-senha">Alterar senha</Link></div>
         <div className="profileTools">
+          {account.role === "student" && <Link href="/personalizacao"><UserRound size={17}/><span><b>Personalização</b><small>Temas, perfil e IFOS</small></span></Link>}
           <Link href="/preferencias-notificacoes"><Bell size={17}/><span><b>Notificações</b><small>Escolher categorias</small></span></Link>
           <Link href="/atalhos"><Link2 size={17}/><span><b>Meus atalhos</b><small>Personalizar início</small></span></Link>
           <Link href="/reportar-erro"><Bug size={17}/><span><b>Reportar erro</b><small>Acompanhar problema</small></span></Link>

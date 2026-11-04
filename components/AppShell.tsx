@@ -5,5 +5,5 @@ import { AppChrome } from "./AppChrome";
 export async function AppShell({ children }: { children: ReactNode }) {
   const account = await getCurrentAccount();
   const role = account?.accountStatus === "active" ? account.role : null;
-  return <AppChrome role={role} topbar={<Topbar />}>{children}</AppChrome>;
+  return <AppChrome role={role} accountId={account?.id ?? null} topbar={<Topbar />}>{children}</AppChrome>;
 }

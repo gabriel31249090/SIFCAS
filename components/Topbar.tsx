@@ -18,7 +18,7 @@ export async function Topbar() {
       <Link className="iconAction maisaAction" href={account ? (active ? "/maisa" : blockedPath) : "/login?next=/maisa"} aria-label="Abrir LUMA" title="LUMA"><AeroIcon icon={Sparkles} size={17} tone="violet"/></Link>
       <Link className="iconAction notificationAction" href={account ? (active ? "/notificacoes" : blockedPath) : "/login?next=/notificacoes"} aria-label={unreadCount ? unreadCount + " notificações não lidas" : "Abrir notificações"} title="Notificações"><AeroIcon icon={Bell} size={17} tone="amber"/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}</Link>
       {account ? <Link className={"userChip " + (!active ? "suspendedChip" : "")} href={active ? "/perfil" : blockedPath}>
-        <span className="avatar">{initials(account.fullName)}</span>
+        <span className="avatar" data-experience-avatar>{initials(account.fullName)}</span>
         <span><strong>{account.fullName}</strong><small>{account.accountStatus === "suspended" ? "Conta suspensa" : account.accountStatus === "pending" ? "Vínculo pendente" : roleLabels[account.role]}</small></span>
       </Link> : <Link className="userChip loginChip" href="/login"><span className="avatar"><LogIn size={18} /></span><span><strong>Entrar</strong><small>Acessar conta</small></span></Link>}
     </div>
