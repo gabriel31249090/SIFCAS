@@ -46,7 +46,10 @@ export default async function Home() {
   const preferred = account.role === "student" ? ["/boletim", "/agenda-aluno", "/disciplinas", "/documentos-academicos", "/solicitacoes", "/editais"]
     : teacher ? ["/minhas-turmas", "/importar-dados-academicos", "/diario-professor", "/agenda-aluno", "/solicitacoes", "/editais"]
       : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/editais"];
-  const quickLinks = preferred.flatMap((href) => modules.find((module) => module.href === href) ?? []);
+  const preferredLinks = preferred.flatMap((href) => modules.find((module) => module.href === href) ?? []);
+  const quickLinks = account.role === "student"
+    ? [...preferredLinks, ...modules.filter((module) => !preferred.includes(module.href))]
+    : preferredLinks;
   const date = new Intl.DateTimeFormat("pt-BR", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Cuiaba" }).format(new Date(getRequestTimestamp()));
   const upcoming = today.items.filter((item) => item.date !== today.today);
   const pendingDates = today.items.filter((item) => ["task", "assessment", "notice"].includes(item.kind));
@@ -65,7 +68,7 @@ export default async function Home() {
         { label: "Pontos de atenção", value: unknownAttention ? "—" : String(alerts.length), detail: unknownAttention ? "Uma fonte precisa ser consultada" : "Avisos e solicitações locais", icon: Bell, tone: "coral" as const }].map((metric) => <article className={styles.metric} key={metric.label}><AeroIcon icon={metric.icon} tone={metric.tone} size={20}/><div><span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.detail}</small></div></article>)}
     </div>
     <div data-experience-widget="quick-links"><SectionTitle title="Seus caminhos, a um clique" description="Um atalho para o que faz parte da sua rotina." href="/aplicativos" linkLabel="Ver todos"/>
-    <div className={styles.quickLinks} data-experience-favorite-list>{quickLinks.map((module) => <Link href={module.href} data-experience-favorite={module.href} key={module.href}><AeroIcon name={module.icon} size={23}/><strong>{module.label}</strong><ArrowUpRight size={14} aria-hidden="true"/></Link>)}</div></div>
+    <div className={styles.quickLinks} data-experience-favorite-list>{quickLinks.map((module) => <Link href={module.href} data-experience-favorite={module.href} hidden={account.role === "student" && !preferred.includes(module.href)} key={module.href}><AeroIcon name={module.icon} size={23}/><strong>{module.label}</strong><ArrowUpRight size={14} aria-hidden="true"/></Link>)}</div></div>
     <div className={styles.mainGrid} data-experience-widget="agenda">
       <section className={styles.panel} aria-labelledby="today-heading"><div className={styles.panelHead}><div><span className={styles.kicker}>UM DIA DE CADA VEZ</span><h2 id="today-heading">O que acontece hoje <span>{today.todayItems.length}</span></h2></div><Link href="/agenda-aluno" aria-label="Abrir agenda completa"><CalendarDays size={19}/></Link></div>
         {today.todayItems.length ? <AgendaRows items={today.todayItems.slice(0, 5)} today={today.today}/> : <div className={styles.empty}><AeroIcon name="calendar" size={24}/><strong>Um espaço para se organizar.</strong><p>{today.emptyMessage}</p><Link href="/agenda-aluno">Abrir minha agenda <ArrowRight size={14}/></Link></div>}

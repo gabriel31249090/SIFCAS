@@ -11,3 +11,99 @@
 @media(prefers-reduced-motion:reduce){.quickLinks>a:hover{transform:none}}
 .metric>span{display:inline-grid;color:#fff}.heroActions>a:first-child{font-size:12px;min-height:42px;padding:10px 14px}
 .assistantTop>span:first-child{color:#fff}.sourceChips time{font-size:9px;color:#6b8796}
+
+/* Keep the home surfaces and their supporting text readable in both dark modes. */
+:global(html[data-experience-resolved-theme="dark"]) .home {
+  --home-night-surface:linear-gradient(145deg,#18394bf5,#122e3eea);
+  --home-night-line:#395a6a;
+  --home-night-text:#d8edf6;
+  --home-night-muted:#aec8d4;
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.metric,.quickLinks>a,.panel) {
+  background:var(--home-night-surface);
+  border-color:var(--home-night-line);
+  box-shadow:inset 0 1px 0 #ffffff0b,0 7px 22px #04152221;
+}
+:global(html[data-experience-resolved-theme="dark"]) .hero {
+  background:linear-gradient(115deg,#123549,#1b4357 62%,#174b5f);
+  border-color:#447384;
+  box-shadow:inset 0 1px 0 #ffffff12,0 10px 30px #04152224;
+}
+:global(html[data-experience-resolved-theme="dark"]) .heroContent {
+  background:linear-gradient(90deg,#123549 40%,#12354900);
+}
+:global(html[data-experience-resolved-theme="dark"]) .heroLandscape {
+  opacity:.55;
+  filter:saturate(.75) brightness(.75);
+}
+:global(html[data-experience-resolved-theme="dark"]) .heroLabel {
+  color:#b9dfc2;
+  border-color:#50766d;
+  background:#214b47ba;
+}
+:global(html[data-experience-resolved-theme="dark"]) .heroGlassNote {
+  color:#cee7cd;
+  border-color:#91bdb957;
+  background:linear-gradient(120deg,#1d4a4aeb,#173a43d6);
+  box-shadow:inset 0 1px 0 #ffffff12,0 4px 15px #0415222b;
+}
+:global(html[data-experience-resolved-theme="dark"]) .assistant {
+  background:radial-gradient(ellipse at 95% 5%,#3352445c,transparent 68%),linear-gradient(135deg,#17394b,#1c4548);
+  border-color:var(--home-night-line);
+}
+:global(html[data-experience-resolved-theme="dark"]) .assistant>a {
+  color:#b6dfeb;
+  background:#31576b70;
+  border-color:#739eae47;
+}
+:global(html[data-experience-resolved-theme="dark"]) .assistantOrbits {
+  border-color:#a4d5df26;
+  box-shadow:0 0 0 20px #b8e3e90a,0 0 0 42px #b8e3e907;
+}
+:global(html[data-experience-resolved-theme="dark"]) .importInvite {
+  background:linear-gradient(120deg,#243f38,#203d33);
+  border-color:#4b6a51;
+}
+:global(html[data-experience-resolved-theme="dark"]) .attention {
+  background:linear-gradient(100deg,#353e2d,#243e35);
+  border-color:#53634b;
+}
+:global(html[data-experience-resolved-theme="dark"]) .sourceNote {
+  color:#e1ce95;
+  background:#3a3829;
+  border-color:#655b3a;
+}
+:global(html[data-experience-resolved-theme="dark"]) .panelFooter {
+  color:#a6d5e8;
+  background:#17384a8c;
+  border-color:var(--home-night-line);
+}
+:global(html[data-experience-resolved-theme="dark"]) .panelHead h2>span {
+  color:#bae2f3;
+  border-color:#4d788b;
+  background:#285366;
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.agendaRow,.notices>a,.attentionItems>a,.sources) {
+  border-color:var(--home-night-line);
+}
+:global(html[data-experience-resolved-theme="dark"]) .sourceChips>a {
+  color:#b9d4df;
+  background:#17384a9c;
+  border-color:var(--home-night-line);
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.heading h1,.heroContent h2,.metric strong,.quickLinks strong,.panelHead h2,.agendaTime strong,.agendaContent>strong,.empty>strong,.assistant h2,.importInvite h3,.notices strong,.attention h2,.attentionItems strong) {
+  color:var(--home-night-text);
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.eyebrow,.heading p,.date,.date small,.heroContent p,.heroGlassNote small,.metric span,.metric small,.kicker,.agendaTime small,.agendaContent>small,.origin,.empty>p,.assistant p,.assistantTop>span:last-child,.importInvite p,.quiet,.notices small,.attention p,.attentionItems small,.sourcesHeading,.sourcesHeading>small,.sourceChips span,.sourceChips time,.sources>p,.favorites,.evolution) {
+  color:var(--home-night-muted);
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.heroActions>a:last-child,.panelHead>a,.empty>a,.importInvite a,.favorites>a,.evolution>a) {
+  color:#a5d6e5;
+}
+:global(html[data-experience-resolved-theme="dark"]) .home :is(.notices>a>span,.attentionItems b) {
+  color:#bfd9a7;
+}
+:global(html[data-experience-resolved-theme="dark"]) .quickLinks>a:hover {
+  border-color:#74aec3;
+  background:linear-gradient(145deg,#214b61,#1c3e51);
+}

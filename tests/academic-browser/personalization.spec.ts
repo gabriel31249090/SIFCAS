@@ -19,17 +19,17 @@ test("appearance survives reload, updates another tab and stays separate for eac
   await actor(context);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await openStudio(page);
-  await page.getByLabel("Tema", { exact: true }).selectOption("dark");
-  await page.getByLabel("Paleta", { exact: true }).selectOption("bubblegum");
-  await page.getByLabel("Papel de parede", { exact: true }).selectOption("aurora");
+  await page.getByRole("combobox", { name: "Tema", exact: true }).selectOption("dark");
+  await page.getByRole("combobox", { name: "Paleta", exact: true }).selectOption("bubblegum");
+  await page.getByRole("combobox", { name: "Papel de parede", exact: true }).selectOption("aurora");
   await page.getByRole("tab", { name: "Seu perfil", exact: true }).click();
-  await page.getByLabel("Saudação", { exact: true }).selectOption("Bom dia");
+  await page.getByRole("combobox", { name: "Saudação", exact: true }).selectOption("Bom dia");
   await page.getByLabel("Como quer ser chamado?", { exact: true }).fill("Lia");
   await page.getByRole("tab", { name: "Início e atalhos", exact: true }).click();
   await page.getByRole("checkbox", { name: "Agenda, LUMA e importação", exact: true }).uncheck();
   await page.reload();
-  await expect(page.getByLabel("Tema", { exact: true })).toHaveValue("dark");
-  await expect(page.getByLabel("Paleta", { exact: true })).toHaveValue("bubblegum");
+  await expect(page.getByRole("combobox", { name: "Tema", exact: true })).toHaveValue("dark");
+  await expect(page.getByRole("combobox", { name: "Paleta", exact: true })).toHaveValue("bubblegum");
   await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", "dark");
   await expect(page.locator("html")).toHaveAttribute("data-experience-palette", "bubblegum");
 
@@ -37,18 +37,18 @@ test("appearance survives reload, updates another tab and stays separate for eac
   await otherTab.goto("/");
   await expect(otherTab.getByRole("heading", { name: "Bom dia, Lia!", exact: true })).toBeVisible();
   await expect(otherTab.locator('[data-experience-widget="agenda"]')).toBeHidden();
-  await page.getByLabel("Paleta", { exact: true }).selectOption("meadow");
+  await page.getByRole("combobox", { name: "Paleta", exact: true }).selectOption("meadow");
   await expect(otherTab.locator("html")).toHaveAttribute("data-experience-palette", "meadow");
   await otherTab.close();
 
   await actor(context, "otherStudent");
   await openStudio(page);
-  await expect(page.getByLabel("Paleta", { exact: true })).toHaveValue("aqua");
+  await expect(page.getByRole("combobox", { name: "Paleta", exact: true })).toHaveValue("aqua");
   await page.getByRole("tab", { name: "Seu perfil", exact: true }).click();
   await expect(page.getByLabel("Como quer ser chamado?", { exact: true })).toHaveValue("");
   await actor(context);
   await openStudio(page);
-  await expect(page.getByLabel("Paleta", { exact: true })).toHaveValue("meadow");
+  await expect(page.getByRole("combobox", { name: "Paleta", exact: true })).toHaveValue("meadow");
   await page.getByRole("tab", { name: "Seu perfil", exact: true }).click();
   await expect(page.getByLabel("Como quer ser chamado?", { exact: true })).toHaveValue("Lia");
   await page.screenshot({ path: "test-results/student-personalization.png", fullPage: true });
@@ -57,7 +57,7 @@ test("appearance survives reload, updates another tab and stays separate for eac
 test("preference files export, reject unrelated JSON, import and restore with confirmation", async ({ page, context }) => {
   await actor(context);
   await openStudio(page);
-  await page.getByLabel("Tema", { exact: true }).selectOption("dark");
+  await page.getByRole("combobox", { name: "Tema", exact: true }).selectOption("dark");
   await page.getByRole("tab", { name: "Seus dados", exact: true }).click();
   const downloadPending = page.waitForEvent("download");
   await page.getByRole("button", { name: "Exportar", exact: true }).click();
@@ -90,7 +90,7 @@ test("preference files export, reject unrelated JSON, import and restore with co
   await page.getByRole("button", { name: "Restaurar padrão", exact: true }).click();
   await page.getByRole("button", { name: "Sim, restaurar", exact: true }).click();
   await page.reload();
-  await expect(page.getByLabel("Tema", { exact: true })).toHaveValue("system");
+  await expect(page.getByRole("combobox", { name: "Tema", exact: true })).toHaveValue("system");
   await page.getByRole("tab", { name: "Seu perfil", exact: true }).click();
   await expect(page.getByLabel("Como quer ser chamado?", { exact: true })).toHaveValue("");
 });
@@ -111,12 +111,13 @@ test("focus pauses, resumes and credits a completed session once after a delayed
   await page.clock.fastForward(51_000);
   await expect(page.getByRole("status").filter({ hasText: "Sessão concluída!" })).toBeVisible();
   await expect(page.locator(".studioGoal")).toContainText("1 / 120 min");
-  await expect(page.getByText("1 sessões concluídas neste navegador.", { exact: true })).toBeVisible();
+  await expect(page.locator(".studioFocusSection .studioFinePrint")).toContainText(/^1 sess(?:ão concluída|ões concluídas) neste navegador\./);
   await page.clock.fastForward(120_000);
-  await expect(page.getByText("1 sessões concluídas neste navegador.", { exact: true })).toBeVisible();
+  await expect(page.locator(".studioFocusSection .studioFinePrint")).toContainText(/^1 sess(?:ão concluída|ões concluídas) neste navegador\./);
+  expect(await page.evaluate(() => Object.entries(localStorage).filter(([key]) => key.startsWith("sifcas:student-experience:")).map(([, value]) => JSON.parse(value).focusSessions))).toEqual([1]);
   await page.reload();
   await page.getByRole("tab", { name: "Rotina e foco", exact: true }).click();
-  await expect(page.getByText("1 sessões concluídas neste navegador.", { exact: true })).toBeVisible();
+  await expect(page.locator(".studioFocusSection .studioFinePrint")).toContainText(/^1 sess(?:ão concluída|ões concluídas) neste navegador\./);
   await expect(page.getByLabel("Duração do foco (minutos)", { exact: true })).toHaveValue("1");
 });
 
@@ -150,10 +151,36 @@ test("storage failure is visible while appearance still works for the current ta
     };
   });
   await openStudio(page);
-  await page.getByLabel("Tema", { exact: true }).selectOption("dark");
+  await page.getByRole("combobox", { name: "Tema", exact: true }).selectOption("dark");
   await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", "dark");
   await expect(page.getByRole("status").filter({ hasText: "Não foi possível salvar suas preferências" })).toBeVisible();
   await expect(page.getByText("Alterações nesta sessão", { exact: true })).toBeVisible();
+});
+
+test("new favorites reach the home page and navigation reorders within its group", async ({ page, context }) => {
+  await actor(context);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await openStudio(page);
+  await page.screenshot({ path: "test-results/student-personalization-light.png", fullPage: true });
+  await page.getByRole("combobox", { name: "Tema", exact: true }).selectOption("dark");
+  await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", "dark");
+  await page.screenshot({ path: "test-results/student-personalization-dark.png", fullPage: true });
+  await page.getByRole("tab", { name: "Início e atalhos", exact: true }).click();
+  await page.getByRole("checkbox", { name: "Horários de aula", exact: true }).check();
+  const academic = page.locator(".studioNavigationGroup").filter({ has: page.getByRole("heading", { name: "Vida acadêmica", exact: true }) });
+  await academic.getByRole("button", { name: "Mover Minha vida acadêmica na navegação para baixo", exact: true }).click();
+  await expect(academic.getByRole("button", { name: "Mover Boletim e frequência na navegação para cima", exact: true })).toBeDisabled();
+  await expect(page.locator(".studioNavigationGroup").getByRole("checkbox", { name: "Personalização", exact: true })).toBeDisabled();
+  await page.goto("/");
+  await expect(page.locator('[data-experience-favorite="/horarios"]')).toBeVisible();
+  const sidebar = page.locator(".desktopSidebar");
+  const gradesOrder = await sidebar.getByRole("link", { name: "Boletim e frequência", exact: true }).evaluate((element) => Number(getComputedStyle(element).order));
+  const studentOrder = await sidebar.getByRole("link", { name: "Minha vida acadêmica", exact: true }).evaluate((element) => Number(getComputedStyle(element).order));
+  expect(gradesOrder).toBeLessThan(studentOrder);
+  await page.screenshot({ path: "test-results/home-dark-favorites.png", fullPage: true });
+  await page.reload();
+  await expect(page.locator('[data-experience-favorite="/horarios"]')).toBeVisible();
+  await expect(sidebar.getByRole("link", { name: "Personalização", exact: true })).toBeVisible();
 });
 
 test("IFOS manages independent windows, dragging, minimization and the desktop", async ({ page, context }) => {
@@ -208,6 +235,7 @@ test("IFOS search handles accents, keyboard, empty results and saved favorites",
   await actor(context);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/ifos");
+  await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", /light|dark/);
   await page.keyboard.press("Control+k");
   const menu = page.getByRole("dialog", { name: "Menu de aplicativos", exact: true });
   await expect(menu).toBeVisible();

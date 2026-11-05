@@ -18,6 +18,97 @@ html[data-experience-theme="dark"] :is(.pageHeader p,.sectionTitle p,.panel p,.p
 html[data-experience-theme="system"][data-experience-resolved-theme="dark"] :is(input,select,textarea),
 html[data-experience-theme="dark"] :is(input,select,textarea) { color:#e7f2f7; background-color:#102a3a; border-color:#496478 }
 
+/* The shell follows the resolved system preference as well as explicit night mode. */
+html[data-experience-resolved-theme="dark"] {
+  color-scheme:dark;
+  --surface:#163243;
+  --text:#e2eef4;
+  --muted:#aec8d4;
+  --soft:#1b3c4d;
+  --line:#355366;
+}
+html[data-experience-resolved-theme="dark"] .appMain { background:#0d2633ed }
+html[data-experience-resolved-theme="dark"] :is(.desktopSidebar,.mobileDrawer) { background:#102c3b }
+html[data-experience-resolved-theme="dark"] .sidebar {
+  color:#d0e6f0;
+  background:linear-gradient(155deg,#17394bf5,#112e3fed 55%,#193a37f0);
+  border-color:#3a5a6b;
+  scrollbar-color:#50798b transparent;
+}
+html[data-experience-resolved-theme="dark"] .brandWordmark>strong { color:#e0f2fa }
+html[data-experience-resolved-theme="dark"] .brandWordmark>small { color:#a8c4d3!important }
+html[data-experience-resolved-theme="dark"] .campusLabel {
+  color:#c2ddbf;
+  border-color:#486b57;
+  background:linear-gradient(#27483a,#1e3c34);
+  box-shadow:inset 0 1px 0 #ffffff0c;
+}
+html[data-experience-resolved-theme="dark"] .campusLabel>span { color:#c0e4b7; border-color:#577c62 }
+html[data-experience-resolved-theme="dark"] :is(.navGroup>p,.sidebarFooter>small) { color:#a2bfcd }
+html[data-experience-resolved-theme="dark"] .navItem { color:#c0dae7 }
+html[data-experience-resolved-theme="dark"] .navItem:hover { color:#edfaff; background:#2c53636b; border-color:#4f778b66 }
+html[data-experience-resolved-theme="dark"] :is(.navItem.active,.navItem.active:hover) {
+  color:#e4f6ff;
+  border-color:#5d94ad;
+  background:linear-gradient(180deg,#2f5c74,#25475c);
+  box-shadow:inset 0 1px 0 #ffffff17,0 2px 5px #04152233;
+}
+html[data-experience-resolved-theme="dark"] .sidebarAllApps {
+  color:#c7e4f2;
+  border-color:#4c7185;
+  background:linear-gradient(#2a4a5d,#203e50);
+  box-shadow:inset 0 1px 0 #ffffff12;
+}
+html[data-experience-resolved-theme="dark"] .sidebarHelp { color:#abcbdc }
+html[data-experience-resolved-theme="dark"] .sidebarFooter>small { border-top-color:#466573 }
+html[data-experience-resolved-theme="dark"] .topbar {
+  background:linear-gradient(180deg,#173649f5,#122f40eb);
+  border-bottom-color:#3c5a6b;
+  box-shadow:0 2px 10px #04152217;
+}
+html[data-experience-resolved-theme="dark"] :is(.pageLocation>strong,.userChip strong) { color:#d3eaf6 }
+html[data-experience-resolved-theme="dark"] :is(.pageLocation>small,.userChip small) { color:#a7c4d4 }
+html[data-experience-resolved-theme="dark"] .globalSearch {
+  background:linear-gradient(#102a3b,#18384a);
+  border-color:#456578;
+  box-shadow:inset 0 1px 3px #04152226;
+}
+html[data-experience-resolved-theme="dark"] .globalSearch input { color:#e0f1fa; background:transparent }
+html[data-experience-resolved-theme="dark"] .globalSearch input::placeholder { color:#a0bccb }
+html[data-experience-resolved-theme="dark"] .globalSearch kbd { color:#b7d1df; border-color:#4a6b7b; background:#204255 }
+html[data-experience-resolved-theme="dark"] .searchSubmit { color:#a8d3e8 }
+html[data-experience-resolved-theme="dark"] .userChip { border-left-color:#496573; background:transparent }
+html[data-experience-resolved-theme="dark"] .avatar {
+  color:#c1e5f2;
+  background:linear-gradient(145deg,#28566a,#294e44);
+  border-color:#577c85;
+  box-shadow:inset 0 1px 0 #ffffff12;
+}
+html[data-experience-resolved-theme="dark"] .workspaceFooter {
+  color:#abc4d2;
+  border-top-color:#3b5b69;
+  background:linear-gradient(180deg,#16354696,#183c37ad);
+}
+html[data-experience-resolved-theme="dark"] :is(.footerIdentity strong,.footerLinks,.footerPlace>span) { color:#bbd9e7 }
+html[data-experience-resolved-theme="dark"] :is(.footerIdentity small,.footerPlace>small) { color:#a7c3cf }
+html[data-experience-resolved-theme="dark"] .footerLinks a:hover { color:#c4efff }
+html[data-experience-resolved-theme="dark"] :is(.mobileMenuButton,.mobileDrawer .drawerClose) {
+  color:#c9e5f1;
+  border-color:#476c7f;
+  background:#1e4255;
+}
+html[data-experience-resolved-theme="dark"] .mobileNav {
+  background:linear-gradient(#173649f5,#102d3eed);
+  border-top-color:#436779;
+  box-shadow:0 -3px 16px #04152226;
+}
+html[data-experience-resolved-theme="dark"] .mobileNav a { color:#b3d0e1 }
+html[data-experience-resolved-theme="dark"] .mobileNav a.active {
+  color:#e1f4ff;
+  background:linear-gradient(#315b73,#23485e);
+  border-color:#5d899f;
+}
+
 html[data-experience-text="large"] { font-size:18px }
 html[data-experience-text="xlarge"] { font-size:20px }
 html[data-experience-density="compact"] .pageContainer .card,

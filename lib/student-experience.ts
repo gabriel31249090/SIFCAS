@@ -104,7 +104,7 @@ export function parseStudentExperience(value: unknown): StudentExperience {
     iconStyle: enumValue(raw.iconStyle, ["glossy", "flat", "pixel"], defaultStudentExperience.iconStyle),
     calendarView: enumValue(raw.calendarView, ["agenda", "week", "month"], defaultStudentExperience.calendarView),
     widgets: isStringArray(raw.widgets) ? unique(raw.widgets.filter((item) => validWidgetIds.includes(item))) : [...defaultStudentExperience.widgets],
-    hiddenNavigation: internalPaths(raw.hiddenNavigation),
+    hiddenNavigation: internalPaths(raw.hiddenNavigation).filter((path) => path !== "/personalizacao"),
     navigationOrder: internalPaths(raw.navigationOrder),
     favorites: internalPaths(raw.favorites, defaultStudentExperience.favorites),
     subjectColors: raw.subjectColors && typeof raw.subjectColors === "object" && !Array.isArray(raw.subjectColors)

@@ -86,3 +86,7 @@ test("focus statistics only accept calendar dates and finite whole numbers", () 
   assert.equal(parseStudentExperience({ focusDuration: -100 }).focusDuration, 1);
   assert.equal(parseStudentExperience({ focusMinutes: NaN }).focusMinutes, 0);
 });
+
+test("personalization stays accessible when imported preferences hide navigation", () => {
+  assert.deepEqual(parseStudentExperience({ hiddenNavigation: ["/personalizacao", "/boletim"] }).hiddenNavigation, ["/boletim"]);
+});

@@ -11,7 +11,7 @@ import { PixelBurst } from "./PixelBurst";
 
 const widgetNames: Record<string, string> = { metrics: "Resumo do campus", "quick-links": "Meus atalhos", agenda: "Agenda, LUMA e importação", attention: "Pontos de atenção", sources: "Fontes e atualizações" };
 const studentModules = getAccessibleModules("student").filter((item) => item.href !== "/ifos");
-const navigationItems = studentModules.filter((item) => item.navigation).map(({ href, label }) => ({ href, label }));
+const navigationItems = studentModules.filter((item) => item.navigation).map(({ href, label, group }) => ({ href, label, group }));
 const favoriteItems = studentModules.map(({ href, label }) => ({ href, label }));
 const subjects = ["Matemática", "Português", "Biologia", "História", "Química", "Física", "Informática"];
 const toneNames: Record<string, string> = { aqua: "Aqua", leaf: "Verde", sunset: "Dourado", violet: "Violeta", blue: "Azul", rose: "Rosa" };
@@ -80,6 +80,12 @@ export function StudentExperienceSettings() {
     event.preventDefault(); setActiveTab(tabs[next].id); document.getElementById(`studio-tab-${tabs[next].id}`)?.focus();
   }
   const navigationOrder = [...preferences.navigationOrder.filter((href) => navigationItems.some((item) => item.href === href)), ...navigationItems.map((item) => item.href).filter((href) => !preferences.navigationOrder.includes(href))];
+  const navigationGroups = [...new Set(navigationItems.map((item) => item.group))].map((group) => ({ group, items: navigationOrder.filter((href) => navigationItems.some((item) => item.href === href && item.group === group)) }));
+  function moveNavigation(items: string[], href: string, offset: number) {
+    const reordered = moveItem(items, href, offset);
+    let nextIndex = 0;
+    update({ navigationOrder: navigationOrder.map((current) => items.includes(current) ? reordered[nextIndex++] : current) });
+  }
   if (!ready) return <div className="studioLoading" role="status"><Sparkles size={24}/><p>Preparando seu espaço…</p></div>;
 
   return <div className="studentExperience personalizationStudio">
@@ -118,7 +124,12 @@ export function StudentExperienceSettings() {
       <div role="tabpanel" id="studio-panel-navigation" aria-labelledby="studio-tab-navigation" hidden={activeTab !== "navigation"}>
         <StudioSection title="Seu início, em ordem" description="Escolha os cartões que aparecem no início e organize a sequência." icon={<LayoutDashboard size={20}/>}><div className="studioChecks">{Object.entries(widgetNames).map(([id, label]) => <label key={id}><input type="checkbox" checked={preferences.widgets.includes(id)} onChange={() => toggleList("widgets", id)}/><span>{label}</span></label>)}</div><ol className="studioOrderList">{preferences.widgets.map((id, index) => <li key={id}><span className="studioOrderNumber">{index + 1}</span><span>{widgetNames[id]}</span><button type="button" aria-label={`Mover ${widgetNames[id]} para cima`} disabled={index === 0} onClick={() => update({ widgets: moveItem(preferences.widgets, id, -1) })}><ArrowUp size={14}/></button><button type="button" aria-label={`Mover ${widgetNames[id]} para baixo`} disabled={index === preferences.widgets.length - 1} onClick={() => update({ widgets: moveItem(preferences.widgets, id, 1) })}><ArrowDown size={14}/></button></li>)}</ol>{preferences.widgets.length === 0 && <p className="studioEmpty">Seu início ficou mais tranquilo. Selecione um cartão acima para adicioná-lo de volta.</p>}</StudioSection>
         <StudioSection title="O que você mais usa, por perto" description="Seus favoritos aparecem nos atalhos do início e no IFOS." icon={<BookOpen size={20}/>}><div className="studioChecks studioChecksCompact">{favoriteItems.map((item) => <label key={item.href}><input type="checkbox" checked={preferences.favorites.includes(item.href)} onChange={() => toggleList("favorites", item.href)}/><span>{item.label}</span></label>)}</div></StudioSection>
-        <StudioSection title="Sua navegação" description="Mostre os módulos que usa e mude sua ordem. Personalização continua sempre acessível." icon={<Monitor size={20}/>}><ol className="studioOrderList">{navigationOrder.map((href, index) => { const label = navigationItems.find((item) => item.href === href)?.label ?? href; return <li key={href}><label><input type="checkbox" checked={!preferences.hiddenNavigation.includes(href)} onChange={() => toggleList("hiddenNavigation", href)}/><span>{label}</span></label><button type="button" aria-label={`Mover ${label} na navegação para cima`} disabled={index === 0} onClick={() => update({ navigationOrder: moveItem(navigationOrder, href, -1) })}><ArrowUp size={14}/></button><button type="button" aria-label={`Mover ${label} na navegação para baixo`} disabled={index === navigationOrder.length - 1} onClick={() => update({ navigationOrder: moveItem(navigationOrder, href, 1) })}><ArrowDown size={14}/></button></li>; })}</ol></StudioSection>
+        <StudioSection title="Sua navegação" description="Mostre os módulos que usa e ordene cada grupo do menu. Personalização continua sempre acessível." icon={<Monitor size={20}/>}>
+          {navigationGroups.map(({ group, items }) => <div className="studioNavigationGroup" key={group}><h3>{group}</h3><ol className="studioOrderList">{items.map((href, index) => {
+            const label = navigationItems.find((item) => item.href === href)?.label ?? href;
+            return <li key={href}><label><input type="checkbox" checked={href === "/personalizacao" || !preferences.hiddenNavigation.includes(href)} disabled={href === "/personalizacao"} onChange={() => toggleList("hiddenNavigation", href)}/><span>{label}</span></label><button type="button" aria-label={`Mover ${label} na navegação para cima`} disabled={index === 0} onClick={() => moveNavigation(items, href, -1)}><ArrowUp size={14}/></button><button type="button" aria-label={`Mover ${label} na navegação para baixo`} disabled={index === items.length - 1} onClick={() => moveNavigation(items, href, 1)}><ArrowDown size={14}/></button></li>;
+          })}</ol></div>)}
+        </StudioSection>
       </div>
       <div role="tabpanel" id="studio-panel-routine" aria-labelledby="studio-tab-routine" hidden={activeTab !== "routine"}>
         <FocusTools/>

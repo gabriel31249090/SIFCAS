@@ -7,6 +7,7 @@
   background-size:cover; background-position:center; box-shadow:none; outline:0;
 }
 .osDesktop button,.osDesktop a { -webkit-tap-highlight-color:transparent }
+.osDesktop::before,.osDesktop::after { display:none }
 .osDesktop button { font-family:inherit; cursor:pointer }
 .osDesktop :focus-visible { outline:3px solid #0784bf; outline-offset:3px }
 .osScenery { position:absolute; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 45% 24%,#ffffffa0,transparent 48%),linear-gradient(180deg,#8cd8f130,transparent 65%) }
@@ -58,7 +59,7 @@
 .osWelcome>p { margin:0 0 27px; color:#447585; font-size:14px; line-height:1.9; letter-spacing:.1px }
 .osWelcome>button { display:flex; align-items:center; gap:10px; padding:12px 14px; min-width:300px; max-width:100%; border:1px solid #ffffffde; border-radius:11px; background:#ffffffa3; color:#3b7384; box-shadow:0 6px 20px #35778d09,inset 0 1px white; font-size:11px; backdrop-filter:blur(14px) }
 .osWelcome>button:hover { background:#ffffffe6; transform:translateY(-2px) }
-.osWelcome kbd,.osSearch kbd { margin-left:auto; border:1px solid #88aeb52b; border-radius:4px; padding:3px 5px; color:#729198; font:9px inherit; white-space:nowrap }
+.osWelcome kbd,.osSearch kbd { margin-left:auto; border:1px solid #88aeb52b; border-radius:4px; padding:3px 5px; color:#729198; font-family:inherit; font-size:9px; white-space:nowrap }
 .osWelcomeNote { display:flex; align-items:center; gap:8px; margin-top:33px; color:#528779; font-size:10px }
 .osPixelFlower { font-size:19px; color:#63a76c; text-shadow:2px 2px #ffffff70 }
 .osGadgets { position:absolute; top:88px; right:27px; bottom:100px; width:265px; display:flex; flex-direction:column; gap:14px; overflow:auto; scrollbar-width:thin; padding:0 2px 12px }
@@ -133,6 +134,7 @@
 .osWindowControls>button:hover { border-color:#ffffffd1; background:#ffffffb3 }
 .osWindowControls>button:last-child:hover { background:#d86f70; color:white }
 .osWindowBody { overflow:auto; padding:16px 25px 25px }
+.osWindowBody .studioFocusSection { --studio-ink:var(--os-ink); --studio-muted:var(--os-muted); --studio-accent:#2188a1; --studio-line:#b4d4df66; --studio-surface:transparent; --studio-soft:#cce8e433; padding:0; border:0; box-shadow:none }
 .osWindowBreadcrumb { display:flex; align-items:center; gap:7px; margin-bottom:24px; color:var(--os-muted); font-size:8px }
 .osWindowBreadcrumb b { font-weight:500 }
 .osWindowIntro { display:flex; align-items:center; gap:16px }
@@ -174,7 +176,7 @@
 .osStartPanel>header>button:hover { background:#a1c3d229 }
 .osSearch { display:flex; align-items:center; gap:10px; margin:0 22px; padding:11px 12px; border:1px solid #a5cfdc99; border-radius:10px; color:#6b95a2; background:#ffffffad; box-shadow:0 2px 6px #355e6d05 }
 .osSearch:focus-within { border-color:#69a8c1; box-shadow:0 0 0 3px #72b8d123 }
-.osSearch>input { flex:1; min-width:0; padding:0; border:0; outline:0; font:11px inherit; color:var(--os-ink); background:transparent!important; box-shadow:none }
+.osSearch>input { flex:1; min-width:0; padding:0; border:0; outline:0; font-family:inherit; font-size:.8125rem; color:var(--os-ink); background:transparent!important; box-shadow:none }
 .osSearch>input:focus-visible { outline:0 }
 .osSearch>input::placeholder { color:#7999a3 }
 .osMenuCategories { display:flex; gap:5px; padding:13px 22px 12px; overflow:auto; flex-shrink:0; scrollbar-width:thin }
@@ -215,6 +217,7 @@ html[data-experience-icons="pixel"] .osAppTile::before { border-radius:0; transf
 html[data-experience-resolved-theme="dark"] .osDesktop { --os-ink:#d9eef5; --os-muted:#a0c0cb; --os-panel:#102f40f0 }
 html[data-experience-resolved-theme="dark"] .osScenery { background:linear-gradient(#061e40dd,#0a2e4abf) }
 html[data-experience-resolved-theme="dark"] .osHill { opacity:.2 }
+html[data-experience-resolved-theme="dark"] .osSun { opacity:.08 }
 html[data-experience-resolved-theme="dark"] :is(.osTopbar,.osTaskbar,.osWindowBar) { background:linear-gradient(#1d4b62cf,#0d2f44e6); border-color:#71adc04a; box-shadow:none }
 html[data-experience-resolved-theme="dark"] :is(.osGadget,.osStartPanel,.osWindow) { background:var(--os-panel); border-color:#7fb8ca5c; box-shadow:0 12px 40px #02162633 }
 html[data-experience-resolved-theme="dark"] :is(.osWelcome h1,.osWelcome>p,.osBigTime,.osTrayClock,.osDesktopApp,.osBrand,.osTaskbar button,.osCalendarGrid>span) { color:#d9eef5 }

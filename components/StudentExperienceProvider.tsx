@@ -85,10 +85,11 @@ export function StudentExperienceProvider({ children, userId, enabled }: { child
   }, [storageKey]);
 
   useEffect(() => {
-    if (!enabled || !ready) {
+    if (!enabled) {
       clearExperienceStyles();
       return;
     }
+    if (!ready) return;
     const root = document.documentElement;
     const css = experienceCss(preferences);
     root.dataset.experiencePalette = css.palette;
