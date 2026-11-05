@@ -12,8 +12,8 @@ export const moduleCatalog: readonly CampusModule[] = [
   { href: "/notificacoes", label: "Notificações", description: "Leia os avisos enviados ao seu perfil.", icon: "bell", group: "Meu espaço" },
   { href: "/perfil", label: "Meu perfil", description: "Dados pessoais, vínculo e segurança da conta.", icon: "profile", group: "Meu espaço" },
   { href: "/atalhos", label: "Meus atalhos", description: "Organize seus acessos mais usados.", icon: "link", group: "Meu espaço" },
-  { href: "/personalizacao", label: "Personalização", description: "Temas, molduras, papéis de parede, atalhos e metas pessoais.", icon: "settings", group: "Meu espaço", roles: ["student"], navigation: true },
-  { href: "/ifos", label: "IFOS desktop", description: "Um ambiente de trabalho acadêmico inspirado em um desktop Frutiger Aero.", icon: "home", group: "Meu espaço", roles: ["student"] },
+  { href: "/personalizacao", label: "Personalização", description: "Temas, molduras, papéis de parede, atalhos e metas pessoais.", icon: "settings", group: "Meu espaço", navigation: true },
+  { href: "/ifos", label: "IFOS desktop", description: "Seu campus em uma área de trabalho Frutiger Aero para computadores.", icon: "home", group: "Meu espaço", navigation: true, keywords: "ifmtos sistema desktop computador aero" },
   { href: "/preferencias-notificacoes", label: "Preferências de avisos", description: "Escolha as categorias de novas notificações.", icon: "settings", group: "Meu espaço" },
   { href: "/estudante", label: "Minha vida acadêmica", description: "Consulte sua matrícula, turma e disciplinas.", icon: "student", group: "Vida acadêmica", roles: ["student"], navigation: true },
   { href: "/boletim", label: "Boletim e frequência", description: "Notas, médias, presenças e faltas.", icon: "grades", group: "Vida acadêmica", roles: ["student"], navigation: true },
@@ -62,4 +62,15 @@ export const moduleGroups: readonly ModuleGroup[] = ["Meu espaço", "Vida acadê
 /** Visibility only. Server actions and database RLS remain the authorization boundary. */
 export function getAccessibleModules(role: AppRole | null): CampusModule[] {
   return moduleCatalog.filter((item) => item.public || (role !== null && (!item.roles || item.roles.includes(role))));
+}
+
+export function getDefaultFavoritePaths(role: AppRole | null): string[] {
+  if (role === null) return [];
+  const preferred = role === "student"
+    ? ["/boletim", "/agenda-aluno", "/disciplinas", "/documentos-academicos", "/solicitacoes", "/editais"]
+    : ["teacher", "manager", "admin"].includes(role)
+      ? ["/minhas-turmas", "/importar-dados-academicos", "/diario-professor", "/agenda-aluno", "/solicitacoes", "/editais"]
+      : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/editais"];
+  const accessible = new Set(getAccessibleModules(role).map(({ href }) => href));
+  return preferred.filter((href) => accessible.has(href));
 }

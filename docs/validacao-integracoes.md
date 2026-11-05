@@ -1,5 +1,15 @@
 # Validação efetiva da entrega
 
+## Atualização de 05/11/2026 — IFOS e personalização
+
+A correção libera IFOS e personalização para todas as contas ativas, incluindo o Administrador Geral. O catálogo, os favoritos e os links da agenda respeitam o perfil; as verificações de sessão e as permissões dos módulos continuam no servidor. IFOS agora aparece no menu lateral.
+
+Validação local desta atualização: ESLint e TypeScript aprovados; `npm run build` aprovado com as três auditorias, **144 testes unitários** e geração de **106 páginas estáticas**. Os **14 testes de navegador** de `personalization.spec.ts` passaram, incluindo administrador, professor, gestor, visitante e conta suspensa. Os resultados de publicação devem ser confirmados no ambiente de produção; testes locais usam o banco sintético e não comprovam uma conexão SUAP/AVA.
+
+As integrações institucionais e a homologação do banco remoto continuam aguardando acesso autorizado da TI. A correção do IFOS não exige ativar essas integrações ou as flags de importação.
+
+## Registro de 03/11/2026
+
 Execução em **03/11/2026**, Windows/PowerShell, Node **24.22.2**, npm **11.19.1**, Next.js **16.3.4**, PGlite **0.5.15**, Playwright **1.63.0**. Sem arquivo de credenciais Supabase local, sem acesso PostgreSQL remoto, sem Docker e sem credenciais institucionais.
 
 | Verificação | Resultado efetivo |

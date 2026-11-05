@@ -29,7 +29,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Sear
         </form>
         <div className="securityBlock"><LockKeyhole size={20}/><div><h3>Senha</h3><p>Altere sua senha usando o fluxo seguro de recuperação.</p></div><Link className="button" href="/recuperar-senha">Alterar senha</Link></div>
         <div className="profileTools">
-          {account.role === "student" && <Link href="/personalizacao"><UserRound size={17}/><span><b>Personalização</b><small>Temas, perfil e IFOS</small></span></Link>}
+          <Link href="/personalizacao"><UserRound size={17}/><span><b>Personalização</b><small>Temas, perfil e IFOS</small></span></Link>
           <Link href="/preferencias-notificacoes"><Bell size={17}/><span><b>Notificações</b><small>Escolher categorias</small></span></Link>
           <Link href="/atalhos"><Link2 size={17}/><span><b>Meus atalhos</b><small>Personalizar início</small></span></Link>
           <Link href="/reportar-erro"><Bug size={17}/><span><b>Reportar erro</b><small>Acompanhar problema</small></span></Link>

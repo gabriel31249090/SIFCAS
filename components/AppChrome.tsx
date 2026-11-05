@@ -17,8 +17,8 @@ export function AppChrome({ children, topbar, role, accountId }: { children: Rea
   useEffect(() => { menu.current?.close(); document.body.style.overflow = ""; }, [pathname]);
   useEffect(() => () => { document.body.style.overflow = ""; }, []);
   if (isAuth) return <div className="authShell"><a className="skipLink" href="#main-content">Pular para o conteúdo</a><div id="main-content">{children}</div></div>;
-  if (pathname === "/ifos") return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role === "student"}><div className="ifosShell"><a className="skipLink" href="#main-content">Pular para o conteúdo</a>{children}</div></StudentExperienceProvider>;
-  return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role === "student"}><div className="appShell">
+  if (pathname === "/ifos") return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role !== null} role={role}><div className="ifosShell"><a className="skipLink" href="#main-content">Pular para o conteúdo</a>{children}</div></StudentExperienceProvider>;
+  return <StudentExperienceProvider key={accountId ?? "anonymous"} userId={accountId} enabled={role !== null} role={role}><div className="appShell">
     <a className="skipLink" href="#main-content">Pular para o conteúdo</a>
     <div className="desktopSidebar"><Sidebar role={role} /></div>
     <button type="button" className="mobileMenuButton" onClick={() => { menu.current?.showModal(); document.body.style.overflow = "hidden"; }} aria-label="Abrir menu de navegação" aria-haspopup="dialog"><Menu size={22} /></button>

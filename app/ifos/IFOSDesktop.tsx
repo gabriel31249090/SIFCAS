@@ -16,7 +16,7 @@ type DesktopModule = { href: string; label: string; icon: ModuleIconName; descri
 type DesktopWindow = { app: DesktopModule; x: number; y: number; minimized: boolean; maximized: boolean };
 type TodaySummary = { date: string; items: TodayItem[]; incomplete: boolean; emptyMessage: string };
 const focusApp: DesktopModule = { href: "#focus", label: "Meu foco", icon: "calendar", description: "Um passo de cada vez. Reserve um tempo para aprender.", group: "Meu espaço", keywords: "timer pomodoro estudo cronometro" };
-const primaryApps = ["/boletim", "/agenda-aluno", "/disciplinas", "/horarios", "/avaliacoes", "/editais", "/solicitacoes", "/personalizacao"];
+const primaryApps = ["/boletim", "/agenda-aluno", "/disciplinas", "/horarios", "/avaliacoes", "/diario-professor", "/gestao-academica", "/usuarios", "/painel-institucional", "/servicos", "/editais", "/solicitacoes", "/personalizacao"];
 const appColors = ["blue", "green", "violet", "amber", "teal", "rose"];
 
 function useClock() {
@@ -65,11 +65,11 @@ export function IFOSDesktop({ name, modules, today }: { name: string; modules: D
   const [burst, setBurst] = useState(0);
   const availableModules = useMemo(() => [...modules.filter((item) => item.href !== "/ifos"), focusApp], [modules]);
   const favoriteModules = preferences.favorites.flatMap((href) => availableModules.filter((item) => item.href === href));
-  const desktopModules = [...favoriteModules, ...availableModules.filter((item) => primaryApps.includes(item.href) && !preferences.favorites.includes(item.href))].slice(0, 8);
+  const desktopModules = [...favoriteModules, ...availableModules.filter((item) => primaryApps.includes(item.href) && !preferences.favorites.includes(item.href)), ...availableModules.filter((item) => !primaryApps.includes(item.href) && !preferences.favorites.includes(item.href))].slice(0, 8);
   const filteredModules = availableModules.filter((item) => (group === "Todos" || group === item.group) && matchesSearch(`${item.label} ${item.description} ${item.keywords}`, search));
   const groups = ["Todos", ...new Set(availableModules.map((item) => item.group))];
   const activeHref = !showDesktop ? windows.filter((item) => !item.minimized).at(-1)?.app.href : undefined;
-  const agendaApp = availableModules.find((item) => item.href === "/agenda-aluno");
+  const agendaApp = availableModules.find((item) => item.href === "/agenda-aluno") ?? availableModules.find((item) => item.href === "/agenda-institucional");
   const settingsApp = availableModules.find((item) => item.href === "/personalizacao");
   const currentDate = clock.dateKey ?? today.date;
   const focusedToday = preferences.focusDate === currentDate ? preferences.focusMinutes : 0;

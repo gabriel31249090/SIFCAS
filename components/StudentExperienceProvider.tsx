@@ -3,6 +3,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { experienceCss, experienceStorageKey, parseStudentExperience, type StudentExperience } from "@/lib/student-experience";
+import { getDefaultFavoritePaths } from "@/lib/module-catalog";
+import type { AppRole } from "@/lib/auth";
 
 type ExperienceContextValue = {
   preferences: StudentExperience;
@@ -20,12 +22,16 @@ type ExperienceSnapshot = {
   storageError: string | null;
 };
 
-function readPreferences(key: string): ExperienceSnapshot {
+function defaultPreferences(role: AppRole | null): StudentExperience {
+  return { ...parseStudentExperience(null), favorites: getDefaultFavoritePaths(role) };
+}
+
+function readPreferences(key: string, role: AppRole | null): ExperienceSnapshot {
   try {
     const saved = window.localStorage.getItem(key);
-    return { key, preferences: parseStudentExperience(saved ? JSON.parse(saved) : null), ready: true, storageError: null };
+    return { key, preferences: saved ? parseStudentExperience(JSON.parse(saved)) : defaultPreferences(role), ready: true, storageError: null };
   } catch {
-    return { key, preferences: parseStudentExperience(null), ready: true, storageError: "Não foi possível carregar as preferências salvas. Você pode personalizar esta aba novamente." };
+    return { key, preferences: defaultPreferences(role), ready: true, storageError: "Não foi possível carregar as preferências salvas. Você pode personalizar esta aba novamente." };
   }
 }
 
@@ -41,23 +47,23 @@ function clearExperienceStyles() {
   document.querySelectorAll<HTMLElement>("[data-experience-subject]").forEach((element) => { delete element.dataset.experienceSubjectColor; });
 }
 
-export function StudentExperienceProvider({ children, userId, enabled }: { children: ReactNode; userId: string | null; enabled: boolean }) {
+export function StudentExperienceProvider({ children, userId, enabled, role }: { children: ReactNode; userId: string | null; enabled: boolean; role: AppRole | null }) {
   const pathname = usePathname();
   const storageKey = userId ? `${experienceStorageKey}:${userId}` : experienceStorageKey;
-  const [snapshot, setSnapshot] = useState<ExperienceSnapshot>(() => ({ key: storageKey, preferences: parseStudentExperience(null), ready: false, storageError: null }));
+  const [snapshot, setSnapshot] = useState<ExperienceSnapshot>(() => ({ key: storageKey, preferences: defaultPreferences(role), ready: false, storageError: null }));
   const currentSnapshot = useRef(snapshot);
   // Never expose a previous account's preferences while loading another account.
-  const { preferences, ready, storageError } = useMemo(() => snapshot.key === storageKey ? snapshot : { key: storageKey, preferences: parseStudentExperience(null), ready: false, storageError: null }, [snapshot, storageKey]);
+  const { preferences, ready, storageError } = useMemo(() => snapshot.key === storageKey ? snapshot : { key: storageKey, preferences: defaultPreferences(role), ready: false, storageError: null }, [snapshot, storageKey, role]);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      const next = readPreferences(storageKey);
+      const next = readPreferences(storageKey, role);
       currentSnapshot.current = next;
       setSnapshot(next);
     });
     const syncPreferences = (event: StorageEvent) => {
       if (event.key !== storageKey && event.key !== null) return;
-      const next = readPreferences(storageKey);
+      const next = readPreferences(storageKey, role);
       currentSnapshot.current = next;
       setSnapshot(next);
     };
@@ -66,12 +72,12 @@ export function StudentExperienceProvider({ children, userId, enabled }: { child
       window.cancelAnimationFrame(frame);
       window.removeEventListener("storage", syncPreferences);
     };
-  }, [storageKey]);
+  }, [storageKey, role]);
 
   const update = useCallback((patch: Partial<StudentExperience> | ((current: StudentExperience) => StudentExperience)) => {
     const current = currentSnapshot.current.key === storageKey && currentSnapshot.current.ready
       ? currentSnapshot.current.preferences
-      : readPreferences(storageKey).preferences;
+      : readPreferences(storageKey, role).preferences;
     const nextPreferences = parseStudentExperience(typeof patch === "function" ? patch(current) : { ...current, ...patch });
     let error: string | null = null;
     try {
@@ -82,7 +88,7 @@ export function StudentExperienceProvider({ children, userId, enabled }: { child
     const next = { key: storageKey, preferences: nextPreferences, ready: true, storageError: error };
     currentSnapshot.current = next;
     setSnapshot(next);
-  }, [storageKey]);
+  }, [storageKey, role]);
 
   useEffect(() => {
     if (!enabled) {

@@ -15,6 +15,84 @@ async function openStudio(page: Page) {
   await expect(page.getByRole("tab", { name: "Aparência", exact: true })).toHaveAttribute("aria-selected", "true");
 }
 
+for (const profile of [
+  { actor: "admin", app: "Usuários e permissões", href: "/usuarios" },
+  { actor: "teacher", app: "Diário do professor", href: "/diario-professor" },
+  { actor: "manager", app: "Gestão acadêmica", href: "/gestao-academica" },
+]) {
+  test(`active ${profile.actor} reaches IFOS from navigation with its authorized applications`, async ({ page, context }) => {
+    await actor(context, profile.actor);
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await openStudio(page);
+    await page.locator(".desktopSidebar").getByRole("link", { name: "IFOS desktop", exact: true }).click();
+    await expect(page).toHaveURL(/\/ifos$/);
+    await expect(page.getByRole("main", { name: "IFOS, área de trabalho do SIFCAS", exact: true })).toBeVisible();
+    await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", /light|dark/);
+    await page.getByRole("button", { name: "Abrir menu de aplicativos", exact: true }).click();
+    const menu = page.getByRole("dialog", { name: "Menu de aplicativos", exact: true });
+    await expect(menu.getByRole("button", { name: /^Boletim e frequência / })).toHaveCount(0);
+    await expect(menu.getByRole("button", { name: /^Minha vida acadêmica / })).toHaveCount(0);
+    if (profile.actor !== "admin") await expect(menu.getByRole("button", { name: /^Usuários e permissões / })).toHaveCount(0);
+    await menu.getByRole("textbox", { name: "Buscar aplicativos", exact: true }).fill(profile.app);
+    await menu.getByRole("button", { name: new RegExp(`^${profile.app} `) }).click();
+    const appWindow = page.getByRole("dialog", { name: profile.app, exact: true });
+    await expect(appWindow).toBeVisible();
+    await expect(appWindow.getByRole("link", { name: "Abrir aplicativo", exact: true })).toHaveAttribute("href", profile.href);
+  });
+}
+
+test("admin personalization uses its own catalog and saves appearance and desktop favorites", async ({ page, context }) => {
+  await actor(context, "admin");
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await openStudio(page);
+  await page.getByRole("combobox", { name: "Tema", exact: true }).selectOption("dark");
+  await page.getByRole("combobox", { name: "Paleta", exact: true }).selectOption("meadow");
+  await page.getByRole("tab", { name: "Início e atalhos", exact: true }).click();
+  const favorites = page.locator(".studioChecksCompact");
+  await expect(favorites.getByRole("checkbox", { name: "Boletim e frequência", exact: true })).toHaveCount(0);
+  await expect(favorites.getByRole("checkbox", { name: "Minha vida acadêmica", exact: true })).toHaveCount(0);
+  await expect(favorites.getByRole("checkbox", { name: "Minhas disciplinas", exact: true })).toHaveCount(0);
+  await favorites.getByRole("checkbox", { name: "Usuários e permissões", exact: true }).check();
+  await page.reload();
+  await expect(page.getByRole("combobox", { name: "Tema", exact: true })).toHaveValue("dark");
+  await expect(page.getByRole("combobox", { name: "Paleta", exact: true })).toHaveValue("meadow");
+  await page.getByRole("tab", { name: "Início e atalhos", exact: true }).click();
+  await expect(favorites.getByRole("checkbox", { name: "Usuários e permissões", exact: true })).toBeChecked();
+  await page.goto("/");
+  await expect(page.locator('[data-experience-favorite="/usuarios"]')).toBeVisible();
+  await page.goto("/ifos");
+  await expect(page.locator("html")).toHaveAttribute("data-experience-resolved-theme", "dark");
+  await expect(page.locator("html")).toHaveAttribute("data-experience-palette", "meadow");
+  await expect(page.getByRole("navigation", { name: "Aplicativos do IFOS", exact: true }).getByRole("button", { name: "Usuários e permissões", exact: true })).toBeVisible();
+  await actor(context, "teacher");
+  await page.goto("/");
+  await expect(page.locator('[data-experience-favorite="/diario-professor"]')).toBeVisible();
+  await expect(page.locator('[data-experience-favorite="/minhas-turmas"]')).toBeVisible();
+  await expect(page.locator('[data-experience-favorite="/usuarios"]')).toHaveCount(0);
+  await page.goto("/ifos");
+  await expect(page.locator("html")).toHaveAttribute("data-experience-palette", "aqua");
+  await expect(page.getByRole("navigation", { name: "Aplicativos do IFOS", exact: true }).getByRole("button", { name: "Usuários e permissões", exact: true })).toHaveCount(0);
+});
+
+test("anonymous visitors cannot open IFOS or personalization", async ({ page, context }) => {
+  await context.clearCookies();
+  for (const path of ["/ifos", "/personalizacao"]) {
+    await page.goto(path);
+    await expect(page).toHaveURL(/\/login(?:\?|$)/);
+    await expect(page.getByRole("main", { name: "IFOS, área de trabalho do SIFCAS", exact: true })).toHaveCount(0);
+  }
+});
+
+test("suspended accounts cannot open IFOS or personalization", async ({ page, context }) => {
+  await actor(context, "suspended");
+  for (const path of ["/ifos", "/personalizacao"]) {
+    await page.goto(path);
+    await expect(page).toHaveURL(/\/acesso-negado\?reason=suspended$/);
+    await expect(page.getByRole("heading", { name: "Conta suspensa", exact: true })).toBeVisible();
+    await expect(page.getByRole("main", { name: "IFOS, área de trabalho do SIFCAS", exact: true })).toHaveCount(0);
+  }
+});
+
 test("appearance survives reload, updates another tab and stays separate for each account", async ({ page, context }) => {
   await actor(context);
   await page.setViewportSize({ width: 1440, height: 1000 });
