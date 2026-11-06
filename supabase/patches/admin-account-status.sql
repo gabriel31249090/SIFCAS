@@ -7,8 +7,13 @@ security definer
 set search_path = pg_catalog, public, auth
 as $$
 declare
-  target_is_general_admin boolean;
+  target_is_general_admin boolean := false;
+  target_exists boolean := false;
 begin
+  if p_user_id is null then
+    raise exception using errcode = '22023', message = 'User ID is required';
+  end if;
+
   if auth.uid() is null or not exists (
     select 1
     from public.profiles actor
@@ -28,13 +33,13 @@ begin
     raise exception using errcode = '42501', message = 'Self-suspension is not allowed';
   end if;
 
-  select coalesce(role_row.is_general_admin, false)
-  into target_is_general_admin
+  select coalesce(role_row.is_general_admin, false), true
+  into target_is_general_admin, target_exists
   from public.user_roles role_row
   where role_row.user_id = p_user_id
   for update;
 
-  if not found then
+  if not target_exists then
     raise exception using errcode = 'P0002', message = 'Target account role not found';
   end if;
 
@@ -42,14 +47,19 @@ begin
     raise exception using errcode = '42501', message = 'General administrator cannot be suspended here';
   end if;
 
-  update public.profiles
-  set account_status = p_status,
-      updated_at = clock_timestamp()
-  where id = p_user_id;
+  perform 1
+  from public.profiles
+  where id = p_user_id
+  for update;
 
   if not found then
     raise exception using errcode = 'P0002', message = 'Target account profile not found';
   end if;
+
+  update public.profiles
+  set account_status = p_status,
+      updated_at = clock_timestamp()
+  where id = p_user_id;
 
   if p_status = 'active' then
     update public.user_roles
