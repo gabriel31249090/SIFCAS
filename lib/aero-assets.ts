@@ -19,9 +19,9 @@ const sheets = {
   neon: { file: "neon-avatars.png", width: 1983, height: 793 },
   banners: { file: "aero-banners.png", width: 2172, height: 724 },
   retro: { file: "y2k-banners.png", width: 2172, height: 724 },
-  frames: { file: "aero-frames.png", width: 1983, height: 793 },
+  frames: { file: "aero-frames-alpha.png", width: 1983, height: 793 },
   buttons: { file: "glossy-buttons.png", width: 1983, height: 793 },
-  stickers: { file: "aero-stickers.png", width: 1983, height: 793 },
+  stickers: { file: "aero-stickers-alpha.png", width: 1983, height: 793 },
 } satisfies Record<string, Sheet>;
 
 function grid(kind: AeroAssetKind, prefix: string, sheet: Sheet, collection: AeroAsset["collection"], names: readonly string[], customCrop?: (index: number) => AeroAsset["crop"]): AeroAsset[] {

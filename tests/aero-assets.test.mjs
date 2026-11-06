@@ -25,6 +25,16 @@ test("Aero artwork has unique identities, local sources and crops within its sou
   }
 });
 
+test("frame and sticker sprites preserve transparency", () => {
+  for (const kind of ["frame", "sticker"]) {
+    const asset = aeroAssets.find((item) => item.kind === kind);
+    assert.ok(asset);
+    const source = fs.readFileSync(`public${asset.src}`);
+    assert.equal(source.toString("ascii", 1, 4), "PNG");
+    assert.equal(source[25], 6, `${asset.src} must be an RGBA PNG`);
+  }
+});
+
 test("Aero selections reject outside URLs, unknown IDs and assets of another category", () => {
   for (const value of [undefined, null, {}, [], 1, "https://example.invalid/a.png", "//outside/a.png", "url(javascript:alert(1))", "asset-missing-1"]) {
     assert.equal(parseAeroAsset(value, "avatar"), "none");
