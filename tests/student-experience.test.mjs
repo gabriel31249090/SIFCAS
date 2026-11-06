@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { defaultStudentExperience, experienceCss, importStudentExperience, parseStudentExperience } from "../lib/student-experience.ts";
+import { defaultStudentExperience, experienceCss, importStudentExperience, legacyExperienceStorageKey, migrateLegacyStudentExperience, parseStudentExperience } from "../lib/student-experience.ts";
 
 test("student appearance preferences use safe defaults and allow listed visual themes", () => {
   const parsed = parseStudentExperience({
@@ -13,7 +13,12 @@ test("student appearance preferences use safe defaults and allow listed visual t
   assert.equal(parsed.palette, "bubblegum");
   assert.equal(parsed.profileFrame, "pixel");
   assert.equal(parsed.profilePhoto, null);
+  assert.equal(parsed.wallpaper, "photo-sky");
+  assert.equal(parsed.profileAvatar, "asset-glass-1");
+  assert.equal(parsed.profileBannerArt, "asset-banner-1");
+  assert.equal(parsed.profileFrameArt, "asset-frame-1");
   assert.match(experienceCss(parsed).wallpaper, /images\.unsplash\.com/);
+  assert.equal(experienceCss({ ...defaultStudentExperience, wallpaper: "asset-landscape-1" }).wallpaper, "");
 });
 
 test("imported preferences reject unsafe values, paths and unbounded numbers", () => {
@@ -27,7 +32,7 @@ test("imported preferences reject unsafe values, paths and unbounded numbers", (
     dailySummary: { enabled: true, time: "25:99", agenda: false },
   });
   assert.equal(parsed.palette, "aqua");
-  assert.equal(parsed.wallpaper, "sky");
+  assert.equal(parsed.wallpaper, defaultStudentExperience.wallpaper);
   assert.deepEqual(parsed.hiddenNavigation, ["/boletim"]);
   assert.deepEqual(parsed.widgets, ["metrics"]);
   assert.equal(parsed.reminders.minutes, 30);
@@ -35,12 +40,53 @@ test("imported preferences reject unsafe values, paths and unbounded numbers", (
   assert.equal(parsed.studyGoalMinutes, 1440);
   assert.equal(parsed.dailySummary.time, "07:00");
   assert.equal(parsed.dailySummary.agenda, false);
+  assert.equal(parsed.wallpaper, defaultStudentExperience.wallpaper);
+  assert.equal(experienceCss(parsed).wallpaper, "");
 });
 
 test("student preference parser tolerates empty, malformed and oversized profile photo data", () => {
   assert.deepEqual(parseStudentExperience(null), defaultStudentExperience);
   assert.equal(parseStudentExperience("{bad").palette, "aqua");
   assert.equal(parseStudentExperience({ profilePhoto: `data:image/png;base64,${"A".repeat(700_001)}` }).profilePhoto, null);
+});
+
+test("legacy saved appearance preferences migrate to the Frutiger Aero defaults without losing custom choices", () => {
+  const migrated = migrateLegacyStudentExperience({
+    theme: "system",
+    wallpaper: "sky",
+    profileAvatar: "none",
+    profileBannerArt: "none",
+    profileFrameArt: "none",
+    buttonSkin: "none",
+    desktopSticker: "none",
+    profileBanner: "aurora",
+    favorites: ["/editais"],
+  });
+  assert.equal(legacyExperienceStorageKey, "sifcas:student-experience:v1");
+  assert.equal(migrated.wallpaper, defaultStudentExperience.wallpaper);
+  assert.equal(migrated.profileAvatar, defaultStudentExperience.profileAvatar);
+  assert.equal(migrated.profileBannerArt, defaultStudentExperience.profileBannerArt);
+  assert.equal(migrated.profileFrameArt, defaultStudentExperience.profileFrameArt);
+  assert.equal(migrated.buttonSkin, defaultStudentExperience.buttonSkin);
+  assert.equal(migrated.desktopSticker, defaultStudentExperience.desktopSticker);
+  assert.equal(migrated.profileBanner, "none");
+  assert.equal(migrated.theme, "system");
+  assert.deepEqual(migrated.favorites, ["/editais"]);
+
+  const customized = migrateLegacyStudentExperience({
+    wallpaper: "asset-landscape-3",
+    profileAvatar: "asset-glass-4",
+    profileBannerArt: "asset-banner-5",
+    profileFrameArt: "asset-frame-3",
+    buttonSkin: "asset-button-2",
+    desktopSticker: "asset-sticker-2",
+  });
+  assert.equal(customized.wallpaper, "asset-landscape-3");
+  assert.equal(customized.profileAvatar, "asset-glass-4");
+  assert.equal(customized.profileBannerArt, "asset-banner-5");
+  assert.equal(customized.profileFrameArt, "asset-frame-3");
+  assert.equal(customized.buttonSkin, "asset-button-2");
+  assert.equal(customized.desktopSticker, "asset-sticker-2");
 });
 
 test("preference records isolate defaults and discard unrelated imported data", () => {
@@ -75,7 +121,7 @@ test("importing unrelated JSON cannot silently reset saved preferences", () => {
     assert.throws(() => importStudentExperience(value), /preferências/);
   }
   assert.equal(importStudentExperience({ palette: "meadow" }).palette, "meadow");
-  assert.equal(importStudentExperience(defaultStudentExperience).theme, "system");
+  assert.equal(importStudentExperience(defaultStudentExperience).theme, "light");
 });
 
 test("focus statistics only accept calendar dates and finite whole numbers", () => {

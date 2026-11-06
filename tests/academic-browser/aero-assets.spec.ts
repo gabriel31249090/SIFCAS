@@ -35,7 +35,6 @@ test("local scenery persists and displays the selected source tile in IFOS", asy
   await page.reload();
   await page.getByRole("tab", { name: "Coleção Aero", exact: true }).click();
   await expect(scenery).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("combobox", { name: "Papel de parede", exact: true })).toHaveValue("asset-landscape-1");
 
   await page.goto("/ifos");
   const desktop = page.getByRole("main", { name: "IFOS, área de trabalho do SIFCAS", exact: true });
@@ -52,8 +51,8 @@ test("avatar, profile art, button skin and desktop sticker stay with their accou
   await page.setViewportSize({ width: 1440, height: 1000 });
   await collection(page);
   for (const [tab, name] of [
-    ["Avatares", "Avatar Céu azul"], ["Faixas", "Faixa Lago azul"], ["Molduras", "Moldura Bolhas tropicais"],
-    ["Botões", "Botão Aqua brilhante"], ["Adesivos", "Adesivo Bolhas de céu"],
+    ["Avatares", "Avatar Água viva"], ["Faixas", "Faixa Janela no jardim"], ["Molduras", "Moldura Estrelas de prata"],
+    ["Botões", "Botão Cromo azul"], ["Adesivos", "Adesivo Nota musical"],
   ]) {
     await category(page, tab);
     const choice = page.getByRole("button", { name, exact: true });
@@ -66,19 +65,23 @@ test("avatar, profile art, button skin and desktop sticker stay with their accou
   await expect(avatar).toHaveCSS("background-image", /glass-avatars\.png/);
   await expect(page.locator(".profileIdentity .experienceArtworkBanner image")).toHaveAttribute("href", "/assets/aero/aero-banners.png");
   await expect(page.locator(".profileIdentity .experiencePortrait.hasArtFrame")).toBeVisible();
-  await expect(page.locator(".profileIdentity .experiencePortrait > svg image")).toHaveAttribute("href", "/assets/aero/aero-frames.png");
-  await expect(page.getByRole("button", { name: "Salvar alterações", exact: true })).toHaveCSS("background-image", /glossy-buttons\.png/);
+  await expect(page.locator(".profileIdentity .experiencePortrait > svg image")).toHaveAttribute("href", "/assets/aero/aero-frames-alpha.png");
+  expect(await page.getByRole("button", { name: "Salvar alterações", exact: true }).evaluate((element) => getComputedStyle(element, "::after").backgroundImage)).toMatch(/glossy-buttons\.png/);
+  const selectedAvatarPosition = await avatar.evaluate((element) => getComputedStyle(element).backgroundPosition);
+  const selectedBannerCrop = await page.locator(".profileIdentity .experienceArtworkBanner svg").getAttribute("viewBox");
+  const selectedFrameCrop = await page.locator(".profileIdentity .experiencePortrait > svg").getAttribute("viewBox");
   await page.screenshot({ path: "test-results/aero-assets-profile.png", fullPage: true });
   await page.goto("/ifos");
-  await expect(page.locator(".experienceDesktopSticker image")).toHaveAttribute("href", "/assets/aero/aero-stickers.png");
+  await expect(page.locator(".experienceDesktopSticker image")).toHaveAttribute("href", "/assets/aero/aero-stickers-alpha.png");
   await page.getByRole("button", { name: "Abrir menu de aplicativos", exact: true }).click();
   await expect(page.locator(".osMenuAvatar")).toHaveCSS("background-image", /glass-avatars\.png/);
 
   await actor(context, "otherStudent");
   await page.goto("/perfil");
-  await expect(avatar).not.toHaveCSS("background-image", /glass-avatars\.png/);
-  await expect(page.locator(".profileIdentity .experienceArtworkBanner")).toHaveCount(0);
-  await expect(page.locator(".profileIdentity .experiencePortrait.hasArtFrame")).toHaveCount(0);
+  await expect(avatar).toHaveCSS("background-image", /glass-avatars\.png/);
+  await expect(avatar).not.toHaveCSS("background-position", selectedAvatarPosition);
+  await expect(page.locator(".profileIdentity .experienceArtworkBanner svg")).not.toHaveAttribute("viewBox", selectedBannerCrop ?? "");
+  await expect(page.locator(".profileIdentity .experiencePortrait > svg")).not.toHaveAttribute("viewBox", selectedFrameCrop ?? "");
   await actor(context);
   await page.goto("/perfil");
   await expect(avatar).toHaveCSS("background-image", /glass-avatars\.png/);

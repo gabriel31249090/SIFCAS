@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { aeroAssets, aeroSpriteStyle, findAeroAsset, parseAeroAsset } from "../lib/aero-assets.ts";
-import { defaultStudentExperience, parseStudentExperience } from "../lib/student-experience.ts";
+import { defaultStudentExperience, experienceCss, parseStudentExperience } from "../lib/student-experience.ts";
 
 test("Aero artwork has unique identities, local sources and crops within its source sheet", () => {
   assert.equal(new Set(aeroAssets.map(({ id }) => id)).size, aeroAssets.length);
@@ -64,19 +64,27 @@ test("preference import only admits artwork from the matching category", () => {
     wallpaper: "asset-glass-1", profileAvatar: "https://outside.example/avatar.png", profileBannerArt: "asset-frame-1",
     profileFrameArt: "asset-banner-1", buttonSkin: "asset-sticker-1", desktopSticker: "asset-button-1",
   });
-  assert.equal(rejected.wallpaper, "sky");
+  assert.equal(rejected.wallpaper, defaultStudentExperience.wallpaper);
+  assert.equal(experienceCss(rejected).wallpaper, "");
   for (const key of ["profileAvatar", "profileBannerArt", "profileFrameArt", "buttonSkin", "desktopSticker"]) assert.equal(rejected[key], "none", key);
 });
 
-test("old appearance records retain their choices and get neutral defaults for the new collection", () => {
+test("old appearance records retain their choices and get Frutiger Aero defaults for the new collection", () => {
   const previous = parseStudentExperience({ wallpaper: "photo-lake", profileFrame: "gold", profileBanner: "leaves", theme: "dark", favorites: ["/editais"] });
+  const defaultArt = {
+    profileAvatar: "asset-glass-1",
+    profileBannerArt: "asset-banner-1",
+    profileFrameArt: "asset-frame-1",
+    buttonSkin: "asset-button-1",
+    desktopSticker: "asset-sticker-1",
+  };
   assert.equal(previous.wallpaper, "photo-lake");
   assert.equal(previous.profileFrame, "gold");
   assert.equal(previous.profileBanner, "leaves");
   assert.equal(previous.theme, "dark");
   assert.deepEqual(previous.favorites, ["/editais"]);
   for (const key of ["profileAvatar", "profileBannerArt", "profileFrameArt", "buttonSkin", "desktopSticker"]) {
-    assert.equal(previous[key], "none", key);
-    assert.equal(defaultStudentExperience[key], "none", key);
+    assert.equal(previous[key], defaultArt[key], key);
+    assert.equal(defaultStudentExperience[key], defaultArt[key], key);
   }
 });

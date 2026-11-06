@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { experienceAvatarStyle, experienceCss, experienceStorageKey, parseStudentExperience, type StudentExperience } from "@/lib/student-experience";
+import { experienceAvatarStyle, experienceCss, experienceStorageKey, legacyExperienceStorageKey, migrateLegacyStudentExperience, parseStudentExperience, type StudentExperience } from "@/lib/student-experience";
 import { aeroSpriteStyle, findAeroAsset } from "@/lib/aero-assets";
 import { ExperienceWallpaper } from "./AeroArtwork";
 import { getDefaultFavoritePaths } from "@/lib/module-catalog";
@@ -31,7 +31,17 @@ function defaultPreferences(role: AppRole | null): StudentExperience {
 function readPreferences(key: string, role: AppRole | null): ExperienceSnapshot {
   try {
     const saved = window.localStorage.getItem(key);
-    return { key, preferences: saved ? parseStudentExperience(JSON.parse(saved)) : defaultPreferences(role), ready: true, storageError: null };
+    if (saved) return { key, preferences: parseStudentExperience(JSON.parse(saved)), ready: true, storageError: null };
+    const legacyKey = key.replace(experienceStorageKey, legacyExperienceStorageKey);
+    const legacySaved = window.localStorage.getItem(legacyKey);
+    if (!legacySaved) return { key, preferences: defaultPreferences(role), ready: true, storageError: null };
+    const preferences = migrateLegacyStudentExperience(JSON.parse(legacySaved));
+    try {
+      window.localStorage.setItem(key, JSON.stringify(preferences));
+      return { key, preferences, ready: true, storageError: null };
+    } catch {
+      return { key, preferences, ready: true, storageError: "Suas preferências antigas foram carregadas, mas não foi possível salvar o novo visual neste navegador." };
+    }
   } catch {
     return { key, preferences: defaultPreferences(role), ready: true, storageError: "Não foi possível carregar as preferências salvas. Você pode personalizar esta aba novamente." };
   }
@@ -115,7 +125,7 @@ export function StudentExperienceProvider({ children, userId, enabled, role }: {
     root.dataset.experienceWallpaper = preferences.wallpaper;
     const button = findAeroAsset(preferences.buttonSkin, "button");
     if (button) {
-      const sprite = aeroSpriteStyle(button);
+      const sprite = aeroSpriteStyle(button, true);
       root.style.setProperty("--experience-button-image", sprite.backgroundImage);
       root.style.setProperty("--experience-button-size", sprite.backgroundSize);
       root.style.setProperty("--experience-button-position", sprite.backgroundPosition);

@@ -1,6 +1,7 @@
 import { aeroSpriteStyle, findAeroAsset, parseAeroAsset } from "./aero-assets.ts";
 
-export const experienceStorageKey = "sifcas:student-experience:v1";
+export const experienceStorageKey = "sifcas:student-experience:v2";
+export const legacyExperienceStorageKey = "sifcas:student-experience:v1";
 
 export type StudentExperience = {
   theme: "system" | "light" | "dark";
@@ -37,19 +38,19 @@ export type StudentExperience = {
 };
 
 export const defaultStudentExperience: StudentExperience = {
-  theme: "system",
+  theme: "light",
   palette: "aqua",
   textSize: "normal",
   density: "comfortable",
-  wallpaper: "sky",
+  wallpaper: "asset-landscape-1",
   profilePhoto: null,
-  profileAvatar: "none",
-  profileBannerArt: "none",
-  profileFrameArt: "none",
-  buttonSkin: "none",
-  desktopSticker: "none",
+  profileAvatar: "asset-glass-1",
+  profileBannerArt: "asset-banner-1",
+  profileFrameArt: "asset-frame-1",
+  buttonSkin: "asset-button-1",
+  desktopSticker: "asset-sticker-1",
   profileFrame: "none",
-  profileBanner: "aurora",
+  profileBanner: "none",
   iconStyle: "glossy",
   widgets: ["metrics", "quick-links", "agenda", "attention", "sources"],
   hiddenNavigation: [],
@@ -71,6 +72,7 @@ export const defaultStudentExperience: StudentExperience = {
 };
 
 export const experiencePresets: Record<string, Partial<StudentExperience>> = {
+  "Frutiger Aero": { palette: "aqua", theme: "light", wallpaper: "asset-landscape-1", profileAvatar: "asset-glass-1", profileBannerArt: "asset-banner-1", profileFrameArt: "asset-frame-1", buttonSkin: "asset-button-1", desktopSticker: "asset-sticker-1", iconStyle: "glossy", density: "comfortable", animations: true },
   "Aqua clássica": { palette: "aqua", theme: "light", wallpaper: "sky", iconStyle: "glossy", density: "comfortable" },
   "Jardim calmo": { palette: "meadow", theme: "system", wallpaper: "meadow", iconStyle: "flat", animations: false },
   "Pixel campus": { palette: "bubblegum", wallpaper: "aurora", profileFrame: "pixel", profileBanner: "pixel", iconStyle: "pixel" },
@@ -111,11 +113,11 @@ export function parseStudentExperience(value: unknown): StudentExperience {
     textSize: enumValue(raw.textSize, ["normal", "large", "xlarge"], defaultStudentExperience.textSize),
     density: enumValue(raw.density, ["comfortable", "compact"], defaultStudentExperience.density),
     wallpaper: findAeroAsset(raw.wallpaper, "wallpaper") ? raw.wallpaper! : enumValue(raw.wallpaper, ["sky", "water", "meadow", "aurora", "photo-sky", "photo-lake"], defaultStudentExperience.wallpaper),
-    profileAvatar: parseAeroAsset(raw.profileAvatar, "avatar"),
-    profileBannerArt: parseAeroAsset(raw.profileBannerArt, "banner"),
-    profileFrameArt: parseAeroAsset(raw.profileFrameArt, "frame"),
-    buttonSkin: parseAeroAsset(raw.buttonSkin, "button"),
-    desktopSticker: parseAeroAsset(raw.desktopSticker, "sticker"),
+    profileAvatar: Object.hasOwn(raw, "profileAvatar") ? parseAeroAsset(raw.profileAvatar, "avatar") : defaultStudentExperience.profileAvatar,
+    profileBannerArt: Object.hasOwn(raw, "profileBannerArt") ? parseAeroAsset(raw.profileBannerArt, "banner") : defaultStudentExperience.profileBannerArt,
+    profileFrameArt: Object.hasOwn(raw, "profileFrameArt") ? parseAeroAsset(raw.profileFrameArt, "frame") : defaultStudentExperience.profileFrameArt,
+    buttonSkin: Object.hasOwn(raw, "buttonSkin") ? parseAeroAsset(raw.buttonSkin, "button") : defaultStudentExperience.buttonSkin,
+    desktopSticker: Object.hasOwn(raw, "desktopSticker") ? parseAeroAsset(raw.desktopSticker, "sticker") : defaultStudentExperience.desktopSticker,
     profileFrame: enumValue(raw.profileFrame, ["none", "aqua", "gold", "pixel"], defaultStudentExperience.profileFrame),
     profileBanner: enumValue(raw.profileBanner, ["none", "aurora", "bubbles", "leaves", "pixel"], defaultStudentExperience.profileBanner),
     iconStyle: enumValue(raw.iconStyle, ["glossy", "flat", "pixel"], defaultStudentExperience.iconStyle),
@@ -152,6 +154,20 @@ export function parseStudentExperience(value: unknown): StudentExperience {
   };
 }
 
+export function migrateLegacyStudentExperience(value: unknown): StudentExperience {
+  const legacy = parseStudentExperience(value);
+  return parseStudentExperience({
+    ...legacy,
+    wallpaper: legacy.wallpaper === "sky" ? defaultStudentExperience.wallpaper : legacy.wallpaper,
+    profileAvatar: legacy.profileAvatar === "none" ? defaultStudentExperience.profileAvatar : legacy.profileAvatar,
+    profileBannerArt: legacy.profileBannerArt === "none" ? defaultStudentExperience.profileBannerArt : legacy.profileBannerArt,
+    profileFrameArt: legacy.profileFrameArt === "none" ? defaultStudentExperience.profileFrameArt : legacy.profileFrameArt,
+    buttonSkin: legacy.buttonSkin === "none" ? defaultStudentExperience.buttonSkin : legacy.buttonSkin,
+    desktopSticker: legacy.desktopSticker === "none" ? defaultStudentExperience.desktopSticker : legacy.desktopSticker,
+    profileBanner: legacy.profileBanner === "aurora" && legacy.profileBannerArt === "none" ? "none" : legacy.profileBanner,
+  });
+}
+
 function isCalendarDate(value: string) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const date = new Date(`${value}T12:00:00Z`);
@@ -171,7 +187,8 @@ export function experienceCss(preferences: StudentExperience) {
     "photo-sky": 'linear-gradient(#16476055,#16476055),url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=85")',
     "photo-lake": 'linear-gradient(#16476055,#16476055),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85")',
   };
-  return { wallpaper: wallpaperUrls[preferences.wallpaper] ?? wallpaperUrls.sky, palette: preferences.palette, theme: preferences.theme, textSize: preferences.textSize, density: preferences.density, iconStyle: preferences.iconStyle, profileFrame: preferences.profileFrame, profileBanner: preferences.profileBanner, animations: String(preferences.animations) };
+  const wallpaper = preferences.wallpaper.startsWith("asset-") ? "" : wallpaperUrls[preferences.wallpaper] ?? wallpaperUrls.sky;
+  return { wallpaper, palette: preferences.palette, theme: preferences.theme, textSize: preferences.textSize, density: preferences.density, iconStyle: preferences.iconStyle, profileFrame: preferences.profileFrame, profileBanner: preferences.profileBanner, animations: String(preferences.animations) };
 }
 
 
