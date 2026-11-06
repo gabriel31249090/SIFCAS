@@ -24,6 +24,8 @@ O formulário aceita mapeamento de **cabeçalhos**, por exemplo `{"external_id":
 
 ## Demonstração em homologação
 
+O diário local do SIFCAS não é uma janela do SUAP e não recebe conteúdo institucional automaticamente. A lista de aulas locais pode estar vazia mesmo que existam registros oficiais. Cópias importadas autorizadas aparecem separadamente, identificadas como somente leitura; a ausência de cópia não significa ausência de conteúdo na origem. Não importar PDFs de boletim ou avaliações de estudante como substituto de um diário docente ou como sincronização oficial.
+
 1. Usar banco descartável, instalar o contrato conforme [integrações](integracoes-ifmt.md), configurar um usuário docente autenticável no Supabase de teste e ligar `teaching_assignments` à turma existente.
 2. Operador verifica e cadastra o mapa de diário externo → `class_subject_id` e cada matrícula externa → enrollment existente. O seed versionado serve apenas para testes SQL; ele não cria contas no Supabase Auth para login por navegador.
 3. Habilitar a flag, entrar como docente e abrir `/importar-dados-academicos`. Selecionar diário/período existente, CSV e eventual mapeamento.

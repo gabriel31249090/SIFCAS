@@ -62,8 +62,9 @@ export default async function DiarioProfessorPage({ searchParams }: { searchPara
 
     {context.options.length === 0 ? (
       <section className="card panel">
-        <SectionTitle title="Nenhuma turma disponível" description="Seu usuário ainda não possui uma disciplina vinculada para uso do diário."/>
-        <div className="infoBox">Um Gestor ou Administrador Geral pode criar o vínculo em Gestão Acadêmica.</div>
+      <SectionTitle title="Nenhuma turma disponível" description="Seu usuário ainda não possui um vínculo docente autorizado para usar o diário do SIFCAS."/>
+      <div className="infoBox">O conteúdo do SUAP/AVA não aparece aqui automaticamente. A gestão precisa conferir seu vínculo e, antes de importar um diário externo, homologar o mapeamento e o formato. Enquanto isso, consulte o registro oficial na origem.</div>
+      <div className="heroActions"><Link className="button soft" href="/minhas-turmas">Conferir minhas turmas</Link><Link className="button soft" href="/importar-dados-academicos">Ver estado da importação</Link></div>
       </section>
     ) : <>
       <section className="card panel diarySelector">
@@ -100,7 +101,7 @@ export default async function DiarioProfessorPage({ searchParams }: { searchPara
           </form>
 
           <SectionTitle title="Aulas registradas" description="Selecione uma aula para fazer ou revisar a chamada. O histórico completo está disponível nas páginas."/>
-          {context.sessions.length === 0 ? <div className="infoBox">Nenhuma aula registrada ainda.</div> : <div className="diaryTabs">
+          {context.sessions.length === 0 ? <div className="infoBox">Ainda não há aulas lançadas no diário local do SIFCAS para este vínculo. Isso não significa que o diário oficial esteja vazio: o conteúdo do SUAP/AVA não é sincronizado automaticamente. Se houver uma cópia importada autorizada, consulte “Dados importados · somente leitura” abaixo; caso contrário, confira a origem oficial.</div> : <div className="diaryTabs">
             {context.sessions.map((session) => <Link
               key={session.id}
               className={`diaryTab ${session.id === context.selectedSessionId ? "active" : ""}`}

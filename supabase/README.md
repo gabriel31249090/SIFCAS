@@ -75,3 +75,9 @@ Essas opções locais não alteram automaticamente a produção; elas precisam s
 6. Versionar somente a estrutura revisada. Aplicar futuras alterações primeiro em ambiente de teste.
 
 As permissões do menu são apenas apresentação. O banco e as ações no servidor continuam responsáveis por autorização.
+
+## Status de contas por Administrador
+
+`app/usuarios/actions.ts` usa `admin_set_account_status`, uma função `SECURITY DEFINER` estreita que exige perfil ativo e papel `admin`, valida o estado permitido, impede auto-suspensão e protege o Administrador Geral. Isso evita depender de uma política de `UPDATE` direta em `profiles`.
+
+O arquivo `patches/admin-account-status.sql` é um patch isolado, **não uma migration autoaplicada**: não existe baseline remota confirmada neste repositório. Primeiro aplique em staging após verificar `profiles.account_status`, `profiles.updated_at`, `user_roles.role`, `user_roles.is_general_admin`, `user_roles.role_source`, os triggers existentes e os privilégios de `authenticated`. Teste ativação, suspensão, auto-suspensão, alteração de outro administrador e tentativas não autorizadas. Só depois de aprovação e backup, a pessoa responsável pelo Supabase pode aplicar o mesmo patch no projeto correto. Não usar chave `service_role` no aplicativo. A interface orienta a instalar o patch se o endpoint RPC ainda não estiver disponível.

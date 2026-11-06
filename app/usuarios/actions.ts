@@ -42,21 +42,21 @@ export async function setUserRole(formData: FormData) {
 }
 
 export async function setAccountStatus(formData: FormData) {
-  const account = await requireAdmin();
+  await requireAdmin();
   const userId = text(formData, "userId");
   const status = text(formData, "status");
   if (!userId || !validStatuses.has(status)) finish("Usuário ou status inválido.", true);
 
   const supabase = await createClient();
-  const { data: roleRow } = await supabase.from("user_roles").select("is_general_admin").eq("user_id", userId).maybeSingle();
-  if (roleRow?.is_general_admin && status === "suspended") finish("O Administrador Geral não pode ser suspenso pelo painel.", true);
-  if (userId === account.id && status === "suspended") finish("Você não pode suspender a própria conta.", true);
-
-  const { error } = await supabase.from("profiles").update({ account_status: status, updated_at: new Date().toISOString() }).eq("id", userId);
-  if (error) finish("Não foi possível alterar o status da conta.", true);
-
-  if (status === "active") {
-    await supabase.from("user_roles").update({ role_source: "manual", updated_at: new Date().toISOString() }).eq("user_id", userId).eq("role_source", "unverified");
+  const { error } = await supabase.rpc("admin_set_account_status", { p_user_id: userId, p_status: status });
+  if (error) {
+    console.error("[SIFCAS admin] Account status update failed", error.code);
+    if (error.code === "PGRST202" || error.code === "42883") {
+      finish("A atualização segura do status ainda não foi instalada no banco. Aplique a atualização revisada de supabase/patches/admin-account-status.sql.", true);
+    }
+    if (error.code === "42501") finish("O banco recusou a alteração. Confirme que sua conta está ativa e possui o papel de Administrador.", true);
+    if (error.code === "P0002") finish("A conta ou o papel de destino não foi encontrado.", true);
+    finish("Não foi possível alterar o status da conta. Consulte o log do servidor para o código do erro.", true);
   }
 
   finish(status === "active" ? "Conta ativada manualmente." : status === "pending" ? "Conta movida para validação pendente." : "Conta suspensa. Novos acessos internos serão bloqueados.");

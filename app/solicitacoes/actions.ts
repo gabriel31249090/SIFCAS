@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAccount } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { prepareServiceRequestDescription } from "@/lib/service-request";
 
 const categories = new Set(["academic", "documents", "people", "infrastructure", "it", "transport", "other"]);
 const priorities = new Set(["low", "normal", "high", "urgent"]);
@@ -24,9 +25,13 @@ export async function createServiceRequest(formData: FormData) {
   const category = text(formData, "category");
   const priority = text(formData, "priority") || "normal";
   const title = text(formData, "title");
+  const location = text(formData, "location");
   const description = text(formData, "description");
+  const preparedDescription = prepareServiceRequestDescription(category, location, description);
 
-  if (!categories.has(category) || !priorities.has(priority) || title.length < 3 || title.length > 180 || description.length > 8000) {
+  if (!categories.has(category) || !priorities.has(priority) || title.length < 3 || title.length > 180
+    || !preparedDescription.ok) {
+    if (!preparedDescription.ok && preparedDescription.reason === "location_required") finish("Informe o campus e o local exato da ocorrência de infraestrutura.", true);
     finish("Revise categoria, prioridade, título e descrição.", true);
   }
 
@@ -36,10 +41,10 @@ export async function createServiceRequest(formData: FormData) {
     category,
     priority,
     title,
-    description,
+    description: preparedDescription.description,
   });
   if (error) finish("Não foi possível abrir a solicitação.", true);
-  finish("Solicitação aberta com sucesso.");
+  finish("Solicitação registrada no SIFCAS. O encaminhamento ao setor do campus não foi confirmado.");
 }
 
 export async function manageServiceRequest(formData: FormData) {
@@ -61,7 +66,7 @@ export async function manageServiceRequest(formData: FormData) {
     resolved_at: status === "resolved" ? now : null,
   }).eq("id", id);
   if (error) finish("Não foi possível atualizar a solicitação.", true);
-  finish("Solicitação atualizada. O solicitante foi notificado.");
+  finish("Atendimento atualizado no SIFCAS. Não há notificação externa configurada.");
 }
 
 export async function cancelServiceRequest(formData: FormData) {

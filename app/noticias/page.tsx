@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarDays, Megaphone, Newspaper, Send, Sparkles } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Megaphone, Newspaper, Send, Sparkles } from "lucide-react";
 import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { getCurrentAccount } from "@/lib/auth";
 import { listPublishedPublications, publicationKindLabels } from "@/lib/institutional";
+import { getCasNews } from "@/lib/cas-news";
 import { CampusResources } from "@/components/CampusResources";
 
 export const metadata: Metadata = {
@@ -19,16 +20,23 @@ function formatDate(value: string | null) {
 
 export default async function NewsPage() {
   const account = await getCurrentAccount();
-  const publicationResult = await Promise.allSettled([listPublishedPublications(["news", "notice", "event"], 100)]);
-  const unavailable = publicationResult[0].status === "rejected";
-  const publications = publicationResult[0].status === "fulfilled" ? publicationResult[0].value : [];
+  const [publicationResult, casNewsResult] = await Promise.allSettled([
+    listPublishedPublications(["news", "notice", "event"], 100),
+    getCasNews(),
+  ]);
+  const unavailable = publicationResult.status === "rejected";
+  const publications = publicationResult.status === "fulfilled" ? publicationResult.value : [];
+  const casNews = casNewsResult.status === "fulfilled"
+    ? casNewsResult.value
+    : { status: "unavailable" as const, items: [], skipped: 0 };
+  if (casNewsResult.status === "rejected") console.error("[SIFCAS CAS feed] Unexpected feed error", casNewsResult.reason);
   const news = publications.filter((row) => row.kind === "news").length;
   const notices = publications.filter((row) => row.kind === "notice").length;
   const events = publications.filter((row) => row.kind === "event").length;
   const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
-    <PageHeader title="Notícias e Eventos" description="Notícias, comunicados e eventos institucionais publicados em uma única fonte do SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Nova publicação</Link> : <span className="badge">Conteúdo institucional</span>}/>
+    <PageHeader title="Notícias e Eventos" description="Publicações do SIFCAS e notícias públicas do Campus Cáceres, com cada fonte identificada." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Nova publicação</Link> : <span className="badge">Conteúdo institucional</span>}/>
 
     <div className="statGrid">
       <StatCard label="Publicações" value={String(publications.length)} foot="Disponíveis agora" icon={Sparkles}/>
@@ -45,6 +53,17 @@ export default async function NewsPage() {
         <div className="publicationCardFoot"><span>{row.location || (row.kind === "event" ? "Local não informado" : "SIFCAS")}</span><strong>Abrir →</strong></div>
       </Link>)}
     </div>}
+    <SectionTitle title="Notícias do Campus Cáceres" description="Feed público do portal oficial do campus. As matérias e os prazos devem ser confirmados na publicação original."/>
+    {casNews.status === "unavailable"
+      ? <div className="infoBox" role="status">Não foi possível consultar o feed público do Campus Cáceres agora. <a href="https://cas.ifmt.edu.br/" target="_blank" rel="noopener noreferrer">Abrir o portal oficial</a>.</div>
+      : casNews.status === "partial" && <div className="infoBox" role="status">Algumas publicações do feed vieram incompletas e foram ignoradas ({casNews.skipped}). Os itens disponíveis abaixo apontam para a fonte oficial.</div>}
+    {casNews.status !== "unavailable" && (casNews.items.length
+      ? <div className="publicationGrid">{casNews.items.map((item) => <a className="card publicationCard" href={item.url} key={item.id} target="_blank" rel="noopener noreferrer">
+        <div className="publicationCardHead"><span className="badge">Campus Cáceres</span><time dateTime={item.publishedOn}>{new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium", timeZone: "UTC" }).format(new Date(`${item.publishedOn}T12:00:00Z`))}</time></div>
+        <h2>{item.title}</h2><p>Publicação do portal oficial do Campus Cáceres.</p>
+        <div className="publicationCardFoot"><span>Fonte oficial</span><strong>Ler notícia <ArrowUpRight size={14} aria-hidden="true"/></strong></div>
+      </a>)}</div>
+      : <div className="infoBox">Nenhuma notícia pública foi retornada pelo feed. <a href="https://cas.ifmt.edu.br/" target="_blank" rel="noopener noreferrer">Consultar o portal oficial</a>.</div>)}
     <CampusResources title="Acompanhe o IFMT Cáceres" slugs={["noticias-campus", "editais-oficiais", "calendario-academico"]}/>
   </>;
 }

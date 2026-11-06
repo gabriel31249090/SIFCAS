@@ -29,7 +29,7 @@ export async function ImportedAcademicSummary({ account, classSubjectId, kinds }
     <div className="sectionTitle"><div><h2>Dados importados · somente leitura</h2>
       <p>A origem mantém os registros oficiais. Planejamento e lançamentos locais do SIFCAS continuam separados desta cópia.</p></div></div>
     {context.status === "unavailable" ? <div className="infoBox" role="status">Os dados importados estão indisponíveis. Tente novamente mais tarde ou contate a equipe responsável; esta falha não indica ausência de pendências.</div>
-      : context.diaries.length === 0 ? <div className="infoBox">Nenhuma cópia acadêmica importada disponível para este vínculo.</div>
+      : context.diaries.length === 0 ? <div className="infoBox">Nenhuma cópia acadêmica importada disponível para este vínculo. O diário do SUAP/AVA não é sincronizado automaticamente; consulte a origem oficial até que a importação seja configurada e homologada.</div>
         : context.diaries.map((diary) => {
           const records = diary.records.filter((record) => !kinds || kinds.includes(record.kind));
           return <article key={diary.id} style={{ marginTop: 16 }}>

@@ -51,6 +51,8 @@ export default async function UsersPage({ searchParams }: { searchParams: Params
         {filtered.map((row) => {
           const role = (row.roleRow?.role ?? "student") as AppRole;
           const general = Boolean(row.roleRow?.is_general_admin);
+          const nextStatus = row.account_status === "active" ? "suspended" : "active";
+          const statusLocked = nextStatus === "suspended" && (general || row.id === account.id);
           return <tr key={row.id}>
             <td><b>{row.full_name || "Sem nome"}</b><br/><small>{row.institutional_email || "Sem e-mail sincronizado"}</small>{general && <><br/><span className="badge">ADM Geral</span></>}</td>
             <td>{row.campus || "—"}</td>
@@ -58,7 +60,7 @@ export default async function UsersPage({ searchParams }: { searchParams: Params
             <td><span className="badge">{row.account_status === "suspended" ? "Suspensa" : row.account_status === "pending" ? "Pendente" : "Ativa"}</span></td>
             <td><div className="accountControls">
               <form action={setUserRole}><input type="hidden" name="userId" value={row.id}/><select name="role" defaultValue={role} disabled={general}>{roleOptions.map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select><button className="button soft" type="submit" disabled={general}>Salvar papel</button></form>
-              <form action={setAccountStatus}><input type="hidden" name="userId" value={row.id}/><input type="hidden" name="status" value={row.account_status === "active" ? "suspended" : "active"}/><button className="button soft" type="submit" disabled={general || row.id === account.id}>{row.account_status === "active" ? "Suspender" : row.account_status === "pending" ? "Ativar manualmente" : "Reativar"}</button></form>
+              <form action={setAccountStatus}><input type="hidden" name="userId" value={row.id}/><input type="hidden" name="status" value={nextStatus}/><button className="button soft" type="submit" disabled={statusLocked} title={statusLocked ? row.id === account.id ? "Você não pode suspender sua própria conta." : "A conta do Administrador Geral é protegida contra suspensão por este painel." : undefined}>{row.account_status === "active" ? general ? "Protegida" : "Suspender" : row.account_status === "pending" ? "Ativar manualmente" : "Reativar"}</button></form>
             </div></td>
           </tr>;
         })}

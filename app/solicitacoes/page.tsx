@@ -55,7 +55,7 @@ export default async function ServiceRequestsPage({ searchParams }: { searchPara
   const resolved = rows.filter((row) => row.status === "resolved").length;
 
   return <>
-    <PageHeader title="Solicitações e Atendimento" description="Abra e acompanhe demandas acadêmicas, administrativas, de TI, infraestrutura, pessoas, documentos e transporte." action={<span className="badge">{roleLabels[account.role]}</span>}/>
+    <PageHeader title="Solicitações e Atendimento" description="Registre uma solicitação no SIFCAS e acompanhe as atualizações disponíveis nesta página." action={<span className="badge">{roleLabels[account.role]}</span>}/>
     {params.message && <div className="infoBox successBox">{params.message}</div>}
     {params.error && <div className="infoBox errorBox">{params.error}</div>}
 
@@ -66,28 +66,34 @@ export default async function ServiceRequestsPage({ searchParams }: { searchPara
       <StatCard label="Resolvidas" value={String(resolved)} foot="Concluídas" icon={CircleCheckBig}/>
     </div>
 
-    <SectionTitle title="Abrir solicitação" description="Descreva o pedido com informações suficientes para o setor responsável atender sem retrabalho."/>
+    <SectionTitle title="Abrir solicitação" description="Informe o contexto para que a equipe autorizada do SIFCAS possa avaliar o pedido."/>
     <section className="card panel">
+      <div className="infoBox" role="note">
+        <b>Encaminhamento institucional ainda não configurado.</b> A categoria classifica o pedido, mas não escolhe nem notifica um setor do campus. O formulário registra a solicitação no SIFCAS; ele não confirma que a administração ou a manutenção recebeu o aviso. Para uma ocorrência real, procure também o canal oficial do campus. Este canal não é para emergências.
+        <p>Se o problema for no Campus Cáceres, consulte os <a href="https://cas.ifmt.edu.br/o-campus/" target="_blank" rel="noopener noreferrer">contatos oficiais do campus</a>; a página lista a Coordenação de Serviços Auxiliares. A correspondência entre este formulário e esse setor ainda não foi homologada.</p>
+        <p>Para uma manifestação formal, consulte também a <a href="https://ifmt.edu.br/participacao-social/ouvidoria/" target="_blank" rel="noopener noreferrer">Ouvidoria do IFMT</a> e os canais oficiais nela indicados.</p>
+      </div>
       <form action={createServiceRequest} className="formStack">
         <div className="formRow2">
-          <label>Categoria<select name="category" defaultValue="academic"><option value="academic">Acadêmico</option><option value="documents">Documentos</option><option value="people">Pessoas</option><option value="infrastructure">Infraestrutura</option><option value="it">Tecnologia</option><option value="transport">Transporte</option><option value="other">Outros</option></select></label>
+          <label>Categoria<select name="category" defaultValue="academic"><option value="academic">Acadêmico</option><option value="documents">Documentos</option><option value="people">Pessoas</option><option value="infrastructure">Infraestrutura</option><option value="it">Tecnologia</option><option value="transport">Transporte</option><option value="other">Outros</option></select><small>A categoria não define um destinatário institucional.</small></label>
           <label>Prioridade<select name="priority" defaultValue="normal"><option value="low">Baixa</option><option value="normal">Normal</option><option value="high">Alta</option><option value="urgent">Urgente</option></select></label>
         </div>
         <label>Título<input name="title" minLength={3} maxLength={180} required placeholder="Resuma o que precisa"/></label>
-        <label>Descrição<textarea name="description" maxLength={8000} rows={5} placeholder="Explique o contexto, o que já tentou e o resultado esperado."/></label>
+        <label>Campus e local exato <small>Obrigatório para ocorrências de infraestrutura.</small><input name="location" maxLength={240} placeholder="Ex.: Campus Cáceres, bloco e andar, perto do bebedouro"/></label>
+        <label>Descrição<textarea name="description" maxLength={7600} rows={5} placeholder="Explique o problema, quando começou e o que já tentou."/></label>
         <button className="button primary" type="submit"><Send size={16}/> Abrir solicitação</button>
       </form>
     </section>
 
-    <SectionTitle title={canManage ? "Fila de atendimento" : "Minhas solicitações"} description={canManage ? "Atenda, encaminhe e responda solicitações autorizadas por RLS." : "Acompanhe mudanças de status e respostas do atendimento."}/>
+    <SectionTitle title={canManage ? "Fila de atendimento do SIFCAS" : "Minhas solicitações"} description={canManage ? "Revise os pedidos disponíveis, atribua uma pessoa responsável e registre o andamento. A atribuição não encaminha o pedido a um setor externo." : "Acompanhe o status e as respostas registradas no SIFCAS; não há notificação externa configurada."}/>
     <div className="requestGrid">
       {rows.length === 0 && <div className="emptyState card"><MessageSquareText size={28}/><h2>Nenhuma solicitação</h2><p>Quando uma demanda for aberta, ela aparecerá aqui.</p></div>}
       {rows.map((row) => {
         const requester = people.get(row.requester_user_id);
         const assigned = row.assigned_to ? people.get(row.assigned_to) : null;
         return <article className="card requestCard" key={row.id}>
-          <div className="requestHead"><div><span className="badge">{categoryLabels[row.category] ?? row.category}</span><h3>{row.title}</h3><small>{formatDate(row.created_at)}{canManage && requester ? ` • ${requester.full_name || requester.institutional_email}` : ""}</small></div><span className="badge">{statusLabels[row.status] ?? row.status}</span></div>
-          <div className="requestMeta"><span className="badge">Prioridade: {priorityLabels[row.priority] ?? row.priority}</span>{assigned && <span className="badge">Responsável: {assigned.full_name || assigned.institutional_email}</span>}</div>
+          <div className="requestHead"><div><span className="badge">{categoryLabels[row.category] ?? row.category}</span><h3>{row.title}</h3><small>Protocolo interno SIFCAS: {String(row.id).slice(0, 8).toUpperCase()} · {formatDate(row.created_at)}{canManage && requester ? ` • ${requester.full_name || requester.institutional_email}` : ""}</small></div><span className="badge">{statusLabels[row.status] ?? row.status}</span></div>
+          <div className="requestMeta"><span className="badge">Prioridade: {priorityLabels[row.priority] ?? row.priority}</span><span className="badge">Responsável: {assigned ? assigned.full_name || assigned.institutional_email : "Não atribuído"}</span></div>
           {row.description && <p className="requestBody">{row.description}</p>}
           {row.response && <div className="infoBox"><b>Resposta do atendimento</b><br/>{row.response}</div>}
 
