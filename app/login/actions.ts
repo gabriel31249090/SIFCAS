@@ -28,7 +28,20 @@ export async function login(formData: FormData) {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error || !data.user) {
-    redirect(`/login?error=${encodeURIComponent("E-mail ou senha inválidos.")}`);
+    const code = error?.code ?? "unknown";
+    console.error("[SIFCAS auth] Login failed", {
+      code,
+      status: error?.status ?? null,
+      message: error?.message ?? "No user returned",
+    });
+    const message = code === "invalid_credentials"
+      ? "E-mail ou senha inválidos. Verifique as credenciais e o projeto Supabase."
+      : code === "email_not_confirmed"
+        ? "Confirme seu e-mail antes de entrar."
+        : code === "over_request_rate_limit"
+          ? "Muitas tentativas. Aguarde antes de tentar novamente."
+          : "Erro de autenticação. Consulte os logs do servidor.";
+    redirect(`/login?error=${encodeURIComponent(message)}`);
   }
 
   const { data: profile, error: profileError } = await supabase
