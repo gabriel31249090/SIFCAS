@@ -1,6 +1,6 @@
 "use client";
 
-import { findAeroAsset, type AeroAsset } from "@/lib/aero-assets";
+import { aeroSpriteStyle, findAeroAsset, type AeroAsset } from "@/lib/aero-assets";
 import { useStudentExperience } from "./StudentExperienceProvider";
 
 /** Displays a tile of an unchanged source sheet; the browser clips and scales it. */
@@ -23,7 +23,20 @@ export function ExperienceBanner({ className = "" }: { className?: string }) {
 export function ExperiencePortrait({ initials, preview = false }: { initials: string; preview?: boolean }) {
   const { preferences } = useStudentExperience();
   const frame = findAeroAsset(preferences.profileFrameArt, "frame");
-  return <div className={`experiencePortrait ${frame ? "hasArtFrame" : ""} ${preview ? "isPreview" : ""}`}>{frame && <AeroArtwork asset={frame}/>}<div className="profileAvatar" data-experience-avatar>{initials}</div></div>;
+  const avatarAsset = findAeroAsset(preferences.profileAvatar, "avatar");
+  const avatarStyle = preferences.profilePhoto
+    ? { backgroundImage: `url("${preferences.profilePhoto}")`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" as const, color: "transparent" }
+    : avatarAsset
+      ? { ...aeroSpriteStyle(avatarAsset, true), color: "transparent" }
+      : { color: "" };
+  const showInitials = !preferences.profilePhoto && !avatarAsset;
+
+  return <div className={`experiencePortrait ${frame ? "hasArtFrame" : ""} ${preview ? "isPreview" : ""}`}>
+    {frame && <AeroArtwork asset={frame}/>}
+    <div className="profileAvatar" data-experience-avatar style={avatarStyle}>
+      {showInitials ? initials : null}
+    </div>
+  </div>;
 }
 
 export function ExperienceSticker() {
