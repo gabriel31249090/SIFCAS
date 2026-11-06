@@ -1,0 +1,136 @@
+/* Local artwork is clipped by SVG viewBox; the original sheets stay unchanged. */
+.aeroArtwork { display:block; width:100%; height:100%; overflow:hidden; flex-shrink:0 }
+.experienceArtworkWallpaper { position:fixed; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:#ccebf1 }
+.experienceArtworkWallpaper::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg,#f3fbff30,#ffffff0a 70%) }
+.osDesktop>.experienceArtworkWallpaper { position:absolute; z-index:-1 }
+.studioPreviewScreen { isolation:isolate }
+.studioPreviewScreen>.experienceArtworkWallpaper { position:absolute; z-index:0 }
+.studioPreviewScreen>.studioMockToolbar,.studioPreviewScreen>.studioMockWindow,.studioPreviewScreen>.studioMockDock { position:relative; z-index:1 }
+html[data-experience-wallpaper^="asset-"] body { isolation:isolate }
+html[data-experience-wallpaper^="asset-"] .appMain { background:linear-gradient(#eef8ffba,#eef8ff94) }
+html[data-experience-wallpaper^="asset-"][data-experience-resolved-theme="dark"] .appMain { background:#0d2633d9 }
+.osDesktop[data-wallpaper^="asset-"] .osScenery { display:none }
+.osDesktop[data-wallpaper^="asset-"] .osWelcome { padding:22px; border:1px solid #ffffffe0; border-radius:22px; background:linear-gradient(145deg,#f7fdffeb,#f1fcffe0); box-shadow:0 10px 35px #17475a16; backdrop-filter:blur(18px) }
+.osDesktop[data-wallpaper^="asset-"] .osDesktopApp strong { padding:3px 6px; border-radius:6px; background:#f6fcffed; color:#174a62; text-shadow:none; box-shadow:0 2px 6px #214e6320 }
+html[data-experience-resolved-theme="dark"] .osDesktop[data-wallpaper^="asset-"] .osWelcome { border-color:#9cc8d04d; background:#123142e8 }
+html[data-experience-resolved-theme="dark"] .osDesktop[data-wallpaper^="asset-"] .osDesktopApp strong { background:#102d3deb; color:#dceef5 }
+.experienceArtworkBanner { position:relative; width:100%; height:100%; overflow:hidden; pointer-events:none }
+.experienceArtworkBanner::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 50%,#ffffffe8) }
+.profileIdentity { position:relative; isolation:isolate }
+.profileIdentity>.experienceArtworkBanner { position:absolute; z-index:-1; inset:0 0 auto; height:118px; border-radius:inherit }
+.profileIdentity:has(>.experienceArtworkBanner) { padding-top:78px }
+html[data-experience-resolved-theme="dark"] .profileIdentity>.experienceArtworkBanner::after { background:linear-gradient(transparent 45%,#163243) }
+.experiencePortrait { position:relative; display:grid; place-items:center; flex-shrink:0; width:92px; height:92px; margin-inline:auto }
+.experiencePortrait>.profileAvatar { position:relative; z-index:1; display:grid; place-items:center; width:100%; height:100%; margin:0; border:4px solid #fff; border-radius:50%; background-color:#e2f0ef; background-size:cover; background-position:center; color:#578587; box-shadow:0 4px 15px #234f651a }
+.experiencePortrait.hasArtFrame { width:132px; height:132px; border-radius:18px; overflow:hidden; box-shadow:0 5px 17px #255d6820 }
+.experiencePortrait>.aeroArtwork { position:absolute; inset:0 }
+.experiencePortrait.hasArtFrame>.profileAvatar { width:64%; height:64%; border-width:3px; box-shadow:0 2px 9px #183b5e33 }
+.experiencePortrait.isPreview { width:92px; height:92px; margin:0 }
+.experiencePortrait.isPreview.hasArtFrame { width:112px; height:112px }
+.studioMockBanner { position:relative; overflow:hidden }
+.studioMockBanner>.experienceArtworkBanner { position:absolute; inset:0 }
+.studioMockBanner>.experienceArtworkBanner::after { display:none }
+.studioMockAvatarWrap { position:relative; z-index:1; display:grid; place-items:center; width:49px; height:49px; margin:-25px auto 9px }
+.studioMockAvatarWrap>.studioMockAvatar { position:relative; z-index:1; width:45px; height:45px; margin:0 }
+.studioMockAvatarWrap.hasArtFrame { width:67px; height:67px; margin-top:-33px; border-radius:10px; overflow:hidden; box-shadow:0 2px 7px #315c6c1c }
+.studioMockAvatarWrap>.aeroArtwork { position:absolute; inset:0 }
+.studioMockAvatarWrap.hasArtFrame>.studioMockAvatar { width:42px; height:42px; border-width:2px }
+.experienceDesktopSticker { position:absolute; left:30px; bottom:111px; z-index:0; width:clamp(75px,9vw,130px); aspect-ratio:1; overflow:hidden; border-radius:18px; pointer-events:none; filter:drop-shadow(0 7px 8px #1f556126); transform:rotate(-8deg) }
+html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .button.primary { border-color:#ffffffc9; border-radius:999px; background-image:var(--experience-button-image); background-size:var(--experience-button-size); background-position:var(--experience-button-position); background-repeat:no-repeat; color:var(--experience-button-ink,#123d55); text-shadow:0 1px 2px #ffffffa8; box-shadow:inset 0 1px 0 #fff9,0 3px 10px #225e7526 }
+html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .button.primary:hover { filter:brightness(1.06); box-shadow:inset 0 1px 0 #fff,0 5px 13px #225e7533 }
+.aeroCollection { gap:23px; padding:22px; overflow:hidden }
+.aeroCollectionHero { position:relative; isolation:isolate; display:flex; justify-content:space-between; align-items:center; gap:20px; min-height:177px; margin:-22px -22px 0; padding:27px; overflow:hidden; border-bottom:1px solid #d6eae6; background:radial-gradient(ellipse at 96% 0%,#d8e3ff,transparent 55%),radial-gradient(ellipse at 82% 110%,#d5eeb9,transparent 50%),linear-gradient(125deg,#f0fbff,#e5f6f1); color:#234f62 }
+.aeroCollectionHero::before { content:""; position:absolute; z-index:-1; right:-62px; top:31px; width:241px; height:146px; border:1px solid #ffffffc9; border-radius:50%; transform:rotate(-27deg); box-shadow:0 0 0 15px #ffffff24,0 0 0 36px #ffffff18 }
+.aeroCollectionEyebrow { display:flex; align-items:center; gap:7px; max-width:290px; color:#5b9389; font-size:.52rem; font-weight:750; line-height:1.7; letter-spacing:.09em }
+.aeroCollectionHero h2 { margin:11px 0 9px; font-size:clamp(1.4rem,2.4vw,2rem); font-weight:750; letter-spacing:-.055em; line-height:1.2 }
+.aeroCollectionHero h2>span { color:#74aa83 }
+.aeroCollectionHero p { max-width:290px; color:#68868e; font-size:.7rem; line-height:1.8 }
+.aeroCollectionCount { display:inline-flex; align-items:center; gap:7px; margin-top:13px; padding:5px 8px; border:1px solid #ffffffe0; border-radius:6px; background:#ffffff82; color:#5d8a82; font-size:.55rem; font-weight:600 }
+.aeroCollectionOrb { position:relative; display:grid; place-items:center; flex-shrink:0; width:100px; height:100px; border:1px solid #ffffffd9; border-radius:50%; background:radial-gradient(circle at 30% 21%,#ffffffde,transparent 37%),radial-gradient(circle at 65% 80%,#63c9b84f,transparent 66%),linear-gradient(135deg,#aeeaff88,#b9e8e039); color:#75b7b2; box-shadow:inset -7px -9px 13px #5da69d20,inset 3px 3px 7px #fff8,0 12px 26px #477f861a }
+.aeroCollectionOrb>span { position:absolute; left:-15px; bottom:3px; width:31px; height:31px; border:1px solid #ffffffd9; border-radius:50%; background:radial-gradient(circle at 30% 25%,white,#bcf2ff5e 55%,#95c8e482); box-shadow:0 4px 6px #437d821c }
+.aeroCollectionOrb>i { position:absolute; right:0; top:-5px; width:16px; height:16px; border:1px solid #fffd; border-radius:50%; background:linear-gradient(150deg,#fff,#c3ebbd); box-shadow:0 4px 6px #437d821c }
+.aeroCollectionTabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; min-width:0 }
+.aeroCollectionTabs>button { display:flex; align-items:center; gap:7px; min-width:0; min-height:39px; padding:8px 10px; border:1px solid #e0ebe9; border-radius:9px; background:#f9fcfc; color:var(--studio-muted); font-size:.61rem; font-weight:600; cursor:pointer }
+.aeroCollectionTabs>button>svg { flex-shrink:0; color:#8baaa8 }
+.aeroCollectionTabs>button>span { flex:1; text-align:left }
+.aeroCollectionTabs>button>small { font-size:.5rem; color:#91aaa5 }
+.aeroCollectionTabs>button:hover { border-color:#a7cec3; background:#f0f9f4 }
+.aeroCollectionTabs>button[aria-selected="true"] { border-color:#8cbdad; background:linear-gradient(145deg,#ebf7f6,#eef8e8); color:#3f7c6e; box-shadow:inset 0 1px 0 white,0 2px 6px #336e5210 }
+.aeroCollectionTabs>button[aria-selected="true"]>svg { color:#5d9a84 }
+.aeroCollectionPanel { display:grid; gap:19px; min-width:0 }
+.aeroCollectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:15px }
+.aeroCollectionKicker { color:#88a19a; font-size:.47rem; font-weight:750; letter-spacing:.1em }
+.aeroCollectionHeading h3 { margin:5px 0 7px; color:var(--studio-ink); font-size:1.04rem; letter-spacing:-.02em }
+.aeroCollectionHeading p { max-width:335px; color:var(--studio-muted); font-size:.64rem; line-height:1.8 }
+.aeroCollectionReset { display:flex; align-items:center; justify-content:center; gap:6px; flex-shrink:0; max-width:156px; min-height:32px; margin-top:4px; padding:8px; border:1px solid #dce9e3; border-radius:8px; background:#f7fbf8; color:#638c7b; font-size:.53rem; font-weight:600; cursor:pointer }
+.aeroCollectionReset:hover { background:#eaf5ee; border-color:#adccba }
+.aeroCollectionReset>svg { flex-shrink:0 }
+.aeroAssetGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 11px; min-width:0 }
+.aeroAssetCard { display:grid; min-width:0; padding:5px 5px 10px; overflow:hidden; border:1px solid #dfebe9; border-radius:12px; background:#fcfefd; color:var(--studio-ink); text-align:left; cursor:pointer }
+.aeroAssetCard:hover { border-color:#a2cabb; transform:translateY(-2px); box-shadow:0 5px 12px #32625212 }
+.aeroAssetCard[aria-pressed="true"] { border-color:#77ad99; background:#eff8f2; box-shadow:0 0 0 2px #a4cdb929 }
+.aeroAssetThumb { position:relative; display:block; overflow:hidden; width:100%; aspect-ratio:1.2; border-radius:7px; background:linear-gradient(145deg,#eff8fb,#f7fcf2) }
+.aeroAssetCard[data-kind="avatar"] .aeroAssetThumb { aspect-ratio:1 }
+.aeroAssetCard[data-kind="banner"] .aeroAssetThumb { aspect-ratio:1.65 }
+.aeroAssetCard[data-kind="button"] .aeroAssetThumb { aspect-ratio:1.6; padding-block:10px }
+.aeroAssetCard[data-kind="button"] .aeroAssetThumb>.aeroArtwork { border-radius:9px }
+.aeroAssetCard[data-kind="frame"] .aeroAssetThumb,.aeroAssetCard[data-kind="sticker"] .aeroAssetThumb { aspect-ratio:1 }
+.aeroAssetSelected { position:absolute; top:6px; right:6px; display:grid; place-items:center; width:23px; height:23px; border:1px solid #ffffffe8; border-radius:50%; background:#3d9278; color:white; box-shadow:0 2px 6px #174c4e33 }
+.aeroAssetCaption { display:grid; gap:4px; min-width:0; padding:9px 5px 0 }
+.aeroAssetCaption>strong { overflow-wrap:anywhere; font-size:.63rem; font-weight:650; line-height:1.5 }
+.aeroAssetCaption>small { color:#879e98; font-size:.51rem }
+.aeroCollectionStatus { min-height:22px; padding:9px 11px; border:1px solid #e0eee5; border-radius:8px; background:#f4faf6; color:#6c8e79!important; font-size:.59rem!important }
+.aeroCollectionFootnote { display:flex; align-items:flex-start; gap:7px; padding-top:5px; color:#82978e!important; font-size:.55rem!important }
+.aeroCollectionFootnote>svg { flex-shrink:0; margin-top:2px }
+.aeroCollection :focus-visible,.aeroCollectionLink:focus-visible { outline:3px solid #218a9f; outline-offset:3px }
+.aeroAssetCaption>strong { font-size:.75rem }
+.aeroAssetCaption>small,.aeroCollectionHeading p,.aeroCollectionStatus { font-size:.65rem }
+.aeroCollectionTabs>button { font-size:.72rem }
+.osWallpaperChoiceAsset>span { position:relative; overflow:hidden }
+.osWallpaperChoiceAsset>span>.aeroArtwork { position:absolute; inset:0 }
+.osWallpaperChoiceAsset>span>svg:not(.aeroArtwork) { position:relative; z-index:1; padding:2px; border-radius:50%; background:#f7fdffdf }
+.aeroCollectionLink { display:flex; align-items:center; gap:12px; min-width:0; padding:14px; border:1px solid #cfe6de; border-radius:12px; background:linear-gradient(110deg,#f0faf9,#f3faec); color:#528f7c; text-align:left; cursor:pointer }
+.aeroCollectionLink>span:first-child { display:grid; place-items:center; flex-shrink:0; width:37px; height:37px; border:1px solid #d7ece3; border-radius:11px; background:#ffffffad }
+.aeroCollectionLink>span:nth-child(2) { display:grid; flex:1; gap:5px }
+.aeroCollectionLink strong { font-size:.7rem; font-weight:650 }
+.aeroCollectionLink small { color:#86a091; font-size:.6rem; line-height:1.6 }
+.aeroCollectionLink>svg { flex-shrink:0 }
+.aeroCollectionLink:hover { border-color:#99c3b1; background:#ecf7ef }
+.studioSelectedArtwork { position:relative; height:155px; overflow:hidden; border:1px solid #bedfd6; border-radius:12px }
+.studioSelectedArtwork>span { position:absolute; inset:auto 0 0; display:flex; align-items:center; gap:7px; padding:11px; color:#285d66; background:#ffffffe6; backdrop-filter:blur(8px) }
+.studioSelectedArtwork strong { flex:1; font-size:.65rem; font-weight:650 }
+.studioSelectedArtwork small { color:#74998e; font-size:.54rem }
+html[data-experience-resolved-theme="dark"] .aeroCollectionHero { border-color:#3d5f60; background:radial-gradient(ellipse at 100% 0%,#4a477144,transparent 60%),linear-gradient(120deg,#173948,#244438); color:#d0e7e3 }
+html[data-experience-resolved-theme="dark"] .aeroCollectionHero h2 { color:#d8eee5 }
+html[data-experience-resolved-theme="dark"] .aeroCollectionHero p { color:#abc5c2 }
+html[data-experience-resolved-theme="dark"] .aeroCollectionCount { border-color:#668b805c; background:#2e514747; color:#b0cdbd }
+html[data-experience-resolved-theme="dark"] :is(.aeroCollectionTabs>button,.aeroAssetCard,.aeroCollectionReset) { border-color:#405e60; background:#1b3943; color:#bfd7d3 }
+html[data-experience-resolved-theme="dark"] .aeroCollectionTabs>button[aria-selected="true"],html[data-experience-resolved-theme="dark"] .aeroAssetCard[aria-pressed="true"] { border-color:#81b29b; background:#294b40; color:#d0e8d5; box-shadow:0 0 0 1px #75a98b22 }
+html[data-experience-resolved-theme="dark"] :is(.aeroCollectionStatus,.aeroCollectionLink) { border-color:#46685b; background:#244437; color:#b1cfbd!important }
+html[data-experience-resolved-theme="dark"] .aeroCollectionLink>span:first-child { border-color:#547c67; background:#355746 }
+html[data-experience-resolved-theme="dark"] .aeroAssetThumb { background:#d7e9e6 }
+html[data-experience-resolved-theme="dark"] :is(.aeroAssetCaption>small,.aeroCollectionKicker,.aeroCollectionFootnote,.aeroCollectionEyebrow) { color:#a4bfb4!important }
+@media(max-width:700px) {
+  .aeroCollection { padding:17px; gap:19px }
+  .aeroCollectionHero { margin:-17px -17px 0; padding:22px 18px; min-height:170px; gap:10px }
+  .aeroCollectionHero h2 { font-size:1.5rem }
+  .aeroCollectionEyebrow { font-size:.45rem; letter-spacing:.05em }
+  .aeroCollectionOrb { width:68px; height:68px; margin-right:4px }
+  .aeroCollectionOrb>svg { width:25px }
+  .aeroCollectionTabs { gap:6px }
+  .aeroCollectionTabs>button { min-height:37px; padding:7px; gap:5px; font-size:.56rem }
+  .aeroCollectionTabs>button>svg { width:13px }
+  .aeroCollectionTabs>button>small { display:none }
+  .aeroCollectionHeading { gap:10px; flex-wrap:wrap }
+  .aeroCollectionHeading>div { flex:1; min-width:155px }
+  .aeroCollectionReset { max-width:none; margin:0; font-size:.52rem }
+  .aeroAssetGrid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px 9px }
+  .aeroAssetCaption { padding:8px 4px 0 }
+  .aeroAssetCaption>strong { font-size:.6rem }
+  .aeroCollectionLink { gap:10px; padding:12px }
+  .aeroCollectionLink strong { font-size:.64rem }
+  .aeroCollectionLink small { font-size:.55rem }
+  .studioPhotoUpload .experiencePortrait { width:67px; height:67px }
+  .studioPhotoUpload .experiencePortrait.hasArtFrame { width:81px; height:81px }
+}
+@media(prefers-reduced-motion:reduce) { .aeroCollection *, .aeroCollectionLink { transform:none!important; transition:none!important; animation:none!important } }

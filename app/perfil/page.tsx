@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Bell, Bug, Link2, LockKeyhole, Mail, MapPin, ShieldCheck, UserRound } from "lucide-react";
 import { initials, requireAccount, roleLabels } from "@/lib/auth";
+import { ExperienceBanner, ExperiencePortrait } from "@/components/AeroArtwork";
 import { updateProfile } from "./actions";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -15,7 +16,8 @@ export default async function ProfilePage({ searchParams }: { searchParams: Sear
     <header className="pageHeader"><div><span className="eyebrow">Minha conta</span><h1>Perfil e segurança</h1><p>Seus dados pessoais ficam separados das permissões institucionais.</p></div></header>
     <div className="profileGrid">
       <aside className="card profileIdentity">
-        <div className="profileAvatar" data-experience-avatar>{initials(account.fullName)}</div><h2>{account.fullName}</h2><span className="roleBadge"><ShieldCheck size={14}/>{roleLabels[account.role]}</span>
+        <ExperienceBanner/>
+        <ExperiencePortrait initials={initials(account.fullName)}/><h2>{account.fullName}</h2><span className="roleBadge"><ShieldCheck size={14}/>{roleLabels[account.role]}</span>
         <div className="identityMeta"><span><Mail size={16}/>{account.email || "E-mail não disponível"}</span><span><MapPin size={16}/>{account.campus}</span></div>
         <form action="/auth/signout" method="post"><button className="button dangerOutline" type="submit">Sair da conta</button></form>
       </aside>

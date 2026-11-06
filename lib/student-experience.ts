@@ -1,3 +1,5 @@
+import { aeroSpriteStyle, findAeroAsset, parseAeroAsset } from "./aero-assets.ts";
+
 export const experienceStorageKey = "sifcas:student-experience:v1";
 
 export type StudentExperience = {
@@ -5,8 +7,13 @@ export type StudentExperience = {
   palette: "aqua" | "meadow" | "sunset" | "bubblegum";
   textSize: "normal" | "large" | "xlarge";
   density: "comfortable" | "compact";
-  wallpaper: "sky" | "water" | "meadow" | "aurora" | "photo-sky" | "photo-lake";
+  wallpaper: "sky" | "water" | "meadow" | "aurora" | "photo-sky" | "photo-lake" | `asset-${string}`;
   profilePhoto: string | null;
+  profileAvatar: string;
+  profileBannerArt: string;
+  profileFrameArt: string;
+  buttonSkin: string;
+  desktopSticker: string;
   profileFrame: "none" | "aqua" | "gold" | "pixel";
   profileBanner: "none" | "aurora" | "bubbles" | "leaves" | "pixel";
   iconStyle: "glossy" | "flat" | "pixel";
@@ -36,6 +43,11 @@ export const defaultStudentExperience: StudentExperience = {
   density: "comfortable",
   wallpaper: "sky",
   profilePhoto: null,
+  profileAvatar: "none",
+  profileBannerArt: "none",
+  profileFrameArt: "none",
+  buttonSkin: "none",
+  desktopSticker: "none",
   profileFrame: "none",
   profileBanner: "aurora",
   iconStyle: "glossy",
@@ -98,7 +110,12 @@ export function parseStudentExperience(value: unknown): StudentExperience {
     palette: enumValue(raw.palette, ["aqua", "meadow", "sunset", "bubblegum"], defaultStudentExperience.palette),
     textSize: enumValue(raw.textSize, ["normal", "large", "xlarge"], defaultStudentExperience.textSize),
     density: enumValue(raw.density, ["comfortable", "compact"], defaultStudentExperience.density),
-    wallpaper: enumValue(raw.wallpaper, ["sky", "water", "meadow", "aurora", "photo-sky", "photo-lake"], defaultStudentExperience.wallpaper),
+    wallpaper: findAeroAsset(raw.wallpaper, "wallpaper") ? raw.wallpaper! : enumValue(raw.wallpaper, ["sky", "water", "meadow", "aurora", "photo-sky", "photo-lake"], defaultStudentExperience.wallpaper),
+    profileAvatar: parseAeroAsset(raw.profileAvatar, "avatar"),
+    profileBannerArt: parseAeroAsset(raw.profileBannerArt, "banner"),
+    profileFrameArt: parseAeroAsset(raw.profileFrameArt, "frame"),
+    buttonSkin: parseAeroAsset(raw.buttonSkin, "button"),
+    desktopSticker: parseAeroAsset(raw.desktopSticker, "sticker"),
     profileFrame: enumValue(raw.profileFrame, ["none", "aqua", "gold", "pixel"], defaultStudentExperience.profileFrame),
     profileBanner: enumValue(raw.profileBanner, ["none", "aurora", "bubbles", "leaves", "pixel"], defaultStudentExperience.profileBanner),
     iconStyle: enumValue(raw.iconStyle, ["glossy", "flat", "pixel"], defaultStudentExperience.iconStyle),
@@ -146,7 +163,7 @@ function boundedNumber(value: unknown, fallback: number, min: number, max: numbe
 }
 
 export function experienceCss(preferences: StudentExperience) {
-  const wallpaperUrls: Record<StudentExperience["wallpaper"], string> = {
+  const wallpaperUrls: Record<string, string> = {
     sky: "linear-gradient(145deg,#bcecff,#eefaff 52%,#dff4e3)",
     water: "linear-gradient(145deg,#83d8f2,#c7f1f3 50%,#b1dff2)",
     meadow: "linear-gradient(145deg,#c8ebae,#eff9dd 48%,#b7dfbc)",
@@ -154,5 +171,13 @@ export function experienceCss(preferences: StudentExperience) {
     "photo-sky": 'linear-gradient(#16476055,#16476055),url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=85")',
     "photo-lake": 'linear-gradient(#16476055,#16476055),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85")',
   };
-  return { wallpaper: wallpaperUrls[preferences.wallpaper], palette: preferences.palette, theme: preferences.theme, textSize: preferences.textSize, density: preferences.density, iconStyle: preferences.iconStyle, profileFrame: preferences.profileFrame, profileBanner: preferences.profileBanner, animations: String(preferences.animations) };
+  return { wallpaper: wallpaperUrls[preferences.wallpaper] ?? wallpaperUrls.sky, palette: preferences.palette, theme: preferences.theme, textSize: preferences.textSize, density: preferences.density, iconStyle: preferences.iconStyle, profileFrame: preferences.profileFrame, profileBanner: preferences.profileBanner, animations: String(preferences.animations) };
+}
+
+
+export function experienceAvatarStyle(preferences: StudentExperience) {
+  const avatar = findAeroAsset(preferences.profileAvatar, "avatar");
+  if (preferences.profilePhoto) return { backgroundImage: `url("${preferences.profilePhoto}")`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" as const, color: "transparent" };
+  if (avatar) return { ...aeroSpriteStyle(avatar, true), color: "transparent" };
+  return { backgroundImage: "", backgroundSize: "", backgroundPosition: "", backgroundRepeat: "" as const, color: "" };
 }

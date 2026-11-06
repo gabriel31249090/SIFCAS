@@ -2,7 +2,9 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { experienceCss, experienceStorageKey, parseStudentExperience, type StudentExperience } from "@/lib/student-experience";
+import { experienceAvatarStyle, experienceCss, experienceStorageKey, parseStudentExperience, type StudentExperience } from "@/lib/student-experience";
+import { aeroSpriteStyle, findAeroAsset } from "@/lib/aero-assets";
+import { ExperienceWallpaper } from "./AeroArtwork";
 import { getDefaultFavoritePaths } from "@/lib/module-catalog";
 import type { AppRole } from "@/lib/auth";
 
@@ -37,12 +39,15 @@ function readPreferences(key: string, role: AppRole | null): ExperienceSnapshot 
 
 function clearExperienceStyles() {
   const root = document.documentElement;
-  for (const key of ["experiencePalette", "experienceTheme", "experienceText", "experienceDensity", "experienceIcons", "experienceFrame", "experienceBanner", "experienceAnimations", "experienceResolvedTheme", "experienceCalendar"]) delete root.dataset[key];
+  for (const key of ["experiencePalette", "experienceTheme", "experienceText", "experienceDensity", "experienceIcons", "experienceFrame", "experienceBanner", "experienceAnimations", "experienceResolvedTheme", "experienceCalendar", "experienceButtonSkin", "experienceWallpaper"]) delete root.dataset[key];
+  for (const property of ["--experience-button-image", "--experience-button-size", "--experience-button-position", "--experience-button-ink"]) root.style.removeProperty(property);
   document.body.style.removeProperty("background-image");
   document.body.style.removeProperty("background-size");
   document.body.style.removeProperty("background-attachment");
   document.querySelectorAll<HTMLElement>("[data-experience-widget], [data-experience-href], [data-experience-favorite]").forEach((element) => { element.hidden = false; element.style.order = ""; });
-  document.querySelectorAll<HTMLElement>("[data-experience-avatar]").forEach((element) => { element.style.backgroundImage = ""; element.style.color = ""; });
+  document.querySelectorAll<HTMLElement>("[data-experience-avatar]").forEach((element) => {
+    for (const property of ["background-image", "background-size", "background-position", "background-repeat", "color"]) element.style.removeProperty(property);
+  });
   document.querySelectorAll<HTMLElement>(".calendarCard").forEach((element) => { delete element.dataset.experienceCalendar; });
   document.querySelectorAll<HTMLElement>("[data-experience-subject]").forEach((element) => { delete element.dataset.experienceSubjectColor; });
 }
@@ -106,6 +111,18 @@ export function StudentExperienceProvider({ children, userId, enabled, role }: {
     root.dataset.experienceFrame = css.profileFrame;
     root.dataset.experienceBanner = css.profileBanner;
     root.dataset.experienceCalendar = preferences.calendarView;
+    root.dataset.experienceButtonSkin = preferences.buttonSkin;
+    root.dataset.experienceWallpaper = preferences.wallpaper;
+    const button = findAeroAsset(preferences.buttonSkin, "button");
+    if (button) {
+      const sprite = aeroSpriteStyle(button);
+      root.style.setProperty("--experience-button-image", sprite.backgroundImage);
+      root.style.setProperty("--experience-button-size", sprite.backgroundSize);
+      root.style.setProperty("--experience-button-position", sprite.backgroundPosition);
+      root.style.setProperty("--experience-button-ink", button.id === "asset-button-10" ? "#ffffff" : "#102b3e");
+    } else {
+      for (const property of ["--experience-button-image", "--experience-button-size", "--experience-button-position", "--experience-button-ink"]) root.style.removeProperty(property);
+    }
     const usePhoto = preferences.wallpaper.startsWith("photo-");
     document.body.style.backgroundImage = css.wallpaper;
     document.body.style.backgroundSize = "cover";
@@ -140,8 +157,7 @@ export function StudentExperienceProvider({ children, userId, enabled, role }: {
         element.style.order = order < 0 ? "" : String(order);
       });
       document.querySelectorAll<HTMLElement>("[data-experience-avatar]").forEach((element) => {
-        element.style.backgroundImage = preferences.profilePhoto ? `url("${preferences.profilePhoto}")` : "";
-        element.style.color = preferences.profilePhoto ? "transparent" : "";
+        Object.assign(element.style, experienceAvatarStyle(preferences));
       });
       document.querySelectorAll<HTMLElement>("[data-experience-subject]").forEach((element) => {
         const name = element.dataset.experienceSubject ?? "";
@@ -167,7 +183,7 @@ export function StudentExperienceProvider({ children, userId, enabled, role }: {
   }, [preferences, ready, enabled, pathname]);
 
   const value = useMemo(() => ({ preferences, ready, storageKey, storageError, update }), [preferences, ready, storageKey, storageError, update]);
-  return <ExperienceContext.Provider value={value}>{children}</ExperienceContext.Provider>;
+  return <ExperienceContext.Provider value={value}>{enabled && <ExperienceWallpaper/>}{children}</ExperienceContext.Provider>;
 }
 
 export function useStudentExperience() {
