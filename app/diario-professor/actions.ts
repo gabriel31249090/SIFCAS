@@ -1,10 +1,12 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAccount } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { diaryDate, diaryGrade, DiaryValidationError, requireDiaryAccess, requireDiaryRecord, requireDiaryStudents } from "@/lib/diary-security";
+import { queueAssessmentNotice } from "@/lib/sifcas-mail/service";
 
 const attendanceStatuses = new Set(["present", "absent", "late", "justified"]);
 
@@ -85,7 +87,9 @@ export async function createAssessment(formData: FormData) {
   if (!Number.isFinite(weight) || weight <= 0 || weight > 100) fail("Peso inválido.", classSubjectId);
 
   const { supabase } = await mutationContext(account, classSubjectId);
+  const assessmentId = randomUUID();
   const { error } = await supabase.from("academic_assessments").insert({
+    id: assessmentId,
     class_subject_id: classSubjectId,
     title,
     description,
@@ -95,6 +99,13 @@ export async function createAssessment(formData: FormData) {
     created_by: account.id,
   });
   if (error) fail(error.code === "42501" ? "Você não possui permissão para essa turma." : "Não foi possível criar a avaliação.", classSubjectId);
+
+  // Opt-in only: an email failure must never undo or misreport a saved assessment.
+  try {
+    await queueAssessmentNotice(account, classSubjectId, assessmentId, title, assessmentDate);
+  } catch {
+    console.warn("SIFCAS Mail: aviso automático de avaliação não pôde ser enfileirado.");
+  }
 
   revalidatePath("/diario-professor");
   revalidatePath("/boletim");
