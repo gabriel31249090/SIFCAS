@@ -1,4 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm ci --no-audit --no-fund"
+  "installCommand": "npm ci --no-audit --no-fund",
+  "crons": [
+    { "path": "/api/sifcas-mail/cron", "schedule": "0 12 * * *" }
+  ]
 }

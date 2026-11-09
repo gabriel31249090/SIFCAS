@@ -22,6 +22,7 @@ export const moduleCatalog: readonly CampusModule[] = [
   { href: "/avaliacoes", label: "Avaliações", description: "Provas, trabalhos e atividades avaliativas.", icon: "grades", group: "Vida acadêmica", roles: ["student"] },
   { href: "/agenda-aluno", label: "Agenda acadêmica", description: "Aulas, provas, trabalhos e avisos das turmas.", icon: "calendar", group: "Vida acadêmica", roles: ["student", "teacher", "manager", "admin"], navigation: true },
   { href: "/diario-professor", label: "Diário do professor", description: "Registre aulas, chamadas, avaliações e notas.", icon: "book", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
+  { href: "/sifcas-mail", label: "SIFCAS Mail", description: "Comunicados personalizados e automações de e-mail para turmas.", icon: "bell", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
   { href: "/minhas-turmas", label: "Minhas turmas", description: "Diários, períodos, cópias importadas e conflitos da sua turma.", icon: "student", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
   { href: "/importar-dados-academicos", label: "Importar dados acadêmicos", description: "Revise uma cópia de diário, matrículas e registros de um arquivo SIFCAS.", icon: "file", group: "Vida acadêmica", roles: ["teacher", "manager", "admin"], navigation: true },
   { href: "/importar-calendario", label: "Importar calendário do AVA", description: "Importe eventos de um arquivo .ics na sua agenda privada.", icon: "calendar", group: "Vida acadêmica" },
@@ -69,7 +70,7 @@ export function getDefaultFavoritePaths(role: AppRole | null): string[] {
   const preferred = role === "student"
     ? ["/boletim", "/agenda-aluno", "/disciplinas", "/documentos-academicos", "/solicitacoes", "/editais"]
     : ["teacher", "manager", "admin"].includes(role)
-      ? ["/minhas-turmas", "/importar-dados-academicos", "/diario-professor", "/agenda-aluno", "/solicitacoes", "/editais"]
+      ? ["/minhas-turmas", "/sifcas-mail", "/importar-dados-academicos", "/diario-professor", "/agenda-aluno", "/solicitacoes", "/editais"]
       : ["/painel-institucional", "/solicitacoes", "/pessoas", "/documentos", "/processos", "/editais"];
   const accessible = new Set(getAccessibleModules(role).map(({ href }) => href));
   return preferred.filter((href) => accessible.has(href));
