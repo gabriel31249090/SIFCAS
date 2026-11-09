@@ -6,6 +6,8 @@ Plataforma em Next.js 16 + React 19 + TypeScript, integrada ao Supabase e public
 
 Requer Node.js 24. A instalação e os deploys usam o `package-lock.json` com `npm ci` para manter builds reproduzíveis.
 
+A [auditoria visual independente](tools/sifcas-ui-auditor/README.md) tem ferramentas, testes e evidências próprios. Ela mede somente páginas públicas permitidas, com exclusão de falhas e redirecionamentos fora do escopo. Os relatórios antigos preservam suas ressalvas de coleta.
+
 ## Estado atual
 
 O SIFCAS possui autenticação SSR, perfis e papéis institucionais, validação de vínculos, núcleo acadêmico, agenda por turma, diário do professor, notas, frequência, boletim, documentos acadêmicos verificáveis, processos, oportunidades e uma camada institucional de notícias, editais, eventos e notificações.

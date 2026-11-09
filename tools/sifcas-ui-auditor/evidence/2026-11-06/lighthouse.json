@@ -1,0 +1,105 @@
+{
+  "tested": true,
+  "target": "http://127.0.0.1:3000/noticias",
+  "mode": "local Next.js development server with placeholder Supabase configuration; scores are not production benchmarks",
+  "generatedAt": "2026-11-06T15:47:13.820Z",
+  "categories": {
+    "performance": {
+      "score": null,
+      "title": "Performance"
+    },
+    "accessibility": {
+      "score": 0.96,
+      "title": "Accessibility"
+    },
+    "best-practices": {
+      "score": 1,
+      "title": "Best Practices"
+    },
+    "seo": {
+      "score": 1,
+      "title": "SEO"
+    }
+  },
+  "metrics": {
+    "first-contentful-paint": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "largest-contentful-paint": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "speed-index": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "total-blocking-time": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "cumulative-layout-shift": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "interactive": {
+      "value": null,
+      "display": null,
+      "score": null
+    },
+    "server-response-time": {
+      "value": null,
+      "display": null,
+      "score": null
+    }
+  },
+  "findings": [
+    {
+      "id": "valid-source-maps",
+      "title": "Missing source maps for large first-party JavaScript",
+      "description": "Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. [Learn more about source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps/).",
+      "score": 0,
+      "displayValue": null
+    },
+    {
+      "id": "link-name",
+      "title": "Links do not have a discernible name",
+      "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.14/link-name).",
+      "score": 0,
+      "displayValue": null
+    },
+    {
+      "id": "bf-cache",
+      "title": "Page prevented back/forward cache restoration",
+      "description": "Many navigations are performed by going back to a previous page, or forwards again. The back/forward cache (bfcache) can speed up these return navigations. [Learn more about the bfcache](https://developer.chrome.com/docs/lighthouse/performance/bf-cache/)",
+      "score": 0,
+      "displayValue": "1 failure reason"
+    }
+  ],
+  "warnings": [],
+  "blockedUrlPatterns": [
+    "http://127.0.0.1:3000/api/",
+    "http://127.0.0.1:3000/auth/",
+    "http://127.0.0.1:3000/login",
+    "http://127.0.0.1:3000/recuperar-senha",
+    "http://127.0.0.1:3000/nova-senha",
+    "http://127.0.0.1:3000/buscar",
+    "http://127.0.0.1:3000/gestao-academica",
+    "http://127.0.0.1:3000/painel-institucional",
+    "http://127.0.0.1:3000/usuarios",
+    "http://127.0.0.1:3000/auditoria",
+    "http://127.0.0.1:3000/monitoramento",
+    "http://127.0.0.1:3000/importar-dados-academicos",
+    "http://127.0.0.1:3000/importar-calendario",
+    "http://127.0.0.1:3000/diario-professor",
+    "http://127.0.0.1:3000/boletim",
+    "http://127.0.0.1:3000/agenda-aluno",
+    "http://127.0.0.1:3000/minhas-turmas"
+  ],
+  "note": "Same-origin robots.txt disallow rules and known third-party resource hosts were blocked. INP is not reported without representative interaction data."
+}
