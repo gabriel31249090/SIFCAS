@@ -5,6 +5,7 @@ import lighthouse from "lighthouse";
 import { launch } from "chrome-launcher";
 import { chromium } from "playwright";
 import { fetchRobots, probePublicRoute } from "./crawler/routes.ts";
+import { lighthouseBlockedPatterns } from "./crawler/lighthouse-policy.ts";
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const reports = path.join(project, "reports");
@@ -21,12 +22,7 @@ async function main() {
   const target = probe.finalUrl;
   if (!policy.allows(target)) throw new Error(`robots.txt não permite Lighthouse em ${target}`);
   const fullReport = await fs.readFile(path.join(reports, "full-audit.md"), "utf8");
-  const resourceSection = fullReport.split(/## (?:Recursos de terceiros não carregados|Requisições de recursos bloqueados)/)[1]?.split("\n## ")[0] ?? "";
-  const externalResources = [...resourceSection.matchAll(/^\s*-\s+(https?:\/\/\S+)/gm)].map((match) => new URL(match[1]).origin);
-  const blockedUrlPatterns = [
-    ...policy.rules.filter((rule) => !rule.allow).map((rule) => `${origin}${rule.path.replace(/\$$/, "")}`),
-    ...[...new Set(externalResources)].map((externalOrigin) => `${externalOrigin}/*`),
-  ];
+  const blockedUrlPatterns = lighthouseBlockedPatterns(origin, policy.rules, fullReport);
   const chrome = await launch({
     chromePath: chromium.executablePath(),
     chromeFlags: ["--headless", "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"],
@@ -66,6 +62,7 @@ async function main() {
         description: audit.description,
         score: audit.score,
         displayValue: audit.displayValue ?? null,
+        details: audit.details ?? null,
       }));
     const lighthouseReport = {
       tested: true,
@@ -98,7 +95,7 @@ async function main() {
       .replace(/^- Performance:.*$/m, performanceSummary)
       .replace(/\n## Lighthouse local[\s\S]*$/, "")
       .trimEnd();
-    await fs.writeFile(fullPath, `${fullWithoutPreviousLighthouse}\n\n## Lighthouse local\n\n- Página: ${target}\n- Modo: desenvolvimento local com configuração Supabase fictícia; não representa benchmark de produção.\n- Categorias: ${JSON.stringify(categories)}\n- Métricas: ${JSON.stringify(metrics, null, 2)}\n- Recursos/paths bloqueados: ${JSON.stringify(blockedUrlPatterns)}\n- INP: N/D, sem interações representativas.\n- Avisos: ${JSON.stringify(lhr.runWarnings)}\n`, "utf8");
+    await fs.writeFile(fullPath, `${fullWithoutPreviousLighthouse}\n\n## Lighthouse local\n\n- Página: ${target}\n- Modo: ${lighthouseReport.mode}; não representa benchmark de produção.\n- Categorias: ${JSON.stringify(categories)}\n- Métricas: ${JSON.stringify(metrics, null, 2)}\n- Recursos/paths bloqueados: ${JSON.stringify(blockedUrlPatterns)}\n- INP: N/D, sem interações representativas.\n- Avisos: ${JSON.stringify(lhr.runWarnings)}\n`, "utf8");
     console.log("Lighthouse local concluído:", categories);
   } finally {
     await chrome.kill();

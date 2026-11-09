@@ -1,0 +1,890 @@
+{
+  "tested": true,
+  "target": "http://127.0.0.1:3100/noticias",
+  "mode": "Instância local de desenvolvimento com banco PGlite sintético; sem dados, sessão ou serviços institucionais de produção.",
+  "generatedAt": "2026-11-09T16:48:28.209Z",
+  "finalUrl": "http://127.0.0.1:3100/noticias",
+  "runtimeError": null,
+  "categories": {
+    "performance": {
+      "score": 0.72,
+      "title": "Performance"
+    },
+    "accessibility": {
+      "score": 1,
+      "title": "Accessibility"
+    },
+    "best-practices": {
+      "score": 1,
+      "title": "Best Practices"
+    },
+    "seo": {
+      "score": 1,
+      "title": "SEO"
+    }
+  },
+  "metrics": {
+    "first-contentful-paint": {
+      "value": 1386.9279999999999,
+      "display": "1.4 s",
+      "score": 0.97,
+      "error": null
+    },
+    "largest-contentful-paint": {
+      "value": 1986.9279999999999,
+      "display": "2.0 s",
+      "score": 0.97,
+      "error": null
+    },
+    "speed-index": {
+      "value": 1881.005368016195,
+      "display": "1.9 s",
+      "score": 1,
+      "error": null
+    },
+    "total-blocking-time": {
+      "value": 1014,
+      "display": "1,010 ms",
+      "score": 0.27,
+      "error": null
+    },
+    "cumulative-layout-shift": {
+      "value": 0.1336573511543135,
+      "display": "0.134",
+      "score": 0.8,
+      "error": null
+    },
+    "interactive": {
+      "value": 7813.692000000001,
+      "display": "7.8 s",
+      "score": 0.44,
+      "error": null
+    },
+    "server-response-time": {
+      "value": 288,
+      "display": "Root document took 290 ms",
+      "score": 1,
+      "error": null
+    }
+  },
+  "findings": [
+    {
+      "id": "total-blocking-time",
+      "title": "Total Blocking Time",
+      "description": "Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. [Learn more about the Total Blocking Time metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/).",
+      "score": 0.27,
+      "displayValue": "1,010 ms",
+      "details": null
+    },
+    {
+      "id": "max-potential-fid",
+      "title": "Max Potential First Input Delay",
+      "description": "The maximum potential First Input Delay that your users could experience is the duration of the longest task. [Learn more about the Maximum Potential First Input Delay metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-max-potential-fid/).",
+      "score": 0.17,
+      "displayValue": "400 ms",
+      "details": null
+    },
+    {
+      "id": "cumulative-layout-shift",
+      "title": "Cumulative Layout Shift",
+      "description": "Cumulative Layout Shift measures the movement of visible elements within the viewport. [Learn more about the Cumulative Layout Shift metric](https://web.dev/articles/cls).",
+      "score": 0.8,
+      "displayValue": "0.134",
+      "details": {
+        "type": "debugdata",
+        "items": [
+          {
+            "cumulativeLayoutShiftMainFrame": 0.1336573511543135,
+            "newEngineResult": {
+              "cumulativeLayoutShift": 0.1336573511543135,
+              "cumulativeLayoutShiftMainFrame": 0.1336573511543135
+            },
+            "newEngineResultDiffered": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "interactive",
+      "title": "Time to Interactive",
+      "description": "Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).",
+      "score": 0.44,
+      "displayValue": "7.8 s",
+      "details": null
+    },
+    {
+      "id": "mainthread-work-breakdown",
+      "title": "Minimize main-thread work",
+      "description": "Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. [Learn how to minimize main-thread work](https://developer.chrome.com/docs/lighthouse/performance/mainthread-work-breakdown/)",
+      "score": 0,
+      "displayValue": "3.4 s",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "groupLabel",
+            "valueType": "text",
+            "label": "Category"
+          },
+          {
+            "key": "duration",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Time Spent"
+          }
+        ],
+        "items": [
+          {
+            "group": "scriptEvaluation",
+            "groupLabel": "Script Evaluation",
+            "duration": 1745.1359999999877
+          },
+          {
+            "group": "other",
+            "groupLabel": "Other",
+            "duration": 495.9400000000006
+          },
+          {
+            "group": "styleLayout",
+            "groupLabel": "Style & Layout",
+            "duration": 425.87200000000007
+          },
+          {
+            "group": "scriptParseCompile",
+            "groupLabel": "Script Parsing & Compilation",
+            "duration": 422.816
+          },
+          {
+            "group": "garbageCollection",
+            "groupLabel": "Garbage Collection",
+            "duration": 250.00800000000012
+          },
+          {
+            "group": "paintCompositeRender",
+            "groupLabel": "Rendering",
+            "duration": 70.09199999999998
+          },
+          {
+            "group": "parseHTML",
+            "groupLabel": "Parse HTML & CSS",
+            "duration": 35.156
+          }
+        ],
+        "sortedBy": [
+          "duration"
+        ]
+      }
+    },
+    {
+      "id": "bootup-time",
+      "title": "Reduce JavaScript execution time",
+      "description": "Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. [Learn how to reduce Javascript execution time](https://developer.chrome.com/docs/lighthouse/performance/bootup-time/).",
+      "score": 0,
+      "displayValue": "2.0 s",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "total",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Total CPU Time"
+          },
+          {
+            "key": "scripting",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Evaluation"
+          },
+          {
+            "key": "scriptParseCompile",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Parse"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js",
+            "total": 871.6159999999975,
+            "scripting": 741.6639999999976,
+            "scriptParseCompile": 13.919999999999998
+          },
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_client_0_90u2t._.js",
+            "total": 779.4720000000003,
+            "scripting": 495.7200000000003,
+            "scriptParseCompile": 88.852
+          },
+          {
+            "url": "http://127.0.0.1:3100/noticias",
+            "total": 766.8960000000001,
+            "scripting": 22.227999999999998,
+            "scriptParseCompile": 10.815999999999999
+          },
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "total": 361.3600000000006,
+            "scripting": 241.71200000000061,
+            "scriptParseCompile": 118.98400000000001
+          },
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js",
+            "total": 279.7640000000003,
+            "scripting": 184.1320000000003,
+            "scriptParseCompile": 85.38
+          },
+          {
+            "url": "Unattributable",
+            "total": 200.3040000000008,
+            "scripting": 6.4239999999999995,
+            "scriptParseCompile": 0
+          }
+        ],
+        "summary": {
+          "wastedMs": 2009.8319999999987
+        },
+        "sortedBy": [
+          "total"
+        ]
+      }
+    },
+    {
+      "id": "layout-shifts",
+      "title": "Avoid large layout shifts",
+      "description": "These are the largest layout shifts observed on the page. Each table item represents a single layout shift, and shows the element that shifted the most. Below each item are possible root causes that led to the layout shift. Some of these layout shifts may not be included in the CLS metric value due to [windowing](https://web.dev/articles/cls#what_is_cls). [Learn how to improve CLS](https://web.dev/articles/optimize-cls)",
+      "score": 0,
+      "displayValue": "1 layout shift found",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-FOOTER",
+              "path": "1,HTML,1,BODY,1,DIV,4,DIV,2,FOOTER",
+              "selector": "body.inter_34c3ce1c-module__94qPFa__className > div.appShell > div.appMain > footer.workspaceFooter",
+              "boundingRect": {
+                "top": 3894,
+                "bottom": 4069,
+                "left": 0,
+                "right": 412,
+                "width": 412,
+                "height": 175
+              },
+              "snippet": "<footer class=\"workspaceFooter\">",
+              "nodeLabel": "SIFCAS.\nUm campus de possibilidades.\nGuia do campus\nEditais\nPortal oficial\nCáce…"
+            },
+            "score": 0.1336573511543135
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-source-maps",
+      "title": "Missing source maps for large first-party JavaScript",
+      "description": "Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. [Learn more about source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps/).",
+      "score": 0,
+      "displayValue": null,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "scriptUrl",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "error"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "sourceMapUrl",
+            "valueType": "url",
+            "label": "Map URL"
+          }
+        ],
+        "items": [
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_client_0_90u2t._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_client_0_90u2t._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/turbopack-_08bm286._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/_08bm286._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_20wefz_._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_20wefz_._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_1xv04dr._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_1xv04dr._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqw._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqw._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/app_global-error_tsx_0cmn22j._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/app_global-error_tsx_0cmn22j._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/_1k0azb2._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/_1k0azb2._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://127.0.0.1:3100/_next/static/chunks/_10lm0_t._.js",
+            "sourceMapUrl": "http://127.0.0.1:3100/_next/static/chunks/_10lm0_t._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bf-cache",
+      "title": "Page prevented back/forward cache restoration",
+      "description": "Many navigations are performed by going back to a previous page, or forwards again. The back/forward cache (bfcache) can speed up these return navigations. [Learn more about the bfcache](https://developer.chrome.com/docs/lighthouse/performance/bf-cache/)",
+      "score": 0,
+      "displayValue": "1 failure reason",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "reason",
+            "valueType": "text",
+            "subItemsHeading": {
+              "key": "frameUrl",
+              "valueType": "url"
+            },
+            "label": "Failure reason"
+          },
+          {
+            "key": "failureType",
+            "valueType": "text",
+            "label": "Failure type"
+          }
+        ],
+        "items": [
+          {
+            "reason": "Pages with WebSocket can’t enter back/forward cache",
+            "failureType": "Pending browser support",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "frameUrl": "http://127.0.0.1:3100/noticias"
+                }
+              ]
+            },
+            "protocolReason": "WebSocket"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cls-culprits-insight",
+      "title": "Layout shift culprits",
+      "description": "Layout shifts occur when elements move absent any user interaction. [Investigate the causes of layout shifts](https://developer.chrome.com/docs/performance/insights/cls-culprit), such as elements being added, removed, or their fonts changing as the page loads.",
+      "score": 0,
+      "displayValue": null,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "extra"
+                },
+                "label": "Element"
+              },
+              {
+                "key": "score",
+                "valueType": "numeric",
+                "subItemsHeading": {
+                  "key": "cause",
+                  "valueType": "text"
+                },
+                "granularity": 0.001,
+                "label": "Layout shift score"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "text",
+                  "value": "Total"
+                },
+                "score": 0.1336573511543135
+              },
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-FOOTER",
+                  "path": "1,HTML,1,BODY,1,DIV,4,DIV,2,FOOTER",
+                  "selector": "body.inter_34c3ce1c-module__94qPFa__className > div.appShell > div.appMain > footer.workspaceFooter",
+                  "boundingRect": {
+                    "top": 3894,
+                    "bottom": 4069,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 175
+                  },
+                  "snippet": "<footer class=\"workspaceFooter\">",
+                  "nodeLabel": "SIFCAS.\nUm campus de possibilidades.\nGuia do campus\nEditais\nPortal oficial\nCáce…"
+                },
+                "score": 0.1336573511543135
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "forced-reflow-insight",
+      "title": "Forced reflow",
+      "description": "A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about [forced reflows](https://developer.chrome.com/docs/performance/insights/forced-reflow) and possible mitigations.",
+      "score": 0,
+      "displayValue": null,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "source",
+                "valueType": "source-location",
+                "label": "Source"
+              },
+              {
+                "key": "reflowTime",
+                "valueType": "ms",
+                "granularity": 1,
+                "label": "Total reflow time"
+              }
+            ],
+            "items": [
+              {
+                "source": {
+                  "type": "text",
+                  "value": "[unattributed]"
+                },
+                "reflowTime": 34.975
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "legacy-javascript-insight",
+      "title": "Legacy JavaScript",
+      "description": "Polyfills and transforms enable older browsers to use new JavaScript features. However, many aren’t necessary for modern browsers. Consider modifying your JavaScript build process to not transpile [Baseline](https://web.dev/articles/baseline-and-polyfills) features, unless you know you must support older browsers. [Learn why most sites can deploy ES6+ code without transpiling](https://developer.chrome.com/docs/performance/insights/legacy-javascript).",
+      "score": 0.5,
+      "displayValue": "Est savings of 9 KiB",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "location",
+              "valueType": "source-location"
+            },
+            "label": "URL"
+          },
+          {
+            "key": null,
+            "valueType": "code",
+            "subItemsHeading": {
+              "key": "signal"
+            },
+            "label": ""
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Wasted bytes"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+            "wastedBytes": 9499,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "signal": "Array.prototype.at",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 29,
+                    "column": 27
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flat",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 9,
+                    "column": 29
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flatMap",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 11,
+                    "column": 3
+                  }
+                },
+                {
+                  "signal": "Object.fromEntries",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 25,
+                    "column": 27
+                  }
+                },
+                {
+                  "signal": "Object.hasOwn",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 32,
+                    "column": 22
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimEnd",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 3,
+                    "column": 127
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimStart",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3100/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js",
+                    "urlProvider": "network",
+                    "line": 3,
+                    "column": 36
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 9499
+        }
+      }
+    },
+    {
+      "id": "network-dependency-tree-insight",
+      "title": "Network dependency tree",
+      "description": "[Avoid chaining critical requests](https://developer.chrome.com/docs/performance/insights/network-dependency-tree) by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load",
+      "score": 0,
+      "displayValue": null,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "5559C42C7AF77C44657DCF43B0353E41": {
+                  "url": "http://127.0.0.1:3100/noticias",
+                  "navStartToEndTime": 383,
+                  "transferSize": 16344,
+                  "isLongest": true,
+                  "children": {
+                    "4496.6": {
+                      "url": "http://127.0.0.1:3100/_next/static/chunks/app_campus_campus_module_1_ghj42.css",
+                      "navStartToEndTime": 744,
+                      "transferSize": 3329,
+                      "isLongest": true,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 744
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "No origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-blocking-insight",
+      "title": "Render-blocking requests",
+      "description": "Requests are blocking the page’s initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.",
+      "score": 0,
+      "displayValue": "Est savings of 440 ms",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/app_campus_campus_module_1_ghj42.css",
+            "totalBytes": 3329,
+            "wastedMs": 318
+          },
+          {
+            "url": "http://127.0.0.1:3100/_next/static/chunks/app_1-rfz1y._.css",
+            "totalBytes": 44204,
+            "wastedMs": 618
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [],
+  "blockedUrlPatterns": [
+    "http://127.0.0.1:3100/api/*",
+    "http://127.0.0.1:3100/auth/*",
+    "http://127.0.0.1:3100/login*",
+    "http://127.0.0.1:3100/recuperar-senha*",
+    "http://127.0.0.1:3100/nova-senha*",
+    "http://127.0.0.1:3100/buscar*",
+    "http://127.0.0.1:3100/gestao-academica*",
+    "http://127.0.0.1:3100/painel-institucional*",
+    "http://127.0.0.1:3100/usuarios*",
+    "http://127.0.0.1:3100/auditoria*",
+    "http://127.0.0.1:3100/monitoramento*",
+    "http://127.0.0.1:3100/importar-dados-academicos*",
+    "http://127.0.0.1:3100/importar-calendario*",
+    "http://127.0.0.1:3100/diario-professor*",
+    "http://127.0.0.1:3100/boletim*",
+    "http://127.0.0.1:3100/agenda-aluno*",
+    "http://127.0.0.1:3100/minhas-turmas*",
+    "https://va.vercel-scripts.com/*"
+  ],
+  "note": "Same-origin robots.txt disallow rules and known third-party resource hosts were blocked. INP is not reported without representative interaction data."
+}
