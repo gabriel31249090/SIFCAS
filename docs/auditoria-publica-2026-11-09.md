@@ -1,6 +1,8 @@
 # Auditoria pública do SIFCAS — 09/11/2026
 
-O link de entrada no Topbar móvel recebeu um nome acessível. O auditor independente foi incorporado ao repositório em `tools/sifcas-ui-auditor`, com verificações de redirecionamentos, testes e evidências revisadas. A implementação do aplicativo auditada corresponde ao commit `ef7a8f5`, na branch `codex/aero-asset-collection`.
+O link de entrada no Topbar móvel recebeu um nome acessível. Também foram corrigidos os nomes da marca lateral e do botão de entrada no computador, incluindo o texto visível e a separação entre seus rótulos. O nome do perfil passou a incluir as iniciais, o nome e o papel ou estado da conta. O auditor independente foi incorporado ao repositório em `tools/sifcas-ui-auditor`, com verificações de redirecionamentos, testes e evidências revisadas.
+
+A coleta extensa e o Lighthouse abaixo correspondem à base `ef7a8f5`, na branch `codex/aero-asset-collection`. As correções seguintes dos nomes acessíveis foram verificadas separadamente no computador e no celular, conforme evidência complementar.
 
 ## Cobertura e resultados
 
@@ -38,12 +40,14 @@ Esses números são diagnósticos do servidor de desenvolvimento, com recursos e
 - Build Next.js concluiu e gerou 106 páginas estáticas.
 - Auditor independente: TypeScript e 15 testes passaram.
 - Verificação focada no navegador: nenhuma ocorrência de `link-name` nas sete rotas antes afetadas, incluindo a página 404; esta não entra na cobertura pública válida.
+- Verificação complementar com axe-core 4.14.0: 12 combinações das seis páginas públicas em 375 e 1440 px, sem violações de `link-name`, `label-content-name-mismatch` e `target-size`. Esta checagem de três regras não substitui a revisão manual dos oito grupos restantes. O [JSON complementar](../tools/sifcas-ui-auditor/evidence/2026-11-09/desktop-mobile-name-check.json) registra o escopo e os resultados.
+- O link de perfil também passou em quatro verificações focadas: duas contas sintéticas, estudante ativo e conta suspensa, em 375 e 1440 px. Isso verifica os rótulos locais, sem representar auditoria dos fluxos autenticados de produção.
 
 Os [resultados executivos](../tools/sifcas-ui-auditor/evidence/2026-11-09/executive-summary.md), o [relatório completo](../tools/sifcas-ui-auditor/evidence/2026-11-09/full-audit.md) e o [Lighthouse em JSON](../tools/sifcas-ui-auditor/evidence/2026-11-09/lighthouse.json) estão versionados. Arquivos extensos regeneráveis e capturas continuam nas saídas locais ignoradas pelo Git. A pasta externa original do auditor foi preservada.
 
 ## Deploy verificado
 
-Consulta somente de leitura em 09/11/2026 aos registros de deployments e statuses do GitHub:
+Consulta inicial somente de leitura em 09/11/2026, antes do envio dos commits finais deste relatório, aos registros de deployments e statuses do GitHub:
 
 | Registro | Commit / branch | Estado | Horário de Cuiabá |
 | --- | --- | --- | --- |

@@ -11,16 +11,17 @@ export async function Topbar() {
   const active = account?.accountStatus === "active";
   const unreadCount = account && active ? await getUnreadNotificationCount(account.id) : 0;
   const blockedPath = "/acesso-negado?reason=" + (account?.accountStatus === "suspended" ? "suspended" : "pending");
+  const accountCaption = account?.accountStatus === "suspended" ? "Conta suspensa" : account?.accountStatus === "pending" ? "Vínculo pendente" : account ? roleLabels[account.role] : "";
   return <header className="topbar">
     <PageLocation />
     <GlobalSearch />
     <div className="topActions">
       <Link className="iconAction maisaAction" href={account ? (active ? "/maisa" : blockedPath) : "/login?next=/maisa"} aria-label="Abrir LUMA" title="LUMA"><AeroIcon icon={Sparkles} size={17} tone="violet"/></Link>
       <Link className="iconAction notificationAction" href={account ? (active ? "/notificacoes" : blockedPath) : "/login?next=/notificacoes"} aria-label={unreadCount ? unreadCount + " notificações não lidas" : "Abrir notificações"} title="Notificações"><AeroIcon icon={Bell} size={17} tone="amber"/>{unreadCount > 0 && <span className="notificationCount">{unreadCount > 99 ? "99+" : unreadCount}</span>}</Link>
-      {account ? <Link className={"userChip " + (!active ? "suspendedChip" : "")} href={active ? "/perfil" : blockedPath} aria-label={active ? `Meu perfil: ${account.fullName}` : `${account.fullName}: ${account.accountStatus === "suspended" ? "conta suspensa" : "vínculo pendente"}`}>
-        <span className="avatar" data-experience-avatar>{initials(account.fullName)}</span>
-        <span><strong>{account.fullName}</strong><small>{account.accountStatus === "suspended" ? "Conta suspensa" : account.accountStatus === "pending" ? "Vínculo pendente" : roleLabels[account.role]}</small></span>
-      </Link> : <Link className="userChip loginChip" href="/login" aria-label="Entrar no SIFCAS"><span className="avatar" aria-hidden="true"><LogIn size={18} /></span><span><strong>Entrar</strong><small>Acessar conta</small></span></Link>}
+      {account ? <Link className={"userChip " + (!active ? "suspendedChip" : "")} href={active ? "/perfil" : blockedPath} aria-label={`${initials(account.fullName)} ${account.fullName} ${accountCaption}${active ? " — Meu perfil" : ""}`}>
+        <span className="avatar" data-experience-avatar aria-hidden="true">{initials(account.fullName)}</span>{" "}
+        <span><strong>{account.fullName}</strong>{" "}<small>{accountCaption}</small></span>
+      </Link> : <Link className="userChip loginChip" href="/login" aria-label="Entrar Acessar conta no SIFCAS"><span className="avatar" aria-hidden="true"><LogIn size={18} /></span><span><strong>Entrar</strong>{" "}<small>Acessar conta</small></span></Link>}
     </div>
   </header>;
 }
