@@ -7,7 +7,8 @@ verificado_em: 2026-11-12
 
 | Item | Evidência/limite atual | Próxima ação necessária |
 | --- | --- | --- |
-| Checkpoint final IFOS/a11y | Trabalho paralelo em andamento nesta sessão | Coordenador registrar arquivos, comportamento e validação final; atualizar estado e hashes |
+| Publicação das melhorias | IFOS, imagens e memória foram enviados à branch; conexão Vercel disponível não acessa a conta do projeto | Autorizar a conexão da própria conta ou promover o deploy correto no painel; conferir domínio e papéis depois |
+| Cobertura visual ampliada | Revisão local clara cobre páginas/estados do relatório; gradientes ainda geram incomplete | Ampliar para todos os temas, estados de erro e leitor de tela sem supor conformidade integral |
 | Baseline Supabase/RLS remota | supabase/README declara ausência de inventário verificado | Acesso ao projeto correto, exportação estrutural, revisão grants/policies/triggers e testes em staging |
 | Patch de status de conta instalado? | Existe patch local e chamada de RPC; aplicação remota não comprovada | Conferir função e grants em staging/remoto autorizado antes de afirmar disponibilidade |
 | Homologação importação CSV/ICS | Testes usam contratos isolados; schema remoto desconhecido | Comparar contrato com banco real, testar papéis/escopo, aprovar flags de forma explícita |

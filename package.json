@@ -29,7 +29,7 @@
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test --test-concurrency=1 tests/*.test.mjs",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm test && npm run audit",
+    "check": "npm run lint && npm run typecheck && npm test && npm run audit && npm run assets:check && npm run memory:check",
     "audit:quality": "node scripts/audit-quality.mjs",
     "assets:optimize": "node --experimental-strip-types scripts/optimize-aero-assets.mjs",
     "assets:check": "node --experimental-strip-types scripts/optimize-aero-assets.mjs --check",

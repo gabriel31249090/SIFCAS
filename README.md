@@ -140,6 +140,12 @@ Use apenas um banco vazio e descartável. Arquivos do Supabase Storage precisam 
 
 ## Desenvolvimento
 
+### Memória do projeto
+
+O [segundo cérebro do SIFCAS](docs/second-brain/00-INICIO.md) é um vault Obsidian versionado. Abra `docs/second-brain` como cofre ou consulte pelo terminal com `npm run memory:recall -- "IFOS" --limit 5`. Antes de trabalhar, leia o índice e o estado atual; depois revise as notas do domínio afetado, rode `npm run memory:catalog` e `npm run memory:check`. A checagem também faz parte de `npm run check`: mudanças em fontes sem atualização do catálogo são sinalizadas. Não exige Obsidian aberto, plugins ou uma API de IA.
+
+Para medir o build de produção com banco sintético, encerre a fixture de desenvolvimento e execute `npm run preview:production:local`; em outro terminal, rode `npm run audit:production` na pasta `tools/sifcas-ui-auditor`. O cenário usa as portas locais 3102 e 54331 e não publica o aplicativo.
+
 ### Importação acadêmica e catálogo público (homologação)
 
 A continuação adiciona homepage Frutiger Aero/Metro, painel **Hoje**, **Minhas turmas** e um percurso local completo com sessões sintéticas assinadas: `npm run dev:academic` (escolher perfil em `http://127.0.0.1:54331/`) e `npm run test:e2e:academic`. Não exige credenciais reais e não altera autenticação de produção. Veja [prévia visual e demonstração local](docs/frutiger-e-homologacao-local.md).

@@ -1,15 +1,15 @@
 ---
 tipo: estado-atual
 verificado_em: 2026-11-12
-commit_base: bdc55fcc16f3a8c1bf994ead5841e3f8e8387f87
-evidencia: leitura-local-de-codigo-e-documentos
+commit_base: 02d4183618b3ee6b09f7b0f66e8aa90c99cccb94
+evidencia: codigo-e-testes-locais-sinteticos
 ---
 
 # Estado atual
 
-Checkpoint inicial: HEAD `bdc55fcc16f3a8c1bf994ead5841e3f8e8387f87`. A árvore já tinha `next-env.d.ts` modificado quando a catalogação começou. O manifesto em [[20-Catalogo/Indice]] mede também arquivos modificados; confira sua data e hashes para saber qual versão foi efetivamente catalogada.
+Checkpoint de entrega em 12/11/2026: IFOS salvo em `f341b35`; imagens, legibilidade e memória em `02d4183`, na branch `codex/aero-asset-collection`. A `main` foi integrada preservando as mensagens de login voltadas ao usuário. O manifesto em [[20-Catalogo/Indice]] registra hashes das fontes efetivamente catalogadas, inclusive documentação final posterior ao commit base.
 
-**Em andamento nesta sessão de 12/11/2026:** melhorias de IFOS e acessibilidade por outros agentes, além desta memória. O conteúdo do inventário pode incluir alterações locais mais recentes que o commit base. O checkpoint final precisa registrar a validação conjunta; este registro inicial não atribui aprovação ou sucesso a testes da aplicação.
+**Implementado e verificado localmente:** layout IFOS por conta com redimensionamento; recortes e miniaturas WebP; revisão delimitada de contraste, teclado e zoom; vault e comandos de recuperação. **Produção remota ainda não confirmada:** a conexão disponível da Vercel não acessa a conta do projeto. Um plano pago não foi diagnosticado como causa desse bloqueio.
 
 Fatos verificados por leitura local nesta catalogação:
 
@@ -27,6 +27,8 @@ Evidências históricas, **não revalidadas remotamente nesta catalogação**:
 - Documentos de integração descrevem inspeção pública de SUAP/WordPress em 06/11, sem conector privado SUAP/AVA homologado.
 - Relatórios anteriores de testes/auditorias permanecem com suas próprias datas e ressalvas. Não transportá-los para o estado atual como resultados recém-executados.
 
-Validação desta entrega de memória: o agente executa geração, checagem de catálogo/links e consultas locais; o resultado exato deve constar no histórico. Lint, testes, E2E e build do produto exigem registro separado do responsável pela validação final.
+Validação local desta entrega: 170 testes do app e 15 do auditor passaram; 15 cenários Playwright passaram (5 novos do IFOS, 9 regressões de papéis/mobile/desktop e 1 da coleção). Build Next.js de produção local concluiu com 106 páginas estáticas. Lighthouse local em `/noticias`: performance 100, acessibilidade 100, boas práticas 96, SEO 100; os números não representam o domínio publicado ou métricas de campo. A primeira tentativa teve erro de trace `NO_NAVSTART`; a repetição concluída gerou a evidência final. Os avisos de observabilidade local permanecem no relatório, sem serem escondidos para melhorar a nota.
+
+Geração, checagem de links/hashes e recuperação de memória foram executadas. Textos usam hashes canônicos LF; arquivos binários mantêm os bytes originais. `npm run check` inclui a checagem de assets e da memória; consultar o registro consolidado em [[30-Historico/2026-11-12-Entrega-IFOS-Aero-e-memoria]] para o resultado final.
 
 Próximos pontos: [[40-Decisoes-e-pendencias/Pendencias]]. Proveniência: [[30-Historico/2026-11-12-Inventario-inicial]].

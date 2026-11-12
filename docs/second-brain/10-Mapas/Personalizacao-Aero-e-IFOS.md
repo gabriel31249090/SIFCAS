@@ -14,7 +14,11 @@ Assets: [aero-assets](../../../lib/aero-assets.ts), [AeroAssetCollection](../../
 
 IFOS: [página servidor](../../../app/ifos/page.tsx) exige conta ativa, obtém módulos por papel, filtra itens Hoje pelos caminhos acessíveis e limita o resumo. [IFOSDesktop](../../../app/ifos/IFOSDesktop.tsx) implementa a experiência de desktop; [ifos-desktop.css](../../../app/ifos-desktop.css) define aparência. É uma superfície alternativa sobre capacidades do SIFCAS. Reutilizar os mesmos contratos de permissão e dados, sem criar poderes paralelos.
 
-**Estado de trabalho:** melhorias de IFOS e acessibilidade estão em andamento nesta sessão. Esta nota descreve contratos observados e pontos de entrada; a validação do resultado final deve ser acrescentada ao histórico pelo responsável. Não tratar screenshots ou código anterior como prova do estado concluído.
+**Entrega de 12/11/2026:** [ifos-workspace](../../../lib/ifos-workspace.ts) valida e serializa apenas o layout, em chave por conta. Janelas lembram ordem/geometria/estados e podem ser redimensionadas por alça ou teclado; visitas móveis não sobrescrevem o layout desktop e cronômetros não são retomados. O servidor continua determinando os módulos permitidos.
+
+[optimize-aero-assets](../../../scripts/optimize-aero-assets.mjs) gera os 100 recortes WebP e 100 miniaturas a partir das folhas preservadas. `AeroArtwork` usa os recortes, com lazy loading nas miniaturas; o helper de avatar e botões também usa as imagens individuais. `assets:check` verifica conteúdo, dimensões e alpha. Não aumentar resolução artificialmente nem trocar IDs, para preservar escolhas salvas.
+
+A revisão de legibilidade/teclado/zoom é delimitada em [legibilidade-aero-2026-11-12](../../../docs/legibilidade-aero-2026-11-12.md). Ver [[30-Historico/2026-11-12-Entrega-IFOS-Aero-e-memoria]] para testes e limites; a validação local não confirma acesso ou dados de produção.
 
 Acessibilidade envolve teclado, foco, semântica, contraste, texto, movimento reduzido, navegação móvel e controles do desktop. `animations: false` e preferência do sistema são caminhos diferentes a conferir. Verificar também formulários, abas/diálogos, atalhos e janelas na implementação final; não alegar conformidade só porque há uma preferência visual.
 
