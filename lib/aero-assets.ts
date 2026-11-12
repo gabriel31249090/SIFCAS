@@ -61,17 +61,29 @@ export function parseAeroAsset(value: unknown, kind: AeroAssetKind): string {
   return typeof value === "string" && findAeroAsset(value, kind) ? value : "none";
 }
 
-/** Background coordinates are derived only from the local catalog, never imported URLs. */
+/** Pre-generated crops avoid downloading a full source sheet for a single artwork. */
+export function aeroImage(asset: AeroAsset, thumbnail = false) {
+  const [, , width, height] = asset.crop;
+  const scale = thumbnail ? Math.min(1, 192 / Math.max(width, height)) : 1;
+  return {
+    src: `/assets/aero/optimized/${asset.id}${thumbnail ? "-thumb" : ""}.webp`,
+    width: Math.round(width * scale),
+    height: Math.round(height * scale),
+  };
+}
+
+/** Coordinates use the local cropped image; imported URLs never enter this catalog. */
 export function aeroSpriteStyle(asset: AeroAsset, square = false) {
-  let [x, y, width, height] = asset.crop;
+  const image = aeroImage(asset);
+  let width = image.width, height = image.height;
   if (square) {
     const size = Math.min(width, height);
-    x += (width - size) / 2; y += (height - size) / 2; width = size; height = size;
+    width = size; height = size;
   }
   return {
-    backgroundImage: `url("${asset.src}")`,
-    backgroundSize: `${asset.width / width * 100}% ${asset.height / height * 100}%`,
-    backgroundPosition: `${x / (asset.width - width) * 100}% ${y / (asset.height - height) * 100}%`,
+    backgroundImage: `url("${image.src}")`,
+    backgroundSize: `${image.width / width * 100}% ${image.height / height * 100}%`,
+    backgroundPosition: "50% 50%",
     backgroundRepeat: "no-repeat" as const,
   };
 }

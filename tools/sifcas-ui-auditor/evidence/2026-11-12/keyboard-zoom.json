@@ -1,0 +1,301 @@
+{
+  "date": "2026-11-12T16:44:59.346Z",
+  "baseURL": "http://127.0.0.1:3100",
+  "scope": "Six public routes, unauthed synthetic fixture. Actual Chromium browser zoom via chrome.tabs.setZoom(2). Tab traversal plus native disclosure and mobile drawer interactions. No forms submitted.",
+  "results": [
+    {
+      "route": "/noticias",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 25,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/editais",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 37,
+      "issues": [],
+      "interaction": {
+        "detailsOpenedWithEnter": true,
+        "detailsClosedWithEnter": true
+      }
+    },
+    {
+      "route": "/agenda-institucional",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 18,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/campus",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 69,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/transparencia",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 18,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/verificar-documento",
+      "profile": "375",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "outerWidth": 375,
+        "devicePixelRatio": 1,
+        "scrollWidth": 375
+      },
+      "keyboardTargets": 15,
+      "issues": [],
+      "interaction": {
+        "inputAcceptsKeyboard": true
+      }
+    },
+    {
+      "profile": "375",
+      "route": "/verificar-documento",
+      "menu": {
+        "openedWithEnter": true,
+        "closedWithEscape": true,
+        "focusReturned": true
+      }
+    },
+    {
+      "route": "/noticias",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 27,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/editais",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 39,
+      "issues": [],
+      "interaction": {
+        "detailsOpenedWithEnter": true,
+        "detailsClosedWithEnter": true
+      }
+    },
+    {
+      "route": "/agenda-institucional",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 20,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/campus",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 71,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/transparencia",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 20,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/verificar-documento",
+      "profile": "1440",
+      "browserZoom": 1,
+      "geometry": {
+        "innerWidth": 1440,
+        "innerHeight": 1000,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scrollWidth": 1440
+      },
+      "keyboardTargets": 17,
+      "issues": [],
+      "interaction": {
+        "inputAcceptsKeyboard": true
+      }
+    },
+    {
+      "route": "/noticias",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 25,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/editais",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 37,
+      "issues": [],
+      "interaction": {
+        "detailsOpenedWithEnter": true,
+        "detailsClosedWithEnter": true
+      }
+    },
+    {
+      "route": "/agenda-institucional",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 18,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/campus",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 69,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/transparencia",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 18,
+      "issues": [],
+      "interaction": null
+    },
+    {
+      "route": "/verificar-documento",
+      "profile": "zoom200",
+      "browserZoom": 2,
+      "geometry": {
+        "innerWidth": 712,
+        "innerHeight": 452,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scrollWidth": 712
+      },
+      "keyboardTargets": 15,
+      "issues": [],
+      "interaction": {
+        "inputAcceptsKeyboard": true
+      }
+    }
+  ]
+}

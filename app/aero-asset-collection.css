@@ -1,4 +1,4 @@
-/* Local artwork is clipped by SVG viewBox; the original sheets stay unchanged. */
+/* Local WebP crops and thumbnails keep the source sheets available for download. */
 .aeroArtwork { display:block; width:100%; height:100%; overflow:hidden; flex-shrink:0 }
 .experienceArtworkWallpaper { position:fixed; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:#ccebf1 }
 .experienceArtworkWallpaper::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg,#f3fbff30,#ffffff0a 70%) }
@@ -39,14 +39,14 @@ html[data-experience-resolved-theme="dark"] .profileIdentity>.experienceArtworkB
 html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .button.primary { position:relative; isolation:isolate; overflow:hidden; padding-right:48px; border-color:#ffffffc9; border-radius:999px; background-image:linear-gradient(145deg,#dff8ff,#8fd8eb 48%,#b5efe5); background-size:100% 100%; color:var(--experience-button-ink,#123d55); text-shadow:0 1px 2px #ffffffa8; box-shadow:inset 0 1px 0 #fff9,0 3px 10px #225e7526 }
 html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .button.primary::after { content:""; position:absolute; z-index:0; top:50%; right:6px; width:34px; height:34px; transform:translateY(-50%); border:1px solid #ffffffc9; border-radius:50%; background-image:var(--experience-button-image); background-size:var(--experience-button-size); background-position:var(--experience-button-position); background-repeat:no-repeat; box-shadow:inset 0 1px 3px #ffffffc9,0 2px 6px #145a7235; pointer-events:none }
 html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .button.primary:hover { filter:brightness(1.06); box-shadow:inset 0 1px 0 #fff,0 5px 13px #225e7533 }
-.aeroCollection { gap:23px; padding:22px; overflow:hidden }
+.aeroCollection { --studio-muted:#4d6875; gap:23px; padding:22px; overflow:hidden }
 .aeroCollectionHero { position:relative; isolation:isolate; display:flex; justify-content:space-between; align-items:center; gap:20px; min-height:177px; margin:-22px -22px 0; padding:27px; overflow:hidden; border-bottom:1px solid #d6eae6; background:radial-gradient(ellipse at 96% 0%,#d8e3ff,transparent 55%),radial-gradient(ellipse at 82% 110%,#d5eeb9,transparent 50%),linear-gradient(125deg,#f0fbff,#e5f6f1); color:#234f62 }
 .aeroCollectionHero::before { content:""; position:absolute; z-index:-1; right:-62px; top:31px; width:241px; height:146px; border:1px solid #ffffffc9; border-radius:50%; transform:rotate(-27deg); box-shadow:0 0 0 15px #ffffff24,0 0 0 36px #ffffff18 }
-.aeroCollectionEyebrow { display:flex; align-items:center; gap:7px; max-width:290px; color:#5b9389; font-size:.52rem; font-weight:750; line-height:1.7; letter-spacing:.09em }
+.aeroCollectionEyebrow { display:flex; align-items:center; gap:7px; max-width:290px; color:#376d62; font-size:.52rem; font-weight:750; line-height:1.7; letter-spacing:.09em }
 .aeroCollectionHero h2 { margin:11px 0 9px; font-size:clamp(1.4rem,2.4vw,2rem); font-weight:750; letter-spacing:-.055em; line-height:1.2 }
-.aeroCollectionHero h2>span { color:#74aa83 }
-.aeroCollectionHero p { max-width:290px; color:#68868e; font-size:.7rem; line-height:1.8 }
-.aeroCollectionCount { display:inline-flex; align-items:center; gap:7px; margin-top:13px; padding:5px 8px; border:1px solid #ffffffe0; border-radius:6px; background:#ffffff82; color:#5d8a82; font-size:.55rem; font-weight:600 }
+.aeroCollectionHero h2>span { color:#377446 }
+.aeroCollectionHero p { max-width:290px; color:#466974; font-size:.7rem; line-height:1.8 }
+.aeroCollectionCount { display:inline-flex; align-items:center; gap:7px; margin-top:13px; padding:5px 8px; border:1px solid #ffffffe0; border-radius:6px; background:#ffffff82; color:#3e6a60; font-size:.55rem; font-weight:600 }
 .aeroCollectionOrb { position:relative; display:grid; place-items:center; flex-shrink:0; width:100px; height:100px; border:1px solid #ffffffd9; border-radius:50%; background:radial-gradient(circle at 30% 21%,#ffffffde,transparent 37%),radial-gradient(circle at 65% 80%,#63c9b84f,transparent 66%),linear-gradient(135deg,#aeeaff88,#b9e8e039); color:#75b7b2; box-shadow:inset -7px -9px 13px #5da69d20,inset 3px 3px 7px #fff8,0 12px 26px #477f861a }
 .aeroCollectionOrb>span { position:absolute; left:-15px; bottom:3px; width:31px; height:31px; border:1px solid #ffffffd9; border-radius:50%; background:radial-gradient(circle at 30% 25%,white,#bcf2ff5e 55%,#95c8e482); box-shadow:0 4px 6px #437d821c }
 .aeroCollectionOrb>i { position:absolute; right:0; top:-5px; width:16px; height:16px; border:1px solid #fffd; border-radius:50%; background:linear-gradient(150deg,#fff,#c3ebbd); box-shadow:0 4px 6px #437d821c }
@@ -54,16 +54,16 @@ html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .but
 .aeroCollectionTabs>button { display:flex; align-items:center; gap:7px; min-width:0; min-height:39px; padding:8px 10px; border:1px solid #e0ebe9; border-radius:9px; background:#f9fcfc; color:var(--studio-muted); font-size:.61rem; font-weight:600; cursor:pointer }
 .aeroCollectionTabs>button>svg { flex-shrink:0; color:#8baaa8 }
 .aeroCollectionTabs>button>span { flex:1; text-align:left }
-.aeroCollectionTabs>button>small { font-size:.5rem; color:#91aaa5 }
+.aeroCollectionTabs>button>small { font-size:.5rem; color:#526f65 }
 .aeroCollectionTabs>button:hover { border-color:#a7cec3; background:#f0f9f4 }
-.aeroCollectionTabs>button[aria-selected="true"] { border-color:#8cbdad; background:linear-gradient(145deg,#ebf7f6,#eef8e8); color:#3f7c6e; box-shadow:inset 0 1px 0 white,0 2px 6px #336e5210 }
+.aeroCollectionTabs>button[aria-selected="true"] { border-color:#8cbdad; background:linear-gradient(145deg,#ebf7f6,#eef8e8); color:#326d5e; box-shadow:inset 0 1px 0 white,0 2px 6px #336e5210 }
 .aeroCollectionTabs>button[aria-selected="true"]>svg { color:#5d9a84 }
 .aeroCollectionPanel { display:grid; gap:19px; min-width:0 }
 .aeroCollectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:15px }
-.aeroCollectionKicker { color:#88a19a; font-size:.47rem; font-weight:750; letter-spacing:.1em }
+.aeroCollectionKicker { color:#4f6d61; font-size:.47rem; font-weight:750; letter-spacing:.1em }
 .aeroCollectionHeading h3 { margin:5px 0 7px; color:var(--studio-ink); font-size:1.04rem; letter-spacing:-.02em }
 .aeroCollectionHeading p { max-width:335px; color:var(--studio-muted); font-size:.64rem; line-height:1.8 }
-.aeroCollectionReset { display:flex; align-items:center; justify-content:center; gap:6px; flex-shrink:0; max-width:156px; min-height:32px; margin-top:4px; padding:8px; border:1px solid #dce9e3; border-radius:8px; background:#f7fbf8; color:#638c7b; font-size:.53rem; font-weight:600; cursor:pointer }
+.aeroCollectionReset { display:flex; align-items:center; justify-content:center; gap:6px; flex-shrink:0; max-width:156px; min-height:32px; margin-top:4px; padding:8px; border:1px solid #dce9e3; border-radius:8px; background:#f7fbf8; color:#436e5b; font-size:.53rem; font-weight:600; cursor:pointer }
 .aeroCollectionReset:hover { background:#eaf5ee; border-color:#adccba }
 .aeroCollectionReset>svg { flex-shrink:0 }
 .aeroAssetGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 11px; min-width:0 }
@@ -79,9 +79,9 @@ html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .but
 .aeroAssetSelected { position:absolute; top:6px; right:6px; display:grid; place-items:center; width:23px; height:23px; border:1px solid #ffffffe8; border-radius:50%; background:#3d9278; color:white; box-shadow:0 2px 6px #174c4e33 }
 .aeroAssetCaption { display:grid; gap:4px; min-width:0; padding:9px 5px 0 }
 .aeroAssetCaption>strong { overflow-wrap:anywhere; font-size:.63rem; font-weight:650; line-height:1.5 }
-.aeroAssetCaption>small { color:#879e98; font-size:.51rem }
-.aeroCollectionStatus { min-height:22px; padding:9px 11px; border:1px solid #e0eee5; border-radius:8px; background:#f4faf6; color:#6c8e79!important; font-size:.59rem!important }
-.aeroCollectionFootnote { display:flex; align-items:flex-start; gap:7px; padding-top:5px; color:#82978e!important; font-size:.55rem!important }
+.aeroAssetCaption>small { color:#4f6d61; font-size:.51rem }
+.aeroCollectionStatus { min-height:22px; padding:9px 11px; border:1px solid #e0eee5; border-radius:8px; background:#f4faf6; color:#466e52!important; font-size:.59rem!important }
+.aeroCollectionFootnote { display:flex; align-items:flex-start; gap:7px; padding-top:5px; color:#4e6c5b!important; font-size:.55rem!important }
 .aeroCollectionFootnote>svg { flex-shrink:0; margin-top:2px }
 .aeroCollection :focus-visible,.aeroCollectionLink:focus-visible { outline:3px solid #218a9f; outline-offset:3px }
 .aeroAssetCaption>strong { font-size:.75rem }
@@ -90,17 +90,18 @@ html[data-experience-button-skin]:not([data-experience-button-skin="none"]) .but
 .osWallpaperChoiceAsset>span { position:relative; overflow:hidden }
 .osWallpaperChoiceAsset>span>.aeroArtwork { position:absolute; inset:0 }
 .osWallpaperChoiceAsset>span>svg:not(.aeroArtwork) { position:relative; z-index:1; padding:2px; border-radius:50%; background:#f7fdffdf }
-.aeroCollectionLink { display:flex; align-items:center; gap:12px; min-width:0; padding:14px; border:1px solid #cfe6de; border-radius:12px; background:linear-gradient(110deg,#f0faf9,#f3faec); color:#528f7c; text-align:left; cursor:pointer }
+.aeroCollectionLink { display:flex; align-items:center; gap:12px; min-width:0; padding:14px; border:1px solid #cfe6de; border-radius:12px; background:linear-gradient(110deg,#f0faf9,#f3faec); color:#3f705e; text-align:left; cursor:pointer }
 .aeroCollectionLink>span:first-child { display:grid; place-items:center; flex-shrink:0; width:37px; height:37px; border:1px solid #d7ece3; border-radius:11px; background:#ffffffad }
 .aeroCollectionLink>span:nth-child(2) { display:grid; flex:1; gap:5px }
 .aeroCollectionLink strong { font-size:.7rem; font-weight:650 }
-.aeroCollectionLink small { color:#86a091; font-size:.6rem; line-height:1.6 }
+.aeroCollectionLink small { color:#4e6c5b; font-size:.6rem; line-height:1.6 }
 .aeroCollectionLink>svg { flex-shrink:0 }
 .aeroCollectionLink:hover { border-color:#99c3b1; background:#ecf7ef }
 .studioSelectedArtwork { position:relative; height:155px; overflow:hidden; border:1px solid #bedfd6; border-radius:12px }
 .studioSelectedArtwork>span { position:absolute; inset:auto 0 0; display:flex; align-items:center; gap:7px; padding:11px; color:#285d66; background:#ffffffe6; backdrop-filter:blur(8px) }
 .studioSelectedArtwork strong { flex:1; font-size:.65rem; font-weight:650 }
-.studioSelectedArtwork small { color:#74998e; font-size:.54rem }
+.studioSelectedArtwork small { color:#4e6c5b; font-size:.54rem }
+html[data-experience-resolved-theme="dark"] .aeroCollection { --studio-muted:#a1b9c1 }
 html[data-experience-resolved-theme="dark"] .aeroCollectionHero { border-color:#3d5f60; background:radial-gradient(ellipse at 100% 0%,#4a477144,transparent 60%),linear-gradient(120deg,#173948,#244438); color:#d0e7e3 }
 html[data-experience-resolved-theme="dark"] .aeroCollectionHero h2 { color:#d8eee5 }
 html[data-experience-resolved-theme="dark"] .aeroCollectionHero p { color:#abc5c2 }

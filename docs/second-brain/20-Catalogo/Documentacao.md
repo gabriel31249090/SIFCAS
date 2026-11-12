@@ -1,0 +1,30 @@
+# Documentação existente
+
+Notas de referência; abra a fonte para contexto e confira a data antes de reutilizar conclusões. O inventário não copia documentos inteiros.
+
+[[00-INICIO]] · [[20-Catalogo/Indice]]
+
+- [[20-Catalogo/Arquivos/AGENTS.md--a54ff182|AGENTS.md]]
+- [[20-Catalogo/Arquivos/CLAUDE.md--6ebdb617|CLAUDE.md]]
+- [[20-Catalogo/Arquivos/docs--agent-bridge-mcp.md--320253b8|docs/agent-bridge-mcp.md]]
+- [[20-Catalogo/Arquivos/docs--ASSET_CATALOG.md--acce70f5|docs/ASSET_CATALOG.md]]
+- [[20-Catalogo/Arquivos/docs--auditoria-publica-2026-11-09.md--7f43e6f2|docs/auditoria-publica-2026-11-09.md]]
+- [[20-Catalogo/Arquivos/docs--central-editais.md--8120ad70|docs/central-editais.md]]
+- [[20-Catalogo/Arquivos/docs--CHANGELOG_FRUTIGER.md--daab4ae5|docs/CHANGELOG_FRUTIGER.md]]
+- [[20-Catalogo/Arquivos/docs--colecao-aero.md--f689b9ed|docs/colecao-aero.md]]
+- [[20-Catalogo/Arquivos/docs--CUSTOMIZATION_SYSTEM.md--65a6845c|docs/CUSTOMIZATION_SYSTEM.md]]
+- [[20-Catalogo/Arquivos/docs--frutiger-e-homologacao-local.md--b871e766|docs/frutiger-e-homologacao-local.md]]
+- [[20-Catalogo/Arquivos/docs--importacao-academica.md--9ce1481d|docs/importacao-academica.md]]
+- [[20-Catalogo/Arquivos/docs--integracoes-ifmt.md--18374d1f|docs/integracoes-ifmt.md]]
+- [[20-Catalogo/Arquivos/docs--legibilidade-aero-2026-11-12.md--20675765|docs/legibilidade-aero-2026-11-12.md]]
+- [[20-Catalogo/Arquivos/docs--personalizacao-estudante.md--28d0c4a4|docs/personalizacao-estudante.md]]
+- [[20-Catalogo/Arquivos/docs--PORTAL-IMPROVEMENTS.md--14b53dfd|docs/PORTAL-IMPROVEMENTS.md]]
+- [[20-Catalogo/Arquivos/docs--PRODUCTION.md--734727c0|docs/PRODUCTION.md]]
+- [[20-Catalogo/Arquivos/docs--QA_REPORT.md--aded6f26|docs/QA_REPORT.md]]
+- [[20-Catalogo/Arquivos/docs--UI_AUDIT_FRUTIGER.md--84506ad3|docs/UI_AUDIT_FRUTIGER.md]]
+- [[20-Catalogo/Arquivos/docs--validacao-integracoes.md--c5a5f4ba|docs/validacao-integracoes.md]]
+- [[20-Catalogo/Arquivos/frutiger-integracoes-plan.md--52a5fadf|frutiger-integracoes-plan.md]]
+- [[20-Catalogo/Arquivos/lib--pixelfx--NOTICE.md--b534cd1f|lib/pixelfx/NOTICE.md]]
+- [[20-Catalogo/Arquivos/README.md--b3356305|README.md]]
+- [[20-Catalogo/Arquivos/supabase--README.md--0d54cc31|supabase/README.md]]
+- [[20-Catalogo/Arquivos/tools--sifcas-ui-auditor--README.md--2d744213|tools/sifcas-ui-auditor/README.md]]

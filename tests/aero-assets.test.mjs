@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { aeroAssets, aeroSpriteStyle, findAeroAsset, parseAeroAsset } from "../lib/aero-assets.ts";
+import { aeroAssets, aeroImage, aeroSpriteStyle, findAeroAsset, parseAeroAsset } from "../lib/aero-assets.ts";
 import { defaultStudentExperience, experienceCss, parseStudentExperience } from "../lib/student-experience.ts";
 
 test("Aero artwork has unique identities, local sources and crops within its source sheet", () => {
@@ -17,10 +17,24 @@ test("Aero artwork has unique identities, local sources and crops within its sou
     assert.ok(x + width <= asset.width && y + height <= asset.height, `${asset.id} crosses its sheet bounds`);
     for (const square of [false, true]) {
       const style = aeroSpriteStyle(asset, square);
-      assert.equal(style.backgroundImage, `url("${asset.src}")`);
+      assert.equal(style.backgroundImage, `url("${aeroImage(asset).src}")`);
       assert.doesNotMatch(style.backgroundSize + style.backgroundPosition, /NaN|Infinity/);
       const positions = style.backgroundPosition.split(" ").map(parseFloat);
       assert.ok(positions.every((position) => position >= 0 && position <= 100), asset.id);
+    }
+  }
+});
+
+test("all rendered Aero crops and thumbnails exist with smaller preview dimensions", () => {
+  for (const asset of aeroAssets) {
+    for (const thumbnail of [false, true]) {
+      const image = aeroImage(asset, thumbnail);
+      assert.ok(fs.existsSync(`public${image.src}`), image.src);
+      const data = fs.readFileSync(`public${image.src}`);
+      assert.equal(data.toString("ascii", 0, 4), "RIFF");
+      assert.equal(data.toString("ascii", 8, 12), "WEBP");
+      assert.ok(image.width > 0 && image.height > 0);
+      if (thumbnail) assert.ok(Math.max(image.width, image.height) <= 192);
     }
   }
 });

@@ -1,11 +1,13 @@
 "use client";
 
-import { aeroSpriteStyle, findAeroAsset, type AeroAsset } from "@/lib/aero-assets";
+import Image from "next/image";
+import { aeroImage, aeroSpriteStyle, findAeroAsset, type AeroAsset } from "@/lib/aero-assets";
 import { useStudentExperience } from "./StudentExperienceProvider";
 
-/** Displays a tile of an unchanged source sheet; the browser clips and scales it. */
-export function AeroArtwork({ asset, className = "" }: { asset: AeroAsset; className?: string }) {
-  return <svg className={`aeroArtwork ${className}`} viewBox={asset.crop.join(" ")} preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href={asset.src} width={asset.width} height={asset.height}/></svg>;
+/** Crops are optimized at build preparation time, without a hosted image service. */
+export function AeroArtwork({ asset, className = "", thumbnail = false }: { asset: AeroAsset; className?: string; thumbnail?: boolean }) {
+  const image = aeroImage(asset, thumbnail);
+  return <Image className={`aeroArtwork ${className}`} src={image.src} width={image.width} height={image.height} style={{ objectFit: "cover" }} alt="" aria-hidden="true" unoptimized loading={thumbnail ? "lazy" : "eager"} decoding="async"/>;
 }
 
 export function ExperienceWallpaper({ className = "" }: { className?: string }) {
