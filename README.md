@@ -1,3 +1,18 @@
+<!-- GABRIEL_KIT_CYBERPUNK_V1 -->
+<div align="center">
+
+<img src="assets/readme-cyber.svg" alt="Banner SIFCAS" width="100%" />
+
+<br/>
+
+**Plataforma institucional com diário do professor, turmas, notas, frequência, documentos e serviços acadêmicos.**
+
+<a href="https://github.com/gabriel31249090/SIFCAS">📦 Repositório</a> · <a href="https://sifcas.vercel.app">🌐 Abrir projeto</a>
+
+</div>
+
+---
+
 # SIFCAS
 
 **Sistema Integrado Federal de Campus, Administração e Serviços**
