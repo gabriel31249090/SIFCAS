@@ -32,8 +32,12 @@ export async function prepareSifcasDemo(requestedTestPassword: string): Promise<
     return { state: "error", message: "Apenas o administrador geral pode ativar os dados de demonstração." };
   }
 
-  if (typeof requestedTestPassword !== "string" || !/^[\x21-\x7e]{8,72}$/.test(requestedTestPassword)) {
-    return { state: "error", message: "Informe uma senha de 8 a 72 caracteres para a conta Professor Teste." };
+  if (typeof requestedTestPassword !== "string") {
+    return { state: "error", message: "Senha do Professor Teste inválida." };
+  }
+  const passwordSafetyError = await validateNewPassword(requestedTestPassword);
+  if (passwordSafetyError) {
+    return { state: "error", message: passwordSafetyError };
   }
 
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
