@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Mail, Phone, BookOpenCheck } from "lucide-react";
 import { CampusResources } from "@/components/CampusResources";
+import { listPublishedPublications } from "@/lib/institutional";
 import { campusEntries, campusReviewedAt, campusReviewLabel, getCampusEntry } from "@/lib/campus-content";
 import styles from "../campus.module.css";
 
@@ -21,6 +22,15 @@ export default async function CampusDetailPage({ params }: Props) {
   const entry = getCampusEntry((await params).slug);
   if (!entry) notFound();
   const related = campusEntries.filter((item) => item.category === entry.category && item.slug !== entry.slug).slice(0, 3);
+  // Calendário demonstrativo: separado da fonte oficial do IFMT e de seus arquivos.
+  const demoCalendar = entry.slug === "calendario-academico"
+    ? (await listPublishedPublications(["event", "notice"], 80).catch(() => []))
+      .filter((item) => item.referenceCode?.startsWith("SIFCAS-DEMO-2026-") && item.startsAt)
+      .sort((a, b) => new Date(a.startsAt!).getTime() - new Date(b.startsAt!).getTime())
+    : [];
+  const calendarDate = (value: string) => new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "medium", timeStyle: "short", timeZone: "America/Cuiaba",
+  }).format(new Date(value));
 
   return <div className={styles.detailPage}>
     <Link className={styles.back} href={`/campus?categoria=${encodeURIComponent(entry.category)}#conteudos`}><ArrowLeft size={16} aria-hidden="true"/> {entry.category} no campus</Link>
@@ -31,6 +41,20 @@ export default async function CampusDetailPage({ params }: Props) {
         {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {entry.facts?.length ? <dl className={styles.facts}>{entry.facts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl> : null}
         {entry.steps?.length ? <section className={styles.steps}><h2>Como acessar</h2><ol>{entry.steps.map((step) => <li key={step}>{step}</li>)}</ol></section> : null}
+        {entry.slug === "calendario-academico" && <section className={styles.demoCalendar} aria-labelledby="demo-calendar-title">
+          <div className={styles.demoCalendarHeader}>
+            <span className="badge">DADOS FICTÍCIOS</span>
+            <h2 id="demo-calendar-title">Calendário de demonstração SIFCAS</h2>
+            <p>Eventos e avisos simulados para testar o calendário. <strong>Não são datas oficiais do IFMT.</strong> Para datas reais, use o link da fonte oficial nesta página.</p>
+          </div>
+          {demoCalendar.length ? <ol className={styles.demoCalendarList}>
+            {demoCalendar.map((item) => <li key={item.id}>
+              <time dateTime={item.startsAt!}>{calendarDate(item.startsAt!)}</time>
+              <span><strong>{item.title}</strong><small>{item.kind === "event" ? "Evento simulado" : "Aviso simulado"}</small></span>
+              <Link href={`/publicacoes/${item.id}`}>Detalhes</Link>
+            </li>)}
+          </ol> : <p>A agenda de demonstração está vazia ou indisponível. Os arquivos oficiais do campus permanecem disponíveis na fonte vinculada.</p>}
+        </section>}
         {entry.note ? <aside className={styles.note}><BookOpenCheck size={20} aria-hidden="true"/><p>{entry.note}</p></aside> : null}
         {entry.category === "Cursos" ? <aside className={styles.note}><p>A oferta, o turno e a matriz podem variar entre turmas. Confira o PPC da sua turma e o edital de ingresso na página oficial.</p></aside> : null}
       </article>
