@@ -1,0 +1,467 @@
+{
+  "metadata": {
+    "source": "synthetic",
+    "institutionalValidity": false,
+    "environment": "development",
+    "generatedFor": "SIFCAS",
+    "year": 2026
+  },
+  "students": [
+    {
+      "id": "demo-student-001",
+      "name": "Ana Luiza Almeida",
+      "registration": "DEMO20260001",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-002",
+      "name": "Bruno Henrique Barbosa",
+      "registration": "DEMO20260002",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-003",
+      "name": "Camila Vitória Cardoso",
+      "registration": "DEMO20260003",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-004",
+      "name": "Daniel Augusto Dias",
+      "registration": "DEMO20260004",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-005",
+      "name": "Eduarda Sofia Esteves",
+      "registration": "DEMO20260005",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-006",
+      "name": "Felipe Gabriel Ferreira",
+      "registration": "DEMO20260006",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-007",
+      "name": "Giovana Maria Gomes",
+      "registration": "DEMO20260007",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-008",
+      "name": "Henrique Lucas Henriques",
+      "registration": "DEMO20260008",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-009",
+      "name": "Isabela Cristina Ibrahim",
+      "registration": "DEMO20260009",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-010",
+      "name": "João Pedro Junqueira",
+      "registration": "DEMO20260010",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-011",
+      "name": "Larissa Beatriz Lima",
+      "registration": "DEMO20260011",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-012",
+      "name": "Matheus Rafael Moraes",
+      "registration": "DEMO20260012",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-013",
+      "name": "Natália Fernanda Nascimento",
+      "registration": "DEMO20260013",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-014",
+      "name": "Otávio Miguel Oliveira",
+      "registration": "DEMO20260014",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-015",
+      "name": "Paula Gabriela Pereira",
+      "registration": "DEMO20260015",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-016",
+      "name": "Rafael Vinícius Queiroz",
+      "registration": "DEMO20260016",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-017",
+      "name": "Sabrina Helena Ribeiro",
+      "registration": "DEMO20260017",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-018",
+      "name": "Thiago André Silva",
+      "registration": "DEMO20260018",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-019",
+      "name": "Valentina Alice Teixeira",
+      "registration": "DEMO20260019",
+      "classId": "demo-class-1",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    },
+    {
+      "id": "demo-student-020",
+      "name": "Yasmin Clara Vieira",
+      "registration": "DEMO20260020",
+      "classId": "demo-class-2",
+      "course": "Técnico em Informática Integrado ao Ensino Médio",
+      "status": "active"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "demo-teacher-001",
+      "name": "Adriana Martins",
+      "subject": "Português",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-002",
+      "name": "Bernardo Castro",
+      "subject": "Matemática",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-003",
+      "name": "Carolina Mendes",
+      "subject": "Física",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-004",
+      "name": "Diego Nunes",
+      "subject": "Química",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-005",
+      "name": "Elisa Rocha",
+      "subject": "Biologia",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-006",
+      "name": "Fábio Moreira",
+      "subject": "História",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-007",
+      "name": "Gabriela Farias",
+      "subject": "Geografia",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-008",
+      "name": "Hugo Batista",
+      "subject": "Inglês",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-009",
+      "name": "Ingrid Costa",
+      "subject": "Artes",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-010",
+      "name": "Júlio Santana",
+      "subject": "Educação Física",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-011",
+      "name": "Karina Freitas",
+      "subject": "Programação",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-012",
+      "name": "Leonardo Pires",
+      "subject": "Banco de Dados",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-013",
+      "name": "Mariana Duarte",
+      "subject": "Redes de Computadores",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-014",
+      "name": "Nelson Campos",
+      "subject": "Sistemas Operacionais",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-015",
+      "name": "Olívia Ribeiro",
+      "subject": "Desenvolvimento Web",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-016",
+      "name": "Paulo Azevedo",
+      "subject": "Algoritmos",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-017",
+      "name": "Renata Soares",
+      "subject": "Filosofia",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-018",
+      "name": "Sérgio Carvalho",
+      "subject": "Sociologia",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-019",
+      "name": "Tatiana Lopes",
+      "subject": "Empreendedorismo",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    },
+    {
+      "id": "demo-teacher-020",
+      "name": "Victor Almeida",
+      "subject": "Segurança da Informação",
+      "status": "active",
+      "classIds": [
+        "demo-class-1",
+        "demo-class-2"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "id": "demo-class-1",
+      "name": "2º Ano A — Informática",
+      "year": 2026
+    },
+    {
+      "id": "demo-class-2",
+      "name": "2º Ano B — Informática",
+      "year": 2026
+    }
+  ],
+  "notices": [
+    {
+      "id": "demo-notice-1",
+      "title": "Seleção para Monitoria de Matemática",
+      "category": "Ensino",
+      "publishedOn": "2026-11-01",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-2",
+      "title": "Seleção para Bolsas de Extensão",
+      "category": "Extensão",
+      "publishedOn": "2026-11-02",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-3",
+      "title": "Seleção para Iniciação Científica",
+      "category": "Pesquisa",
+      "publishedOn": "2026-11-03",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-4",
+      "title": "Seleção para Auxílio Permanência",
+      "category": "Assistência Estudantil",
+      "publishedOn": "2026-11-04",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-5",
+      "title": "Seleção para Oficinas de Programação",
+      "category": "Ensino",
+      "publishedOn": "2026-11-05",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-6",
+      "title": "Seleção para Mostra de Projetos",
+      "category": "Extensão",
+      "publishedOn": "2026-11-06",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-7",
+      "title": "Seleção para Monitoria de Língua Portuguesa",
+      "category": "Pesquisa",
+      "publishedOn": "2026-11-07",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-8",
+      "title": "Seleção para Projetos de Sustentabilidade",
+      "category": "Assistência Estudantil",
+      "publishedOn": "2026-11-08",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-9",
+      "title": "Seleção para Curso de Robótica",
+      "category": "Ensino",
+      "publishedOn": "2026-11-09",
+      "status": "draft",
+      "official": false
+    },
+    {
+      "id": "demo-notice-10",
+      "title": "Seleção para Seleção de Voluntários",
+      "category": "Extensão",
+      "publishedOn": "2026-11-10",
+      "status": "draft",
+      "official": false
+    }
+  ]
+}
