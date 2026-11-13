@@ -46,7 +46,7 @@ export default function DemoSetup() {
         Copiar senha
       </button>
       <p><small>Copie a senha agora. Ela muda se você executar a ativação novamente.</small></p>
-      <p>Aulas: {result.academic.sessions ?? 0} · Avaliações: {result.academic.assessments ?? 0} · Notas: {result.academic.grades ?? 0} · Frequências: {result.academic.attendance ?? 0}</p>
+      <p>Aulas: {result.academic.sessions ?? 0} · Avaliações: {result.academic.assessments ?? 0} · Notas: {result.academic.grades ?? 0} · Frequências: {result.academic.attendance ?? 0} · Atividades: {result.extras.agenda ?? 0} · Comunicados em rascunho: {result.extras.draft_notices ?? 0}</p>
     </div>}
   </section>;
 }
