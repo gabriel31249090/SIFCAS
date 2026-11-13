@@ -4,6 +4,7 @@ import { randomBytes } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
 import { requireAccount } from "@/lib/auth";
+import { validateNewPassword } from "@/lib/compromised-password";
 import { supabaseUrl } from "@/lib/supabase/config";
 
 export type DemoSetupResult =
