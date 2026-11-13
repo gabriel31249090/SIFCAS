@@ -110,7 +110,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
     </section>
 
     <div className="quickGrid" style={{ marginTop: 18 }}>
-      <Link href="/noticias"><Newspaper/>Ver notícias</Link><Link href="/editais"><Pin/>Ver editais</Link><Link href="/agenda-institucional"><CalendarDays/>Ver agenda</Link><Link href="/notificacoes"><Megaphone/>Minhas notificações</Link>
+      <Link href="/diretorio-academico"><FileText/>Diretório acadêmico</Link><Link href="/noticias"><Newspaper/>Ver notícias</Link><Link href="/editais"><Pin/>Ver editais</Link><Link href="/agenda-institucional"><CalendarDays/>Ver agenda</Link><Link href="/notificacoes"><Megaphone/>Minhas notificações</Link>
     </div>
   </>;
 }
