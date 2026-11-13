@@ -7,6 +7,7 @@ import { getDiaryContext } from "@/lib/diary";
 import { DiaryValidationError } from "@/lib/diary-security";
 import { ImportedAcademicSummary } from "@/components/ImportedAcademicSummary";
 import { createAssessment, createSession, saveAttendance, saveGrades } from "./actions";
+import TeacherDemoControl from "./teacher-demo-control";
 
 type Params = Promise<{ vinculo?: string; sessao?: string; avaliacao?: string; aulasPagina?: string; avaliacoesPagina?: string; message?: string; error?: string }>;
 
@@ -56,6 +57,10 @@ export default async function DiarioProfessorPage({ searchParams }: { searchPara
       description="Registre conteúdo ministrado, chamada, avaliações e notas com acesso restrito aos vínculos docentes autorizados."
       action={<Link className="button soft" href="/importar-dados-academicos">Importar dados acadêmicos</Link>}
     />
+
+    {account.role === "teacher" && account.email.toLowerCase() === "professorteste@gmail.com" && (
+      <TeacherDemoControl autoActivate={context.options.length === 0 || context.students.length === 0 || context.sessionPagination.total === 0}/>
+    )}
 
     {params.message && <div className="infoBox successBox">{params.message}</div>}
     {params.error && <div className="infoBox errorBox">{params.error}</div>}
