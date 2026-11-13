@@ -51,7 +51,7 @@ export default async function CampusPage({ searchParams }: { searchParams: Param
       <div className={styles.sectionHead}><div><h2 id="explorar-campus">Explore por assunto</h2><p>Cursos, serviços e orientações com acesso à fonte de cada informação.</p></div></div>
       <form action="/campus#conteudos" method="get" className={styles.search} role="search" aria-label="Buscar informações do campus">
         <label htmlFor="campus-query">Buscar no guia do campus</label>
-        <div className={styles.searchRow}><input id="campus-query" name="q" defaultValue={query} maxLength={100} placeholder="Ex.: bolsa, informática, senha, biblioteca…"/>{category ? <input type="hidden" name="categoria" value={category}/> : null}<button type="submit"><Search size={18} aria-hidden="true"/> Buscar</button></div>
+        <div className={styles.searchRow}><input key={query || "empty-search"} id="campus-query" name="q" defaultValue={query} maxLength={100} placeholder="Ex.: bolsa, informática, senha, biblioteca…"/>{category ? <input type="hidden" name="categoria" value={category}/> : null}<button type="submit"><Search size={18} aria-hidden="true"/> Buscar</button></div>
       </form>
       <nav aria-label="Filtrar por assunto" className={styles.filters}>
         <Link href={categoryHref()} aria-current={!category ? "page" : undefined}>Todos <span>{campusEntries.length}</span></Link>
