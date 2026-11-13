@@ -6,6 +6,7 @@ import { requireAccount, roleLabels } from "@/lib/auth";
 import { listManagedPublications, listPublicationCampuses, publicationKindLabels, publicationStatusLabels } from "@/lib/institutional";
 import { addPublicationAttachment, createPublication, setPublicationStatus } from "./actions";
 import DemoSetup from "./demo-setup";
+import DemoCleanup from "./demo-cleanup";
 
 type SearchParams = Promise<{ message?: string; error?: string }>;
 
@@ -33,7 +34,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
     {params.message && <div className="infoBox successBox">{params.message}</div>}
     {params.error && <div className="infoBox errorBox">{params.error}</div>}
 
-    {account.role === "admin" && account.isGeneralAdmin && <DemoSetup/>}
+    {account.role === "admin" && account.isGeneralAdmin && <><DemoSetup/><DemoCleanup/></>}
 
     <div className="statGrid">
       <StatCard label="Publicações" value={String(publications.length)} foot="Total registrado" icon={FileText}/>
