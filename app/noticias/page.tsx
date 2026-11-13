@@ -8,7 +8,7 @@ import { CampusResources } from "@/components/CampusResources";
 
 export const metadata: Metadata = {
   title: "Notícias e eventos",
-  description: "Notícias, comunicados e eventos oficiais do SIFCAS e do Campus Cáceres.",
+  description: "Notícias, comunicados e eventos do SIFCAS, com demonstrações claramente identificadas e fontes oficiais separadas.",
   alternates: { canonical: "/noticias" },
 };
 
@@ -22,13 +22,16 @@ export default async function NewsPage() {
   const publicationResult = await Promise.allSettled([listPublishedPublications(["news", "notice", "event"], 100)]);
   const unavailable = publicationResult[0].status === "rejected";
   const publications = publicationResult[0].status === "fulfilled" ? publicationResult[0].value : [];
+  const demoCount = publications.filter((row) => row.referenceCode?.startsWith("SIFCAS-DEMO-2026-")).length;
   const news = publications.filter((row) => row.kind === "news").length;
   const notices = publications.filter((row) => row.kind === "notice").length;
   const events = publications.filter((row) => row.kind === "event").length;
   const canPublish = !!account && account.accountStatus === "active" && ["staff", "manager", "admin"].includes(account.role);
 
   return <>
-    <PageHeader title="Notícias e Eventos" description="Notícias, comunicados e eventos institucionais publicados em uma única fonte do SIFCAS." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Nova publicação</Link> : <span className="badge">Conteúdo institucional</span>}/>
+    <PageHeader title="Notícias e Eventos" description="Publicações do SIFCAS: eventos e notícias de exemplo são identificados para não serem confundidos com conteúdo oficial." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Nova publicação</Link> : <span className="badge">Conteúdo institucional</span>}/>
+
+    {demoCount > 0 && <div className="infoBox" role="note" style={{ marginBottom: 16 }}><strong>Ambiente de demonstração:</strong> {demoCount} publicações fictícias estão visíveis para testes. Não são anúncios, inscrições ou eventos oficiais do IFMT. Consulte o portal oficial para informações reais.</div>}
 
     <div className="statGrid">
       <StatCard label="Publicações" value={String(publications.length)} foot="Disponíveis agora" icon={Sparkles}/>
@@ -37,7 +40,7 @@ export default async function NewsPage() {
       <StatCard label="Eventos" value={String(events)} foot="Programações publicadas" icon={CalendarDays}/>
     </div>
 
-    <SectionTitle title="Publicações recentes" description="Conteúdo oficial disponível para seu perfil ou para consulta pública."/>
+    <SectionTitle title="Publicações recentes" description="Itens da plataforma com os exemplos fictícios identificados pelo marcador Demonstração."/>
     {unavailable ? <div className="infoBox" role="status">A fonte de publicações está indisponível ou sem configuração. Consulte o portal oficial e os guias abaixo.</div> : publications.length === 0 ? <div className="emptyState card"><Newspaper size={28}/><h2>Nenhuma publicação</h2><p>Quando a instituição publicar uma notícia, comunicado ou evento, ele aparecerá aqui.</p></div> : <div className="publicationGrid">
       {publications.map((row) => <Link className="card publicationCard" href={`/publicacoes/${row.id}`} key={row.id}>
         <div className="publicationCardHead"><span className="badge">{publicationKindLabels[row.kind]}</span><time>{formatDate(row.publishedAt ?? row.startsAt)}</time></div>
