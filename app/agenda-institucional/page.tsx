@@ -10,7 +10,7 @@ import { CampusResources } from "@/components/CampusResources";
 
 export const metadata: Metadata = {
   title: "Agenda institucional",
-  description: "Eventos, prazos e compromissos oficiais do Campus Cáceres.",
+  description: "Eventos e compromissos da agenda do SIFCAS, com exemplos simulados identificados e acesso à fonte oficial do campus.",
   alternates: { canonical: "/agenda-institucional" },
 };
 
@@ -25,6 +25,7 @@ export default async function InstitutionalAgendaPage() {
   const entries = agendaResult.status === "fulfilled" ? agendaResult.value : [];
   const now = new Date();
   const publicDeadlines = noticeCatalog.status === "fulfilled" ? noticeCatalog.value.notices.filter((notice) => notice.closes && ["open", "scheduled"].includes(effectiveNoticeStatus(notice, now))) : [];
+  const demoCount = entries.filter((row) => row.referenceCode?.startsWith("SIFCAS-DEMO-2026-")).length;
   const events = entries.filter((row) => row.kind === "event").length;
   const deadlines = entries.filter((row) => row.kind === "edital" && row.endsAt).length;
   const notices = entries.filter((row) => row.kind === "notice").length;
@@ -32,6 +33,8 @@ export default async function InstitutionalAgendaPage() {
 
   return <>
     <PageHeader title="Agenda Institucional" description="Eventos e prazos publicados no SIFCAS, com atalhos à central de editais revisados." action={canPublish ? <Link className="button soft" href="/painel-institucional"><Send size={16}/> Publicar compromisso</Link> : <span className="badge">Consulta pública</span>}/>
+
+    {demoCount > 0 && <div className="infoBox" role="note" style={{ marginBottom: 16 }}><strong>Calendário de demonstração:</strong> {demoCount} itens de exemplo estão incluídos na agenda, sem validade oficial. Para datas reais, consulte o <Link href="/campus/calendario-academico">calendário acadêmico publicado pelo campus</Link>.</div>}
 
     {agendaResult.status === "rejected" && <div className="infoBox" role="status">A agenda do banco está indisponível. Isso não significa ausência de compromissos. O catálogo público de editais continua na central.</div>}
     {publicDeadlines.length > 0 && <>
@@ -51,7 +54,7 @@ export default async function InstitutionalAgendaPage() {
       {entries.map((row) => <tr key={row.id}>
         <td>{formatDate(row.startsAt ?? row.endsAt ?? row.publishedAt)}</td>
         <td><span className="badge">{publicationKindLabels[row.kind]}</span></td>
-        <td><b>{row.title}</b>{row.referenceCode && <><br/><small>{row.referenceCode}</small></>}</td>
+        <td><b>{row.title}</b>{row.referenceCode && <><br/><small>{row.referenceCode.startsWith("SIFCAS-DEMO-2026-") ? "Exemplo fictício • " : ""}{row.referenceCode}</small></>}</td>
         <td>{row.location || "—"}</td>
         <td><Link className="button soft" href={`/publicacoes/${row.id}`}>{row.kind === "edital" ? <Pin size={14}/> : <CalendarDays size={14}/>} Abrir</Link></td>
       </tr>)}
