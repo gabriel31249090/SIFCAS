@@ -31,7 +31,9 @@ export function NoticeCards({ notices, now }: { notices: PublicNotice[]; now: st
   const preferences = decodePreferences(raw);
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [feedback, setFeedback] = useState("");
-  const visible = favoritesOnly ? notices.filter((notice) => !!preferences[notice.id]) : notices;
+  // Editorial and reviewed sources can temporarily overlap. IDs must remain unique in the DOM.
+  const uniqueNotices = Array.from(new Map(notices.map((notice) => [notice.id, notice])).values());
+  const visible = favoritesOnly ? uniqueNotices.filter((notice) => !!preferences[notice.id]) : uniqueNotices;
   const currentTime = new Date(now);
 
   function updateFavorite(notice: PublicNotice, acknowledge = false) {
