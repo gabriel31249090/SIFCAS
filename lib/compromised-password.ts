@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { newPasswordError } from "./password-policy";
+import { newPasswordError } from "./password-policy.ts";
 
 export const BREACHED_PASSWORD_MESSAGE =
   "Essa senha foi encontrada em vazamentos conhecidos. Escolha outra senha exclusiva.";
