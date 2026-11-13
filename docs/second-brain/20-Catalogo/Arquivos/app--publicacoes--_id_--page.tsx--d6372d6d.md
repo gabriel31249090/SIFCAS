@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/publicacoes/[id]/page.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 7129c12f4f3100dc2f226b8ae39e3bee08cbe58bcbec02cf61ee14ab9f739eaa
 hash_formato: sha256-utf8-lf-v1
 ---

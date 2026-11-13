@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "proxy.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: c1c75abf8619d174c8491a0b35e732982187dd178870f8d4c85527727644ef36
 hash_formato: sha256-utf8-lf-v1
 ---

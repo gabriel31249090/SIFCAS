@@ -58,3 +58,7 @@ A conexão Vercel disponível não acessa a conta do projeto SIFCAS. Isso é uma
 Com a própria conta do projeto, o responsável pode abrir SIFCAS → Deployments, selecionar o commit final da branch `codex/aero-asset-collection` e usar **Promote to Production**. Esse caminho reconstrói a versão com as variáveis de Production. Depois, conferir `sifcas.vercel.app`, login, `/ifos`, personalização e acesso por papel. A publicação exige confirmar o deploy correto e a configuração do projeto; não foi executada por esta conexão. [Procedimento oficial da Vercel](https://vercel.com/docs/deployments/promoting-a-deployment).
 
 Persistem as dependências institucionais de SUAP/AVA, validação do schema/RLS remoto e medições autenticadas de produção. As novas verificações usaram dados sintéticos, sem sessões ou credenciais institucionais.
+
+### Atualização de 13/11/2026
+
+O commit de reserva `c1fe354` foi preservado. Na consulta GitHub, o último deployment marcado Production foi `f341b35`/success, de 12/11 às 15:05 em Cuiabá, e o último Preview foi `02d4183`/success, de 12/11 às 12:50. Assim, já existe registro de produção para o IFOS; a publicação posterior das imagens, revisão visual e memória ainda precisa ser confirmada. Registros de deployment não identificam por si só o alias que o domínio está servindo. O fechamento da documentação e da checagem está em [checkpoint final](second-brain/30-Historico/2026-11-13-Fechamento.md).

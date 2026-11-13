@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/aero-asset-collection.css"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: de473502e9d7fc047377002d64af2db26687ee0decb853b8b92bdbdc6d01930d
 hash_formato: sha256-utf8-lf-v1
 ---

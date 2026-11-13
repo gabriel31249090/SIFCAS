@@ -13,6 +13,7 @@ Notas de referência; abra a fonte para contexto e confira a data antes de reuti
 - [[20-Catalogo/Arquivos/docs--CHANGELOG_FRUTIGER.md--daab4ae5|docs/CHANGELOG_FRUTIGER.md]]
 - [[20-Catalogo/Arquivos/docs--colecao-aero.md--f689b9ed|docs/colecao-aero.md]]
 - [[20-Catalogo/Arquivos/docs--CUSTOMIZATION_SYSTEM.md--65a6845c|docs/CUSTOMIZATION_SYSTEM.md]]
+- [[20-Catalogo/Arquivos/docs--entrega-ifos-memoria-2026-11-12.md--f477472f|docs/entrega-ifos-memoria-2026-11-12.md]]
 - [[20-Catalogo/Arquivos/docs--frutiger-e-homologacao-local.md--b871e766|docs/frutiger-e-homologacao-local.md]]
 - [[20-Catalogo/Arquivos/docs--importacao-academica.md--9ce1481d|docs/importacao-academica.md]]
 - [[20-Catalogo/Arquivos/docs--integracoes-ifmt.md--18374d1f|docs/integracoes-ifmt.md]]

@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "components/PasswordInput.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 06a610f2403b05adf0ae99b3933d54eb3d13d370a48574fe2241cbb1fc996c9f
 hash_formato: sha256-utf8-lf-v1
 ---

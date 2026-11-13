@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/optimized/asset-frame-4-thumb.webp"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 8b153109b8141dfbfb5025f73fc223ea6e4730a8a2a9bca9fd3c3f4ea4f423ba
 hash_formato: sha256-raw-v1
 ---

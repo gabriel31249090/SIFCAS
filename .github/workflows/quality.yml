@@ -23,6 +23,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Lint
         run: npm run lint
+      - name: Verify artwork and project memory
+        run: npm run assets:check && npm run memory:check
       - name: Audit, regression tests and production build
         run: npm run build
       - name: Install Chromium for browser tests

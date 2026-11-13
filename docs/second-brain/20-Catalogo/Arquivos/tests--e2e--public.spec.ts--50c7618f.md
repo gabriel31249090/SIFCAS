@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/e2e/public.spec.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 0eb3734366b031b2747c88705d2f513f2fc83e1e8d0797e110074d1c0bc809e8
 hash_formato: sha256-utf8-lf-v1
 ---

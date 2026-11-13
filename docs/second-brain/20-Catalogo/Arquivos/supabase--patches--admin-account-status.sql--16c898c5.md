@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "supabase/patches/admin-account-status.sql"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 10a48af1bab87f7fa4b1e2d8b09e3446eedd7430a0107f1a2e2df652bcc51e2b
 hash_formato: sha256-utf8-lf-v1
 ---

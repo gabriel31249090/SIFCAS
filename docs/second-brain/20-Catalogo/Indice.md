@@ -1,11 +1,11 @@
 ---
 tipo: indice-gerado
-verificado_em: 2026-11-12T16:48:34.196Z
+verificado_em: 2026-11-13T10:48:20.170Z
 ---
 
 # Inventário completo
 
-534 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `f341b358dcc9c0b4bb783ddd459cc7918cdb77eb`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
+535 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `c1fe354f5cddb3ce1509f71ba135d9ca59c76203`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
 
 [[00-INICIO]] · [[20-Catalogo/Rotas]] · [[20-Catalogo/Banco-e-RPCs]] · [[20-Catalogo/Documentacao]] · [[02-Como-retomar]]
 
@@ -149,6 +149,7 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/docs--CHANGELOG_FRUTIGER.md--daab4ae5|docs/CHANGELOG_FRUTIGER.md]]
 - [[20-Catalogo/Arquivos/docs--colecao-aero.md--f689b9ed|docs/colecao-aero.md]]
 - [[20-Catalogo/Arquivos/docs--CUSTOMIZATION_SYSTEM.md--65a6845c|docs/CUSTOMIZATION_SYSTEM.md]]
+- [[20-Catalogo/Arquivos/docs--entrega-ifos-memoria-2026-11-12.md--f477472f|docs/entrega-ifos-memoria-2026-11-12.md]]
 - [[20-Catalogo/Arquivos/docs--frutiger-e-homologacao-local.md--b871e766|docs/frutiger-e-homologacao-local.md]]
 - [[20-Catalogo/Arquivos/docs--importacao-academica.md--9ce1481d|docs/importacao-academica.md]]
 - [[20-Catalogo/Arquivos/docs--integracoes-ifmt.md--18374d1f|docs/integracoes-ifmt.md]]

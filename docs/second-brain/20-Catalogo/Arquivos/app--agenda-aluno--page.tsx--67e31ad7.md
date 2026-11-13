@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/agenda-aluno/page.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 09af7343b8250607dc23c83ea0644141e58f737a70b3cde2f56ac453096198cf
 hash_formato: sha256-utf8-lf-v1
 ---

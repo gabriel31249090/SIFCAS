@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "playwright.academic.config.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: c5cfa8abe7d3b44c262b1967137b260e66cd5fe47544b490a22a2cf5af50d121
 hash_formato: sha256-utf8-lf-v1
 ---

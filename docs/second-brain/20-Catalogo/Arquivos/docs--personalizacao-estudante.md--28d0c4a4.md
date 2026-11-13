@@ -1,15 +1,15 @@
 ---
 tipo: inventario-gerado
 fonte: "docs/personalizacao-estudante.md"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
-sha256: c15a4d70499e9b1b36288e02e29b55cd0092ab8e4e884da84b23d4dec1c760df
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+sha256: f42af4331894b42b7c2c70d10e151938621c5faa200617d58c5610b5b27c6c9f
 hash_formato: sha256-utf8-lf-v1
 ---
 
 # docs/personalizacao-estudante.md
 
-Categoria: **Documentacao**. 5707 bytes; 26 linhas.
+Categoria: **Documentacao**. 6851 bytes; 34 linhas.
 
 [Fonte no repositório](../../../personalizacao-estudante.md). Formato: sha256-utf8-lf-v1. Texto usa UTF-8 com finais de linha LF; bin?rios preservam bytes originais. Compare o SHA-256 can?nico com o manifesto antes de confiar nesta ficha.
 

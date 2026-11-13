@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/notificacoes/actions.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: c2ef8db71c08fc603b12e806f78b5ffe45148e4c64b4511893fc27caadee46f3
 hash_formato: sha256-utf8-lf-v1
 ---

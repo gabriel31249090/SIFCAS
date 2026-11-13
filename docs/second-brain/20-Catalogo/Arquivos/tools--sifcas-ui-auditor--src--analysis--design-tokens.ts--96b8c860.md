@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tools/sifcas-ui-auditor/src/analysis/design-tokens.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: f3a9596470398cd6127d31fca6cc09b91294886b41c459391efee5c4ed6d4dcb
 hash_formato: sha256-utf8-lf-v1
 ---

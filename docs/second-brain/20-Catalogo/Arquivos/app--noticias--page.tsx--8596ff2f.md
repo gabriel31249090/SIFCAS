@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/noticias/page.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: ca1dd67f2325e56e9b24c64fb136b8aa34a7a42cadef8ccc623061e6e13e395f
 hash_formato: sha256-utf8-lf-v1
 ---

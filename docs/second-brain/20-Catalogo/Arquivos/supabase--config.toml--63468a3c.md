@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "supabase/config.toml"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: ed5f878b08a2c8d0602b5d4e39e77187a8cd2eda176cdc750799a482362d8707
 hash_formato: sha256-utf8-lf-v1
 ---

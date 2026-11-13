@@ -1,15 +1,15 @@
 ---
 tipo: inventario-gerado
 fonte: "README.md"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
-sha256: 252bfd6e3194be799cb2a9ae523b00d0f516e3786e1b01760c24970b687407b8
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+sha256: 7c5cb47c59e156ad56085db1473b7bf20b7b797a57be884cf64e64e5e3bfa2b1
 hash_formato: sha256-utf8-lf-v1
 ---
 
 # README.md
 
-Categoria: **Documentacao**. 7811 bytes; 169 linhas.
+Categoria: **Documentacao**. 8675 bytes; 175 linhas.
 
 [Fonte no repositório](../../../../README.md). Formato: sha256-utf8-lf-v1. Texto usa UTF-8 com finais de linha LF; bin?rios preservam bytes originais. Compare o SHA-256 can?nico com o manifesto antes de confiar nesta ficha.
 

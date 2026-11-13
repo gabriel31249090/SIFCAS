@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/maisa/page.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 81dd97980d59f3cec2a13df0fc24c612f589d0c5c84b70e16d3f644186de7bf3
 hash_formato: sha256-utf8-lf-v1
 ---

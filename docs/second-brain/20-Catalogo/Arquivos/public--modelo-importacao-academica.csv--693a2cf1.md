@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/modelo-importacao-academica.csv"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: f21d1e76c8e0edb353a7c1c834d095e7c25f35449ea8d1a31a70c0e118396966
 hash_formato: sha256-utf8-lf-v1
 ---

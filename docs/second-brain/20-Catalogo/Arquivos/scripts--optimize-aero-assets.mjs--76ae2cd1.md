@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "scripts/optimize-aero-assets.mjs"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 7381d2eb2b41efe7497768b560b895fb253648108a5f4be172847b2af2516f7e
 hash_formato: sha256-utf8-lf-v1
 ---

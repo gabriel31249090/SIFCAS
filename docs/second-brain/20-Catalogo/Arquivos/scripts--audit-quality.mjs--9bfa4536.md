@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "scripts/audit-quality.mjs"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 113d029154565977a06882bb8be8a184331f01685c6523f30c510bd46566d907
 hash_formato: sha256-utf8-lf-v1
 ---

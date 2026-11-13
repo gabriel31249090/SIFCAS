@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "supabase/isolated/academic-import.rollback.sql"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 9dea0bfa3e6fe7107bac2f9fd1cf6c4163f18fa69a91ed5f0981e35ace0988fa
 hash_formato: sha256-utf8-lf-v1
 ---

@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/academic-browser/personalization.spec.ts"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 1c7ad7e150442b8e1d8ce506f1ce788e3d85e3ae162d8dc5e2713787b348b2ee
 hash_formato: sha256-utf8-lf-v1
 ---

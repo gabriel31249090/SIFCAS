@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "scripts/second-brain-generate.mjs"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: d3f14d2807abf310695b3085f216f86d269064297c58da60a2c30d8293eb3ce8
 hash_formato: sha256-utf8-lf-v1
 ---

@@ -5,8 +5,8 @@
     "binary": "sha256-raw-v1"
   },
   "textHashCanonicalization": "UTF-8 text, CRLF/CR converted to LF; binary hashes use original bytes",
-  "generatedAt": "2026-11-12T16:48:34.196Z",
-  "head": "f341b358dcc9c0b4bb783ddd459cc7918cdb77eb",
+  "generatedAt": "2026-11-13T10:48:20.170Z",
+  "head": "c1fe354f5cddb3ce1509f71ba135d9ca59c76203",
   "extraction": "local-static-regex; no remote queries; no source bodies persisted",
   "exclusions": [
     ".env*",
@@ -19,10 +19,10 @@
   "files": [
     {
       "path": ".github/workflows/quality.yml",
-      "hash": "85c297efb43d3e5d3127dd1d5be4bb714e6f68669f810c010f17f9649775ec65",
+      "hash": "b25679a9032bb695e6085d99a95589fa1d636083bda8412dfa39b30869594e25",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 842,
-      "lines": 32,
+      "bytes": 950,
+      "lines": 34,
       "category": "Operacao",
       "route": null,
       "domains": [
@@ -4829,6 +4829,29 @@
       "verbs": []
     },
     {
+      "path": "docs/entrega-ifos-memoria-2026-11-12.md",
+      "hash": "4b632aa15ea886eb6ce9c5165a151f9e71bea3d918d44ec3b3b75fb7d9690416",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 6818,
+      "lines": 65,
+      "category": "Documentacao",
+      "route": null,
+      "domains": [
+        "10-Mapas/Personalizacao-Aero-e-IFOS"
+      ],
+      "symbols": [],
+      "defaultFunction": null,
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
       "path": "docs/frutiger-e-homologacao-local.md",
       "hash": "158167dc1e8f2cb1d179bbd2f133ed549c4489c3c1fb05efaa254156340ccb0c",
       "hashFormat": "sha256-utf8-lf-v1",
@@ -4923,10 +4946,10 @@
     },
     {
       "path": "docs/personalizacao-estudante.md",
-      "hash": "c15a4d70499e9b1b36288e02e29b55cd0092ab8e4e884da84b23d4dec1c760df",
+      "hash": "f42af4331894b42b7c2c70d10e151938621c5faa200617d58c5610b5b27c6c9f",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 5707,
-      "lines": 26,
+      "bytes": 6851,
+      "lines": 34,
       "category": "Documentacao",
       "route": null,
       "domains": [
@@ -6660,9 +6683,9 @@
     },
     {
       "path": "package.json",
-      "hash": "fea39b2fecaf8e4464ac77ecd384b0df55cade953e60b4c86746aad4e91d22b6",
+      "hash": "781a183e967d231b18a60ce6560ab388d0fae50dd4beb4c182b7dcd3278ab7c2",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 2657,
+      "bytes": 2705,
       "lines": 64,
       "category": "Operacao",
       "route": null,
@@ -11943,10 +11966,10 @@
     },
     {
       "path": "README.md",
-      "hash": "252bfd6e3194be799cb2a9ae523b00d0f516e3786e1b01760c24970b687407b8",
+      "hash": "7c5cb47c59e156ad56085db1473b7bf20b7b797a57be884cf64e64e5e3bfa2b1",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 7811,
-      "lines": 169,
+      "bytes": 8675,
+      "lines": 175,
       "category": "Documentacao",
       "route": null,
       "domains": [

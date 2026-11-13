@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "components/UI.tsx"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: f1ac65f386532799cb831277d99baf8cfc0a7b2f73b5db6164de84ddf30a022e
 hash_formato: sha256-utf8-lf-v1
 ---

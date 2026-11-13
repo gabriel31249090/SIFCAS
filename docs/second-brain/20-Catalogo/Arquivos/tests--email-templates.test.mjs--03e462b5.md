@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/email-templates.test.mjs"
-verificado_em: 2026-11-12T16:48:34.196Z
-commit_base: f341b358dcc9c0b4bb783ddd459cc7918cdb77eb
+verificado_em: 2026-11-13T10:48:20.170Z
+commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
 sha256: 446f5849f59a08cd25c46e890e94ad82b98911fee4a4f68e83fcd7a73489c1b1
 hash_formato: sha256-utf8-lf-v1
 ---
