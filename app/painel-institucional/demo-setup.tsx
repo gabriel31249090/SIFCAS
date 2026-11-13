@@ -35,14 +35,14 @@ export default function DemoSetup() {
     <p>Ative 50 estudantes, 11 professores, 8 servidores e preencha turmas, aulas, avaliações, frequências e notas fictícias nos módulos existentes.</p>
     <p><small>Todos os registros são sintéticos, separados por identificadores DEMO, e não representam documentos ou resultados oficiais do IFMT. A operação não altera contas reais.</small></p>
     <label style={{ display: "block", marginBottom: 12 }}>Senha do Professor Teste
-      <input type="password" value={testPassword} minLength={8} maxLength={72} autoComplete="new-password"
+      <input type="password" value={testPassword} minLength={12} maxLength={128} autoComplete="new-password"
         onChange={(event) => setTestPassword(event.target.value)}
         placeholder="Digite a senha desejada para o login de teste"
         disabled={busy} style={{ display: "block", width: "100%", maxWidth: 380, marginTop: 6 }}/>
-      <small>A senha será aplicada somente à conta fictícia de professor. Evite reutilizar senhas pessoais.</small>
+      <small>Use pelo menos 12 caracteres e uma senha exclusiva. O SIFCAS verifica vazamentos conhecidos antes de definir uma nova senha.</small>
     </label>
     <button type="button" className="button primary" onClick={activate}
-      disabled={busy || testPassword.length < 8 || testPassword.length > 72} aria-busy={busy}>
+      disabled={busy || testPassword.length < 12 || testPassword.length > 128} aria-busy={busy}>
       {busy ? "Criando contas e diários..." : "Ativar demonstração completa"}
     </button>
     {result?.state === "progress" && <p role="status">Contas ativadas: {result.done}/{result.total}. Restantes: {result.remaining}.</p>}
