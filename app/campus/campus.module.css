@@ -80,3 +80,74 @@
 @media (max-width: 1150px) { .grid, .shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) { .detailGrid { grid-template-columns: 1fr; } .heroFoot { gap: 8px; } }
 @media (max-width: 500px) { .grid, .shortcuts { grid-template-columns: 1fr; } .hero { border-radius: 16px; } .hero > p { font-size: 16px; } .searchRow { flex-wrap: wrap; } .searchRow button { min-height: 44px; } .filters { gap: 6px; } .filters a { padding: 9px 12px; } .facts > div { grid-template-columns: 1fr; gap: 4px; } .resultCount { align-items: flex-start; } }
+
+
+/* Academic demo calendar is intentionally separate from the official calendar link. */
+.demoCalendar { margin: 28px 0 10px; padding: 20px; border-radius: 15px; background: #eff7fb; border: 1px solid #bcd6e6; }
+.demoCalendarHeader h2 { margin: 8px 0; color: #16374c; font-size: 20px; }
+.demoCalendarHeader p { color: #375b70; font-size: 14px; line-height: 1.65; }
+.demoCalendarList { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.demoCalendarList li { display: flex; align-items: center; gap: 12px; padding: 13px; border: 1px solid #c9deea; border-radius: 10px; background: #fff; }
+.demoCalendarList time { width: 155px; flex-shrink: 0; color: #275671; font-size: 12px; font-weight: 750; }
+.demoCalendarList li > span { display: grid; gap: 4px; flex: 1; min-width: 0; }
+.demoCalendarList strong { color: #1c4057; font-size: 13px; line-height: 1.45; }
+.demoCalendarList small { color: #456c80; font-size: 12px; }
+.demoCalendarList a { color: #09618c; font-size: 13px; font-weight: 750; text-decoration: underline; }
+@media(max-width:670px) { .demoCalendarList li { align-items: start; flex-wrap: wrap; } .demoCalendarList time { width: 100%; } }
+
+/* Campus content uses CSS Modules and must participate in the global dark theme. */
+:global(html[data-experience-resolved-theme="dark"]) .directory,
+:global(html[data-experience-resolved-theme="dark"]) .detailPage { color: #edf7ff; }
+:global(html[data-experience-resolved-theme="dark"]) .article,
+:global(html[data-experience-resolved-theme="dark"]) .source,
+:global(html[data-experience-resolved-theme="dark"]) .card,
+:global(html[data-experience-resolved-theme="dark"]) .empty {
+  color: #ebf5fb; background: #1c3b4f; border-color: #527487;
+}
+:global(html[data-experience-resolved-theme="dark"]) .detailHeader > p,
+:global(html[data-experience-resolved-theme="dark"]) .article > p,
+:global(html[data-experience-resolved-theme="dark"]) .steps li,
+:global(html[data-experience-resolved-theme="dark"]) .source > p,
+:global(html[data-experience-resolved-theme="dark"]) .review,
+:global(html[data-experience-resolved-theme="dark"]) .card p,
+:global(html[data-experience-resolved-theme="dark"]) .sectionHead p,
+:global(html[data-experience-resolved-theme="dark"]) .resultCount {
+  color: #c6dae6;
+}
+:global(html[data-experience-resolved-theme="dark"]) .shortcut,
+:global(html[data-experience-resolved-theme="dark"]) .filters a,
+:global(html[data-experience-resolved-theme="dark"]) .searchRow input {
+  color: #ebf7ff; background: #1b4055; border-color: #55788b;
+}
+:global(html[data-experience-resolved-theme="dark"]) .shortcut strong,
+:global(html[data-experience-resolved-theme="dark"]) .card h3,
+:global(html[data-experience-resolved-theme="dark"]) .empty h3 {
+  color: #f1f9fe;
+}
+:global(html[data-experience-resolved-theme="dark"]) .shortcut small,
+:global(html[data-experience-resolved-theme="dark"]) .cardTop,
+:global(html[data-experience-resolved-theme="dark"]) .facts dt,
+:global(html[data-experience-resolved-theme="dark"]) .resultCount,
+:global(html[data-experience-resolved-theme="dark"]) .review {
+  color: #c2d6e3;
+}
+:global(html[data-experience-resolved-theme="dark"]) .note { background: #284e5d; color: #e5f5fc; }
+:global(html[data-experience-resolved-theme="dark"]) .secondaryLink,
+:global(html[data-experience-resolved-theme="dark"]) .back,
+:global(html[data-experience-resolved-theme="dark"]) .contacts a {
+  color: #9adeff; border-color: #5d8497;
+}
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendar {
+  background: #183b50; border-color: #50778f;
+}
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarHeader h2,
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarList strong {
+  color: #f2f9ff;
+}
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarHeader p,
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarList time,
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarList small {
+  color: #c7e0ed;
+}
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarList li { background: #24495f; border-color: #54788e; }
+:global(html[data-experience-resolved-theme="dark"]) .demoCalendarList a { color: #b3e4ff; }
