@@ -2,13 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { newPasswordError } from "@/lib/password-policy";
+import { validateNewPassword } from "@/lib/compromised-password";
 import { createClient } from "@/lib/supabase/server";
 
 export async function updatePassword(formData: FormData) {
   const raw = formData.get("password");
   const password = typeof raw === "string" ? raw : "";
-  const passwordError = newPasswordError(password);
+  const passwordError = await validateNewPassword(password);
   if (passwordError) redirect(`/nova-senha?error=${encodeURIComponent(passwordError)}`);
 
   const supabase = await createClient();
