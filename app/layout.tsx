@@ -14,6 +14,7 @@ import "./aero.css";
 import "./student-experience.css";
 import "./personalization-studio.css";
 import "./ifos-desktop.css";
+import "./readability.css";
 
 const inter = localFont({ src: "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", display: "swap" });
 
