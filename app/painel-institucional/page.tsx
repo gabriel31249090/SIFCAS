@@ -5,6 +5,7 @@ import { PageHeader, SectionTitle, StatCard } from "@/components/UI";
 import { requireAccount, roleLabels } from "@/lib/auth";
 import { listManagedPublications, listPublicationCampuses, publicationKindLabels, publicationStatusLabels } from "@/lib/institutional";
 import { addPublicationAttachment, createPublication, setPublicationStatus } from "./actions";
+import DemoSetup from "./demo-setup";
 
 type SearchParams = Promise<{ message?: string; error?: string }>;
 
@@ -31,6 +32,8 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
 
     {params.message && <div className="infoBox successBox">{params.message}</div>}
     {params.error && <div className="infoBox errorBox">{params.error}</div>}
+
+    {account.role === "admin" && account.isGeneralAdmin && <DemoSetup/>}
 
     <div className="statGrid">
       <StatCard label="Publicações" value={String(publications.length)} foot="Total registrado" icon={FileText}/>
@@ -110,7 +113,7 @@ export default async function InstitutionalPanelPage({ searchParams }: { searchP
     </section>
 
     <div className="quickGrid" style={{ marginTop: 18 }}>
-      <Link href="/diretorio-academico"><FileText/>Diretório acadêmico</Link><Link href="/noticias"><Newspaper/>Ver notícias</Link><Link href="/editais"><Pin/>Ver editais</Link><Link href="/agenda-institucional"><CalendarDays/>Ver agenda</Link><Link href="/notificacoes"><Megaphone/>Minhas notificações</Link>
+      <Link href="/noticias"><Newspaper/>Ver notícias</Link><Link href="/editais"><Pin/>Ver editais</Link><Link href="/agenda-institucional"><CalendarDays/>Ver agenda</Link><Link href="/notificacoes"><Megaphone/>Minhas notificações</Link>
     </div>
   </>;
 }
