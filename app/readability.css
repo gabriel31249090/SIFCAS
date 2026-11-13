@@ -1,0 +1,206 @@
+/* SIFCAS readability layer.
+   Theme tokens are resolved on <html data-experience-resolved-theme>.
+   Keep all selectors scoped to the application; avoid altering intentional
+   white-on-blue hero buttons and illustrated content. */
+
+html:not([data-experience-resolved-theme="dark"]) {
+  color-scheme: light;
+  --text: #163448;
+  --muted: #415e72;
+  --line: #c3d7e3;
+  --soft: #e9f4fa;
+  --surface: #fff;
+}
+html[data-experience-resolved-theme="dark"] {
+  color-scheme: dark;
+  --text: #edf7fd;
+  --muted: #c1d5e1;
+  --line: #496d81;
+  --soft: #24465a;
+  --surface: #19384b;
+}
+
+.pageContainer .sectionTitle p,
+.pageContainer .pageHeader p,
+.pageContainer .mutedLabel,
+.pageContainer .statCard small,
+.pageContainer .publicationCard p,
+.pageContainer .publicationCardHead time,
+.pageContainer .publicationCardFoot,
+.pageContainer .notificationMeta time,
+.pageContainer .notificationBody p,
+.pageContainer .searchResult small {
+  color: var(--muted);
+}
+
+.pageContainer .dataTable th,
+.pageContainer .dataTable td {
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.pageContainer .diaryTabs {
+  scrollbar-color: #85a8ba transparent;
+}
+
+/* Light mode: readable selected and unselected records. */
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .diaryTab {
+  color: #173549;
+  background: #fff;
+  border-color: #b6cfdf;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .diaryTab.active {
+  color: #123c57;
+  background: #dff1fb;
+  border-color: #1382b5;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .diaryTab b {
+  color: #16384f;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .diaryTab span {
+  color: #415e71;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .dataTable {
+  color: #163448;
+  background: #fff;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .dataTable th {
+  color: #3b586e;
+  background: #eaf3f8;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .dataTable td {
+  color: #19374b;
+  background: #fff;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer .dataTable td small {
+  color: #455f71;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer :is(
+  .formStack label, .diaryToolbar label, .profileForm label,
+  .sidePanel label
+) {
+  color: #34546b;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer :is(
+  .formStack input:not([type="checkbox"]):not([type="radio"]),
+  .formStack select, .formStack textarea,
+  .diaryToolbar select, .attendanceSelect, .scoreInput,
+  .profileForm input, .profileForm textarea, .profileForm select
+) {
+  color: #18374b;
+  background: #fff;
+  border-color: #aec9da;
+}
+html:not([data-experience-resolved-theme="dark"]) .pageContainer :is(input,textarea)::placeholder {
+  color: #536d7d;
+  opacity: 1;
+}
+
+/* Dark mode: no pale text on white diary rows or fields. */
+html[data-experience-resolved-theme="dark"] .pageContainer :is(
+  .diaryTab, .dayColumn, .stackList > div
+) {
+  color: #eef8ff;
+  background: #1d3d50;
+  border-color: #4a6b7e;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .diaryTab.active {
+  color: #f7fcff;
+  background: #21536b;
+  border-color: #8fdaff;
+  box-shadow: inset 3px 0 0 #8fdaff;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .diaryTab:hover {
+  background: #28556b;
+  border-color: #8fdaff;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .diaryTab b {
+  color: #f4fbff;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .diaryTab span {
+  color: #c6dfea;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .dataTable {
+  color: #eff8fd;
+  background: #17364a;
+  border-color: #4b6e81;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .dataTable th {
+  color: #d3e8f4;
+  background: #23485c;
+  border-color: #48697b;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .dataTable td {
+  color: #e8f5fd;
+  background: #18384b;
+  border-color: #416478;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .dataTable tbody tr:hover td {
+  color: #f5fbff;
+  background: #285268;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .dataTable td small {
+  color: #c7dce8;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(
+  .formStack label, .diaryToolbar label, .profileForm label,
+  .sidePanel label, .calendarHead, .dayColumn header,
+  .dayColumn header span, .agendaItem small,
+  .publicationCardHead time, .publicationCardFoot,
+  .publicationCard p, .notificationMeta time,
+  .notificationBody p, .searchResult small,
+  .statCard small, .mutedLabel, .sectionTitle p, .pageHeader p
+) {
+  color: #c6dce9;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(
+  .formStack input:not([type="checkbox"]):not([type="radio"]),
+  .formStack select, .formStack textarea,
+  .diaryToolbar select, .attendanceSelect, .scoreInput,
+  .profileForm input, .profileForm textarea, .profileForm select,
+  .sidePanel input:not([type="checkbox"]), .sidePanel select, .sidePanel textarea
+) {
+  color: #f0f8fe !important;
+  background: #112f42 !important;
+  border-color: #597f94 !important;
+  box-shadow: inset 0 1px 2px #03152222;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(input,textarea)::placeholder {
+  color: #bdd3e1 !important;
+  opacity: 1;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(input, select, textarea):disabled {
+  color: #bbcfd9 !important;
+  background: #24465a !important;
+  opacity: 0.85;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(.dayColumn header, .agendaItem) {
+  background: #244b60;
+  border-color: #4b7085;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .button.soft {
+  color: #d8f2ff;
+  background: #26546c;
+  border: 1px solid #4c7a94;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer .badge {
+  color: #d7f2ff;
+  background: #285168;
+  border-color: #5686a0;
+}
+html[data-experience-resolved-theme="dark"] .pageContainer :is(
+  .publicationCard, .publicationCard h2,
+  .moduleCard h3, .statCard strong,
+  .calendarCard h2, .sidePanel h2
+) {
+  color: #eef8fe;
+}
+
+/* Keep keyboard navigation and accessibility states obvious in both themes. */
+.pageContainer :is(a,button,input,select,textarea,summary):focus-visible {
+  outline: 3px solid #ffca61;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .diaryTab, .card, input, button, select, textarea { transition-duration: .01ms; }
+}
