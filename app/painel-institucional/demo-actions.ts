@@ -1,13 +1,14 @@
 "use server";
 
 import { randomBytes } from "node:crypto";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
 import { requireAccount } from "@/lib/auth";
 import { supabaseUrl } from "@/lib/supabase/config";
 
 export type DemoSetupResult =
   | { state: "progress"; done: number; total: number; remaining: number; message: string }
-  | { state: "finished"; done: number; total: number; remaining: 0; email: string; password: string; academic: Record<string, number> }
+  | { state: "finished"; done: number; total: number; remaining: 0; email: string; password: string; academic: Record<string, number>; extras: Record<string, number> }
   | { state: "error"; message: string };
 
 type DemoIdentity = {
@@ -98,6 +99,8 @@ export async function prepareSifcasDemo(): Promise<DemoSetupResult> {
     state: "error",
     message: "As contas estão ativas, mas o preenchimento dos diários falhou: " + diaryError.message,
   };
+  const { data: extras, error: extrasError } = await admin.rpc("sifcas_demo_populate_extras");
+  if (extrasError) return { state: "error", message: "Os diários foram preenchidos, mas a agenda e os comunicados falharam: " + extrasError.message };
   const teacher = roster.find((r) => r.record_key === "teacher-test");
   if (!teacher?.matched_user_id) return {
     state: "error", message: "A conta Professor Teste não foi vinculada corretamente.",
@@ -107,8 +110,10 @@ export async function prepareSifcasDemo(): Promise<DemoSetupResult> {
   if (passwordError) return {
     state: "error", message: "Falha ao definir a senha do Professor Teste: " + passwordError.message,
   };
+  revalidatePath("/painel-institucional");
+  revalidatePath("/diario");
   return {
     state: "finished", done: roster.length, total: roster.length, remaining: 0,
-    email: "professorteste@gmail.com", password, academic: (academic ?? {}) as Record<string, number>,
+    email: "professorteste@gmail.com", password, academic: (academic ?? {}) as Record<string, number>, extras: (extras ?? {}) as Record<string, number>,
   };
 }
