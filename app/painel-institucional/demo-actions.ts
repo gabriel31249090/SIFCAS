@@ -25,10 +25,14 @@ const isDemoEmail = (record: DemoIdentity) =>
     ? record.institutional_email === "professorteste@gmail.com"
     : record.institutional_email.endsWith("@example.com");
 
-export async function prepareSifcasDemo(): Promise<DemoSetupResult> {
+export async function prepareSifcasDemo(requestedTestPassword: string): Promise<DemoSetupResult> {
   const account = await requireAccount();
   if (account.role !== "admin" || !account.isGeneralAdmin || account.accountStatus !== "active") {
     return { state: "error", message: "Apenas o administrador geral pode ativar os dados de demonstração." };
+  }
+
+  if (typeof requestedTestPassword !== "string" || !/^[\x21-\x7e]{8,72}$/.test(requestedTestPassword)) {
+    return { state: "error", message: "Informe uma senha de 8 a 72 caracteres para a conta Professor Teste." };
   }
 
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -67,7 +71,7 @@ export async function prepareSifcasDemo(): Promise<DemoSetupResult> {
       const responses = await Promise.all(batch.map(async (r) => {
         const { error } = await admin.auth.admin.createUser({
           email: r.institutional_email,
-          password: randomBytes(24).toString("base64url"),
+          password: r.record_key === "teacher-test" ? requestedTestPassword : randomBytes(24).toString("base64url"),
           email_confirm: true,
           user_metadata: { full_name: r.full_name, sifcas_demo: true },
           app_metadata: { sifcas_demo: true },
@@ -105,7 +109,7 @@ export async function prepareSifcasDemo(): Promise<DemoSetupResult> {
   if (!teacher?.matched_user_id) return {
     state: "error", message: "A conta Professor Teste não foi vinculada corretamente.",
   };
-  const password = randomBytes(24).toString("base64url");
+  const password = requestedTestPassword;
   const { error: passwordError } = await admin.auth.admin.updateUserById(teacher.matched_user_id, { password });
   if (passwordError) return {
     state: "error", message: "Falha ao definir a senha do Professor Teste: " + passwordError.message,
