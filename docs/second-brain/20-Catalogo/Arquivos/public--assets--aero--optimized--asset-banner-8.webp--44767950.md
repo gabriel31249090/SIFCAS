@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/optimized/asset-banner-8.webp"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 2a4fc51c6bb627c6d463944b9f5bacae5882858e509fdddb5bb9e636170d7ac5
 hash_formato: sha256-raw-v1
 ---

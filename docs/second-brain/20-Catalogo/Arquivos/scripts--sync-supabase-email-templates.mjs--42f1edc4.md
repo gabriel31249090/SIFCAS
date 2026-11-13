@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "scripts/sync-supabase-email-templates.mjs"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 7c7117e27e6e93cec766c7970ed4c8e0b608d0fec5dab2a879e93e290412a5db
 hash_formato: sha256-utf8-lf-v1
 ---

@@ -1,11 +1,11 @@
 ---
 tipo: indice-gerado
-verificado_em: 2026-11-13T10:48:20.170Z
+verificado_em: 2026-11-13T15:58:18.928Z
 ---
 
 # Inventário completo
 
-535 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `c1fe354f5cddb3ce1509f71ba135d9ca59c76203`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
+538 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `9f270e354b18c60fc4c493749c13ce8c544026df`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
 
 [[00-INICIO]] · [[20-Catalogo/Rotas]] · [[20-Catalogo/Banco-e-RPCs]] · [[20-Catalogo/Documentacao]] · [[02-Como-retomar]]
 
@@ -154,6 +154,7 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/docs--importacao-academica.md--9ce1481d|docs/importacao-academica.md]]
 - [[20-Catalogo/Arquivos/docs--integracoes-ifmt.md--18374d1f|docs/integracoes-ifmt.md]]
 - [[20-Catalogo/Arquivos/docs--legibilidade-aero-2026-11-12.md--20675765|docs/legibilidade-aero-2026-11-12.md]]
+- [[20-Catalogo/Arquivos/docs--perfil-2026-11-13.md--e8cf98ef|docs/perfil-2026-11-13.md]]
 - [[20-Catalogo/Arquivos/docs--personalizacao-estudante.md--28d0c4a4|docs/personalizacao-estudante.md]]
 - [[20-Catalogo/Arquivos/docs--PORTAL-IMPROVEMENTS.md--14b53dfd|docs/PORTAL-IMPROVEMENTS.md]]
 - [[20-Catalogo/Arquivos/docs--PRODUCTION.md--734727c0|docs/PRODUCTION.md]]
@@ -180,6 +181,7 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/app--maisa.css--62763f65|app/maisa.css]]
 - [[20-Catalogo/Arquivos/app--management.css--8bfe6c95|app/management.css]]
 - [[20-Catalogo/Arquivos/app--minhas-turmas--minhas-turmas.module.css--69fce82e|app/minhas-turmas/minhas-turmas.module.css]]
+- [[20-Catalogo/Arquivos/app--perfil--profile.css--0ceb7de4|app/perfil/profile.css]]
 - [[20-Catalogo/Arquivos/app--personalization-studio.css--7fe7b078|app/personalization-studio.css]]
 - [[20-Catalogo/Arquivos/app--phase2.css--77e82739|app/phase2.css]]
 - [[20-Catalogo/Arquivos/app--production.css--e42c8976|app/production.css]]
@@ -514,6 +516,7 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/tests--academic-browser--ifos-workspace.spec.ts--b64abb2f|tests/academic-browser/ifos-workspace.spec.ts]]
 - [[20-Catalogo/Arquivos/tests--academic-browser--import.spec.ts--510efb2a|tests/academic-browser/import.spec.ts]]
 - [[20-Catalogo/Arquivos/tests--academic-browser--personalization.spec.ts--f51c3add|tests/academic-browser/personalization.spec.ts]]
+- [[20-Catalogo/Arquivos/tests--academic-browser--profile.spec.ts--71944560|tests/academic-browser/profile.spec.ts]]
 - [[20-Catalogo/Arquivos/tests--academic-import-db.test.mjs--e9585367|tests/academic-import-db.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--academic-import.test.mjs--83b79a19|tests/academic-import.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--admin-account-status-db.test.mjs--1c70d260|tests/admin-account-status-db.test.mjs]]

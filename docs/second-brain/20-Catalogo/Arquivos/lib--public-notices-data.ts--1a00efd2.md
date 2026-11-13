@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "lib/public-notices-data.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 344dbfa31c2b3f6e360c8971ccbb043248a57e04195bef956d451c5c0165e1db
 hash_formato: sha256-utf8-lf-v1
 ---

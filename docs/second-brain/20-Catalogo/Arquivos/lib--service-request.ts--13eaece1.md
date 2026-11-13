@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "lib/service-request.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: d73ff910e0f6a553a881057237d5c9ecadfdf1f3f5a961ff6c487fb80c8967ba
 hash_formato: sha256-utf8-lf-v1
 ---

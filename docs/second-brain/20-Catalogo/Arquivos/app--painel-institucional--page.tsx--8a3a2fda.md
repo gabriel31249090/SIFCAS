@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/painel-institucional/page.tsx"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: a08b532c7e695bb4bdf76b5f8ce28e866de87fa6514d82edd6bea6e528a50c9d
 hash_formato: sha256-utf8-lf-v1
 ---

@@ -22,6 +22,8 @@ A revisão de legibilidade/teclado/zoom é delimitada em [legibilidade-aero-2026
 
 Acessibilidade envolve teclado, foco, semântica, contraste, texto, movimento reduzido, navegação móvel e controles do desktop. `animations: false` e preferência do sistema são caminhos diferentes a conferir. Verificar também formulários, abas/diálogos, atalhos e janelas na implementação final; não alegar conformidade só porque há uma preferência visual.
 
+Em 13/11, a correção de [perfil](../../../app/perfil/profile.css) passou a delimitar as superfícies claras/escuras, centralizar o retrato e substituir a faixa antiga quando há arte. [Registro da correção](../../../docs/perfil-2026-11-13.md) e [cenários do navegador](../../../tests/academic-browser/profile.spec.ts) descrevem o escopo; a fixture não confirma gravação no banco remoto.
+
 Outras fontes: [personalizacao-estudante](../../../docs/personalizacao-estudante.md), [CUSTOMIZATION_SYSTEM](../../../docs/CUSTOMIZATION_SYSTEM.md), [FocusTimer](../../../components/FocusTimer.tsx), [PixelBurst](../../../components/PixelBurst.tsx). PixelFX tem aviso/licença próprios em `lib/pixelfx/`.
 
 [[10-Mapas/Arquitetura-e-navegacao]] · [[10-Mapas/Auth-perfis-e-RLS]] · [[10-Mapas/Testes-deploy-e-operacoes]] · [[20-Catalogo/Indice]]

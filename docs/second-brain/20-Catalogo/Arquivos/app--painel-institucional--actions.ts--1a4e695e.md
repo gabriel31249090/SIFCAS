@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/painel-institucional/actions.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: b11c72a202bd8e0ac925a3e7073e70c7814a752775c1cb6cab031cfe708cf96f
 hash_formato: sha256-utf8-lf-v1
 ---

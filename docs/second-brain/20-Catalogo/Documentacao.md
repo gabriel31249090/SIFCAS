@@ -18,6 +18,7 @@ Notas de referência; abra a fonte para contexto e confira a data antes de reuti
 - [[20-Catalogo/Arquivos/docs--importacao-academica.md--9ce1481d|docs/importacao-academica.md]]
 - [[20-Catalogo/Arquivos/docs--integracoes-ifmt.md--18374d1f|docs/integracoes-ifmt.md]]
 - [[20-Catalogo/Arquivos/docs--legibilidade-aero-2026-11-12.md--20675765|docs/legibilidade-aero-2026-11-12.md]]
+- [[20-Catalogo/Arquivos/docs--perfil-2026-11-13.md--e8cf98ef|docs/perfil-2026-11-13.md]]
 - [[20-Catalogo/Arquivos/docs--personalizacao-estudante.md--28d0c4a4|docs/personalizacao-estudante.md]]
 - [[20-Catalogo/Arquivos/docs--PORTAL-IMPROVEMENTS.md--14b53dfd|docs/PORTAL-IMPROVEMENTS.md]]
 - [[20-Catalogo/Arquivos/docs--PRODUCTION.md--734727c0|docs/PRODUCTION.md]]

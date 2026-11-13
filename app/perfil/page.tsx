@@ -3,6 +3,7 @@ import { Bell, Bug, Link2, LockKeyhole, Mail, MapPin, ShieldCheck, UserRound } f
 import { initials, requireAccount, roleLabels } from "@/lib/auth";
 import { ExperienceBanner, ExperiencePortrait } from "@/components/AeroArtwork";
 import { updateProfile } from "./actions";
+import "./profile.css";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -12,13 +13,13 @@ export default async function ProfilePage({ searchParams }: { searchParams: Sear
   const message = typeof params.message === "string" ? params.message : "";
   const error = typeof params.error === "string" ? params.error : "";
 
-  return <section className="pageSection">
+  return <section className="pageSection profilePage">
     <header className="pageHeader"><div><span className="eyebrow">Minha conta</span><h1>Perfil e segurança</h1><p>Seus dados pessoais ficam separados das permissões institucionais.</p></div></header>
     <div className="profileGrid">
       <aside className="card profileIdentity">
         <ExperienceBanner/>
         <ExperiencePortrait initials={initials(account.fullName)}/><h2>{account.fullName}</h2><span className="roleBadge"><ShieldCheck size={14}/>{roleLabels[account.role]}</span>
-        <div className="identityMeta"><span><Mail size={16}/>{account.email || "E-mail não disponível"}</span><span><MapPin size={16}/>{account.campus}</span></div>
+        <div className="identityMeta"><span><Mail size={16}/><span>{account.email || "E-mail não disponível"}</span></span><span><MapPin size={16}/><span>{account.campus}</span></span></div>
         <form action="/auth/signout" method="post"><button className="button dangerOutline" type="submit">Sair da conta</button></form>
       </aside>
       <div className="card profilePanel">

@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "lib/supabase/config.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 04f23ad3445423b20d1f34256390f7290873c4b10cd43316aa660517ffb0c9e3
 hash_formato: sha256-utf8-lf-v1
 ---

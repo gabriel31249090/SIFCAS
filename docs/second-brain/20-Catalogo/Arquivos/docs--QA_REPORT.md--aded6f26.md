@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "docs/QA_REPORT.md"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 912ab2003b5ef164c9d3480372c4e8822798b7827dfcb907309a88bc6ec0842c
 hash_formato: sha256-utf8-lf-v1
 ---

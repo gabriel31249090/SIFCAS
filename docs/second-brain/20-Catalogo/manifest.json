@@ -5,8 +5,8 @@
     "binary": "sha256-raw-v1"
   },
   "textHashCanonicalization": "UTF-8 text, CRLF/CR converted to LF; binary hashes use original bytes",
-  "generatedAt": "2026-11-13T10:48:20.170Z",
-  "head": "c1fe354f5cddb3ce1509f71ba135d9ca59c76203",
+  "generatedAt": "2026-11-13T15:58:18.928Z",
+  "head": "9f270e354b18c60fc4c493749c13ce8c544026df",
   "extraction": "local-static-regex; no remote queries; no source bodies persisted",
   "exclusions": [
     ".env*",
@@ -2884,10 +2884,10 @@
     },
     {
       "path": "app/perfil/page.tsx",
-      "hash": "4ff4320407a2bb391398dfc3a8adf7312e20a6c2747390218ed8c1586887b605",
+      "hash": "700973ae6a31d91a82e60c44e6d2af0fc4adc53e23e01397c62f239d3ec34bd4",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 3396,
-      "lines": 43,
+      "bytes": 3459,
+      "lines": 44,
       "category": "Rotas",
       "route": "/perfil",
       "domains": [
@@ -2899,6 +2899,7 @@
       "defaultFunction": "ProfilePage",
       "dependencies": [
         "app/perfil/actions.ts",
+        "app/perfil/profile.css",
         "components/AeroArtwork.tsx",
         "lib/auth.ts"
       ],
@@ -2911,6 +2912,29 @@
       "guards": [
         "requireAccount"
       ],
+      "verbs": []
+    },
+    {
+      "path": "app/perfil/profile.css",
+      "hash": "13fc3bedeab8b72b0fa48bec2aaae3e01ad7339d235ebababf4cafe82aa7a45d",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 4784,
+      "lines": 71,
+      "category": "Estilos-e-assets",
+      "route": null,
+      "domains": [
+        "10-Mapas/Personalizacao-Aero-e-IFOS"
+      ],
+      "symbols": [],
+      "defaultFunction": null,
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
       "verbs": []
     },
     {
@@ -4931,6 +4955,29 @@
       "route": null,
       "domains": [
         "10-Mapas/Personalizacao-Aero-e-IFOS"
+      ],
+      "symbols": [],
+      "defaultFunction": null,
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "docs/perfil-2026-11-13.md",
+      "hash": "2f3e18398d3caaf6d71576343749dd2ab83b503f09b38b451101390850dd483c",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 1503,
+      "lines": 12,
+      "category": "Documentacao",
+      "route": null,
+      "domains": [
+        "10-Mapas/Arquitetura-e-navegacao"
       ],
       "symbols": [],
       "defaultFunction": null,
@@ -12956,6 +13003,30 @@
       ],
       "symbols": [],
       "defaultFunction": "actor",
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tests/academic-browser/profile.spec.ts",
+      "hash": "ac2d53b0965fe8c2e5122f6f3d82ea8e7ce2ef0992d94e0e69fc8f0b9cf59e48",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 14337,
+      "lines": 222,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Academico-e-importacoes",
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [],
+      "defaultFunction": "signIn",
       "dependencies": [],
       "tables": [],
       "rpcs": [],

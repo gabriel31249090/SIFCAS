@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "components/Topbar.tsx"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: f05d0dd6149d9384f96dae6e840e2dba6c23b43add38bbf5f6b1ce3f8e3b1957
 hash_formato: sha256-utf8-lf-v1
 ---

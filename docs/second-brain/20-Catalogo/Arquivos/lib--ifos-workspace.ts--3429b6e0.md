@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "lib/ifos-workspace.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: c0ab7cbc1532f77e1c53b1a3ed3a7723d1ccea02e99e5f88124a81a6491c293e
 hash_formato: sha256-utf8-lf-v1
 ---

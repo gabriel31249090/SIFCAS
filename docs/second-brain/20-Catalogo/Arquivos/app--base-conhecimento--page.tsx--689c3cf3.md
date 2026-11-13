@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/base-conhecimento/page.tsx"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 6c1572a0cb569b0f03a5491f64a9a17c2a9e02a1d9828a7b84ff97a33bb73ef8
 hash_formato: sha256-utf8-lf-v1
 ---

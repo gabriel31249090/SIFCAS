@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/api/maisa/actions/service-request/route.ts"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: 4aa24ee4a90148ae2508f448e1179f5983008829e4ccc67983a25fde8fbf03e7
 hash_formato: sha256-utf8-lf-v1
 ---

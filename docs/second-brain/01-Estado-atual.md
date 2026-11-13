@@ -7,6 +7,8 @@ evidencia: codigo-e-testes-locais-sinteticos
 
 # Estado atual
 
+Em 13/11, o perfil recebeu estilos delimitados para corrigir faixa duplicada, retrato e contraste dos campos/atalhos. Os 19 cenários Playwright de desenvolvimento e quatro no build de produção local passaram com contas sintéticas. ESLint, TypeScript, os 170 testes existentes e o build com 106 páginas passaram. Ver [[30-Historico/2026-11-13-Perfil]] para o escopo e os limites; o envio do formulário verifica a apresentação de erro da fixture, sem comprovar gravação remota. A conversão do algoritmo de manutenção para Node.js foi autorizada e está em andamento.
+
 Checkpoint de entrega em 12/11/2026: IFOS salvo em `f341b35`; imagens, legibilidade e memória em `02d4183`, na branch `codex/aero-asset-collection`. A `main` foi integrada preservando as mensagens de login voltadas ao usuário. O manifesto em [[20-Catalogo/Indice]] registra hashes das fontes efetivamente catalogadas, inclusive documentação final posterior ao commit base.
 
 **Implementado e verificado localmente:** layout IFOS por conta com redimensionamento; recortes e miniaturas WebP; revisão delimitada de contraste, teclado e zoom; vault e comandos de recuperação. Em 13/11, a API GitHub registrou o IFOS `f341b35` como Production/success (12/11 às 15:05 em Cuiabá) e `02d4183` como Preview/success. Isso não identifica sozinho o commit servido pelo domínio após eventuais promoções manuais. A publicação das melhorias posteriores ainda precisa ser confirmada na conta correta; um plano pago não foi diagnosticado como requisito.

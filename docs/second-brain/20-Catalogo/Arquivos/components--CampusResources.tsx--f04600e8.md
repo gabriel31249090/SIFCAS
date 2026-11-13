@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "components/CampusResources.tsx"
-verificado_em: 2026-11-13T10:48:20.170Z
-commit_base: c1fe354f5cddb3ce1509f71ba135d9ca59c76203
+verificado_em: 2026-11-13T15:58:18.928Z
+commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
 sha256: cf2410a3e02e6506f00ba477a5acf6ec0a9f7581cbf20c9d326a57e5a3855ff2
 hash_formato: sha256-utf8-lf-v1
 ---
