@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "type": "file", "path": "00-INICIO.md", "title": "Começar aqui" },
+    { "type": "file", "path": "01-Estado-atual.md", "title": "Estado atual e limites" },
+    { "type": "file", "path": "02-Como-retomar.md", "title": "Retomar trabalho" },
+    { "type": "file", "path": "20-Catalogo/Indice.md", "title": "Catálogo do código" }
+  ]
+}

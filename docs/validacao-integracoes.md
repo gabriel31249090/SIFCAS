@@ -43,6 +43,10 @@ As primeiras execuções encontraram e corrigiram: impureza de `Date.now` nas p�
 
 Não houve importação de exportação oficial SUAP, sincronização autenticada, login institucional, RLS/grants do banco remoto, teste E2E autenticado com conta Supabase real nem piloto com pessoas/dados reais. O SQL versionado é contrato de homologação e o schema mínimo é sintético, não uma baseline inferida de produção.
 
+A ação de login agora registra código, status e mensagem de erro retornados pelo Supabase Auth (sem registrar e-mail ou senha) e diferencia credenciais inválidas, e-mail não confirmado, limitação de tentativas e falha do serviço. Isso melhora o diagnóstico, mas não confirma a causa de um HTTP 500 específico nem substitui um novo teste de login no Supabase autorizado.
+
+Em 06/11/2026, `/noticias` também passou a consultar somente o feed público do WordPress do Campus Cáceres. O teste ao vivo retornou oito publicações e os testes locais cobrem links no host permitido, dados inválidos e indisponibilidade da fonte. Isso valida apenas a integração pública de notícias, não acesso autenticado ao SUAP ou Moodle.
+
 PGlite processa consultas de uma instância em uma fila; `Promise.all` cobre confirmações repetidas, **não prova concorrência entre múltiplas conexões PostgreSQL**. Locks e ordem de bloqueio estão implementados, mas corrida real, mudanças concorrentes de matrícula/escopo e limites da hospedagem precisam de homologação. Não há retomada por cursor de arquivo grande: a unidade transacional é um diário limitado; prévias válidas são retomadas pelo histórico.
 
 `npm ci` também informou **20 avisos de vulnerabilidade** nas dependências existentes (16 moderados, 3 altos e 1 crítico), antes da inclusão de PGlite. A consulta extra `npm audit --json` não concluiu no ambiente e foi interrompida; não foram aplicadas atualizações automáticas ou breaking changes. As auditorias internas aprovadas não substituem essa análise de dependências. Reavaliar os advisories com o registry acessível antes de um piloto de produção.

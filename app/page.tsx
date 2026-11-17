@@ -50,11 +50,15 @@ export default async function Home() {
   const upcoming = today.items.filter((item) => item.date !== today.today);
   const pendingDates = today.items.filter((item) => ["task", "assessment", "notice"].includes(item.kind));
   const cardCount = teacher && workspaceResult && !["unavailable", "forbidden"].includes(workspaceResult.status) ? String(workspaceResult.cards.length) : "—";
+  const primaryActionHref = teacher ? "/minhas-turmas" : "/agenda-aluno";
+  const primaryActionLabel = teacher ? "Explorar minhas turmas" : "Explorar minha agenda";
+  const priorityLabel = alerts[0]?.label ?? "Seu próximo passo";
+  const priorityText = alerts[0]?.detail ?? (today.todayItems.length ? "Há atividades programadas para hoje." : "Seu dia está livre para planejar e priorizar.");
 
   return <div className={styles.home} data-experience-home="true">
     <div className={styles.heading} data-experience-fixed="heading"><div><span className={styles.eyebrow}><span/> SEU ESPAÇO NO CAMPUS</span><h1><StudentGreeting name={account.fullName.split(" ")[0]}/></h1><p>Um novo dia para aprender, criar e fazer acontecer.</p></div><div className={styles.date}><Sun size={20} aria-hidden="true"/><span>{date}<small>Campus Cáceres · America/Cuiaba</small></span></div></div>
     <section className={styles.hero} data-experience-fixed="hero" aria-labelledby="home-welcome">
-      <div className={styles.heroContent}><span className={styles.heroLabel}><Leaf size={13} aria-hidden="true"/> CONECTE-SE AO QUE IMPORTA</span><h2 id="home-welcome">Seu campus.<br/>Um mundo de possibilidades.</h2><p>Sua agenda, suas turmas e novos caminhos.<br/>Tudo mais perto, para você ir mais longe.</p><div className={styles.heroActions}><Link className="button primary" href={teacher ? "/minhas-turmas" : "/agenda-aluno"}>{teacher ? <BookOpen size={16}/> : <CalendarDays size={16}/>}{teacher ? "Explorar minhas turmas" : "Explorar minha agenda"}<ArrowRight size={16}/></Link><Link href="/aplicativos">Todos os aplicativos <ArrowUpRight size={15}/></Link></div></div>
+      <div className={styles.heroContent}><span className={styles.heroLabel}><Leaf size={13} aria-hidden="true"/> CONECTE-SE AO QUE IMPORTA</span><h2 id="home-welcome">Seu campus.<br/>Um mundo de possibilidades.</h2><p>Sua agenda, suas turmas e novos caminhos.<br/>Tudo mais perto, para você ir mais longe.</p><div className={styles.heroActions}><Link className="button primary" href={primaryActionHref}>{teacher ? <BookOpen size={16}/> : <CalendarDays size={16}/>}{primaryActionLabel}<ArrowRight size={16}/></Link><Link href="/aplicativos">Todos os aplicativos <ArrowUpRight size={15}/></Link></div><div className={styles.heroStatus}><span>Prioridade do dia</span><strong>{priorityLabel}</strong><small>{priorityText}</small></div></div>
       <div className={styles.heroLandscape} aria-hidden="true"/><div className={styles.heroGlassNote}><AeroIcon icon={Waves} tone="leaf" size={16}/><span>Conhecimento que conecta.<small>Comunidade, natureza e possibilidades.</small></span></div>
     </section>
     <div className={styles.metrics} data-experience-widget="metrics">

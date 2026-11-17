@@ -121,10 +121,9 @@
 .osTrayClock>b { font-size:11px; font-weight:600 }
 .osTrayClock>small { font-size:8px }
 .osSystemTray>.osShowDesktop { height:57px; width:25px; margin-right:-17px; border-radius:0; border-left:1px solid #ffffff8f; background:#ffffff21 }
-.osWindow { position:absolute; width:550px; max-height:calc(100% - 135px); overflow:hidden; border:1px solid #ffffffed; border-radius:13px; background:var(--os-panel); color:var(--os-ink); box-shadow:0 22px 70px #1a516d30,0 2px 10px #174b6b30,inset 0 1px white; backdrop-filter:blur(24px); display:flex; flex-direction:column; outline:none }
+.osWindow { position:absolute; box-sizing:border-box; overflow:hidden; border:1px solid #ffffffed; border-radius:13px; background:var(--os-panel); color:var(--os-ink); box-shadow:0 22px 70px #1a516d30,0 2px 10px #174b6b30,inset 0 1px white; backdrop-filter:blur(24px); display:flex; flex-direction:column; outline:none }
 .osWindow.osActiveWindow { box-shadow:0 25px 80px #134b7438,0 0 0 1px #74b5d64f; border-color:#eaffff }
-.osWindow.osMaximized { inset:72px 12px 69px; width:auto; max-height:none }
-.osWindowBar { display:flex; justify-content:space-between; gap:8px; min-height:43px; padding:0 5px 0 12px; border-bottom:1px solid #bfdce66b; background:linear-gradient(#ffffffd9,#d2eaf066) }
+.osWindowBar { display:flex; flex-shrink:0; justify-content:space-between; gap:8px; min-height:43px; padding:0 5px 0 12px; border-bottom:1px solid #bfdce66b; background:linear-gradient(#ffffffd9,#d2eaf066) }
 .osWindowDrag { display:flex; flex:1; align-items:center; gap:8px; min-width:0; padding:7px 0; border:0; background:transparent; color:var(--os-ink); cursor:grab!important; touch-action:none; user-select:none }
 .osWindowDrag:active { cursor:grabbing!important }
 .osWindowDrag>strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; font-weight:600 }
@@ -133,7 +132,10 @@
 .osWindowControls>button { display:grid; place-items:center; width:30px; height:27px; padding:0; border:1px solid transparent; border-radius:6px; background:transparent; color:#587d8b }
 .osWindowControls>button:hover { border-color:#ffffffd1; background:#ffffffb3 }
 .osWindowControls>button:last-child:hover { background:#d86f70; color:white }
-.osWindowBody { overflow:auto; padding:16px 25px 25px }
+.osWindowBody { min-height:0; overflow:auto; padding:16px 25px 30px }
+.osWindowResize { position:absolute; right:0; bottom:0; display:grid; place-items:center; width:28px; height:28px; padding:0; border:0; border-radius:9px 0 11px; background:var(--os-panel); color:var(--os-muted); touch-action:none; cursor:nwse-resize!important }
+.osWindowResize:hover { color:var(--os-ink) }
+.osWindowResize:focus-visible { outline-offset:-4px }
 .osWindowBody .studioFocusSection { --studio-ink:var(--os-ink); --studio-muted:var(--os-muted); --studio-accent:#2188a1; --studio-line:#b4d4df66; --studio-surface:transparent; --studio-soft:#cce8e433; padding:0; border:0; box-shadow:none }
 .osWindowBreadcrumb { display:flex; align-items:center; gap:7px; margin-bottom:24px; color:var(--os-muted); font-size:8px }
 .osWindowBreadcrumb b { font-weight:500 }
@@ -202,6 +204,9 @@
 .osError { position:absolute; z-index:110; right:22px; bottom:78px; display:flex; align-items:center; gap:10px; max-width:380px; padding:13px; border:1px solid #efcc95; border-radius:11px; background:#fff7e8; color:#795f34; box-shadow:0 5px 20px #49361113 }
 .osError>p { margin:0; font-size:11px; line-height:1.7 }
 .osError>button { display:grid; padding:5px; border:0; background:transparent; color:inherit }
+.osStorageNotice { position:absolute; z-index:110; left:22px; bottom:78px; display:flex; align-items:center; gap:10px; max-width:360px; padding:10px 12px; border:1px solid var(--os-line); border-radius:11px; background:var(--os-panel); color:var(--os-ink); box-shadow:0 5px 20px #1a516d20 }
+.osStorageNotice>p { margin:0; font-size:11px; line-height:1.7 }
+.osStorageNotice>button { display:grid; padding:5px; border:0; background:transparent; color:inherit }
 .osPixelBurst { position:absolute; z-index:120; top:calc(50% - 108px); left:calc(50% - 112px) }
 .osMobile { display:flex; flex-direction:column; align-items:center; gap:20px; justify-content:center; min-height:100svh; padding:35px 24px; color:#24586e; text-align:center; background:radial-gradient(ellipse at 70% 15%,#c0eafa,transparent 50%),linear-gradient(145deg,#eefaff,#edf6df) }
 .osMobileArt { position:relative; display:grid; place-items:center; width:110px; height:110px; margin-bottom:8px; border:1px solid white; border-radius:28px; background:#ffffff8c; color:#4093a5; box-shadow:inset 0 1px white,0 12px 30px #397c8b12 }

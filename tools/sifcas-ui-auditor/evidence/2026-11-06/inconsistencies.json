@@ -1,0 +1,179 @@
+{
+  "findings": [
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/",
+      "manualReviewRequired": true,
+      "evidence": "17 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/noticias",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/noticias",
+      "manualReviewRequired": true,
+      "evidence": "84 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/editais",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/editais",
+      "manualReviewRequired": true,
+      "evidence": "93 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-in-text-block",
+      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+      "route": "http://127.0.0.1:3000/editais",
+      "manualReviewRequired": true,
+      "evidence": "1 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "manualReviewRequired": true,
+      "evidence": "42 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-in-text-block",
+      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "manualReviewRequired": true,
+      "evidence": "1 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/campus",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/campus",
+      "manualReviewRequired": true,
+      "evidence": "20 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/transparencia",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/transparencia",
+      "manualReviewRequired": true,
+      "evidence": "18 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "manualReviewRequired": true,
+      "evidence": "21 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-name",
+      "description": "Links must have discernible text",
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "selector": [
+        ".userChip"
+      ],
+      "evidence": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "manualReviewRequired": true,
+      "evidence": "19 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "route-discovery",
+      "severity": "medium",
+      "kind": "route-error",
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "description": "HTTP 404 on the allowed route candidate."
+    }
+  ],
+  "classification": "observed geometry only; no inferred visual failures"
+}

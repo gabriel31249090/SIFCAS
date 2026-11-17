@@ -1,0 +1,3132 @@
+{
+  "engine": "axe-core",
+  "results": [
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 21,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 84
+        }
+      ],
+      "inapplicable": 41,
+      "tested": true
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 30,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 92
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "nodes": 1
+        }
+      ],
+      "inapplicable": 32,
+      "tested": true
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 21,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 37
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "nodes": 1
+        }
+      ],
+      "inapplicable": 40,
+      "tested": true
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 20
+        }
+      ],
+      "inapplicable": 38,
+      "tested": true
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 21,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 53
+        }
+      ],
+      "inapplicable": 41,
+      "tested": true
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "engine": "axe-core",
+      "violations": [],
+      "passes": 23,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": 21
+        }
+      ],
+      "inapplicable": 39,
+      "tested": true
+    }
+  ],
+  "states": [
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 40,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 66, 93)",
+            "boxShadow": "none",
+            "outline": "rgb(22, 66, 93) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n16 de out. de 2026\nIFMT Campus Cáceres abre período de solicitação de estágio obrigat",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n14 de set. de 2026\nIFMT Campus Cáceres realiza 11º Encontro de Egressos e Comunidade ",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n10 de set. de 2026\nIFMT Campus Cáceres recebe reunião presencial do Comitê de Ensino\n",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n10 de set. de 2026\nIFMT Campus Cáceres sedia 5ª Reunião Ordinária do Colégio de Dirig",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n9 de set. de 2026\nIFMT Campus Cáceres recebe reunião presencial do Comitê de Ensino\n\n",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n9 de set. de 2026\nIFMT Campus Cáceres sediará 5ª Reunião Ordinária do Colégio de Diri",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n8 de set. de 2026\nÚltimos dias: IFMT Campus Cáceres oferece 185 vagas em cursos técni",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus Cáceres\n8 de set. de 2026\nIFMT Campus Cáceres abre período para solicitação de defesa de está",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.063) 0px 14px 40px 0px, rgba(23, 75, 106, 0.03) 0px 1px 2px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Explorar campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\nNotícias do Campus Cáceres\n\nAcompanhe as publicações diretamente no portal do campus.",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\nEditais e seleções do IFMT\n\nAcompanhe chamadas e resultados no painel institucional.\n",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\nCalendário acadêmico de 2026\n\nEncontre períodos letivos, avaliações, reuniões e reces",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Guia do campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(99, 138, 157) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(83, 136, 160)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(99, 138, 157) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(75, 135, 161)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Portal oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Início",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(33, 109, 146)",
+            "boxShadow": "none",
+            "outline": "rgb(33, 109, 146) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(33, 109, 146)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Aplicativos",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Buscar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        }
+      ]
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 40,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(9, 119, 166)",
+            "boxShadow": "none",
+            "outline": "rgb(9, 119, 166) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(8, 122, 170)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 122, 170) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 66, 93)",
+            "boxShadow": "none",
+            "outline": "rgb(22, 66, 93) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Painel oficial do IFMT",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "select",
+          "tag": "select",
+          "label": "Todos os campi\nCáceres\nVárzea Grande",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(15, 91, 77, 0.1) 0px 0px 0px 3px",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "select",
+          "tag": "select",
+          "label": "Todos os temas\nEnsino\nExtensão",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(15, 91, 77, 0.1) 0px 0px 0px 3px",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "select",
+          "tag": "select",
+          "label": "Todos os anos\n2026",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(15, 91, 77, 0.1) 0px 0px 0px 3px",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "select",
+          "tag": "select",
+          "label": "Todas as situações\nAberto na fonte\nEncerrado\nCancelado\nInscrições futuras\nA confirmar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(15, 91, 77, 0.1) 0px 0px 0px 3px",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Aplicar filtros",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Limpar filtros",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda institucional",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Mostrar só favoritos",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Ver edital oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Favoritar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Ver edital oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Favoritar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(56, 116, 141) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(56, 116, 141)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(33, 92, 126, 0.03) 0px 2px 4px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Painel de Editais do IFMT ↗",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(8, 122, 170)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 122, 170) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(8, 122, 170)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        }
+      ]
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 35,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(19, 79, 111)",
+            "boxShadow": "none",
+            "outline": "rgb(19, 79, 111) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Central de Editais",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(97, 120, 106)",
+            "boxShadow": "none",
+            "outline": "rgb(97, 120, 106) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(97, 120, 106)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Explorar campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\nCalendário acadêmico de 2026\n\nEncontre períodos letivos, avaliações, reuniões e reces",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\nHorários oficiais das aulas\n\nGrade de 2026 disponibilizada pela Direção de Ensino.\n\nV",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Atendimento\nBiblioteca Monteiro Lobato\n\nConsulta, empréstimo, renovação e apoio à pesquisa.\n\nVer ori",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Guia do campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Portal oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Início",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Aplicativos",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Buscar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Open issues overlay",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Collapse issues badge",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        }
+      ]
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 40,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(19, 79, 111)",
+            "boxShadow": "none",
+            "outline": "rgb(19, 79, 111) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Portal oficial do campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar o SUAP\nMatrícula, notas e documentos",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no AVA\nMateriais e atividades",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Calendário 2026\nDatas e períodos letivos",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Conhecer os cursos\nFormação técnica e superior",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Falar com a Secretaria\nContatos e atendimento",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Usar a biblioteca\nAcervo, horários e serviços",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(17, 107, 77) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(17, 107, 77)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "#campus-query",
+          "tag": "input",
+          "label": "",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Buscar",
+          "hover": {
+            "backgroundColor": "rgb(17, 107, 77)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(17, 107, 77)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos\n40",
+          "hover": {
+            "backgroundColor": "rgb(17, 107, 77)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(17, 107, 77)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Sistemas\n6",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Cursos\n8",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Vida acadêmica\n9",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Atendimento\n10",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Documentos\n4",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Docentes\n3",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(56, 82, 72) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(56, 82, 72)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Sistemas\nSUAP: acesso de estudantes e servidores\n\nEntre no sistema acadêmico oficial com o usuário c",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Sistemas\nPrimeiro acesso e senha do SUAP\n\nAcesse o formulário oficial para criar ou recuperar sua se",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Sistemas\nAVA Moodle: materiais e atividades\n\nSaiba como acessar o Moodle integrado ao SUAP e localiz",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Sistemas\nE-mail institucional\n\nTutoriais para criar, localizar e recuperar o acesso ao e-mail acadêm",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(28, 48, 43) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(28, 48, 43)",
+            "boxShadow": "none",
+            "outline": "rgb(168, 94, 0) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        }
+      ]
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 35,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 66, 93)",
+            "boxShadow": "none",
+            "outline": "rgb(22, 66, 93) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.004) 0px 1.18024px 3.37212px 0px, rgba(23, 75, 106, 0.004) 0px 0.084303px 0.168606px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.004) 0px 1.17685px 3.36242px 0px, rgba(23, 75, 106, 0.004) 0px 0.0840606px 0.168121px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda institucional",
+          "hover": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Campus",
+          "hover": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Verificar documento",
+          "hover": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(234, 245, 252)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "rgba(34, 95, 129, 0.004) 0px 1.17821px 3.3663px 0px, rgba(23, 75, 106, 0.004) 0px 0.0841575px 0.168315px 0px",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Guia do campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Portal oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(67, 134, 162)",
+            "boxShadow": "none",
+            "outline": "rgb(67, 134, 162) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(47, 132, 166)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Início",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Aplicativos",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Buscar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Open issues overlay",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Collapse issues badge",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        }
+      ]
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tested": true,
+      "count": 32,
+      "states": [
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Pular para o conteúdo",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Abrir menu de navegação",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(22, 107, 147) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 107, 147)",
+            "boxShadow": "rgb(255, 255, 255) 0px 1px 0px 0px inset, rgba(41, 104, 133, 0.08) 0px 2px 5px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Fechar menu",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "SIFCAS, início",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Notícias e eventos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Agenda do campus",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Todos os aplicativos",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Acessar minha conta",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Executar busca",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "Busca global",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 66, 93)",
+            "boxShadow": "none",
+            "outline": "rgb(22, 66, 93) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Abrir notificações",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) solid 0px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar no SIFCAS",
+          "hover": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(24, 60, 84) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "color": "rgb(24, 60, 84)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "input",
+          "tag": "input",
+          "label": "",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(49, 95, 119) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(49, 95, 119)",
+            "boxShadow": "rgba(48, 99, 123, 0.02) 0px 1px 3px 0px inset",
+            "outline": "rgb(120, 191, 224) solid 2px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Verificar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(255, 255, 255) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "boxShadow": "rgba(255, 255, 255, 0.55) 0px 1px 0px 0px inset, rgba(19, 123, 170, 0.12) 0px 3px 6px 0px",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Guia do campus",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Editais",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Portal oficial",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(108, 139, 155)",
+            "boxShadow": "none",
+            "outline": "rgb(108, 139, 155) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(99, 138, 157)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Início",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Aplicativos",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "LUMA",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Buscar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "a",
+          "tag": "a",
+          "label": "Entrar",
+          "hover": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(112, 144, 164) none 0px"
+          },
+          "focus": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "color": "rgb(112, 144, 164)",
+            "boxShadow": "none",
+            "outline": "rgb(8, 125, 175) solid 3px"
+          },
+          "active": "N/D (nenhuma ação ativada)"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Open issues overlay",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        },
+        {
+          "selector": "button",
+          "tag": "button",
+          "label": "Collapse issues badge",
+          "hover": null,
+          "focus": null,
+          "active": "não capturado"
+        }
+      ]
+    }
+  ],
+  "notes": "Only allowed public routes and the 375x812 viewport were tested."
+}

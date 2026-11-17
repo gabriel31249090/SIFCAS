@@ -8,21 +8,66 @@ Branch de trabalho: `codex/importacao-academica-editais`. Data da inspeção: **
 - As duas conexões Supabase disponíveis negaram `get_project` para **xqhilujzacwebeexljaf**. Nenhum outro projeto foi consultado como substituto. Não há senha PostgreSQL, DB URL, token de gestão autorizado nem credenciais de SUAP/Moodle. A configuração publicável não concede acesso administrativo.
 - Não existe baseline remota verificada. `supabase/isolated` contém **contratos e schema mínimo sintético de teste**, não uma reconstrução do banco oficial. Compatibilidade remota permanece **pendente**.
 - Os 40 guias públicos foram reaproveitados de `origin/codex/ifmt-campus-guides`, comparada com a base atual. Conservam a data editorial anterior de 16/10/2026; não representam uma nova verificação de todos os contatos e cursos.
+- Em 06/11/2026, a especificação pública `https://suap.ifmt.edu.br/api/openapi.json` respondeu com OpenAPI 3.1.0, identificando o serviço como **SUAP API 1.0.0**. Ela documenta endpoints autenticados de ensino; isso não comprova liberação de cliente, escopo, consentimento, uso em produção ou permissões para esta aplicação.
+- Em 06/11/2026, `https://cas.ifmt.edu.br/wp-json/` identificou o site como **IFMT Campus Cáceres** e anunciou a API REST WordPress. O feed de posts publicado é público; não é um sistema de reclamações nem uma fonte de diário acadêmico.
 
 ## Contratos das fontes
 
 | Fonte / instância | Método e campos permitidos nesta entrega | Escopos / papéis | Estado / responsável a confirmar |
 | --- | --- | --- | --- |
-| SUAP `https://suap.ifmt.edu.br` | Somente links humanos. Sem API, escopos, amostra de exportação ou OAuth validados para SIFCAS | Nenhum acesso delegado configurado; identidade não é inferida de e-mail | Integração aguardando autorização. TI IFMT + Ensino + proteção de dados precisam indicar responsáveis |
-| AVA `https://online.ifmt.edu.br` | Links e arquivo `.ics` autorizado pelo próprio usuário, no subconjunto documentado. Sem consultar URL de calendário/token | Agenda pessoal privada. Nenhuma nota ou matrícula alterada | Arquivo validado com fixture; disponibilidade da exportação e instância de cada turma precisam de confirmação |
+| SUAP `https://suap.ifmt.edu.br` | OpenAPI público; leitura documentada de diários, aulas, materiais, trabalhos, períodos e próximas avaliações. A autenticação/escopos precisam ser aprovados | OpenAPI lista JWT bearer, `OAuth2TokenAuth` bearer e sessão. A rota pública `/api/token/pair` requer usuário e senha | Explorar OAuth cliente/consentimento com TI. SIFCAS não deve coletar ou armazenar senha SUAP, nem testar tokens de usuários |
+| AVA Moodle `https://online.ifmt.edu.br` | Moodle fornece External Services, mas cada serviço/função tem que ser habilitado pelo administrador. O feed/API autenticado do AVA ainda não foi homologado | Token individual restrito às funções e cursos autorizados, somente após configuração do administrador; não pedir senha do Moodle | Confirmar com administrador Moodle versão, token/service, funções de leitura, escopos e limites |
 | Moodle `ava.ifmt.edu.br` | Referência histórica nos guias; não equiparada à instância integrada | Nenhuma credencial ou conexão | Link oficial; confirmar instância por turma |
+| Portal CAS `https://cas.ifmt.edu.br` (Campus Cáceres) | Notícias públicas pelo WordPress REST API. O SIFCAS exibe links para as publicações, sem copiar matérias ou exigir login | Visitante; apenas metadados já publicados | Feed público conectado na rota `/noticias`; eventos e avisos acadêmicos não são extraídos do corpo das notícias |
 | Arquivos `sifcas-academic-v1` | Diário, matrículas verificadas, aulas, frequência, avaliações, notas, horários e eventos; IDs externos textuais | Professor vinculado; gestor/admin somente com escopo explícito por turma. Aluno lê somente seus dados | Importação validada em PostgreSQL isolado. **Não é formato nativo SUAP** |
 | Painel `https://ifmt.edu.br/painel-de-editais/` | Metadados públicos revisados, número/ano, campus, público, datas, documentos por link e versões | Visitante, independente da integração privada | Catálogo editorial verificado em 03/11/2026; coleta automática desabilitada |
-| Campus `https://cas.ifmt.edu.br` | Guias públicos, contatos e links; cadastro editorial de notícia/edital no módulo existente | Visitante; editor autorizado no painel | Responsável editorial e permissão de coleta/feed pendentes |
+| Campus Cáceres `https://cas.ifmt.edu.br` | Guias/contatos públicos e feed WordPress de notícias; publicações editoriais locais continuam no módulo SIFCAS | Visitante; editor autorizado apenas no painel SIFCAS | Feed público conectado a `/noticias`; não publica, altera nem encaminha dados ao portal |
 | Ingresso `https://seletivo.ifmt.edu.br` | Link oficial, sem supor formato/API | Visitante | Disponibilidade e coleta pendentes |
 | SIGE / Gnuteca | `https://eventos.ifmt.edu.br` / `https://biblioteca.ifmt.edu.br` | Visitante segue à origem | Links oficiais; sem integração de conta |
 
 Cada novo contrato deve registrar: responsável institucional e técnico, campus, instância, versão do serviço, autorização, finalidade, campos mínimos, papéis, escopos, amostra sintética, IDs/chaves de unicidade, paginação, limites, timeouts, política de atualização/revogação e data de homologação. Não há conector privado ativo a completar com endpoints presumidos.
+
+## Evidência e plano de sincronização SUAP/AVA
+
+A especificação OpenAPI pública do SUAP declara, entre outras, estas rotas de leitura autenticada:
+
+| Dado | Rota publicada no OpenAPI do SUAP | Uso SIFCAS candidato |
+| --- | --- | --- |
+| Diários do docente | `GET /api/ensino/meus-diarios/` e `GET /api/ensino/meus-diarios/{ano_letivo}/{periodo_letivo}/` | Descobrir diários do sujeito autenticado |
+| Aulas e conteúdo | `GET /api/ensino/diarios/{id_diario}/aulas/` | Ler conteúdos e datas do diário |
+| Materiais e trabalhos | `GET /api/ensino/diarios/{id_diario}/materiais/` e `GET /api/ensino/diarios/{id_diario}/trabalhos/` | Exibir links e prazos autorizados |
+| Etapas e próximas avaliações | `GET /api/ensino/disciplinas/{disciplina}/etapas/` e `GET /api/ensino/minhas-proximas-avaliacoes/` | Alimentar agenda sem inventar calendário |
+| Períodos letivos | `GET /api/ensino/meus-periodos-letivos/` | Filtrar agenda pelo ano/etapa atual |
+| Dados pessoais de estudante | `/api/ensino/meu-boletim/...`, `/api/ensino/frequencia-periodo-letivo/...` | Adiar até aprovação de campos, finalidade e acesso individual |
+
+O documento também publica `/api/token/pair`, que recebe `username` e `password` e devolve tokens. Não é aceitável pedir a senha institucional no SIFCAS, persistir refresh tokens fora de um cofre aprovado ou usar token de um professor para buscar dados de outra pessoa. Embora o OpenAPI liste `OAuth2TokenAuth` como bearer, ele não descreve no documento público o fluxo de autorização, registro de cliente, scopes ou consentimento. A TI do IFMT precisa fornecer esses detalhes e aprovar um cliente. Sem OAuth delegado, a alternativa é um serviço backend de leitura com conta de integração institucional formalmente aprovada, campos mínimos, RLS/mapeamento por vínculo, rotação de segredo e auditoria. Esse serviço ainda não foi autorizado/configurado.
+
+Depois da autorização, a primeira sincronização privada deve ser somente leitura e manual, pelo usuário docente autenticado, para um diário explicitamente vinculado. Gravar como cópia de origem com timestamp, identificador do diário/período, cursor/paginação e log sem payload sensível; rejeitar mudança de vínculo, repetição e conflitos sem apagar dados existentes. Agendamento automático só depois de validar limites, revogação, retenção e sincronização incremental em homologação. Nenhum dado acadêmico é escrito de volta ao SUAP.
+
+O portal `online.ifmt.edu.br` usa Moodle. A API External Services do Moodle existe, mas seu administrador precisa criar/habilitar o serviço externo, atribuir funções específicas a um token e restringi-lo a permissões/cursos necessários. Não há evidência pública de que a instância IFMT tenha esse serviço habilitado para o SIFCAS. Solicitar à TI Moodle lista/versionamento de funções de leitura para cursos, conteúdos, tarefas e calendário; não usar APIs internas de sessão do navegador ou tokens copiados.
+
+Neste levantamento, `cas.ifmt.edu.br` identifica o portal público do **Campus Cáceres** em WordPress, não um servidor central CAS/SSO. O nome DNS, isoladamente, não prova que o IFMT oferece Central Authentication Service nem fornece um protocolo de login federado. Para autenticação única, pedir à TI a URL real do provedor de identidade, protocolo (OIDC/SAML), metadados, registro de cliente, escopos/claims, logout e política de identidade; não apontar o login do SIFCAS para o site do campus.
+
+### Perguntas para homologação institucional
+
+1. A TI pode registrar um OAuth client SUAP para esta aplicação? Qual authorization/token URL, scopes, redirect URI, consentimento, TTL, revogação e política de dados?
+2. Qual unidade/campus, identidade estável e vínculos podem ser expostos? O que professores e estudantes podem consultar por conta própria?
+3. Qual é a versão e URL do Moodle institucional vigente? Quais funções External Services, cursos e dados podem ser lidos? Existe token delegado e ambiente de teste?
+4. Os payloads e paginação foram validados com fixtures anonimizadas? Qual intervalo, limite de requisição, disponibilidade e contato de suporte?
+5. Qual é a base legal/finalidade, retenção, eliminação, trilha de acesso, resposta a incidente e processo de revogação?
+6. Para solicitações de manutenção/infraestrutura, qual setor recebe chamados por campus, qual protocolo, notificação, SLA, escalonamento e política de anexos?
+
+### Portal do Campus Cáceres
+
+O endpoint público `https://cas.ifmt.edu.br/wp-json/wp/v2/posts` foi consultado sem autenticação e retornou publicações, títulos, datas e links para artigos do próprio `cas.ifmt.edu.br`. A rota `/noticias` agora consome esse feed somente de leitura, valida que os links ficam no mesmo host, mostra o estado de indisponibilidade e direciona o leitor à publicação original. Isso é integração de conteúdo público do **Campus Cáceres**, não autenticação CAS/SSO, sistema de chamados nem sincronização acadêmica privada.
+
+A página pública `https://cas.ifmt.edu.br/o-campus/` lista contatos organizacionais, inclusive a Coordenação de Serviços Auxiliares; `https://ifmt.edu.br/participacao-social/ouvidoria/` documenta canais formais de manifestação. `/solicitacoes` agora referencia essas fontes, mas não envia a solicitação para elas. Confirmar o destino de chamados de infraestrutura e integração com qualquer protocolo antes de implementar roteamento ou afirmar recebimento.
+
+## Solicitações e reclamações
+
+O formulário `/solicitacoes` grava pedidos no SIFCAS por categoria, prioridade, título e descrição e exibe uma referência curta baseada no UUID interno. Para infraestrutura, exige campus/local e armazena essa localização junto à descrição existente. Essa referência não é um protocolo institucional. O código disponível não associa categorias a setores de campus, não define destinatário institucional, não comprova envio de e-mail/notificação e não oferece anexos, SLA ou histórico de encaminhamento a outro sistema. A atribuição a uma pessoa na fila do SIFCAS não equivale a encaminhar à manutenção ou à administração do campus.
+
+Até a administração confirmar, por campus, quais equipes recebem cada categoria, contatos/canais de escalonamento, prazos, permissões e política de anexos/dados, a interface identifica o canal como não homologado e instrui o usuário a contatar também a via oficial. A página pública de contatos de Cáceres lista a Coordenação de Serviços Auxiliares, mas não estabelece que os pedidos do SIFCAS são recebidos por essa equipe; a tela oferece o link para consulta, sem enviar dados pessoais por e-mail. A Ouvidoria do IFMT também publica as orientações para manifestações formais. Não usar o SIFCAS como canal de emergência. O fluxo de bebedouro ainda precisa de destinatário e protocolo confirmados pela administração do campus.
 
 O [manual IFMT de integração SUAP–AVA](https://wiki.ifmt.edu.br/books/uso-do-ava-moodle-guia-doa-professora/page/capitulo-3-integracao-entre-suap-e-ava-moodle) confirma que criação de salas e inscrições já pertencem à integração institucional. O SIFCAS não as repete. O [IFPasse](https://cas.ifmt.edu.br/ifpasse/) menciona OAuth2/SUAP, mas não fornece autorização ou contrato de dados para este projeto. A documentação do [Moodle](https://docs.moodle.org/en/Using_web_services) exige habilitação de serviços e funções pelo administrador; isso não comprova habilitação no IFMT.
 

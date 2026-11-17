@@ -1,0 +1,2040 @@
+{
+  "date": "2026-11-12T11:10:24.037Z",
+  "baseURL": "http://127.0.0.1:3100",
+  "note": "Rendered backgrounds sampled at nine points per direct text-node rectangle with text temporarily transparent. Does not replace review of overlaps, images, states, opacity, or screen readers. Minimum retained per selector/color/size/weight group; passing repeated text nodes omitted.",
+  "axeVersion": "4.10.3",
+  "results": [
+    {
+      "route": "/personalizacao",
+      "width": 375,
+      "status": 200,
+      "finalURL": "http://127.0.0.1:3100/personalizacao",
+      "geometry": {
+        "innerWidth": 375,
+        "scrollWidth": 375,
+        "mainWidth": 375
+      },
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": 29,
+            "sampleTargets": [
+              [
+                "#aero-category-avatar > span"
+              ],
+              [
+                "#aero-category-banner > span"
+              ],
+              [
+                "#aero-category-frame > span"
+              ],
+              [
+                "#aero-category-button > span"
+              ],
+              [
+                "#aero-category-sticker > span"
+              ],
+              [
+                ".aeroCollectionReset"
+              ],
+              [
+                "button[aria-label=\"Cenário Cidade nas nuvens\"] > .aeroAssetCaption > small"
+              ],
+              [
+                "button[aria-label=\"Cenário Aquário de vidro\"] > .aeroAssetCaption > small"
+              ]
+            ]
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "nodes": 20,
+            "sampleTargets": [
+              [
+                "button[aria-label=\"Cenário Cidade nas nuvens\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Aquário de vidro\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Paraíso tropical\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Céu cromado\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Cidade jardim\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Lago de lírios\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Pequeno planeta\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Mar de bolhas\"]"
+              ]
+            ]
+          }
+        ],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 48,
+            "sampleTargets": [
+              [
+                ".pageLocation > small"
+              ],
+              [
+                ".pageLocation > strong"
+              ],
+              [
+                ".avatar"
+              ],
+              [
+                ".studioEyebrow"
+              ],
+              [
+                "h1"
+              ],
+              [
+                ".studioHeroCopy > p"
+              ],
+              [
+                ".studioSaved"
+              ],
+              [
+                ".studioPixelStar"
+              ]
+            ]
+          }
+        ]
+      },
+      "contrast": {
+        "sampledTextNodes": 110,
+        "groups": [
+          {
+            "selector": "div.appShell > a.skipLink",
+            "text": "Pular para o conteúdo",
+            "color": "rgb(7, 94, 135)",
+            "size": "16px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.59,
+            "sampledBackground": [
+              243,
+              247,
+              250
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.pageLocation > small",
+            "text": "Meu espaço",
+            "color": "rgb(82, 111, 130)",
+            "size": "9px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.03,
+            "sampledBackground": [
+              246,
+              249,
+              253
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.pageLocation > strong",
+            "text": "Personalização",
+            "color": "rgb(54, 95, 118)",
+            "size": "11px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.52,
+            "sampledBackground": [
+              243,
+              250,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "a.userChip > span.avatar",
+            "text": "LE",
+            "color": "rgba(0, 0, 0, 0)",
+            "size": "11px",
+            "weight": "800",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.94,
+            "sampledBackground": [
+              0,
+              73,
+              216
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > span.studioEyebrow",
+            "text": "SEU SIFCAS, DO SEU JEITO",
+            "color": "rgb(89, 139, 130)",
+            "size": "8px",
+            "weight": "800",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.36,
+            "sampledBackground": [
+              222,
+              243,
+              249
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > h1",
+            "text": "Personalização",
+            "color": "rgb(34, 78, 93)",
+            "size": "30.4px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 7.58,
+            "sampledBackground": [
+              214,
+              241,
+              228
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "h1 > span",
+            "text": ".",
+            "color": "rgb(118, 184, 135)",
+            "size": "30.4px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2,
+            "sampledBackground": [
+              218,
+              242,
+              242
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "div.studioHeroCopy > p",
+            "text": "Em cada detalhe do seu campus.",
+            "color": "rgb(102, 131, 140)",
+            "size": "11.84px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.22,
+            "sampledBackground": [
+              203,
+              236,
+              231
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > span.studioSaved",
+            "text": "Suas escolhas são salvas automaticamente",
+            "color": "rgb(98, 138, 125)",
+            "size": "8.16px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.1,
+            "sampledBackground": [
+              207,
+              237,
+              228
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroArt > span.studioPixelStar",
+            "text": "✦",
+            "color": "rgb(107, 166, 106)",
+            "size": "21px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.19,
+            "sampledBackground": [
+              204,
+              232,
+              202
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Aparência",
+            "color": "rgb(113, 134, 142)",
+            "size": "9.76px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.76,
+            "sampledBackground": [
+              190,
+              223,
+              253
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Coleção Aero",
+            "color": "rgb(50, 121, 115)",
+            "size": "9.76px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.58,
+            "sampledBackground": [
+              234,
+              245,
+              243
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionEyebrow",
+            "text": "PEQUENAS COISAS, MUITA PERSONALIDADE",
+            "color": "rgb(91, 147, 137)",
+            "size": "7.2px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.99,
+            "sampledBackground": [
+              226,
+              238,
+              251
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > h2",
+            "text": "Seu universo Aero",
+            "color": "rgb(35, 79, 98)",
+            "size": "24px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 7.75,
+            "sampledBackground": [
+              230,
+              241,
+              251
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "h2 > span",
+            "text": ".",
+            "color": "rgb(116, 170, 131)",
+            "size": "24px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.31,
+            "sampledBackground": [
+              227,
+              240,
+              249
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "div > p",
+            "text": "Combine os detalhes e encontre o seu estilo.",
+            "color": "rgb(104, 134, 142)",
+            "size": "11.2px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.37,
+            "sampledBackground": [
+              226,
+              242,
+              237
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionCount",
+            "text": "100 artes para explorar",
+            "color": "rgb(93, 138, 130)",
+            "size": "8.8px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.65,
+            "sampledBackground": [
+              242,
+              250,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Cenários",
+            "color": "rgb(63, 124, 110)",
+            "size": "8.96px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.43,
+            "sampledBackground": [
+              236,
+              247,
+              239
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Avatares",
+            "color": "rgb(107, 131, 141)",
+            "size": "8.96px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.87,
+            "sampledBackground": [
+              249,
+              252,
+              252
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionKicker",
+            "text": "20",
+            "color": "rgb(136, 161, 154)",
+            "size": "7.52px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.73,
+            "sampledBackground": [
+              253,
+              254,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > h3",
+            "text": "Cenários",
+            "color": "rgb(35, 76, 92)",
+            "size": "16.64px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 9.2,
+            "sampledBackground": [
+              253,
+              254,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > p",
+            "text": "Céus azuis, cidades de vidro e um pouco de energia Y2K.",
+            "color": "rgb(107, 131, 141)",
+            "size": "10.4px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.96,
+            "sampledBackground": [
+              253,
+              254,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.aeroCollectionHeading > button.aeroCollectionReset",
+            "text": "Usar cenário padrão",
+            "color": "rgb(99, 140, 123)",
+            "size": "8.32px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.61,
+            "sampledBackground": [
+              247,
+              251,
+              248
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span.aeroAssetCaption > strong",
+            "text": "Cidade nas nuvens",
+            "color": "rgb(35, 76, 92)",
+            "size": "9.6px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 8.58,
+            "sampledBackground": [
+              239,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span.aeroAssetCaption > small",
+            "text": "Frutiger Aero",
+            "color": "rgb(135, 158, 152)",
+            "size": "10.4px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.63,
+            "sampledBackground": [
+              239,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.aeroCollectionPanel > p.aeroCollectionStatus",
+            "text": "Sua escolha: Cidade nas nuvens.",
+            "color": "rgb(108, 142, 121)",
+            "size": "9.44px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.43,
+            "sampledBackground": [
+              244,
+              250,
+              246
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "section.studioSection.aeroCollection > p.aeroCollectionFootnote",
+            "text": "Artes locais, sem serviços externos. Suas escolhas ficam salvas neste navegador.",
+            "color": "rgb(130, 151, 142)",
+            "size": "8.8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.07,
+            "sampledBackground": [
+              253,
+              254,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewLabel > span",
+            "text": "PRÉVIA AO VIVO",
+            "color": "rgb(102, 141, 130)",
+            "size": "8.32px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.43,
+            "sampledBackground": [
+              242,
+              247,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockToolbar > span",
+            "text": "meu SIFCAS",
+            "color": "rgb(102, 139, 148)",
+            "size": "8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.07,
+            "sampledBackground": [
+              168,
+              196,
+              234
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > small",
+            "text": "SEU ESPAÇO NO CAMPUS",
+            "color": "rgb(139, 161, 156)",
+            "size": "6px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.53,
+            "sampledBackground": [
+              240,
+              247,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > strong",
+            "text": "Olá",
+            "color": "rgb(54, 94, 102)",
+            "size": "10px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.6,
+            "sampledBackground": [
+              241,
+              247,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > span",
+            "text": "Um novo dia, novas possibilidades.",
+            "color": "rgb(140, 157, 162)",
+            "size": "6px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.65,
+            "sampledBackground": [
+              242,
+              249,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Meu foco",
+            "color": "rgb(125, 147, 153)",
+            "size": "5px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.97,
+            "sampledBackground": [
+              242,
+              247,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "Tudo em seu lugar",
+            "color": "rgb(108, 141, 120)",
+            "size": "6px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.51,
+            "sampledBackground": [
+              247,
+              251,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Seu campus, com a sua personalidade.",
+            "color": "rgb(154, 173, 158)",
+            "size": "5px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.27,
+            "sampledBackground": [
+              247,
+              251,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockDock > small",
+            "text": "IFOS",
+            "color": "rgb(120, 161, 165)",
+            "size": "7px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 1.73,
+            "sampledBackground": [
+              187,
+              209,
+              175
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewCaption > p",
+            "text": "Os detalhes mudam com você.",
+            "color": "rgb(139, 156, 159)",
+            "size": "8.64px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.57,
+            "sampledBackground": [
+              235,
+              244,
+              251
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "p > strong",
+            "text": "Experimente e veja na hora.",
+            "color": "rgb(95, 126, 128)",
+            "size": "8.64px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.01,
+            "sampledBackground": [
+              237,
+              246,
+              253
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewSummary > span",
+            "text": "Aqua",
+            "color": "rgb(137, 160, 158)",
+            "size": "7.84px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.56,
+            "sampledBackground": [
+              242,
+              248,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "Conheça seu IFOS",
+            "color": "rgb(91, 128, 119)",
+            "size": "9.28px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.05,
+            "sampledBackground": [
+              241,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Seu campus em uma área de trabalho.",
+            "color": "rgb(149, 169, 162)",
+            "size": "8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.29,
+            "sampledBackground": [
+              241,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "aside.studioPreview > p.studioPreviewFootnote",
+            "text": "Suas escolhas ficam neste navegador.",
+            "color": "rgb(156, 172, 176)",
+            "size": "7.36px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.1,
+            "sampledBackground": [
+              238,
+              244,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "SIFCAS",
+            "color": "rgb(71, 116, 136)",
+            "size": "15px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.82,
+            "sampledBackground": [
+              243,
+              250,
+              249
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "strong > span",
+            "text": ".",
+            "color": "rgb(117, 172, 69)",
+            "size": "15px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.57,
+            "sampledBackground": [
+              243,
+              250,
+              250
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Um campus de possibilidades.",
+            "color": "rgb(82, 111, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.97,
+            "sampledBackground": [
+              242,
+              249,
+              247
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "nav.footerLinks > a",
+            "text": "Guia do campus",
+            "color": "rgb(77, 109, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.09,
+            "sampledBackground": [
+              241,
+              248,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.footerPlace > span",
+            "text": "Cáceres · Mato Grosso",
+            "color": "rgb(77, 109, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.09,
+            "sampledBackground": [
+              241,
+              248,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.footerPlace > small",
+            "text": "Projeto independente. Fontes oficiais sempre identificadas.",
+            "color": "rgb(82, 111, 130)",
+            "size": "9px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.93,
+            "sampledBackground": [
+              241,
+              248,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "a > span",
+            "text": "Perfil",
+            "color": "rgb(82, 111, 130)",
+            "size": "10px",
+            "weight": "550",
+            "fixedShell": true,
+            "decoration": "none",
+            "minimumContrast": 4.82,
+            "sampledBackground": [
+              235,
+              246,
+              248
+            ],
+            "threshold": 4.5
+          }
+        ]
+      }
+    },
+    {
+      "route": "/personalizacao",
+      "width": 1440,
+      "status": 200,
+      "finalURL": "http://127.0.0.1:3100/personalizacao",
+      "geometry": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "mainWidth": 1194
+      },
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": 34,
+            "sampleTargets": [
+              [
+                "#aero-category-avatar > span"
+              ],
+              [
+                "#aero-category-avatar > small"
+              ],
+              [
+                "#aero-category-banner > span"
+              ],
+              [
+                "#aero-category-banner > small"
+              ],
+              [
+                "#aero-category-frame > span"
+              ],
+              [
+                "#aero-category-frame > small"
+              ],
+              [
+                "#aero-category-button > span"
+              ],
+              [
+                "#aero-category-button > small"
+              ]
+            ]
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "nodes": 21,
+            "sampleTargets": [
+              [
+                ".desktopSidebar > .sidebar > .brand[href=\"/\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Cidade nas nuvens\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Aquário de vidro\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Paraíso tropical\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Céu cromado\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Cidade jardim\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Lago de lírios\"]"
+              ],
+              [
+                "button[aria-label=\"Cenário Pequeno planeta\"]"
+              ]
+            ]
+          }
+        ],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 75,
+            "sampleTargets": [
+              [
+                ".desktopSidebar > .sidebar > .brand[href=\"/\"] > .brandIdentity > .brandWordmark > strong"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .brand[href=\"/\"] > .brandIdentity > .brandWordmark > small"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .campusLabel"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .campusLabel > span"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .nav[aria-label=\"Navegação principal\"] > .navGroup:nth-child(1) > p"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .nav[aria-label=\"Navegação principal\"] > .navGroup:nth-child(1) > .navItem[data-experience-href=\"/\"][href=\"/\"] > span:nth-child(2)"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .nav[aria-label=\"Navegação principal\"] > .navGroup:nth-child(1) > .navItem[data-experience-href$=\"pendencias\"][href$=\"pendencias\"] > span:nth-child(2)"
+              ],
+              [
+                ".desktopSidebar > .sidebar > .nav[aria-label=\"Navegação principal\"] > .navGroup:nth-child(1) > .navItem[data-experience-href$=\"maisa\"][href$=\"maisa\"] > span:nth-child(2)"
+              ]
+            ]
+          }
+        ]
+      },
+      "contrast": {
+        "sampledTextNodes": 144,
+        "groups": [
+          {
+            "selector": "div.appShell > a.skipLink",
+            "text": "Pular para o conteúdo",
+            "color": "rgb(7, 94, 135)",
+            "size": "16px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.71,
+            "sampledBackground": [
+              246,
+              249,
+              251
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span.brandWordmark > strong",
+            "text": "SIFCAS",
+            "color": "rgb(23, 74, 101)",
+            "size": "25px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 9.36,
+            "sampledBackground": [
+              252,
+              253,
+              254
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "strong > span.brandPeriod",
+            "text": ".",
+            "color": "rgb(112, 182, 56)",
+            "size": "25px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.46,
+            "sampledBackground": [
+              252,
+              254,
+              254
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "span.brandWordmark > small",
+            "text": "Campus, pessoas e serviços",
+            "color": "rgb(77, 107, 124)",
+            "size": "9px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.55,
+            "sampledBackground": [
+              251,
+              253,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.campusLabel > span",
+            "text": "IFMT",
+            "color": "rgb(50, 106, 59)",
+            "size": "10px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.08,
+            "sampledBackground": [
+              242,
+              251,
+              238
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "aside.sidebar > div.campusLabel",
+            "text": "Campus Cáceres",
+            "color": "rgb(80, 114, 78)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.13,
+            "sampledBackground": [
+              242,
+              251,
+              238
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.navGroup > p",
+            "text": "Institucional",
+            "color": "rgb(81, 111, 128)",
+            "size": "9px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.91,
+            "sampledBackground": [
+              239,
+              248,
+              238
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "a.navItem > span",
+            "text": "Documentos",
+            "color": "rgb(69, 106, 128)",
+            "size": "12px",
+            "weight": "450",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.33,
+            "sampledBackground": [
+              239,
+              248,
+              239
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "a.navItem.active > span",
+            "text": "Personalização",
+            "color": "rgb(20, 87, 117)",
+            "size": "12px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 7.17,
+            "sampledBackground": [
+              236,
+              245,
+              250
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.sidebarFooter > a.sidebarAllApps",
+            "text": "Todos os aplicativos",
+            "color": "rgb(54, 105, 130)",
+            "size": "11px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.68,
+            "sampledBackground": [
+              243,
+              250,
+              252
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.sidebarFooter > a.sidebarHelp",
+            "text": "Precisa de ajuda?",
+            "color": "rgb(69, 104, 124)",
+            "size": "11px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.6,
+            "sampledBackground": [
+              242,
+              249,
+              252
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.sidebarFooter > small",
+            "text": "Seu espaço para aprender,",
+            "color": "rgb(82, 111, 126)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.02,
+            "sampledBackground": [
+              242,
+              249,
+              252
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.pageLocation > small",
+            "text": "Meu espaço",
+            "color": "rgb(82, 111, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.14,
+            "sampledBackground": [
+              248,
+              252,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.pageLocation > strong",
+            "text": "Personalização",
+            "color": "rgb(54, 95, 118)",
+            "size": "14px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.49,
+            "sampledBackground": [
+              244,
+              249,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "form.globalSearch > kbd",
+            "text": "Ctrl K",
+            "color": "rgb(82, 111, 130)",
+            "size": "9px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.31,
+            "sampledBackground": [
+              255,
+              255,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "a.userChip > span.avatar",
+            "text": "LE",
+            "color": "rgba(0, 0, 0, 0)",
+            "size": "12px",
+            "weight": "800",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.97,
+            "sampledBackground": [
+              1,
+              99,
+              234
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span > strong",
+            "text": "Lia Estudante",
+            "color": "rgb(49, 91, 114)",
+            "size": "12px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 7.32,
+            "sampledBackground": [
+              255,
+              255,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span > small",
+            "text": "Estudante",
+            "color": "rgb(82, 111, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.31,
+            "sampledBackground": [
+              255,
+              255,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > span.studioEyebrow",
+            "text": "SEU SIFCAS, DO SEU JEITO",
+            "color": "rgb(89, 139, 130)",
+            "size": "9.76px",
+            "weight": "800",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.4,
+            "sampledBackground": [
+              224,
+              244,
+              249
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > h1",
+            "text": "Personalização",
+            "color": "rgb(34, 78, 93)",
+            "size": "43.2px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 7.93,
+            "sampledBackground": [
+              221,
+              244,
+              247
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "h1 > span",
+            "text": ".",
+            "color": "rgb(118, 184, 135)",
+            "size": "43.2px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.03,
+            "sampledBackground": [
+              220,
+              243,
+              247
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "div.studioHeroCopy > p",
+            "text": "Em cada detalhe do seu campus.",
+            "color": "rgb(102, 131, 140)",
+            "size": "13.28px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.5,
+            "sampledBackground": [
+              221,
+              243,
+              240
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroCopy > span.studioSaved",
+            "text": "Suas escolhas são salvas automaticamente",
+            "color": "rgb(98, 138, 125)",
+            "size": "9.76px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.27,
+            "sampledBackground": [
+              217,
+              242,
+              232
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioHeroArt > span.studioPixelStar",
+            "text": "✦",
+            "color": "rgb(107, 166, 106)",
+            "size": "34px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.37,
+            "sampledBackground": [
+              218,
+              238,
+              222
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "div.studioHeroArt > span.studioHeroArtCaption",
+            "text": "um espaço para ser você",
+            "color": "rgb(112, 160, 143)",
+            "size": "8.8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.31,
+            "sampledBackground": [
+              210,
+              234,
+              206
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Início e atalhos",
+            "color": "rgb(113, 134, 142)",
+            "size": "11.04px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.26,
+            "sampledBackground": [
+              224,
+              239,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Coleção Aero",
+            "color": "rgb(50, 121, 115)",
+            "size": "11.04px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.58,
+            "sampledBackground": [
+              234,
+              245,
+              243
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionEyebrow",
+            "text": "PEQUENAS COISAS, MUITA PERSONALIDADE",
+            "color": "rgb(91, 147, 137)",
+            "size": "8.32px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.21,
+            "sampledBackground": [
+              235,
+              247,
+              250
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > h2",
+            "text": "Seu universo Aero",
+            "color": "rgb(35, 79, 98)",
+            "size": "32px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 8.19,
+            "sampledBackground": [
+              236,
+              248,
+              251
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "h2 > span",
+            "text": ".",
+            "color": "rgb(116, 170, 131)",
+            "size": "32px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.47,
+            "sampledBackground": [
+              235,
+              248,
+              250
+            ],
+            "threshold": 3
+          },
+          {
+            "selector": "div > p",
+            "text": "Combine os detalhes e encontre o seu estilo.",
+            "color": "rgb(104, 134, 142)",
+            "size": "11.2px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.62,
+            "sampledBackground": [
+              236,
+              249,
+              250
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionCount",
+            "text": "100 artes para explorar",
+            "color": "rgb(93, 138, 130)",
+            "size": "8.8px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.74,
+            "sampledBackground": [
+              246,
+              252,
+              253
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Cenários",
+            "color": "rgb(63, 124, 110)",
+            "size": "11.52px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.43,
+            "sampledBackground": [
+              236,
+              247,
+              241
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > small",
+            "text": "20",
+            "color": "rgb(145, 170, 165)",
+            "size": "8px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.25,
+            "sampledBackground": [
+              237,
+              247,
+              233
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "button > span",
+            "text": "Avatares",
+            "color": "rgb(107, 131, 141)",
+            "size": "11.52px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.87,
+            "sampledBackground": [
+              249,
+              252,
+              252
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > span.aeroCollectionKicker",
+            "text": "OPÇÕES · SUA COLEÇÃO",
+            "color": "rgb(136, 161, 154)",
+            "size": "7.52px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.66,
+            "sampledBackground": [
+              249,
+              252,
+              246
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > h3",
+            "text": "Cenários",
+            "color": "rgb(35, 76, 92)",
+            "size": "16.64px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 9.09,
+            "sampledBackground": [
+              250,
+              253,
+              253
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > p",
+            "text": "Céus azuis, cidades de vidro e um pouco de energia Y2K.",
+            "color": "rgb(107, 131, 141)",
+            "size": "10.4px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.87,
+            "sampledBackground": [
+              250,
+              252,
+              249
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.aeroCollectionHeading > button.aeroCollectionReset",
+            "text": "Usar cenário padrão",
+            "color": "rgb(99, 140, 123)",
+            "size": "8.48px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.61,
+            "sampledBackground": [
+              247,
+              251,
+              248
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span.aeroAssetCaption > strong",
+            "text": "Cidade nas nuvens",
+            "color": "rgb(35, 76, 92)",
+            "size": "12px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 8.58,
+            "sampledBackground": [
+              239,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "span.aeroAssetCaption > small",
+            "text": "Frutiger Aero",
+            "color": "rgb(135, 158, 152)",
+            "size": "10.4px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.63,
+            "sampledBackground": [
+              239,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.aeroCollectionPanel > p.aeroCollectionStatus",
+            "text": "Sua escolha: Cidade nas nuvens.",
+            "color": "rgb(108, 142, 121)",
+            "size": "9.44px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.43,
+            "sampledBackground": [
+              244,
+              250,
+              246
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "section.studioSection.aeroCollection > p.aeroCollectionFootnote",
+            "text": "Artes locais, sem serviços externos. Suas escolhas ficam salvas neste navegador.",
+            "color": "rgb(130, 151, 142)",
+            "size": "8.8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.07,
+            "sampledBackground": [
+              253,
+              254,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewLabel > span",
+            "text": "PRÉVIA AO VIVO",
+            "color": "rgb(102, 141, 130)",
+            "size": "8.32px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.26,
+            "sampledBackground": [
+              235,
+              242,
+              246
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockToolbar > span",
+            "text": "meu SIFCAS",
+            "color": "rgb(102, 139, 148)",
+            "size": "8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.06,
+            "sampledBackground": [
+              167,
+              196,
+              234
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > small",
+            "text": "SEU ESPAÇO NO CAMPUS",
+            "color": "rgb(139, 161, 156)",
+            "size": "6px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.53,
+            "sampledBackground": [
+              240,
+              247,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > strong",
+            "text": "Olá",
+            "color": "rgb(54, 94, 102)",
+            "size": "12px",
+            "weight": "750",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 6.6,
+            "sampledBackground": [
+              241,
+              247,
+              254
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockWelcome > span",
+            "text": "Um novo dia, novas possibilidades.",
+            "color": "rgb(140, 157, 162)",
+            "size": "7px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.63,
+            "sampledBackground": [
+              242,
+              248,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Meu foco",
+            "color": "rgb(125, 147, 153)",
+            "size": "6px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.97,
+            "sampledBackground": [
+              243,
+              247,
+              237
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "Tudo em seu lugar",
+            "color": "rgb(108, 141, 120)",
+            "size": "7px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 3.51,
+            "sampledBackground": [
+              247,
+              251,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Seu campus, com a sua personalidade.",
+            "color": "rgb(154, 173, 158)",
+            "size": "6px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.27,
+            "sampledBackground": [
+              247,
+              251,
+              245
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioMockDock > small",
+            "text": "IFOS",
+            "color": "rgb(120, 161, 165)",
+            "size": "7px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 1.54,
+            "sampledBackground": [
+              181,
+              196,
+              175
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewCaption > p",
+            "text": "Os detalhes mudam com você.",
+            "color": "rgb(139, 156, 159)",
+            "size": "9.92px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.66,
+            "sampledBackground": [
+              242,
+              249,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "p > strong",
+            "text": "Experimente e veja na hora.",
+            "color": "rgb(95, 126, 128)",
+            "size": "9.92px",
+            "weight": "600",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.06,
+            "sampledBackground": [
+              242,
+              248,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.studioPreviewSummary > span",
+            "text": "Aqua",
+            "color": "rgb(137, 160, 158)",
+            "size": "8.64px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.51,
+            "sampledBackground": [
+              239,
+              246,
+              236
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "Conheça seu IFOS",
+            "color": "rgb(91, 128, 119)",
+            "size": "10.4px",
+            "weight": "650",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.09,
+            "sampledBackground": [
+              242,
+              249,
+              244
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Seu campus em uma área de trabalho.",
+            "color": "rgb(149, 169, 162)",
+            "size": "8.32px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.29,
+            "sampledBackground": [
+              241,
+              248,
+              242
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "aside.studioPreview > p.studioPreviewFootnote",
+            "text": "Suas escolhas ficam neste navegador.",
+            "color": "rgb(156, 172, 176)",
+            "size": "8px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.3,
+            "sampledBackground": [
+              250,
+              253,
+              255
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > strong",
+            "text": "SIFCAS",
+            "color": "rgb(71, 116, 136)",
+            "size": "16px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.77,
+            "sampledBackground": [
+              242,
+              249,
+              247
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "strong > span",
+            "text": ".",
+            "color": "rgb(117, 172, 69)",
+            "size": "16px",
+            "weight": "700",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 2.54,
+            "sampledBackground": [
+              242,
+              249,
+              247
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div > small",
+            "text": "Um campus de possibilidades.",
+            "color": "rgb(82, 111, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.93,
+            "sampledBackground": [
+              241,
+              248,
+              246
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "nav.footerLinks > a",
+            "text": "Guia do campus",
+            "color": "rgb(77, 109, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.15,
+            "sampledBackground": [
+              242,
+              249,
+              249
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.footerPlace > span",
+            "text": "Cáceres · Mato Grosso",
+            "color": "rgb(77, 109, 130)",
+            "size": "10px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 5.16,
+            "sampledBackground": [
+              243,
+              249,
+              251
+            ],
+            "threshold": 4.5
+          },
+          {
+            "selector": "div.footerPlace > small",
+            "text": "Projeto independente. Fontes oficiais sempre identificadas.",
+            "color": "rgb(82, 111, 130)",
+            "size": "9px",
+            "weight": "400",
+            "fixedShell": false,
+            "decoration": "none",
+            "minimumContrast": 4.95,
+            "sampledBackground": [
+              242,
+              248,
+              249
+            ],
+            "threshold": 4.5
+          }
+        ]
+      }
+    }
+  ]
+}

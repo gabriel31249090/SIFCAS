@@ -46,7 +46,7 @@ export default async function TeacherWorkspacePage({ searchParams }: { searchPar
     </div>
 
     <SectionTitle title="Seu espaço de ensino" description="Lançamentos locais e cópias da origem aparecem separados. Nenhum valor é inferido quando faltam dados."/>
-    {workspace.status === "empty" ? <div className="emptyState card"><GraduationCap size={32} aria-hidden="true"/><h2>Nenhuma turma autorizada disponível</h2><p>Solicite a conferência do vínculo docente ou do escopo de operador. Um arquivo não concede acesso a outra turma.</p></div>
+    {workspace.status === "empty" ? <div className="emptyState card"><GraduationCap size={32} aria-hidden="true"/><h2>Nenhuma turma autorizada disponível</h2><p>O SIFCAS ainda não encontrou um vínculo docente autorizado para sua conta. As turmas e o diário do SUAP não são sincronizados automaticamente; peça à gestão para conferir seu vínculo e, quando a integração estiver homologada, o mapeamento do diário.</p><div className={styles.actions}><Link className="button soft" href="/importar-dados-academicos">Ver estado da importação</Link><Link href="/diario-professor">Abrir diário do SIFCAS</Link></div></div>
       : workspace.cards.length > 0 && cards.length === 0 ? <div className="emptyState card"><Filter size={30} aria-hidden="true"/><h2>Nenhuma turma para estes filtros</h2><p>Procure outro termo ou período.</p><Link href="/minhas-turmas">Ver todas as minhas turmas</Link></div>
         : <div className={styles.grid}>{cards.map((card) => <article className={`card ${styles.classCard}`} key={card.id}>
           <header className={styles.classHeader}><AeroIcon name="book" tone="sky" size={22}/><div><span className={styles.code}>{card.code || "Vínculo autorizado"}</span><h2>{card.className}</h2><p>{card.subjectName}</p></div></header>
@@ -60,7 +60,7 @@ export default async function TeacherWorkspacePage({ searchParams }: { searchPar
             {copy.activities.slice(0, 2).map((activity) => <a href={activity.url} target="_blank" rel="noopener noreferrer" className={styles.activity} key={activity.url}>{activity.title}<ArrowUpRight size={15} aria-hidden="true"/></a>)}
             <p className={styles.note}>A atualização é manual. Esses estados não comprovam fila de correção ou fechamento oficial no SUAP/AVA.</p>
           </section>)}
-          {!card.copies.length && <p className={styles.note}>{workspace.importStatus === "ready" ? "Nenhuma cópia importada para esta turma e período." : workspace.importStatus === "not_configured" ? "Importação aguardando configuração e homologação." : "Fonte de importações indisponível. Confira o diário na origem."}</p>}
+          {!card.copies.length && <p className={styles.note}>{workspace.importStatus === "ready" ? "Nenhuma cópia importada para esta turma e período. Os dados oficiais do SUAP/AVA não são sincronizados automaticamente." : workspace.importStatus === "not_configured" ? "Importação aguardando configuração e homologação; o diário oficial não é sincronizado automaticamente." : "Fonte de importações indisponível. Confira o diário na origem."}</p>}
           <div className={styles.actions}><Link className="button primary" href={`/diario-professor?vinculo=${encodeURIComponent(card.id)}`}><BookOpenCheck size={17} aria-hidden="true"/> Abrir diário</Link><Link className="button soft" href={`/importar-dados-academicos${card.copies[0] ? `?diario=${encodeURIComponent(card.copies[0].id)}` : ""}`}><FileUp size={17} aria-hidden="true"/> Revisar importação</Link></div>
         </article>)}</div>}
 

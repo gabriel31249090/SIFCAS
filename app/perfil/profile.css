@@ -1,0 +1,70 @@
+/* Keep profile surfaces in the same theme; legacy global form rules use light backgrounds. */
+.profilePage {
+  --profile-text:#214a61;
+  --profile-muted:#4c6879;
+  --profile-field:#fff;
+  --profile-readonly:#edf5fa;
+  --profile-line:#bdd6e3;
+  --profile-hover:#eaf5fc;
+  --profile-badge:#e8f5ed;
+  --profile-badge-ink:#205e46;
+  color:var(--profile-text);
+}
+html[data-experience-resolved-theme="dark"] .profilePage {
+  --profile-text:#e1f0f7;
+  --profile-muted:#b1cad8;
+  --profile-field:#102d3e;
+  --profile-readonly:#183b4d;
+  --profile-line:#496b80;
+  --profile-hover:#244c61;
+  --profile-badge:#214b3c;
+  --profile-badge-ink:#d0efdc;
+}
+.profilePage .profileGrid { grid-template-columns:minmax(240px,280px) minmax(0,1fr); gap:24px; align-items:start }
+.profilePage .profileGrid>.card.profileIdentity { min-width:0; padding:24px; text-align:center }
+.profilePage .profileGrid>.profilePanel { min-width:0; padding:24px }
+.profilePage .profileIdentity::before { position:absolute; z-index:-1; inset:0 0 auto; height:112px; margin:0; border-bottom:0 }
+.profilePage .profileIdentity>.experienceArtworkBanner { height:112px; border-radius:0 }
+/* A selected artwork replaces the classic banner instead of stacking both. */
+.profilePage .profileIdentity:has(>.experienceArtworkBanner)::before { display:none }
+html[data-experience-banner]:not([data-experience-banner="none"]) .profilePage .profileGrid>.card.profileIdentity,
+.profilePage .profileGrid>.card.profileIdentity:has(>.experienceArtworkBanner) { padding-top:72px }
+.profilePage .profileIdentity>.experiencePortrait { margin:0 auto 18px }
+.profilePage .experiencePortrait>.profileAvatar { color:var(--profile-text); background-color:var(--profile-field); background-image:none }
+.profilePage .profileIdentity>h2 { margin:0 0 12px; line-height:1.45; overflow-wrap:anywhere }
+.profilePage .roleBadge { max-width:100%; color:var(--profile-badge-ink); background:var(--profile-badge); line-height:1.4 }
+.profilePage .identityMeta { margin:22px 0; gap:12px }
+.profilePage .identityMeta>span { color:var(--profile-muted); align-items:flex-start; line-height:1.5; min-width:0 }
+.profilePage .identityMeta>span>span { min-width:0; overflow-wrap:anywhere; color:inherit }
+.profilePage .identityMeta svg { flex-shrink:0; margin-top:2px }
+.profilePage :is(.pageHeader p,.panelHeading p,.securityBlock p,.profileForm label) { color:var(--profile-muted) }
+.profilePage :is(.panelHeading h2,.securityBlock h3) { color:var(--profile-text) }
+.profilePage :is(.panelHeading,.securityBlock)>svg { color:var(--profile-muted); flex-shrink:0 }
+.profilePage .profileForm input { color:var(--profile-text); background:var(--profile-field); border-color:var(--profile-line); min-height:44px }
+/* These override the existing global input[readonly] !important declarations. */
+.profilePage .profileForm input[readonly] { color:var(--profile-muted)!important; background:var(--profile-readonly)!important }
+.profilePage .profileForm input:focus-visible { outline:3px solid #087daf; outline-offset:3px }
+.profilePage .securityBlock { border-color:var(--profile-line); gap:14px }
+.profilePage .securityBlock>.button { color:var(--profile-text); background:var(--profile-field); border-color:var(--profile-line) }
+.profilePage .profileTools { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:20px }
+.profilePage .profileTools>a { min-width:0; min-height:70px; padding:14px; gap:12px; color:var(--profile-text); background:var(--profile-field); border-color:var(--profile-line) }
+.profilePage .profileTools>a>span { min-width:0; overflow-wrap:anywhere }
+.profilePage .profileTools small { color:var(--profile-muted); line-height:1.5 }
+.profilePage .profileTools svg { flex-shrink:0 }
+.profilePage :is(.profileTools>a,.securityBlock>.button):hover { background:var(--profile-hover) }
+.profilePage :is(.profileTools>a,.button):focus-visible { outline:3px solid #087daf; outline-offset:3px }
+html[data-experience-resolved-theme="dark"] .profilePage .dangerOutline { color:#ffcfca!important; border-color:#93666d!important; background:#452d36!important }
+html[data-experience-resolved-theme="dark"] .profilePage :is(.profileForm input,.profileTools>a,.button):focus-visible { outline-color:#75d7ff }
+@media(max-width:1180px) {
+  .profilePage .readonlyGrid { grid-template-columns:minmax(0,1fr) }
+}
+@media(max-width:980px) {
+  .profilePage .profileGrid { grid-template-columns:minmax(0,1fr) }
+}
+@media(max-width:600px) {
+  .profilePage .profileGrid { gap:18px }
+  .profilePage .profileGrid>.profilePanel { padding:20px }
+  .profilePage .profileTools { grid-template-columns:minmax(0,1fr) }
+  .profilePage .securityBlock { grid-template-columns:auto minmax(0,1fr) }
+  .profilePage .securityBlock>.button { grid-column:1/-1; justify-self:start }
+}

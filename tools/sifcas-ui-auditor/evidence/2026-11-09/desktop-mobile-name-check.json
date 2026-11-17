@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-11-09T16:54:28.953Z",
+  "context": "Instância local de desenvolvimento com banco PGlite sintético. Doze verificações públicas sem sessão e quatro verificações do link da conta com identidades sintéticas; nenhum dado ou credencial de produção. Verificação focada, não auditoria completa de acessibilidade.",
+  "origin": "http://127.0.0.1:3100",
+  "axe": "4.14.0",
+  "rules": [
+    "link-name",
+    "label-content-name-mismatch",
+    "target-size"
+  ],
+  "results": [
+    {
+      "width": 375,
+      "route": "/noticias",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "route": "/editais",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "route": "/agenda-institucional",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "route": "/campus",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "route": "/transparencia",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "route": "/verificar-documento",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/noticias",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/editais",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/agenda-institucional",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/campus",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/transparencia",
+      "http": 200,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/verificar-documento",
+      "http": 200,
+      "violations": []
+    }
+  ],
+  "accountChecks": [
+    {
+      "actor": "synthetic-student",
+      "width": 375,
+      "violations": [],
+      "hasName": true,
+      "initialsDecorative": true
+    },
+    {
+      "actor": "synthetic-student",
+      "width": 1440,
+      "violations": [],
+      "hasName": true,
+      "initialsDecorative": true
+    },
+    {
+      "actor": "synthetic-suspended",
+      "width": 375,
+      "violations": [],
+      "hasName": true,
+      "initialsDecorative": true
+    },
+    {
+      "actor": "synthetic-suspended",
+      "width": 1440,
+      "violations": [],
+      "hasName": true,
+      "initialsDecorative": true
+    }
+  ]
+}

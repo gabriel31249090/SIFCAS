@@ -11,7 +11,7 @@ export function Sidebar({ role, onNavigate }: { role: AppRole | null; onNavigate
   const pathname = usePathname();
   const items = getAccessibleModules(role).filter((item) => item.navigation);
   return <aside className="sidebar">
-    <Link href={role ? "/" : "/noticias"} className="brand" aria-label="SIFCAS, início" onClick={onNavigate}><Brand /></Link>
+    <Link href={role ? "/" : "/noticias"} className="brand" aria-label="SIFCAS. Campus, pessoas e serviços — início" onClick={onNavigate}><Brand /></Link>
     <div className="campusLabel"><Leaf size={14} aria-hidden="true"/><span>IFMT</span> Campus Cáceres</div>
     <nav className="nav" aria-label="Navegação principal">
       {moduleGroups.map((group) => {

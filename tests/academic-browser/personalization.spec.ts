@@ -168,7 +168,7 @@ test("preference files export, reject unrelated JSON, import and restore with co
   await page.getByRole("button", { name: "Restaurar padrão", exact: true }).click();
   await page.getByRole("button", { name: "Sim, restaurar", exact: true }).click();
   await page.reload();
-  await expect(page.getByRole("combobox", { name: "Tema", exact: true })).toHaveValue("system");
+  await expect(page.getByRole("combobox", { name: "Tema", exact: true })).toHaveValue("light");
   await page.getByRole("tab", { name: "Seu perfil", exact: true }).click();
   await expect(page.getByLabel("Como quer ser chamado?", { exact: true })).toHaveValue("");
 });

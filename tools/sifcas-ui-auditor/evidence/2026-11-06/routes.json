@@ -1,0 +1,1019 @@
+{
+  "target": "http://127.0.0.1:3000",
+  "generatedAt": "2026-11-06T15:40:25.685Z",
+  "robots": {
+    "status": 200,
+    "rules": [
+      {
+        "allow": true,
+        "path": "/noticias"
+      },
+      {
+        "allow": true,
+        "path": "/editais"
+      },
+      {
+        "allow": true,
+        "path": "/agenda-institucional"
+      },
+      {
+        "allow": true,
+        "path": "/campus"
+      },
+      {
+        "allow": true,
+        "path": "/transparencia"
+      },
+      {
+        "allow": true,
+        "path": "/verificar-documento"
+      },
+      {
+        "allow": true,
+        "path": "/publicacoes/"
+      },
+      {
+        "allow": false,
+        "path": "/api/"
+      },
+      {
+        "allow": false,
+        "path": "/auth/"
+      },
+      {
+        "allow": false,
+        "path": "/login"
+      },
+      {
+        "allow": false,
+        "path": "/recuperar-senha"
+      },
+      {
+        "allow": false,
+        "path": "/nova-senha"
+      },
+      {
+        "allow": false,
+        "path": "/buscar"
+      },
+      {
+        "allow": false,
+        "path": "/gestao-academica"
+      },
+      {
+        "allow": false,
+        "path": "/painel-institucional"
+      },
+      {
+        "allow": false,
+        "path": "/usuarios"
+      },
+      {
+        "allow": false,
+        "path": "/auditoria"
+      },
+      {
+        "allow": false,
+        "path": "/monitoramento"
+      },
+      {
+        "allow": false,
+        "path": "/importar-dados-academicos"
+      },
+      {
+        "allow": false,
+        "path": "/importar-calendario"
+      },
+      {
+        "allow": false,
+        "path": "/diario-professor"
+      },
+      {
+        "allow": false,
+        "path": "/boletim"
+      },
+      {
+        "allow": false,
+        "path": "/agenda-aluno"
+      },
+      {
+        "allow": false,
+        "path": "/minhas-turmas"
+      }
+    ],
+    "source": "User-Agent: *\nAllow: /noticias\nAllow: /editais\nAllow: /agenda-institucional\nAllow: /campus\nAllow: /transparencia\nAllow: /verificar-documento\nAllow: /publicacoes/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /login\nDisallow: /recuperar-senha\nDisallow: /nova-senha\nDisallow: /buscar\nDisallow: /gestao-academica\nDisallow: /painel-institucional\nDisallow: /usuarios\nDisallow: /auditoria\nDisallow: /monitoramento\nDisallow: /importar-dados-academicos\nDisallow: /importar-calendario\nDisallow: /diario-professor\nDisallow: /boletim\nDisallow: /agenda-aluno\nDisallow: /minhas-turmas\n\nHost: https://sifcas.vercel.app\nSitemap: https://sifcas.vercel.app/sitemap.xml\n"
+  },
+  "routes": [
+    {
+      "url": "http://127.0.0.1:3000/",
+      "path": "/",
+      "title": "Entrar | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/noticias",
+      "path": "/noticias",
+      "title": "Notícias e eventos | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/editais",
+      "path": "/editais",
+      "title": "Central de editais | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/agenda-institucional",
+      "path": "/agenda-institucional",
+      "title": "Agenda institucional | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/campus",
+      "path": "/campus",
+      "title": "Campus Cáceres | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/transparencia",
+      "path": "/transparencia",
+      "title": "Transparência | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/verificar-documento",
+      "path": "/verificar-documento",
+      "title": "Verificar documento | SIFCAS",
+      "status": 200,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/publicacoes/",
+      "path": "/publicacoes/",
+      "title": "SIFCAS — Campus Cáceres",
+      "status": 404,
+      "auth": "unknown",
+      "discovery": "seed",
+      "allowedByRobots": true
+    }
+  ],
+  "routeAudits": [
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 12,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 14,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 16,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 18,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 20,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 22,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 24,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Entrar | SIFCAS",
+      "screenshot": "screenshots\\root-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 26,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 28,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 30,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 32,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 34,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 36,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 38,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 40,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/noticias",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Notícias e eventos | SIFCAS",
+      "screenshot": "screenshots\\noticias-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 42,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 44,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 46,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 48,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 50,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 52,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 54,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 56,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/editais",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Central de editais | SIFCAS",
+      "screenshot": "screenshots\\editais-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 58,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 60,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 62,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 64,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 66,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 68,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 70,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 72,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/agenda-institucional",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Agenda institucional | SIFCAS",
+      "screenshot": "screenshots\\agenda-institucional-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 74,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 76,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 78,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 80,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 82,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 84,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 86,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 88,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/campus",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Campus Cáceres | SIFCAS",
+      "screenshot": "screenshots\\campus-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 90,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 92,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 94,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 96,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 98,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 100,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 102,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 104,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/transparencia",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Transparência | SIFCAS",
+      "screenshot": "screenshots\\transparencia-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 106,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 108,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 110,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 112,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 114,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 116,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 118,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 120,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/verificar-documento",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 200,
+      "title": "Verificar documento | SIFCAS",
+      "screenshot": "screenshots\\verificar-documento-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 122,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-320x640.png",
+      "errors": [],
+      "blockedResourceCount": 124,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-375x812.png",
+      "errors": [],
+      "blockedResourceCount": 126,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-430x932.png",
+      "errors": [],
+      "blockedResourceCount": 128,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-768x1024.png",
+      "errors": [],
+      "blockedResourceCount": 130,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-1024x768.png",
+      "errors": [],
+      "blockedResourceCount": 132,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-1440x900.png",
+      "errors": [],
+      "blockedResourceCount": 134,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-1920x1080.png",
+      "errors": [],
+      "blockedResourceCount": 136,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    },
+    {
+      "route": "http://127.0.0.1:3000/publicacoes/",
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      },
+      "status": 404,
+      "title": "SIFCAS — Campus Cáceres",
+      "screenshot": "screenshots\\publicacoes-2560x1440.png",
+      "errors": [],
+      "blockedResourceCount": 138,
+      "resourcePolicy": "Only same-origin resources explicitly allowed by this origin's robots.txt are loaded."
+    }
+  ],
+  "excludedByRobots": [],
+  "authenticatedRoutes": {
+    "tested": false,
+    "reason": "No authorized session was supplied; no login or data-changing action was attempted."
+  }
+}

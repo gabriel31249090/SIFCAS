@@ -18,6 +18,14 @@ Outras referências visuais: [AeroWave](https://github.com/Zakintaliban/frutiger
 
 Preferências e arquivos locais não alteram papéis, contas, matrículas, notas, presença ou demais dados oficiais.
 
+## Organização das janelas e imagens
+
+O IFOS lembra a ordem, posição, tamanho, minimização, maximização e estado “mostrar desktop”, em uma chave própria de layout separada por conta. A restauração valida versão, tamanho do JSON, geometria e módulos atualmente autorizados; dados acadêmicos e estados do cronômetro não entram no arquivo salvo. Trocar de conta remonta o desktop. Visitas em telas pequenas preservam o layout de computador.
+
+Para redimensionar uma janela, arraste a alça inferior direita ou dê foco à alça e use as setas; Shift aumenta o passo. As dimensões respeitam o espaço da tela. Se o navegador bloquear o armazenamento, um aviso informa que a organização vale somente na aba atual.
+
+As 100 artes agora têm recortes WebP individuais e miniaturas locais carregadas sob demanda na galeria. As folhas originais foram preservadas como fontes. `npm run assets:optimize` regenera os arquivos e `npm run assets:check` confere hashes, dimensões e transparência. Veja [legibilidade](legibilidade-aero-2026-11-12.md) e [entrega de IFOS, imagens e memória](entrega-ifos-memoria-2026-11-12.md).
+
 ## Validação local
 
 `tests/student-experience.test.mjs` cobre a normalização e a validação das preferências. `tests/academic-browser/personalization.spec.ts` verifica persistência por conta, atualização entre abas, importação/exportação, restauração, falha de armazenamento, foco, navegação por teclado, novos favoritos na página inicial, reordenação por grupo e janelas/busca do IFOS.

@@ -35,12 +35,12 @@ export async function login(formData: FormData) {
       message: error?.message ?? "No user returned",
     });
     const message = code === "invalid_credentials"
-      ? "E-mail ou senha inválidos. Verifique as credenciais e o projeto Supabase."
+      ? "E-mail ou senha inválidos."
       : code === "email_not_confirmed"
         ? "Confirme seu e-mail antes de entrar."
         : code === "over_request_rate_limit"
           ? "Muitas tentativas. Aguarde antes de tentar novamente."
-          : "Erro de autenticação. Consulte os logs do servidor.";
+          : "Serviço de autenticação indisponível. Tente novamente; se persistir, procure a administração.";
     redirect(`/login?error=${encodeURIComponent(message)}`);
   }
 

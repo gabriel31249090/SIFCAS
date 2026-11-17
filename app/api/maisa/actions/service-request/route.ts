@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { getCurrentAccount } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { prepareServiceRequestDescription } from "@/lib/service-request";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -28,9 +29,15 @@ export async function POST(request: NextRequest) {
   const category = typeof body.category === "string" ? body.category : "other";
   const priority = typeof body.priority === "string" ? body.priority : "normal";
   const title = typeof body.title === "string" ? body.title.trim() : "";
+  const location = typeof body.location === "string" ? body.location.trim() : "";
   const description = typeof body.description === "string" ? body.description.trim() : "";
+  const preparedDescription = prepareServiceRequestDescription(category, location, description);
 
-  if (!categories.has(category) || !priorities.has(priority) || title.length < 3 || title.length > 180 || description.length > 8000) {
+  if (!categories.has(category) || !priorities.has(priority) || title.length < 3 || title.length > 180
+    || !preparedDescription.ok) {
+    if (!preparedDescription.ok && preparedDescription.reason === "location_required") {
+      return Response.json({ error: "Informe o campus e o local exato da ocorrência de infraestrutura." }, { status: 400 });
+    }
     return Response.json({ error: "Revise os dados da solicitação." }, { status: 400 });
   }
 
@@ -42,7 +49,7 @@ export async function POST(request: NextRequest) {
       category,
       priority,
       title,
-      description,
+      description: preparedDescription.description,
     })
     .select("id,status,created_at")
     .single();
@@ -52,5 +59,9 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Não foi possível abrir a solicitação." }, { status: 500 });
   }
 
-  return Response.json({ ok: true, request: data, message: "Solicitação aberta com sucesso." });
+  return Response.json({
+    ok: true,
+    request: data,
+    message: "Solicitação registrada no SIFCAS. O encaminhamento ao setor do campus não foi confirmado.",
+  });
 }

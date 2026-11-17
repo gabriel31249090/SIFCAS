@@ -1,0 +1,77 @@
+{
+  "findings": [
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/noticias",
+      "manualReviewRequired": true,
+      "evidence": "84 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/editais",
+      "manualReviewRequired": true,
+      "evidence": "92 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-in-text-block",
+      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+      "route": "http://127.0.0.1:3100/editais",
+      "manualReviewRequired": true,
+      "evidence": "1 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "manualReviewRequired": true,
+      "evidence": "37 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "link-in-text-block",
+      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "manualReviewRequired": true,
+      "evidence": "1 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/campus",
+      "manualReviewRequired": true,
+      "evidence": "20 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/transparencia",
+      "manualReviewRequired": true,
+      "evidence": "53 nodes require manual review; not a confirmed violation."
+    },
+    {
+      "source": "axe-core",
+      "severity": "serious",
+      "kind": "color-contrast",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "manualReviewRequired": true,
+      "evidence": "21 nodes require manual review; not a confirmed violation."
+    }
+  ],
+  "classification": "observed geometry only; no inferred visual failures"
+}

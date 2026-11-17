@@ -1,0 +1,1009 @@
+{
+  "viewports": [
+    {
+      "width": 320,
+      "height": 640
+    },
+    {
+      "width": 375,
+      "height": 812
+    },
+    {
+      "width": 430,
+      "height": 932
+    },
+    {
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "width": 2560,
+      "height": 1440
+    }
+  ],
+  "results": [
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 4589,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 15
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 4383,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 15
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 4137,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 15
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 2646,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 2439,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 1795,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 1776,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 1776,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 5658,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 5190,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 4902,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 3811,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 3709,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 2633,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 2504,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 2504,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 2636,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 2543,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 2479,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 14
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 1744,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 1642,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 1258,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 1270,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 1442,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 12111,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 11574,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 11141,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 6278,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 6163,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 4612,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 4461,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 4461,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 3057,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 2989,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 2912,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 1864,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 1762,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 1402,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 1372,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 1442,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "devicePixelRatio": 1,
+        "documentWidth": 320,
+        "documentHeight": 777,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 375,
+        "height": 812,
+        "devicePixelRatio": 1,
+        "documentWidth": 375,
+        "documentHeight": 899,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 13
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 430,
+        "height": 932,
+        "devicePixelRatio": 1,
+        "documentWidth": 430,
+        "documentHeight": 1019,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 17
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "devicePixelRatio": 1,
+        "documentWidth": 768,
+        "documentHeight": 1059,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 12
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 1024,
+        "height": 768,
+        "devicePixelRatio": 1,
+        "documentWidth": 1024,
+        "documentHeight": 770,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1,
+        "documentWidth": 1440,
+        "documentHeight": 902,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "devicePixelRatio": 1,
+        "documentWidth": 1920,
+        "documentHeight": 1082,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "devicePixelRatio": 1,
+        "documentWidth": 2560,
+        "documentHeight": 1442,
+        "horizontalOverflow": false,
+        "clippedElements": [],
+        "hiddenCount": 11
+      }
+    }
+  ],
+  "mediaQueriesByRoute": [
+    {
+      "route": "http://127.0.0.1:3100/noticias",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 720px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    },
+    {
+      "route": "http://127.0.0.1:3100/editais",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1200px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 720px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    },
+    {
+      "route": "http://127.0.0.1:3100/agenda-institucional",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 720px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    },
+    {
+      "route": "http://127.0.0.1:3100/campus",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 720px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    },
+    {
+      "route": "http://127.0.0.1:3100/transparencia",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    },
+    {
+      "route": "http://127.0.0.1:3100/verificar-documento",
+      "queries": [
+        "(max-height: 740px)",
+        "(max-width: 1000px)",
+        "(max-width: 1050px)",
+        "(max-width: 1100px)",
+        "(max-width: 1120px)",
+        "(max-width: 1150px)",
+        "(max-width: 1250px)",
+        "(max-width: 480px)",
+        "(max-width: 500px)",
+        "(max-width: 520px)",
+        "(max-width: 560px)",
+        "(max-width: 620px)",
+        "(max-width: 700px)",
+        "(max-width: 760px)",
+        "(max-width: 780px)",
+        "(max-width: 800px)",
+        "(max-width: 820px)",
+        "(max-width: 900px)",
+        "(max-width: 980px)",
+        "(min-height: 850px)",
+        "(min-width: 1500px)",
+        "(min-width: 1600px)",
+        "(prefers-reduced-motion: reduce)",
+        "print"
+      ],
+      "inaccessibleStylesheets": [],
+      "evidence": "CSSOM accessible on the measured page only; observed layout changes are reported separately."
+    }
+  ],
+  "breakpoints": {
+    "values": [
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 720px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print",
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1200px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 720px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print",
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 720px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print",
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 720px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print",
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print",
+      "(max-height: 740px)",
+      "(max-width: 1000px)",
+      "(max-width: 1050px)",
+      "(max-width: 1100px)",
+      "(max-width: 1120px)",
+      "(max-width: 1150px)",
+      "(max-width: 1250px)",
+      "(max-width: 480px)",
+      "(max-width: 500px)",
+      "(max-width: 520px)",
+      "(max-width: 560px)",
+      "(max-width: 620px)",
+      "(max-width: 700px)",
+      "(max-width: 760px)",
+      "(max-width: 780px)",
+      "(max-width: 800px)",
+      "(max-width: 820px)",
+      "(max-width: 900px)",
+      "(max-width: 980px)",
+      "(min-height: 850px)",
+      "(min-width: 1500px)",
+      "(min-width: 1600px)",
+      "(prefers-reduced-motion: reduce)",
+      "print"
+    ],
+    "note": "Only queries observed in accessible CSSOM are listed; observed layout changes are not treated as CSS media-query proof."
+  }
+}

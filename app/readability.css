@@ -157,7 +157,7 @@ html[data-experience-resolved-theme="dark"] .pageContainer :is(
   .formStack input:not([type="checkbox"]):not([type="radio"]),
   .formStack select, .formStack textarea,
   .diaryToolbar select, .attendanceSelect, .scoreInput,
-  .profileForm input, .profileForm textarea, .profileForm select,
+  .profileForm textarea, .profileForm select,
   .sidePanel input:not([type="checkbox"]), .sidePanel select, .sidePanel textarea
 ) {
   color: #f0f8fe !important;

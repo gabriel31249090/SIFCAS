@@ -21,6 +21,8 @@ Plataforma em Next.js 16 + React 19 + TypeScript, integrada ao Supabase e public
 
 Requer Node.js 24. A instalação e os deploys usam o `package-lock.json` com `npm ci` para manter builds reproduzíveis.
 
+A [auditoria visual independente](tools/sifcas-ui-auditor/README.md) tem ferramentas, testes e evidências próprios. Ela mede somente páginas públicas permitidas, com exclusão de falhas e redirecionamentos fora do escopo. Os relatórios antigos preservam suas ressalvas de coleta.
+
 ## Estado atual
 
 O SIFCAS possui autenticação SSR, perfis e papéis institucionais, validação de vínculos, núcleo acadêmico, agenda por turma, diário do professor, notas, frequência, boletim, documentos acadêmicos verificáveis, processos, oportunidades e uma camada institucional de notícias, editais, eventos e notificações.
@@ -152,6 +154,14 @@ npm run db:restore-test -- backups/sifcas-AAAA.dump
 Use apenas um banco vazio e descartável. Arquivos do Supabase Storage precisam de uma cópia separada.
 
 ## Desenvolvimento
+
+### Memória do projeto
+
+O [segundo cérebro do SIFCAS](docs/second-brain/00-INICIO.md) é um vault Obsidian versionado. Abra `docs/second-brain` como cofre ou consulte pelo terminal com `npm run memory:recall -- "IFOS" --limit 5`. Antes de trabalhar, leia o índice e o estado atual; depois revise as notas do domínio afetado, rode `npm run memory:catalog` e `npm run memory:check`. A checagem também faz parte de `npm run check`: mudanças em fontes sem atualização do catálogo são sinalizadas. Não exige Obsidian aberto, plugins ou uma API de IA.
+
+Para medir o build de produção com banco sintético, encerre a fixture de desenvolvimento e execute `npm run preview:production:local`; em outro terminal, rode `npm run audit:production` na pasta `tools/sifcas-ui-auditor`. O cenário usa as portas locais 3102 e 54331 e não publica o aplicativo.
+
+A [ferramenta de manutenção Node.js](tools/maintenance/README.md) reúne verificações reais e gera relatórios locais: `npm run maintain -- --mode dry_run --profile complete` mostra o plano; `npm run maintain` executa o perfil padrão. Checagens remotas indisponíveis aparecem como pendência, com código de saída 1. A única correção automática registrada regenera o catálogo de memória com checkpoint e validação.
 
 ### Importação acadêmica e catálogo público (homologação)
 

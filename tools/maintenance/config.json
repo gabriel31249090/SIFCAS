@@ -1,0 +1,10 @@
+{
+  "mode": "audit_only",
+  "environment": "dev",
+  "profile": "quick",
+  "timeoutMs": 180000,
+  "retries": 0,
+  "maxCycles": 2,
+  "network": false,
+  "stopOnError": false
+}
