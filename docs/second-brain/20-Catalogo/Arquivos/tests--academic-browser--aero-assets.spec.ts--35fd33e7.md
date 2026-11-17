@@ -1,15 +1,15 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/academic-browser/aero-assets.spec.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
-sha256: b03c30cd041bdb6dfa7f8d257ced3fb14433b953bc0a2558c4c69acbd8ca8a7c
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
+sha256: 0e750eca5a888a291851a7ba4b85c0bf47c3b46a532462b1b33caf14333600bc
 hash_formato: sha256-utf8-lf-v1
 ---
 
 # tests/academic-browser/aero-assets.spec.ts
 
-Categoria: **Testes-e-auditoria**. 7897 bytes; 126 linhas.
+Categoria: **Testes-e-auditoria**. 9760 bytes; 157 linhas.
 
 [Fonte no repositório](../../../../tests/academic-browser/aero-assets.spec.ts). Formato: sha256-utf8-lf-v1. Texto usa UTF-8 com finais de linha LF; bin?rios preservam bytes originais. Compare o SHA-256 can?nico com o manifesto antes de confiar nesta ficha.
 

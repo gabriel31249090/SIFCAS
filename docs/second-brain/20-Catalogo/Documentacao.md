@@ -29,4 +29,5 @@ Notas de referência; abra a fonte para contexto e confira a data antes de reuti
 - [[20-Catalogo/Arquivos/lib--pixelfx--NOTICE.md--b534cd1f|lib/pixelfx/NOTICE.md]]
 - [[20-Catalogo/Arquivos/README.md--b3356305|README.md]]
 - [[20-Catalogo/Arquivos/supabase--README.md--0d54cc31|supabase/README.md]]
+- [[20-Catalogo/Arquivos/tools--maintenance--README.md--55a16e74|tools/maintenance/README.md]]
 - [[20-Catalogo/Arquivos/tools--sifcas-ui-auditor--README.md--2d744213|tools/sifcas-ui-auditor/README.md]]

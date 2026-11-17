@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/usuarios/actions.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 8213a2e7e891e0e6f580ae2579b52d25b03658d46b8568b4284bb67329a9f828
 hash_formato: sha256-utf8-lf-v1
 ---

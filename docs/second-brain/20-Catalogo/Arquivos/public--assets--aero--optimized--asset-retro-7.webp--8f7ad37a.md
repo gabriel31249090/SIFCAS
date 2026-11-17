@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/optimized/asset-retro-7.webp"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: c59327a7117c2a5f90a2e69ca5e8392a3ece607c9c816f26df36cd367287b43b
 hash_formato: sha256-raw-v1
 ---

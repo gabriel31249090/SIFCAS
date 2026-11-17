@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/optimized/asset-landscape-3-thumb.webp"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: c1822c06e998c14db310a4bda1287fa7609656b1a8d3b84c5d2639540d3ffb59
 hash_formato: sha256-raw-v1
 ---

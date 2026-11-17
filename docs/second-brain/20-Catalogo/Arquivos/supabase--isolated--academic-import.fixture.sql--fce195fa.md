@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "supabase/isolated/academic-import.fixture.sql"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: bdce78aa8f99dbda8a6c9007db13883d67d9fed49199f9e006c0308885f73a0e
 hash_formato: sha256-utf8-lf-v1
 ---

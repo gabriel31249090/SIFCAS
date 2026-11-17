@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/diario-professor/actions.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: c049ed45b625600e8201ee017e86285a9b1739f124e6b1747a26528e4d14f9cd
 hash_formato: sha256-utf8-lf-v1
 ---

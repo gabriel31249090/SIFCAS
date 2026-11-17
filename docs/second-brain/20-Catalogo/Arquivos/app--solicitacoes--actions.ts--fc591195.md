@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/solicitacoes/actions.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 21e1e98fb8ef6f47ed1431da24b25110e01c5389b11c52cb85f626e1c6ae08d2
 hash_formato: sha256-utf8-lf-v1
 ---

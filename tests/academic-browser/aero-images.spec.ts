@@ -38,8 +38,7 @@ test("Aero gallery renders local cropped images and preserves selected artwork a
   await Promise.all(transfers);
   expect(images.size).toBeGreaterThan(5);
   expect([...images.keys()].every((url) => url.includes("/optimized/") && url.endsWith(".webp"))).toBe(true);
-  await fs.mkdir("tools/sifcas-ui-auditor/evidence/2026-11-12", { recursive: true });
-  await fs.writeFile("tools/sifcas-ui-auditor/evidence/2026-11-12/aero-image-network.json", `${JSON.stringify({
+  await fs.writeFile(test.info().outputPath("aero-image-network.json"), `${JSON.stringify({
     generatedAt: new Date().toISOString(), context: "Navegação local com conta sintética; seis categorias e recarregamento de escolha. Tamanhos são corpos HTTP das imagens Aero, sem headers; sem extrapolar para o domínio publicado.",
     originalSheetsRequested: 0, uniqueImages: images.size, bytes: [...images.values()].reduce((sum, bytes) => sum + bytes, 0), images: Object.fromEntries(images),
   }, null, 2)}\n`);

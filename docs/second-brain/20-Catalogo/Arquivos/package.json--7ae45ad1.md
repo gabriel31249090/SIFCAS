@@ -1,15 +1,15 @@
 ---
 tipo: inventario-gerado
 fonte: "package.json"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
-sha256: 781a183e967d231b18a60ce6560ab388d0fae50dd4beb4c182b7dcd3278ab7c2
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
+sha256: c78d9eb996c3759634a4de9d28f5110f64d3a413487a511e33d098a430f51ab2
 hash_formato: sha256-utf8-lf-v1
 ---
 
 # package.json
 
-Categoria: **Operacao**. 2705 bytes; 64 linhas.
+Categoria: **Operacao**. 2756 bytes; 65 linhas.
 
 [Fonte no repositório](../../../../package.json). Formato: sha256-utf8-lf-v1. Texto usa UTF-8 com finais de linha LF; bin?rios preservam bytes originais. Compare o SHA-256 can?nico com o manifesto antes de confiar nesta ficha.
 

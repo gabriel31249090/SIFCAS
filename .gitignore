@@ -15,6 +15,7 @@ backups/
 *.tsbuildinfo
 test-results/
 playwright-report/
+reports/maintenance/
 docs/second-brain/.obsidian/workspace*.json
 docs/second-brain/.obsidian/cache/
 docs/second-brain/.trash/

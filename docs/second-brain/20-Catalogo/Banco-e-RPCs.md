@@ -213,6 +213,10 @@
 - [[20-Catalogo/Arquivos/lib--maisa--context.ts--537fca7e|lib/maisa/context.ts]] — consulta literal no código
 - [[20-Catalogo/Arquivos/supabase--tests_nao_deletar_GGG--test.sql--029834fb|supabase/tests não deletar GGG/test.sql]] — declaração SQL local
 
+### invalid
+
+- [[20-Catalogo/Arquivos/tests--maintenance.test.mjs--4b0fb2b8|tests/maintenance.test.mjs]] — consulta literal no código
+
 ### knowledge_articles
 
 - [[20-Catalogo/Arquivos/lib--experience.ts--370a8326|lib/experience.ts]] — consulta literal no código

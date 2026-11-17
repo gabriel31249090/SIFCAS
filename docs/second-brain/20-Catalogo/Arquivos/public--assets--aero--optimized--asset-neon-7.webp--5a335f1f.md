@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/optimized/asset-neon-7.webp"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 3e3f57ff3f1d413552a3b462899003a8cf90fd3bed1cec6848df665cc0b5b974
 hash_formato: sha256-raw-v1
 ---

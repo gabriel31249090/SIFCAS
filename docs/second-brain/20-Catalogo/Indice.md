@@ -1,11 +1,11 @@
 ---
 tipo: indice-gerado
-verificado_em: 2026-11-13T15:58:18.928Z
+verificado_em: 2026-11-17T14:41:06.597Z
 ---
 
 # Inventário completo
 
-538 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `9f270e354b18c60fc4c493749c13ce8c544026df`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
+544 arquivos do escopo; 73 entradas de rota/metadados. Base Git: `b73b65b1ec73157996650139f5cb2a4650f7be40`. O manifesto registra caminhos, bytes, SHA-256 e relações. Arquivos locais modificados também entram no hash; o commit sozinho não descreve o snapshot.
 
 [[00-INICIO]] · [[20-Catalogo/Rotas]] · [[20-Catalogo/Banco-e-RPCs]] · [[20-Catalogo/Documentacao]] · [[02-Como-retomar]]
 
@@ -537,6 +537,7 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/tests--home-today.test.mjs--b3661c55|tests/home-today.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--ical.test.mjs--51c7e950|tests/ical.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--ifos-workspace.test.mjs--c5b81e98|tests/ifos-workspace.test.mjs]]
+- [[20-Catalogo/Arquivos/tests--maintenance.test.mjs--4b0fb2b8|tests/maintenance.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--personal-calendar-db.test.mjs--ff48dacd|tests/personal-calendar-db.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--public-notices.test.mjs--4f20e790|tests/public-notices.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--security.test.mjs--366d5351|tests/security.test.mjs]]
@@ -545,6 +546,11 @@ O catálogo é derivado, não substitui o código. Padrões estáticos podem omi
 - [[20-Catalogo/Arquivos/tests--student-experience.test.mjs--26c53162|tests/student-experience.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--supabase-config.test.mjs--a712afe3|tests/supabase-config.test.mjs]]
 - [[20-Catalogo/Arquivos/tests--teacher-workspace.test.mjs--b2569c0b|tests/teacher-workspace.test.mjs]]
+- [[20-Catalogo/Arquivos/tools--maintenance--adapters.mjs--38252903|tools/maintenance/adapters.mjs]]
+- [[20-Catalogo/Arquivos/tools--maintenance--cli.mjs--4022c0da|tools/maintenance/cli.mjs]]
+- [[20-Catalogo/Arquivos/tools--maintenance--config.json--5c18bf53|tools/maintenance/config.json]]
+- [[20-Catalogo/Arquivos/tools--maintenance--engine.mjs--3a948098|tools/maintenance/engine.mjs]]
+- [[20-Catalogo/Arquivos/tools--maintenance--README.md--55a16e74|tools/maintenance/README.md]]
 - [[20-Catalogo/Arquivos/tools--sifcas-ui-auditor--.gitignore--07ec5c6d|tools/sifcas-ui-auditor/.gitignore]]
 - [[20-Catalogo/Arquivos/tools--sifcas-ui-auditor--package-lock.json--94c90725|tools/sifcas-ui-auditor/package-lock.json]]
 - [[20-Catalogo/Arquivos/tools--sifcas-ui-auditor--package.json--2d8fb50f|tools/sifcas-ui-auditor/package.json]]

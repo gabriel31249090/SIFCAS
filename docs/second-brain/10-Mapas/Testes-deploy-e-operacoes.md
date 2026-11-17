@@ -18,6 +18,7 @@ Os comandos são definidos em [package.json](../../../package.json), com depend�
 | Percurso sintético acadêmico | `npm run test:e2e:academic`, `npm run dev:academic`, [runner](../../../scripts/run-academic-e2e.mjs) |
 | Banco local/homologação | PGlite e fixtures em `tests/`/`supabase/isolated`; não comprovam schema remoto |
 | Memória | `node scripts/second-brain-check.mjs`, `node scripts/second-brain-recall.mjs "tema"` |
+| Manutenção orquestrada | `npm run maintain`; [guia](../../../tools/maintenance/README.md), planejamento, resultados reais e correção limitada do catálogo |
 
 Cobertura catalogada: importação acadêmica e RLS isolada, status de contas admin, personalização/assets, catálogo/segurança/SEO, calendário, diário/docente, editais/notícias, solicitações, configuração Supabase, e-mail e bridge MCP. Suítes browser ficam em `tests/e2e` e `tests/academic-browser`; consulte todas as fichas em [[20-Catalogo/Indice]]. A auditoria visual em `tools/sifcas-ui-auditor` possui escopo e evidências próprios; seus relatórios não representam automaticamente toda a experiência autenticada.
 
@@ -29,6 +30,6 @@ Operações Supabase: scripts de geração de tipos e configuração de e-mails 
 
 Backups: `npm run db:backup` usa ferramentas PostgreSQL, valida índice com `pg_restore --list` e grava SHA-256. `npm run db:restore-test` requer destino descartável e confirmação explícita, recusa produção. Storage exige cópia separada. O vault não guarda dumps nem strings de conexão. Existência dos scripts não comprova backup/restauração realizados.
 
-Para esta sessão: não houve commit/deploy executado pelo agente de memória nem execução de migrations. O histórico registra somente os checks de memória efetivamente feitos; o coordenador deve acrescentar os resultados finais do produto após as alterações paralelas.
+Em 16/11, `tools/maintenance` implementa Registry/Adapter/Pipeline em Node.js. Não executa SQL remoto nem commit/push/deploy. O modo audit_only executa checks reais; dry_run só planeja. A única correção registrada regenera o catálogo após baseline, checkpoint e validação, com rollback em caso de falha. Relatórios ficam em `reports/maintenance`, ignorados pelo Git e fora da limpeza do Playwright. [[30-Historico/2026-11-16-Manutencao-Node]] distingue verificações executadas e pendências.
 
 [[30-Historico/Indice]] · [[40-Decisoes-e-pendencias/Pendencias]] · [[20-Catalogo/Indice]] · [[00-INICIO]]

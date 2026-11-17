@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "app/estagios/page.tsx"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 3331ac3d7dff7e0f5ead96767ccfe359ee4ca3ea3bf17bf217cc62a102ac477b
 hash_formato: sha256-utf8-lf-v1
 ---

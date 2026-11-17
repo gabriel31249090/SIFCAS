@@ -146,6 +146,8 @@ O [segundo cérebro do SIFCAS](docs/second-brain/00-INICIO.md) é um vault Obsid
 
 Para medir o build de produção com banco sintético, encerre a fixture de desenvolvimento e execute `npm run preview:production:local`; em outro terminal, rode `npm run audit:production` na pasta `tools/sifcas-ui-auditor`. O cenário usa as portas locais 3102 e 54331 e não publica o aplicativo.
 
+A [ferramenta de manutenção Node.js](tools/maintenance/README.md) reúne verificações reais e gera relatórios locais: `npm run maintain -- --mode dry_run --profile complete` mostra o plano; `npm run maintain` executa o perfil padrão. Checagens remotas indisponíveis aparecem como pendência, com código de saída 1. A única correção automática registrada regenera o catálogo de memória com checkpoint e validação.
+
 ### Importação acadêmica e catálogo público (homologação)
 
 A continuação adiciona homepage Frutiger Aero/Metro, painel **Hoje**, **Minhas turmas** e um percurso local completo com sessões sintéticas assinadas: `npm run dev:academic` (escolher perfil em `http://127.0.0.1:54331/`) e `npm run test:e2e:academic`. Não exige credenciais reais e não altera autenticação de produção. Veja [prévia visual e demonstração local](docs/frutiger-e-homologacao-local.md).

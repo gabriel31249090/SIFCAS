@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "public/assets/aero/y2k-wallpapers.png"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 4a4ab49c434803f53a240654e5c904dc2e2de6b0d7cae39b61a0fe50a5e0563e
 hash_formato: sha256-raw-v1
 ---

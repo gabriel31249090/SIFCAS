@@ -1,15 +1,15 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/academic-browser/aero-images.spec.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
-sha256: 8627644204b07232369aa0bf77123e0196b933869bc34b2e9c0d4071b6e42056
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
+sha256: c30fd62d1452b001a76922dc9a1fb5a5a18e10289832ff52f08de19a44aad52a
 hash_formato: sha256-utf8-lf-v1
 ---
 
 # tests/academic-browser/aero-images.spec.ts
 
-Categoria: **Testes-e-auditoria**. 3315 bytes; 47 linhas.
+Categoria: **Testes-e-auditoria**. 3209 bytes; 46 linhas.
 
 [Fonte no repositório](../../../../tests/academic-browser/aero-images.spec.ts). Formato: sha256-utf8-lf-v1. Texto usa UTF-8 com finais de linha LF; bin?rios preservam bytes originais. Compare o SHA-256 can?nico com o manifesto antes de confiar nesta ficha.
 

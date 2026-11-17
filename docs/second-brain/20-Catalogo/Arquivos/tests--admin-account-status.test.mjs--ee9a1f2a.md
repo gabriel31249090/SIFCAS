@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tests/admin-account-status.test.mjs"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 39e3ef644f54f6a56d9bb8f3854c8d8889996ddb58eb183842ab43b5bc7c1024
 hash_formato: sha256-utf8-lf-v1
 ---

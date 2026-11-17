@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "tools/sifcas-ui-auditor/src/extractors/geometry.ts"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 97df401f85febe70f730b91c62efc887ffdbfa2ff99857c651d22c339f96832f
 hash_formato: sha256-utf8-lf-v1
 ---

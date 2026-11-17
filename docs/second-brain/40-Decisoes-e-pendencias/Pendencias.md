@@ -1,13 +1,13 @@
 ---
 tipo: pendencias
-verificado_em: 2026-11-12
+verificado_em: 2026-11-16
 ---
 
 # Pendências e perguntas abertas
 
 | Item | Evidência/limite atual | Próxima ação necessária |
 | --- | --- | --- |
-| Publicação das melhorias posteriores ao IFOS | Consulta GitHub de 13/11: f341b35 registrado Production/success; imagens e memória 02d4183 em Preview/success | Conferir/promover o commit final na própria conta e validar o domínio e papéis; os registros não comprovam o alias atual sozinhos |
+| Integração e publicação das melhorias | Consulta de 16/11: main d705518 registrada Production/success; perfil b73b65b em Preview/success; históricos divergentes com alterações próprias | Integrar e revisar as duas linhas antes de publicar, preservando as mudanças da main; conferir domínio e papéis na conta correta. Os registros não comprovam o alias atual sozinhos |
 | Cobertura visual ampliada | Revisão local clara cobre páginas/estados do relatório; gradientes ainda geram incomplete | Ampliar para todos os temas, estados de erro e leitor de tela sem supor conformidade integral |
 | Baseline Supabase/RLS remota | supabase/README declara ausência de inventário verificado | Acesso ao projeto correto, exportação estrutural, revisão grants/policies/triggers e testes em staging |
 | Patch de status de conta instalado? | Existe patch local e chamada de RPC; aplicação remota não comprovada | Conferir função e grants em staging/remoto autorizado antes de afirmar disponibilidade |

@@ -1,8 +1,8 @@
 ---
 tipo: inventario-gerado
 fonte: "components/PageLocation.tsx"
-verificado_em: 2026-11-13T15:58:18.928Z
-commit_base: 9f270e354b18c60fc4c493749c13ce8c544026df
+verificado_em: 2026-11-17T14:41:06.597Z
+commit_base: b73b65b1ec73157996650139f5cb2a4650f7be40
 sha256: 975159f8f5fbbc41dc5ef1b52c92e6b82cf521c2e5d28e5e79b19a56c6f13e18
 hash_formato: sha256-utf8-lf-v1
 ---

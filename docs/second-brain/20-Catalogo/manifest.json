@@ -5,8 +5,8 @@
     "binary": "sha256-raw-v1"
   },
   "textHashCanonicalization": "UTF-8 text, CRLF/CR converted to LF; binary hashes use original bytes",
-  "generatedAt": "2026-11-13T15:58:18.928Z",
-  "head": "9f270e354b18c60fc4c493749c13ce8c544026df",
+  "generatedAt": "2026-11-17T14:41:06.597Z",
+  "head": "b73b65b1ec73157996650139f5cb2a4650f7be40",
   "extraction": "local-static-regex; no remote queries; no source bodies persisted",
   "exclusions": [
     ".env*",
@@ -42,9 +42,9 @@
     },
     {
       "path": "AGENTS.md",
-      "hash": "8d2bfcdd83ded1a5ea4ad216a01f61bfceca303e113dafcbd8561aef209ed67e",
+      "hash": "f81255714e936cd78bbb74fe521149ee9f99f329b7e8349a464603e4104d883f",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 2124,
+      "bytes": 2125,
       "lines": 22,
       "category": "Documentacao",
       "route": null,
@@ -6707,10 +6707,10 @@
     },
     {
       "path": "package-lock.json",
-      "hash": "1b9402136a100d51c9cfa4557c0791f3fa477ddc06e0db0f3c9f91c0f3b472e1",
+      "hash": "144dc0b2ef75c336c3d1f16f2898f17ddf2108ec1f10330c82622323c242003c",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 238193,
-      "lines": 6654,
+      "bytes": 239067,
+      "lines": 6714,
       "category": "Operacao",
       "route": null,
       "domains": [
@@ -6730,10 +6730,10 @@
     },
     {
       "path": "package.json",
-      "hash": "781a183e967d231b18a60ce6560ab388d0fae50dd4beb4c182b7dcd3278ab7c2",
+      "hash": "c78d9eb996c3759634a4de9d28f5110f64d3a413487a511e33d098a430f51ab2",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 2705,
-      "lines": 64,
+      "bytes": 2756,
+      "lines": 65,
       "category": "Operacao",
       "route": null,
       "domains": [
@@ -12013,10 +12013,10 @@
     },
     {
       "path": "README.md",
-      "hash": "7c5cb47c59e156ad56085db1473b7bf20b7b797a57be884cf64e64e5e3bfa2b1",
+      "hash": "16ea0ac68756bb0e3684485fdadc6f426b2b162197192da33c35c03412f428f8",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 8675,
-      "lines": 175,
+      "bytes": 9108,
+      "lines": 177,
       "category": "Documentacao",
       "route": null,
       "domains": [
@@ -12890,10 +12890,10 @@
     },
     {
       "path": "tests/academic-browser/aero-assets.spec.ts",
-      "hash": "b03c30cd041bdb6dfa7f8d257ced3fb14433b953bc0a2558c4c69acbd8ca8a7c",
+      "hash": "0e750eca5a888a291851a7ba4b85c0bf47c3b46a532462b1b33caf14333600bc",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 7897,
-      "lines": 126,
+      "bytes": 9760,
+      "lines": 157,
       "category": "Testes-e-auditoria",
       "route": null,
       "domains": [
@@ -12915,10 +12915,10 @@
     },
     {
       "path": "tests/academic-browser/aero-images.spec.ts",
-      "hash": "8627644204b07232369aa0bf77123e0196b933869bc34b2e9c0d4071b6e42056",
+      "hash": "c30fd62d1452b001a76922dc9a1fb5a5a18e10289832ff52f08de19a44aad52a",
       "hashFormat": "sha256-utf8-lf-v1",
-      "bytes": 3315,
-      "lines": 47,
+      "bytes": 3209,
+      "lines": 46,
       "category": "Testes-e-auditoria",
       "route": null,
       "domains": [
@@ -13603,6 +13603,35 @@
       "verbs": []
     },
     {
+      "path": "tests/maintenance.test.mjs",
+      "hash": "0403386b9b4aefd3d45ed05e0ae1ba44d511f4b3d2e0e793b810c93727082b25",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 21191,
+      "lines": 330,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [],
+      "defaultFunction": "temporary",
+      "dependencies": [
+        "tools/maintenance/adapters.mjs",
+        "tools/maintenance/cli.mjs",
+        "tools/maintenance/engine.mjs"
+      ],
+      "tables": [
+        "invalid"
+      ],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
       "path": "tests/personal-calendar-db.test.mjs",
       "hash": "2fc54cbbd0e9f312d70646bc432e81d6def1134599ddb7a578fbd9756381f48e",
       "hashFormat": "sha256-utf8-lf-v1",
@@ -13802,6 +13831,141 @@
       "dependencies": [
         "lib/teacher-workspace-domain.ts"
       ],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tools/maintenance/adapters.mjs",
+      "hash": "54ddebdbb4632927bc07e330447002084e31d7b058ed614dd58c5b29709d0bf6",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 9759,
+      "lines": 116,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [
+        "createRegistry",
+        "detectStack",
+        "profiles"
+      ],
+      "defaultFunction": "detectStack",
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tools/maintenance/cli.mjs",
+      "hash": "df4e5dd0835efabf990f2ce8108762eafcd05c3b1eba9626268da7cea2506033",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 4925,
+      "lines": 81,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [
+        "main",
+        "parseArgs"
+      ],
+      "defaultFunction": "parseArgs",
+      "dependencies": [
+        "tools/maintenance/adapters.mjs",
+        "tools/maintenance/engine.mjs"
+      ],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tools/maintenance/config.json",
+      "hash": "5b5b8975155b402954854b354515376b01c68e541bb48d8f9c1a9443654b0663",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 174,
+      "lines": 11,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [],
+      "defaultFunction": null,
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tools/maintenance/engine.mjs",
+      "hash": "d1e63b3818546b7bb84ddda80f29726b55c9d422172fc473a7d30dc3d0b09193",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 14083,
+      "lines": 210,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [
+        "catalogFiles",
+        "memoryRepair",
+        "redact",
+        "runCommand",
+        "runPipeline",
+        "statuses",
+        "summarize",
+        "validateOptions",
+        "writeReport"
+      ],
+      "defaultFunction": "redact",
+      "dependencies": [],
+      "tables": [],
+      "rpcs": [],
+      "sqlTables": [],
+      "sqlFunctions": [],
+      "sqlPolicies": [],
+      "rlsTables": [],
+      "guards": [],
+      "verbs": []
+    },
+    {
+      "path": "tools/maintenance/README.md",
+      "hash": "9f4ff1eb443358a895476f2a12dfc4f4f010846b92b9e942cd5dcd2c3c6468e3",
+      "hashFormat": "sha256-utf8-lf-v1",
+      "bytes": 6670,
+      "lines": 67,
+      "category": "Testes-e-auditoria",
+      "route": null,
+      "domains": [
+        "10-Mapas/Testes-deploy-e-operacoes"
+      ],
+      "symbols": [],
+      "defaultFunction": null,
+      "dependencies": [],
       "tables": [],
       "rpcs": [],
       "sqlTables": [],
